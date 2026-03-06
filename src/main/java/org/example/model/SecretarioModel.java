@@ -1,11 +1,15 @@
 package org.example.model;
 
-public class SecretarioModel {
+import java.time.LocalDate;
+
+public class SecretarioModel extends UsuarioModel{
 
     private long idSecretario;
     private String turnoTrabalhadoSecretario;
 
-    public SecretarioModel(long idSecretario, String turnoTrabalhadoSecretario) {
+    public SecretarioModel(long idUsuario, String nomeUsuario, LocalDate dataNascimentoUsuario, String emailUsuario,
+                           String senhaUsuario, String telefoneUsuario, String cpfUsuario, long idSecretario, String turnoTrabalhadoSecretario) {
+        super(idUsuario, nomeUsuario, dataNascimentoUsuario, emailUsuario, senhaUsuario, telefoneUsuario, cpfUsuario);
         this.idSecretario = idSecretario;
         this.turnoTrabalhadoSecretario = turnoTrabalhadoSecretario;
     }
@@ -25,6 +29,4 @@ public class SecretarioModel {
     public void setTurnoTrabalhadoSecretario(String turnoTrabalhadoSecretario) {
         this.turnoTrabalhadoSecretario = turnoTrabalhadoSecretario;
     }
-
-
 }
