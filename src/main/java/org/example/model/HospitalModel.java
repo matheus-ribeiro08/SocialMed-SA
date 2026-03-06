@@ -1,0 +1,79 @@
+package org.example.model;
+
+public class HospitalModel {
+
+    private long idHospital;
+    private int cnpjHospital;
+    private String enderecoHospital;
+    private int quantPessoasHospital;
+    private String nomeHospital;
+    private int quantidadeSalasHopital;
+    private String agendaHospital;
+
+    public HospitalModel(long idHospital, int cnpjHospital, String enderecoHospital, int quantPessoasHospital,
+                         String nomeHospital, int quantidadeSalasHopital, String agendaHospital) {
+        this.idHospital = idHospital;
+        this.cnpjHospital = cnpjHospital;
+        this.enderecoHospital = enderecoHospital;
+        this.quantPessoasHospital = quantPessoasHospital;
+        this.nomeHospital = nomeHospital;
+        this.quantidadeSalasHopital = quantidadeSalasHopital;
+        this.agendaHospital = agendaHospital;
+    }
+
+    public long getIdHospital() {
+        return idHospital;
+    }
+
+    public void setIdHospital(long idHospital) {
+        this.idHospital = idHospital;
+    }
+
+    public int getCnpjHospital() {
+        return cnpjHospital;
+    }
+
+    public void setCnpjHospital(int cnpjHospital) {
+        this.cnpjHospital = cnpjHospital;
+    }
+
+    public String getEnderecoHospital() {
+        return enderecoHospital;
+    }
+
+    public void setEnderecoHospital(String enderecoHospital) {
+        this.enderecoHospital = enderecoHospital;
+    }
+
+    public int getQuantPessoasHospital() {
+        return quantPessoasHospital;
+    }
+
+    public void setQuantPessoasHospital(int quantPessoasHospital) {
+        this.quantPessoasHospital = quantPessoasHospital;
+    }
+
+    public String getNomeHospital() {
+        return nomeHospital;
+    }
+
+    public void setNomeHospital(String nomeHospital) {
+        this.nomeHospital = nomeHospital;
+    }
+
+    public int getQuantidadeSalasHopital() {
+        return quantidadeSalasHopital;
+    }
+
+    public void setQuantidadeSalasHopital(int quantidadeSalasHopital) {
+        this.quantidadeSalasHopital = quantidadeSalasHopital;
+    }
+
+    public String getAgendaHospital() {
+        return agendaHospital;
+    }
+
+    public void setAgendaHospital(String agendaHospital) {
+        this.agendaHospital = agendaHospital;
+    }
+}
