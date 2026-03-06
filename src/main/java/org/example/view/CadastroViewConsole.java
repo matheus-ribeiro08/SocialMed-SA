@@ -11,8 +11,6 @@ public class CadastroViewConsole implements ICadastroView{
 
     private DateTimeFormatter dateFormatter;
 
-
-
     @Override
     public int mostrarMenuPrincipal(){
         System.out.println("┌───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┐");
@@ -42,7 +40,7 @@ public class CadastroViewConsole implements ICadastroView{
     @Override
     public String[] getDadosCadastro() {
 
-        String[] dados = new String[8];
+        String[] dados = new String[7];
 
         String nome = "";
         String email = "";
@@ -50,7 +48,6 @@ public class CadastroViewConsole implements ICadastroView{
         String cpf = "";
         String dataNascimento = "";
         String telefone = "";
-        String endereco = "";
 
         boolean verifica = false;
 
@@ -84,6 +81,7 @@ public class CadastroViewConsole implements ICadastroView{
                 email = Ferramentas.lString();
                 verifica = true;
             } catch (Exception e) {
+                mostrarErro("Erro!");
                 Ferramentas.limpaTerminal();
                 System.err.println(e.getMessage());
                 Ferramentas.Delay(1500);
@@ -154,26 +152,12 @@ public class CadastroViewConsole implements ICadastroView{
 
         verifica = false;
 
-        do {
-            System.out.print("Endereço: ");
-            try {
-                nome = Ferramentas.lString();
-                verifica = true;
-            } catch (Exception e) {
-                Ferramentas.limpaTerminal();
-                System.err.println(e.getMessage());
-                Ferramentas.Delay(1500);
-            }
-
-        }while (!verifica);
-
         dados[0] = nome;
         dados[1] = email;
         dados[2] = senha;
         dados[3] = cpf;
         dados[4] = dataNascimento;
         dados[5] = telefone;
-        dados[6] = endereco;
 
         return dados;
     }
@@ -185,8 +169,6 @@ public class CadastroViewConsole implements ICadastroView{
         String email = "";
         String senha = "";
         boolean verifica = false;
-
-
 
         do {
             System.out.print("Email: ");
@@ -216,7 +198,22 @@ public class CadastroViewConsole implements ICadastroView{
 
         }while (!verifica);
 
-
         return dados;
     }
+
+    @Override
+    public void mostrarMensagem(String mensagem) {
+        System.out.println(mensagem);
+    }
+
+    @Override
+    public void mostrarErro(String mensagem) {
+        System.out.println(mensagem);
+    }
+
+    @Override
+    public void mostrarSucesso(String mensagem) {
+        System.out.println(mensagem);
+    }
+
 }
