@@ -1,6 +1,4 @@
 package org.example;
 
-public class teste
-{
-
+public class a {
 }
