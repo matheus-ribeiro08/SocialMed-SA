@@ -41,4 +41,32 @@ public class UsuarioDAO
         }
         return usuarioModel;
     }
+    public int cadastrarUsuario(UsuarioModel usuario) {
+        String sql = "INSERT INTO Usuario (nome_usuario, data_Nascimento, email_Usuario, senha_Usuario, telefone_Usuario, cpf_Usuario) VALUES (?, ?, ?, ?, ?, ?)";
+        int idGerado = -1;
+
+        try (Connection conn = ConnectionFactory.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+
+            stmt.setString(1, usuario.getNomeUsuario());
+            stmt.setDate(2, Date.valueOf(usuario.getDataNascimentoUsuario()));
+            stmt.setString(3, usuario.getEmailUsuario());
+            stmt.setString(4, usuario.getSenhaUsuario());
+            stmt.setString(5, usuario.getTelefoneUsuario());
+            stmt.setString(6, usuario.getCpfUsuario());
+
+            stmt.executeUpdate();
+
+            try (ResultSet rs = stmt.getGeneratedKeys()) {
+                if (rs.next()) {
+                    idGerado = rs.getInt(1);
+                }
+            }
+
+        } catch (SQLException e) {
+            System.err.println("Erro: " + e.getMessage());
+        }
+
+        return idGerado;
+    }
 }
