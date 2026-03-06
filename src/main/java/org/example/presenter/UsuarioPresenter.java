@@ -1,5 +1,6 @@
 package org.example.presenter;
 
+import org.example.dao.UsuarioDAO;
 import org.example.model.UsuarioModel;
 import org.example.model.PacienteModel;
 import org.example.utils.Ferramentas;
@@ -42,6 +43,8 @@ public class UsuarioPresenter {
     }
 
     private void fazerCadastro() {
+
+        UsuarioDAO daoUser = new UsuarioDAO();
         try {
             String[] dados = view.getDadosCadastro();
 
@@ -60,7 +63,7 @@ public class UsuarioPresenter {
             usuario.setDataNascimentoUsuario(dados[4]);
             usuario.setTelefoneUsuario(dados[5]);
 
-            if (model.cadastrar(usuario)) {
+            if (model.ca(usuario)) {
                 view.mostrarSucesso("Cadastro realizado com sucesso!");
             } else {
                 view.mostrarErro("Email ou CPF já cadastrado!");
@@ -72,20 +75,17 @@ public class UsuarioPresenter {
     }
 
     private void fazerLogin() {
+        UsuarioDAO daoUser = new UsuarioDAO();
         try {
-            // 1. Pega os dados da View
             String[] dados = view.getDadosLogin();
             String email = dados[0];
             String senha = dados[1];
 
-            // 2. Manda o Model verificar
-            Paciente paciente = model.login(email, senha);
+            UsuarioModel usuario = daoUser.login(email, senha);
 
-            // 3. Mostra resultado
-            if (paciente != null) {
-                view.mostrarSucesso("Login realizado! Bem-vindo " + paciente.getNomeCompleto());
-                // Aqui você pode chamar o menu do paciente logado
-                menuPacienteLogado(paciente);
+            if (usuario != null) {
+                view.mostrarSucesso("Login realizado! Bem-vindo " + usuario.getNomeUsuario());
+                menuPacienteLogado(usuario);
             } else {
                 view.mostrarErro("Email ou senha incorretos!");
             }
