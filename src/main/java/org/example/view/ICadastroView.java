@@ -7,18 +7,9 @@ import java.util.List;
 public interface ICadastroView {
 
     int mostrarMenuPrincipal();
-
-    UsuarioModel getDadosCadastro();
-    UsuarioModel getDadosLogin();
-
+    String[] getDadosCadastro();
+    String[] getDadosLogin();
     void mostrarMensagem(String mensagem);
     void mostrarErro(String mensagem);
     void mostrarSucesso(String mensagem);
-    void mostrarAviso(String mensagem);
-
-    boolean confirmarOperacao(String mensagem);
-
-    void limparTela();
-    void aguardarTecla();
-    void pausar();
 }
