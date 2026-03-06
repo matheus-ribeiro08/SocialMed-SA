@@ -78,4 +78,6 @@ public class UsuarioModel {
     public void setCpfUsuario(String cpfUsuario) {
         this.cpfUsuario = cpfUsuario;
     }
+    
+    public void setId(int idUsuario){this.idUsuario = idUsuario;}
 }
