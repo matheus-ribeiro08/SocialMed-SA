@@ -165,7 +165,6 @@ public class CadastroViewConsole implements ICadastroView{
     @Override
     public String[] getDadosLogin() {
         String[] dados = new String[2];
-
         String email = "";
         String senha = "";
         boolean verifica = false;
