@@ -1,7 +1,5 @@
 package org.example.service;
 
-package org.example.model;
-
 import org.example.dao.UsuarioDAO;
 import org.example.model.UsuarioModel;
 
@@ -13,7 +11,7 @@ public class UsuarioService {
     }
 
     public boolean cadastrar(UsuarioModel usuario) {
-        // Regras de negócio
+
         if (usuario.getNomeUsuario() == null || usuario.getNomeUsuario().trim().isEmpty()) {
             throw new IllegalArgumentException("Nome é obrigatório");
         }
@@ -27,11 +25,11 @@ public class UsuarioService {
             throw new IllegalArgumentException("CPF deve ter 11 dígitos");
         }
 
-        // Chama o DAO
-        return dao.cadastrar(usuario);
+        return dao.cadastrarUsuario(usuario);
     }
 
-    public Usuario login(String email, String senha) {
+    public UsuarioModel login(String email, String senha) {
+
         if (email == null || email.isEmpty()) {
             throw new IllegalArgumentException("Email obrigatório");
         }
@@ -39,7 +37,6 @@ public class UsuarioService {
             throw new IllegalArgumentException("Senha obrigatória");
         }
 
-        // Chama o DAO
         return dao.login(email, senha);
     }
 }

@@ -3,16 +3,20 @@ package org.example.presenter;
 import org.example.dao.UsuarioDAO;
 import org.example.model.UsuarioModel;
 import org.example.model.PacienteModel;
+import org.example.service.UsuarioService;
 import org.example.utils.Ferramentas;
 import org.example.view.ICadastroView;
 
 import java.time.LocalDate;
 
 public class UsuarioPresenter {
+
+    private UsuarioService service;
     private PacienteModel model;
     private ICadastroView view;
 
     public UsuarioPresenter(PacienteModel model, ICadastroView view) {
+        this.service = new UsuarioService();
         this.model = model;
         this.view = view;
     }
@@ -44,7 +48,6 @@ public class UsuarioPresenter {
 
     private void fazerCadastro() {
 
-        UsuarioDAO daoUser = new UsuarioDAO();
         try {
             String[] dados = view.getDadosCadastro();
 
@@ -58,12 +61,10 @@ public class UsuarioPresenter {
             usuario.setEmailUsuario(dados[1]);
             usuario.setSenhaUsuario(dados[2]);
             usuario.setCpfUsuario(dados[3]);
-            String data = dados[4];
-            LocalDate date = LocalDate.parse(data);
             usuario.setDataNascimentoUsuario(dados[4]);
             usuario.setTelefoneUsuario(dados[5]);
 
-            if (model.ca(usuario)) {
+            if (service.cadastrar(usuario)) {
                 view.mostrarSucesso("Cadastro realizado com sucesso!");
             } else {
                 view.mostrarErro("Email ou CPF já cadastrado!");
@@ -75,13 +76,13 @@ public class UsuarioPresenter {
     }
 
     private void fazerLogin() {
-        UsuarioDAO daoUser = new UsuarioDAO();
+
         try {
             String[] dados = view.getDadosLogin();
             String email = dados[0];
             String senha = dados[1];
 
-            UsuarioModel usuario = daoUser.login(email, senha);
+            UsuarioModel usuario = service.login(email,senha);
 
             if (usuario != null) {
                 view.mostrarSucesso("Login realizado! Bem-vindo " + usuario.getNomeUsuario());
@@ -112,9 +113,6 @@ public class UsuarioPresenter {
             }
 
             switch (opcao) {
-                case 1:
-                    mostrarDadosPaciente(paciente);
-                    break;
                 case 2:
                     // atualizarPaciente(paciente);
                     break;
@@ -127,18 +125,5 @@ public class UsuarioPresenter {
 
 
         } while (opcao != 3);
-    }
-
-    private void mostrarDadosPaciente(Paciente paciente) {
-        view.mostrarDadosPaciente(
-                paciente.getNomeCompleto(),
-                paciente.getEmail(),
-                paciente.getCpf(),
-                paciente.getDataNascimentoFormatada(),
-                paciente.getTelefone(),
-                paciente.getEndereco(),
-                "", // convenio (se tiver)
-                ""  // carteirinha (se tiver)
-        );
     }
 }

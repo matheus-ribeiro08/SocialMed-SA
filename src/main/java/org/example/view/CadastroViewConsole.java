@@ -127,7 +127,6 @@ public class CadastroViewConsole implements ICadastroView{
             System.out.print("Data de nascimento (dd/mm/aaaa): ");
             try {
                 dataNascimento = Ferramentas.lString();
-                LocalDate.parse(dataNascimento, dateFormatter);
                 verifica = true;
             } catch (DateTimeParseException e) {
                 throw new IllegalArgumentException("Data inválida! Use o formato dd/mm/aaaa");
@@ -140,7 +139,7 @@ public class CadastroViewConsole implements ICadastroView{
         do {
             System.out.print("Telefone: ");
             try {
-                nome = Ferramentas.lString();
+                telefone = Ferramentas.lString();
                 verifica = true;
             } catch (Exception e) {
                 Ferramentas.limpaTerminal();
@@ -164,6 +163,7 @@ public class CadastroViewConsole implements ICadastroView{
 
     @Override
     public String[] getDadosLogin() {
+
         String[] dados = new String[2];
         String email = "";
         String senha = "";
@@ -196,6 +196,9 @@ public class CadastroViewConsole implements ICadastroView{
             }
 
         }while (!verifica);
+
+        dados[0] = email;
+        dados[1] = senha;
 
         return dados;
     }

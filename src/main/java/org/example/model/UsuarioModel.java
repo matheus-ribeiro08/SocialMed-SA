@@ -1,6 +1,7 @@
 package org.example.model;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class UsuarioModel {
 
@@ -43,9 +44,10 @@ public class UsuarioModel {
         return dataNascimentoUsuario;
     }
 
-    public void setDataNascimentoUsuario(LocalDate dataNascimentoUsuario) {
-        this.dataNascimentoUsuario = dataNascimentoUsuario;
+    public void setDataNascimentoUsuario(String dataStr) { // 👈 Recebe String
+        this.dataNascimentoUsuario = LocalDate.parse(dataStr, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
     }
+
 
     public String getEmailUsuario() {
         return emailUsuario;
