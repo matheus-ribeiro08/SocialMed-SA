@@ -1,14 +1,20 @@
 package org.example.model;
 
+import java.util.Date;
+
 public class AvaliacaoModel {
     private long idAvaliacao;
     private double notaAvaliacao;
     private String comentariosAvaliacao;
+    private Date dataPublicacao;
+    private int idMedico;
 
-    public AvaliacaoModel(long idAvaliacao, double notaAvaliacao, String comentariosAvaliacao) {
+    public AvaliacaoModel(long idAvaliacao, double notaAvaliacao, String comentariosAvaliacao, Date dataPublicacao, int idMedico) {
         this.idAvaliacao = idAvaliacao;
         this.notaAvaliacao = notaAvaliacao;
         this.comentariosAvaliacao = comentariosAvaliacao;
+        this.dataPublicacao = dataPublicacao;
+        this.idMedico = idMedico;
     }
 
     public long getIdAvaliacao() {
@@ -31,7 +37,13 @@ public class AvaliacaoModel {
         return comentariosAvaliacao;
     }
 
-    public void setComentariosAvaliacao(String comentariosAvaliacao) {
-        this.comentariosAvaliacao = comentariosAvaliacao;
-    }
+    public void setComentariosAvaliacao(String comentariosAvaliacao) { this.comentariosAvaliacao = comentariosAvaliacao; }
+
+    public Date getDataPublicacao() { return dataPublicacao; }
+
+    public void setDataPublicacao(Date dataPublicacao) { this.dataPublicacao = dataPublicacao; }
+
+    public int getIdMedico() { return idMedico; }
+
+    public void setIdMedico(int idMedico) { this.idMedico = idMedico; }
 }
