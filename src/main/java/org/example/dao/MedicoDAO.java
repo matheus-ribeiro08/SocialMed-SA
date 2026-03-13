@@ -93,4 +93,23 @@ public class MedicoDAO
 
         return consultasMedico;
     }
+
+    public List<MedicoModel> listarTodosMedicos()
+    {
+        List<MedicoModel> medicos = new ArrayList<>();
+        String sql = "SELECT u.*, m.id_Medico, m.especialidade_Medico FROM Medico m INNER JOIN Usuario u ON m.id_Usuario = u.id_Usuario";
+
+        try(Connection conn = ConnectionFactory.getConnection();
+            PreparedStatement stmt = conn.prepareStatement(sql))
+        {
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next())
+            {
+                MedicoModel medico = new MedicoModel();
+
+                medico.getEspecialidadeMedico()
+            }
+        }
+    }
 }
