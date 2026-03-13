@@ -19,11 +19,10 @@ public class AdminDAO {
 
             try(PreparedStatement stmtUsuario = conn.prepareStatement(sqlUsuario, Statement.RETURN_GENERATED_KEYS)){
                 stmtUsuario.setString(1, medico.getNomeUsuario());
-                stmtUsuario.setDate(2, Date.valueOf(medico.getDataNascimentoUsuario()));
-                stmtUsuario.setString(3, medico.getEmailUsuario());
-                stmtUsuario.setString(4, medico.getSenhaUsuario());
-                stmtUsuario.setString(5, medico.getTelefoneUsuario());
-                stmtUsuario.setString(6, medico.getCpfUsuario());
+                stmtUsuario.setString(2, medico.getEmailUsuario());
+                stmtUsuario.setString(3, medico.getSenhaUsuario());
+                stmtUsuario.setString(4, medico.getTelefoneUsuario());
+                stmtUsuario.setString(5, medico.getCpfUsuario());
 
                 stmtUsuario.executeUpdate();
 
@@ -76,11 +75,10 @@ public class AdminDAO {
 
             try(PreparedStatement stmtUsuario = conn.prepareStatement(sqlUsuario, Statement.RETURN_GENERATED_KEYS)){
                 stmtUsuario.setString(1, secretario.getNomeUsuario());
-                stmtUsuario.setDate(2, Date.valueOf(secretario.getDataNascimentoUsuario()));
-                stmtUsuario.setString(3, secretario.getEmailUsuario());
-                stmtUsuario.setString(4, secretario.getSenhaUsuario());
-                stmtUsuario.setString(5, secretario.getTelefoneUsuario());
-                stmtUsuario.setString(6, secretario.getCpfUsuario());
+                stmtUsuario.setString(2, secretario.getEmailUsuario());
+                stmtUsuario.setString(3, secretario.getSenhaUsuario());
+                stmtUsuario.setString(4, secretario.getTelefoneUsuario());
+                stmtUsuario.setString(5, secretario.getCpfUsuario());
 
                 stmtUsuario.executeUpdate();
 
@@ -90,10 +88,10 @@ public class AdminDAO {
 
                         try(PreparedStatement stmtSecretario = conn.prepareStatement(sqlSecretario)){
                             stmtSecretario.setInt(1, idUsuario);
-                            stmtSecretario.executeUpdate()
+                            stmtSecretario.executeUpdate();
                         }
                     } else{
-                        throw new SQLException("Erro ao gerar ID de usuário.")
+                        throw new SQLException("Erro ao gerar ID de usuário.");
                     }
                 }
             }
