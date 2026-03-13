@@ -14,7 +14,6 @@ public class PacienteConsultasView implements IPacienteViewConsultas {
         System.out.println("");
 
 
-
     }
 
     @Override
