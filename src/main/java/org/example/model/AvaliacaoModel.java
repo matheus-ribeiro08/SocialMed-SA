@@ -1,15 +1,16 @@
 package org.example.model;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 public class AvaliacaoModel {
     private long idAvaliacao;
     private double notaAvaliacao;
     private String comentariosAvaliacao;
-    private Date dataPublicacao;
+    private LocalDate dataPublicacao;
     private int idMedico;
 
-    public AvaliacaoModel(long idAvaliacao, double notaAvaliacao, String comentariosAvaliacao, Date dataPublicacao, int idMedico) {
+    public AvaliacaoModel(long idAvaliacao, double notaAvaliacao, String comentariosAvaliacao, LocalDate dataPublicacao, int idMedico) {
         this.idAvaliacao = idAvaliacao;
         this.notaAvaliacao = notaAvaliacao;
         this.comentariosAvaliacao = comentariosAvaliacao;
@@ -39,9 +40,9 @@ public class AvaliacaoModel {
 
     public void setComentariosAvaliacao(String comentariosAvaliacao) { this.comentariosAvaliacao = comentariosAvaliacao; }
 
-    public Date getDataPublicacao() { return dataPublicacao; }
+    public LocalDate getDataPublicacao() { return dataPublicacao; }
 
-    public void setDataPublicacao(Date dataPublicacao) { this.dataPublicacao = dataPublicacao; }
+    public void setDataPublicacao(LocalDate dataPublicacao) { this.dataPublicacao = dataPublicacao; }
 
     public int getIdMedico() { return idMedico; }
 
