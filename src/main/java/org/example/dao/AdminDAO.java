@@ -1,6 +1,7 @@
 package org.example.dao;
 
 import org.example.database.ConnectionFactory;
+import org.example.model.HospitalModel;
 import org.example.model.MedicoModel;
 import org.example.model.SecretarioModel;
 
@@ -114,5 +115,25 @@ public class AdminDAO {
                 }catch (SQLException ex) {}
             }
         }
+    }
+
+    public boolean adicionarHospital(HospitalModel hospital){
+        String sql = "INSERT INTO Hospital (nome_Hospital, endereco_Hospital, agenda_Hospital) VALUES (?, ?, ?)";
+
+        try(Connection conn = ConnectionFactory.getConnection();
+            PreparedStatement stmt = conn.prepareStatement(sql)){
+
+            stmt.setString(1, hospital.getNomeHospital());
+            stmt.setString(2, hospital.getEnderecoHospital());
+            stmt.setString(3, hospital.getAgendaHospital());
+
+            stmt.executeUpdate();
+
+            return true;
+        }catch (SQLException e){
+            System.err.println("Erro ao adicionar Hospital: " + e.getMessage());
+            return false;
+        }
+
     }
 }

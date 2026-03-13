@@ -9,7 +9,7 @@ public class ConnectionFactory {
     // Conexão com o Banco de Dados
     public static Connection getConnection ()
     {
-        String url = "jdbc:mysql://avnadmin:AVNS_3ucIBTLub3-ZmTK9ixO@socialmed2026-theuzinx23-d156.i.aivencloud.com:19307/defaultdb?ssl-mode=REQUIRED";
+        String url = "jdbc:mysql://avnadmin:AVNS_3ucIBTLub3-ZmTK9ixO@socialmed2026-theuzinx23-d156.i.aivencloud.com:19307/SocialMed_SA?ssl-mode=REQUIRED";
         String user = "avnadmin";
         String senha = "AVNS_3ucIBTLub3-ZmTK9ixO";
 
