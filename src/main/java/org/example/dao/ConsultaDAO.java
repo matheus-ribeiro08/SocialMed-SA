@@ -57,4 +57,21 @@ public class ConsultaDAO {
         }
         return consultas;
     }
+
+    public boolean deletarConsulta(int idConsulta){
+        String sql = "DELETE FROM Consultas WHERE id_Consultas = ?";
+
+        try (Connection conn = ConnectionFactory.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setInt(1, idConsulta);
+            stmt.executeUpdate();
+
+            return true;
+
+        } catch (SQLException e) {
+            System.err.println("Erro ao deletar consulta: " + e.getMessage());
+            return false;
+        }
+    }
 }
