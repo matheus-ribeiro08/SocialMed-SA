@@ -10,9 +10,11 @@ public class RoteadorCadastro {
             case "cadastro": {
                 CadastroViewConsole cadastroView = new CadastroViewConsole();
                 CadastrarUsuarioPresenter cadastroPresenter = new CadastrarUsuarioPresenter(this, cadastroView);
-
+                cadastroPresenter.iniciarCadastro();
+                break;
             }
 
+            case "login":
 
         }
     }
