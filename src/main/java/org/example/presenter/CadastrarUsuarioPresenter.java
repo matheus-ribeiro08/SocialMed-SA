@@ -1,6 +1,6 @@
 package org.example.presenter;
 
-import org.example.exception.NomeInvalido;
+import org.example.exception.*;
 import org.example.roteador.RoteadorCadastro;
 import org.example.view.CadastroViewConsole;
 
@@ -19,14 +19,41 @@ public class CadastrarUsuarioPresenter {
         String senha = cadastroViewConsole.pedirSenha();
         String email = cadastroViewConsole.pedirEmail();
         String cpf = cadastroViewConsole.pedirCPF();
-        String telefone = cadastroViewConsole.pedirTelefone();;
+        String telefone = cadastroViewConsole.pedirTelefone();
+
+
     }
 
-    public void validarInformacoes(String nome, String senha, String email, ){
+    public void validarInformacoes(String nome, String senha, String email, String cpf, String telefone){
         if(nome == null || nome.length() < 1 || nome.length() > 2253){
             throw new NomeInvalido("Nome inválido!");
         }
 
+        if (email == null || email.isBlank() || !email.contains("@") || email.length() > 345){
+            throw new EmailInvalido("Email inválido!");
+        }
+
+        if (senha == null || senha.isBlank()){
+            throw new SenhaInvalida("A senha não pode ser vazia!");
+        }
+
+        if(senha.length() < 8){
+            throw new SenhaInvalida("Senha deve conter 8 digitos ou mais!");
+        }
+
+        String regex = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[^A-Za-z\\d]).+$";
+
+        if(!senha.matches(regex)){
+            throw new SenhaInvalida("A senha deve conter caracteres especiais!");
+        }
+
+        if(cpf == null || cpf.isBlank()){
+            throw new CpfInvalido("Cpf inválido!");
+        }
+
+        if(telefone == null || telefone.isBlank()){
+            throw new TelefoneInvalido("Telefone inválido!");
+        }
 
     }
 
