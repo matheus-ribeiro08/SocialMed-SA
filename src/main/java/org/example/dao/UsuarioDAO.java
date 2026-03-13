@@ -9,8 +9,7 @@ import java.util.List;
 
 public class UsuarioDAO
 {
-    public UsuarioModel login(String cpf, String senha)
-    {
+    public UsuarioModel login(String cpf, String senha) throws SQLException {
         String sql = "SELECT * FROM Usuario WHERE cpf_usuario = ? AND senha_usuario = ?";
         UsuarioModel usuarioModel = null;
 
@@ -37,7 +36,7 @@ public class UsuarioDAO
         }
         catch (SQLException e)
         {
-            throw new RuntimeException(e);
+            throw new SQLException(e);
         }
         return usuarioModel;
     }
@@ -103,5 +102,39 @@ public class UsuarioDAO
             System.err.println("Erro ao verificar o email.");
         }
         return null;
+    }
+
+    public UsuarioModel buscarPorCpf(String cpf)
+    {
+        String sql = "SELECT * FROM Usuario WHERE cpf_Usuario = ?";
+
+        try(Connection conn = ConnectionFactory.getConnection();
+            PreparedStatement stmt = conn.prepareStatement(sql))
+        {
+            stmt.setString(1, cpf);
+            ResultSet rs = stmt.getResultSet();
+
+            if(rs.next())
+            {
+                return extrairUsuario(rs);
+            }
+        }catch (SQLException e)
+        {
+            System.err.println("Erro ao buscar o CPF.");
+        }
+        return null;
+    }
+
+    public UsuarioModel extrairUsuario(ResultSet rs) throws  SQLException
+    {
+        UsuarioModel Usuario = new UsuarioModel(
+                rs.getString("nome_Usuario"),
+                rs.getString("email_Usuario"),
+                rs.getString("senha_Usuario"),
+                rs.getString("cpf_Usuario"),
+                rs.getString("telefone_Usuario")
+        );
+        Usuario.setId(rs.getInt("id_Usuario"));
+        return Usuario;
     }
 }
