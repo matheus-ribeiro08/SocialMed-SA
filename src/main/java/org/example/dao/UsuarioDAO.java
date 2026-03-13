@@ -1,9 +1,11 @@
 package org.example.dao;
 
 import org.example.database.ConnectionFactory;
+import org.example.model.MedicoModel;
 import org.example.model.UsuarioModel;
 
 import java.sql.*;
+import java.util.List;
 
 public class UsuarioDAO
 {
@@ -25,7 +27,6 @@ public class UsuarioDAO
                     usuarioModel = new UsuarioModel(
                             rs.getInt("id_Usuario"),
                             rs.getString("nome_usuario"),
-                            rs.getDate("data_Nascimento").toLocalDate(),
                             rs.getString("cpf_usuario"),
                             rs.getString("telefone_Usuario"),
                             rs.getString("email_Usuario"),
@@ -42,17 +43,16 @@ public class UsuarioDAO
     }
     public boolean cadastrarUsuario(UsuarioModel usuario)
     {
-        String sql = "INSERT INTO Usuario (nome_usuario, data_Nascimento, email_Usuario, senha_Usuario, telefone_Usuario, cpf_Usuario) VALUES (?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO Usuario (nome_usuario, email_Usuario, senha_Usuario, telefone_Usuario, cpf_Usuario) VALUES (?, ?, ?, ?, ?)";
 
         try (Connection conn = ConnectionFactory.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
 
             stmt.setString(1, usuario.getNomeUsuario());
-            stmt.setDate(2, Date.valueOf(usuario.getDataNascimentoUsuario()));
-            stmt.setString(3, usuario.getEmailUsuario());
-            stmt.setString(4, usuario.getSenhaUsuario());
-            stmt.setString(5, usuario.getTelefoneUsuario());
-            stmt.setString(6, usuario.getCpfUsuario());
+            stmt.setString(2, usuario.getEmailUsuario());
+            stmt.setString(3, usuario.getSenhaUsuario());
+            stmt.setString(4, usuario.getTelefoneUsuario());
+            stmt.setString(5, usuario.getCpfUsuario());
 
             int linhasAfetadas = stmt.executeUpdate();
             return linhasAfetadas > 0;
