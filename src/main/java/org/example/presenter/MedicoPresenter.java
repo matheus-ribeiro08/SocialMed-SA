@@ -1,7 +1,11 @@
 package org.example.presenter;
 
+import org.example.dao.MedicoDAO;
+import org.example.model.ConsultaModel;
 import org.example.model.MedicoModel;
 import org.example.view.IMedicoView;
+
+import java.awt.*;
 
 public class MedicoPresenter {
 
@@ -23,30 +27,20 @@ public class MedicoPresenter {
             op = view.mostrarMenuMedico();
 
         switch (op) {
-            case 1: {
-                visualizarConsultas();
-                break;
-            }
+            case 1 -> visualizarConsultas();
 
-            case 2: {
-                cancelarConsultas();
-                break;
-            }
 
-            case 3: {
-                sairMedico();
-                break;
-            }
+            case 2 -> cancelarConsultas();
 
-            default: {
-                System.err.println("Opção invalida!!!!!");
-            }
-        }
+
+            case 3 -> sairMedico();
+
+            default -> System.err.println("Opção invalida!!!!!");
+             }
         }while (op != 3);
     }
 
     private void sairMedico() {
-
 
 
     }
@@ -57,8 +51,8 @@ public class MedicoPresenter {
 
     }
 
-    private void visualizarConsultas() {
-
+    public List<ConsultaModel> visualizarConsultasPorMedico(int idMedico)
+    {
 
     }
 }
