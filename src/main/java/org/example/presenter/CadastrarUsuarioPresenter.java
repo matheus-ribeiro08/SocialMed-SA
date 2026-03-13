@@ -21,6 +21,7 @@ public class CadastrarUsuarioPresenter {
         String cpf = cadastroViewConsole.pedirCPF();
         String telefone = cadastroViewConsole.pedirTelefone();
 
+
     }
 
     public void validarInformacoes(String nome, String senha, String email, String cpf, String telefone){
