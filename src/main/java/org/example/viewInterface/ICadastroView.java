@@ -6,7 +6,6 @@ public interface ICadastroView {
     String pedirSenha();
     String pedirNome();
     String pedirCPF();
-    String pedirDataNascimento();
     String pedirTelefone();
     String pedirEmail();
 }
