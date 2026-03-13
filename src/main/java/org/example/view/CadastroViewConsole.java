@@ -2,7 +2,7 @@ package org.example.view;
 
 import org.example.presenter.UsuarioPresenter;
 import org.example.utils.Ferramentas;
-import org.example.viewInterface.ICadastroView;
+import org.example.viewInterface.viewInterfaceCadastro.ICadastroView;
 
 import java.time.format.DateTimeFormatter;
 
