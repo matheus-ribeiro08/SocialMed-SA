@@ -18,6 +18,10 @@ public class AvaliacaoModel {
         this.idMedico = idMedico;
     }
 
+    public AvaliacaoModel() {
+
+    }
+
     public long getIdAvaliacao() {
         return idAvaliacao;
     }

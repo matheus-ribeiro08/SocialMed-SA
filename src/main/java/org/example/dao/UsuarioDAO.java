@@ -62,4 +62,24 @@ public class UsuarioDAO
             return false;
         }
     }
+
+    public boolean existeCpf (String cpf)
+    {
+        String sql = "SELECT 1 FROM Usuario WHERE cpf_Usuario = ?";
+
+        try(Connection conn = ConnectionFactory.getConnection();
+            PreparedStatement stmt = conn.prepareStatement(sql))
+        {
+            stmt.setString(1, cpf);
+
+            try(ResultSet rs = stmt.executeQuery())
+            {
+                return rs.next();
+            }
+        } catch (SQLException e) {
+            System.err.println("Erro ao verificar o CPF.");
+        }
+        return false;
+    }
+
 }
