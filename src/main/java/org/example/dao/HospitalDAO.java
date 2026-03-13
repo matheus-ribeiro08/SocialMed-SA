@@ -35,4 +35,6 @@ public class HospitalDAO
         } catch (SQLException e) {}
         return hospitais;
     }
+
+
 }
