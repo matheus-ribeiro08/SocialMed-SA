@@ -1,7 +1,6 @@
 package org.example.dao;
 
-import org.example.configuracao.ConnectionFactory;
-import org.example.model.PacienteModel;
+import org.example.database.ConnectionFactory;
 import org.example.model.UsuarioModel;
 
 import java.sql.*;
