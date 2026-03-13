@@ -1,6 +1,7 @@
 package org.example.presenter;
 
 import org.example.exception.*;
+import org.example.model.UsuarioModel;
 import org.example.roteador.RoteadorCadastro;
 import org.example.view.CadastroViewConsole;
 
@@ -20,6 +21,8 @@ public class CadastrarUsuarioPresenter {
         String email = cadastroViewConsole.pedirEmail();
         String cpf = cadastroViewConsole.pedirCPF();
         String telefone = cadastroViewConsole.pedirTelefone();
+
+        UsuarioModel usuario = new UsuarioModel(nome,senha,email,cpf,telefone);
 
 
     }

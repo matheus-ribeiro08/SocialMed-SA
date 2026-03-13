@@ -75,4 +75,14 @@ public class UsuarioModel {
     }
     
     public void setId(int idUsuario){this.idUsuario = idUsuario;}
+
+
+    public UsuarioModel(String nomeUsuario, String emailUsuario, String senhaUsuario, String telefoneUsuario, String cpfUsuario) {
+        this.nomeUsuario = nomeUsuario;
+        this.emailUsuario = emailUsuario;
+        this.senhaUsuario = senhaUsuario;
+        this.telefoneUsuario = telefoneUsuario;
+        this.cpfUsuario = cpfUsuario;
+
+    }
 }

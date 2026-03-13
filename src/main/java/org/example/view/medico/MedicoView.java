@@ -1,8 +1,8 @@
-package org.example.view;
+package org.example.view.medico;
 
 import org.example.utils.Ferramentas;
 
-public class MedicoView implements IMedicoView{
+public class MedicoView implements IMedicoView {
 
     @Override
     public int mostrarMenuMedico() {

@@ -1,4 +1,4 @@
-package org.example.view;
+package org.example.view.medico;
 
 import org.example.model.ConsultaModel;
 import org.example.viewInterface.viewInterfaceMedico.IMedicoViewConsultas;

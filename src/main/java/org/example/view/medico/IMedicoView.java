@@ -1,4 +1,4 @@
-package org.example.view;
+package org.example.view.medico;
 
 public interface IMedicoView {
 
