@@ -1,13 +1,10 @@
 package org.example.presenter;
 
-import org.example.dao.UsuarioDAO;
 import org.example.model.UsuarioModel;
 import org.example.model.PacienteModel;
 import org.example.service.UsuarioService;
 import org.example.utils.Ferramentas;
-import org.example.view.ICadastroView;
-
-import java.time.LocalDate;
+import org.example.viewInterface.ICadastroView;
 
 public class UsuarioPresenter {
 
@@ -96,34 +93,3 @@ public class UsuarioPresenter {
         }
     }
 
-    private void menuPacienteLogado(UsuarioModel usuario) {
-        int opcao;
-        do {
-
-            System.out.println("\n=== MENU DO PACIENTE ===");
-            System.out.println("1 - Meus Dados");
-            System.out.println("2 - Atualizar Cadastro");
-            System.out.println("3 - Sair");
-            System.out.print("Escolha: ");
-
-            try {
-                opcao = Integer.parseInt(Ferramentas.lString());
-            } catch (NumberFormatException e) {
-                opcao = -1;
-            }
-
-            switch (opcao) {
-                case 2:
-                    // atualizarPaciente(paciente);
-                    break;
-                case 3:
-                    view.mostrarMensagem("Saindo do menu paciente...");
-                    break;
-                default:
-                    view.mostrarErro("Opção inválida!");
-            }
-
-
-        } while (opcao != 3);
-    }
-}
