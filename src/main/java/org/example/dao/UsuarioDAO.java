@@ -41,7 +41,8 @@ public class UsuarioDAO
         }
         return usuarioModel;
     }
-    public boolean cadastrarUsuario(UsuarioModel usuario) {
+    public boolean cadastrarUsuario(UsuarioModel usuario)
+    {
         String sql = "INSERT INTO Usuario (nome_usuario, data_Nascimento, email_Usuario, senha_Usuario, telefone_Usuario, cpf_Usuario) VALUES (?, ?, ?, ?, ?, ?)";
 
         try (Connection conn = ConnectionFactory.getConnection();
