@@ -8,7 +8,7 @@ import java.sql.*;
 public class PacienteDAO
 {
     public boolean cadastrarPaciente(PacienteModel paciente) throws SQLException {
-        String sqlUsuario = "INSERT INTO Usuario (nome_Usuario, data_Nascimento, email_Usuario, telefone_Usuario, cpf_Usuario) VALUES (?, ?, ?, ?, ?)";
+        String sqlUsuario = "INSERT INTO Usuario (nome_Usuario, email_Usuario, senha_Usuario, telefone_Usuario, cpf_Usuario) VALUES (?, ?, ?, ?, ?)";
         String sqlPaciente = "INSERT INTO Paciente (id_Usuario, endereco_Paciente) VALUES (?, ?)";
 
         Connection conn = null;
@@ -19,11 +19,10 @@ public class PacienteDAO
 
             try (PreparedStatement stmt = conn.prepareStatement(sqlUsuario, Statement.RETURN_GENERATED_KEYS)) {
                 stmt.setString(1, paciente.getNomeUsuario());
-                stmt.setDate(2, Date.valueOf(paciente.getDataNascimentoUsuario()));
-                stmt.setString(3, paciente.getEmailUsuario());
-                stmt.setString(4, paciente.getSenhaUsuario());
-                stmt.setString(5, paciente.getTelefoneUsuario());
-                stmt.setString(6, paciente.getCpfUsuario());
+                stmt.setString(2, paciente.getEmailUsuario());
+                stmt.setString(3, paciente.getSenhaUsuario());
+                stmt.setString(4, paciente.getTelefoneUsuario());
+                stmt.setString(5, paciente.getCpfUsuario());
 
                 stmt.executeUpdate();
 
