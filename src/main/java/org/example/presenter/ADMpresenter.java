@@ -8,8 +8,7 @@ import org.example.view.CadastroViewConsole;
 public class ADMpresenter {
 
     viewADM viewADM = new viewADM();
-
-    CadastroViewConsole cadastroViewConsole = new CadastroViewConsole();
+    CadastrarUsuarioPresenter cadastrarUsuarioPresenter = new CadastrarUsuarioPresenter();
 
     public void MenuADM()
     {
@@ -31,6 +30,9 @@ public class ADMpresenter {
         }
 
     public void CadastrarUsuario() {
+
+        cadastrarUsuarioPresenter.ColetarInformacoes();
+
 
     }
 }

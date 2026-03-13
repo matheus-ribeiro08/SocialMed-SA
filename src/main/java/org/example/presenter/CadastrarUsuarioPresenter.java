@@ -22,8 +22,9 @@ public class CadastrarUsuarioPresenter {
         String cpf = cadastroViewConsole.pedirCPF();
         String telefone = cadastroViewConsole.pedirTelefone();
 
-        UsuarioModel usuario = new UsuarioModel(nome,senha,email,cpf,telefone);
+        validarInformacoes(nome,senha,email,cpf,telefone);
 
+        UsuarioModel usuario = new UsuarioModel(nome,senha,email,cpf,telefone);
 
     }
 
