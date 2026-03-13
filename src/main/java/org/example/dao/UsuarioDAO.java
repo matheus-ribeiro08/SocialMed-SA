@@ -63,42 +63,45 @@ public class UsuarioDAO
         }
     }
 
-    public boolean existeCpf (String cpf)
+    public String existeCpf (String cpf)
     {
-        String sql = "SELECT 1 FROM Usuario WHERE cpf_Usuario = ?";
+        String sql = "SELECT cpf_Usuario FROM Usuario WHERE cpf_Usuario = ?";
 
         try(Connection conn = ConnectionFactory.getConnection();
             PreparedStatement stmt = conn.prepareStatement(sql))
         {
             stmt.setString(1, cpf);
 
-            try(ResultSet rs = stmt.executeQuery())
-            {
-                return rs.next();
+            try(ResultSet rs = stmt.executeQuery()) {
+                if(rs.next())
+                {
+                    return rs.getString("cpf_Usuario");
+                }
             }
         } catch (SQLException e) {
             System.err.println("Erro ao verificar o CPF.");
         }
-        return false;
+        return null;
     }
 
-    public boolean existeEmail (String email)
+    public String existeEmail (String email)
     {
-        String sql = "SELECT 1 FROM Usuario WHERE email_Usuario = ?";
+        String sql = "SELECT email_Usuario FROM Usuario WHERE email_Usuario";
 
         try(Connection conn = ConnectionFactory.getConnection();
             PreparedStatement stmt = conn.prepareStatement(sql))
         {
             stmt.setString(1, email);
 
-            try(ResultSet rs = stmt.executeQuery())
-            {
-                return rs.next();
+            try(ResultSet rs = stmt.executeQuery()){
+                if(rs.next())
+                {
+                    return rs.getString("email_Usuario");
+                }
             }
-        }catch (SQLException e)
-        {
+        } catch (SQLException e) {
             System.err.println("Erro ao verificar o email.");
         }
-        return false;
+        return null;
     }
 }

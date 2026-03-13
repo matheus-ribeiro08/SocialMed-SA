@@ -1,6 +1,7 @@
 package org.example.service;
 
 import org.example.dao.UsuarioDAO;
+import org.example.exception.EmailInvalido;
 import org.example.model.UsuarioModel;
 
 public class UsuarioService {
@@ -13,9 +14,13 @@ public class UsuarioService {
 
     public void cadastrar(UsuarioModel usuario){
 
-        //if(usuarioDao.buscarPorEmail(usuario.getEmail()) != null){}
+        if(usuarioDAO.existeEmail(usuario.getEmailUsuario()){
+            throw new EmailInvalido("O email ja foi cadastrado")
+        }
 
-        //if(usuarioDao.buscarPorCpf(usuario.getCpf()) != null){}
+        if(usuarioDao.buscarPorCpf(usuario.getCpf()) != null){
+
+        }
 
 
 
