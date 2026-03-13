@@ -67,4 +67,27 @@ public class AvaliacaoDAO {
 
         return avaliacoes;
     }
+
+    public double calcularMediaMedico(int idMedico) {
+
+        String sql = "SELECT AVG(nota_Avaliacao) AS media FROM AvaliacaoMedico WHERE id_Medico = ?";
+        double media = 0.0;
+
+        try (Connection conn = ConnectionFactory.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setInt(1, idMedico);
+
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    media = rs.getDouble("media");
+                }
+            }
+
+        } catch (SQLException e) {
+            System.err.println("Erro ao calcular média: " + e.getMessage());
+        }
+
+        return media;
+    }
 }
