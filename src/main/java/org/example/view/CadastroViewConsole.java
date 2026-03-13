@@ -54,13 +54,6 @@ public class CadastroViewConsole implements ICadastroView {
     }
 
     @Override
-    public String pedirDataNascimento() {
-        System.out.println("Digite a sua data de nascimento: ");
-
-        return Ferramentas.lString();
-    }
-
-    @Override
     public String pedirTelefone() {
         System.out.println("Digite o seu telefone: ");
 

@@ -10,7 +10,7 @@ public class AdminModel extends UsuarioModel{
 
     public AdminModel(long idUsuario, String nomeUsuario, LocalDate dataNascimentoUsuario, String emailUsuario,
                       String senhaUsuario, String telefoneUsuario, String cpfUsuario, long idAdmin, String senhaEspecial, int nivelAcesso) {
-        super(idUsuario, nomeUsuario, dataNascimentoUsuario, emailUsuario, senhaUsuario, telefoneUsuario, cpfUsuario);
+        super(idUsuario, nomeUsuario, emailUsuario, senhaUsuario, telefoneUsuario, cpfUsuario);
         this.idAdmin = idAdmin;
         this.senhaEspecial = senhaEspecial;
         this.nivelAcesso = nivelAcesso;

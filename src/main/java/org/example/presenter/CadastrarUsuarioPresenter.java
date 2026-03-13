@@ -1,5 +1,6 @@
 package org.example.presenter;
 
+import org.example.exception.NomeInvalido;
 import org.example.roteador.RoteadorCadastro;
 import org.example.view.CadastroViewConsole;
 
@@ -17,9 +18,16 @@ public class CadastrarUsuarioPresenter {
         String nome = cadastroViewConsole.pedirNome();
         String senha = cadastroViewConsole.pedirSenha();
         String email = cadastroViewConsole.pedirEmail();
-        String dataNascimento = cadastroViewConsole.pedirDataNascimento();
         String cpf = cadastroViewConsole.pedirCPF();
         String telefone = cadastroViewConsole.pedirTelefone();;
+    }
+
+    public void validarInformacoes(String nome, String senha, String email, ){
+        if(nome == null || nome.length() < 1 || nome.length() > 2253){
+            throw new NomeInvalido("Nome inválido!");
+        }
+
+
     }
 
 
