@@ -6,7 +6,7 @@ import org.example.view.adm.viewADM;
 public class ADMpresenter {
 
     viewADM viewADM = new viewADM();
-    CadastrarUsuarioPresenter cadastrarUsuarioPresenter = new CadastrarUsuarioPresenter();
+
 
     public void MenuADM()
     {
@@ -28,9 +28,5 @@ public class ADMpresenter {
         }
 
     public void CadastrarUsuario() {
-
-        cadastrarUsuarioPresenter.ColetarInformacoes();
-
-
     }
 }

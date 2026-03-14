@@ -12,7 +12,7 @@ public class UsuarioModel {
     private String telefoneUsuario;
     private String cpfUsuario;
 
-    public UsuarioModel(int idUsuario,String nomeUsuario, String emailUsuario,String senhaUsuario, String telefoneUsuario, String cpfUsuario) {
+    public UsuarioModel(long idUsuario,String nomeUsuario, String emailUsuario,String senhaUsuario, String telefoneUsuario, String cpfUsuario) {
         this.nomeUsuario = nomeUsuario;
         this.emailUsuario = emailUsuario;
         this.senhaUsuario = senhaUsuario;
