@@ -1,9 +1,7 @@
 package org.example.presenter;
 
 import org.example.exception.ValorInvalido;
-import org.example.model.UsuarioModel;
 import org.example.view.adm.viewADM;
-import org.example.view.CadastroViewConsole;
 
 public class ADMpresenter {
 

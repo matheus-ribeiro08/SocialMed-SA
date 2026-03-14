@@ -125,6 +125,27 @@ public class UsuarioDAO
         return null;
     }
 
+    public UsuarioModel buscarPorEmail(String email)
+    {
+        String sql = "SELECT * FROM Usuario WHERE email_Usuario = ?";
+
+        try(Connection conn = ConnectionFactory.getConnection();
+            PreparedStatement stmt = conn.prepareStatement(sql))
+        {
+            stmt.setString(1, email);
+            ResultSet rs = stmt.getResultSet();
+
+            if(rs.next())
+            {
+                return extrairUsuario(rs);
+            }
+        }catch (SQLException e)
+        {
+            System.err.println("Erro ao buscar o Email.");
+        }
+        return null;
+    }
+
     public UsuarioModel extrairUsuario(ResultSet rs) throws  SQLException
     {
         UsuarioModel Usuario = new UsuarioModel(

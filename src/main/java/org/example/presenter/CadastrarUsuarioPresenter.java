@@ -5,7 +5,6 @@ import org.example.model.UsuarioModel;
 import org.example.roteador.RoteadorCadastro;
 import org.example.service.UsuarioService;
 import org.example.utils.Ferramentas;
-import org.example.view.CadastroViewConsole;
 import org.example.viewInterface.viewInterfaceCadastro.ICadastroView;
 
 public class CadastrarUsuarioPresenter {

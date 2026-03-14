@@ -1,4 +1,4 @@
-package org.example.view;
+package org.example.view.cadastro;
 
 import org.example.presenter.UsuarioPresenter;
 import org.example.utils.Ferramentas;
