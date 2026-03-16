@@ -6,5 +6,5 @@ import org.example.service.ConsultaService;
 import java.util.List;
 
 public interface IPacienteViewHistoricoConsultas {
-    void exibirHistoricoConsultas(List<ConsultaModel> consultas);
+
 }
