@@ -34,6 +34,7 @@ public class MenuPacienteView implements IPacienteMenu {
         System.out.println("│ (3) ➔ Cancelar Consulta                                                                                                                             │");
         System.out.println("│ (4) ➔ Ver historico completo                                                                                                                        │");
         System.out.println("│ (5) ➔ Ver mapa                                                                                                                                      │");
+        System.out.println("│ (0) ➔ Ver mapa                                                                                                                                      │");
         System.out.println("└─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘");
         System.out.print("│ ➤ Digite a opção desejada: ");
 

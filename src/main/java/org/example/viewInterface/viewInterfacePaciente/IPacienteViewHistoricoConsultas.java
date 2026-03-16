@@ -7,4 +7,6 @@ import java.util.List;
 
 public interface IPacienteViewHistoricoConsultas {
 
+    void mostrarHistoricoConsulta(List<ConsultaModel> consultas);
+
 }

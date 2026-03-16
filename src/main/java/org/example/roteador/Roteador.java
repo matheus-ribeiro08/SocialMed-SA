@@ -1,11 +1,14 @@
 package org.example.roteador;
 
-import org.example.model.UsuarioModel;
+import org.example.enums.TipoUsuario;
+import org.example.model.*;
 import org.example.presenter.CadastrarUsuarioPresenter;
 import org.example.presenter.LoginUsuarioPresenter;
+import org.example.presenter.MenuPacientePresenter;
 import org.example.utils.Ferramentas;
 import org.example.view.cadastro.CadastroViewConsole;
 import org.example.view.login.LoginViewConsole;
+import org.example.view.paciente.MenuPacienteView;
 import org.example.viewInterface.viewLogin.ILoginView;
 
 public class Roteador {
@@ -35,20 +38,24 @@ public class Roteador {
                 break;
             }
 
-            case "menuPaciente":{
+            case "menuPaciente":
+            case "menuSecretario":
+            case "menuMedico":
+            case "menuAdmin":{
+                if(usuario == null){
+                    System.err.println("Erro: Usuario não informado!");
+                    irPara("menuInicial");
+                    break;
+                }
+            redirecionarPorTipoUsuario(usuario);
+            break;
 
+        }
 
-
-                break;
+            default:{
+                System.out.println("Destino invalido: " + destino);
+                irPara("menuInicial");
             }
-
-            case "menuSecretario":{
-
-
-
-                break;
-            }
-
         }
     }
 
@@ -76,4 +83,38 @@ public class Roteador {
             }
         }
     }
+
+    private void redirecionarPorTipoUsuario(UsuarioModel usuario){
+
+        TipoUsuario tipo = usuario.getTipoUsuario();
+
+        switch (tipo){
+            case PACIENTE:{
+                MenuPacientePresenter menuPaciente = new MenuPacientePresenter(this, (PacienteModel) usuario);
+                menuPaciente.iniciar();
+                break;
+            }
+            case SECRETARIO:{
+                MenuSecretarioPresenter menu Paciente = newSecretarioPresenter(this,(SecretarioModel) usuario);
+                menuSecretario.inicar();
+                break;
+            }
+            case MEDICO:{
+                MenuMedicoPresenter menuMedico = new MenuMedicoPresenter(this,(MedicoModel) usuario);
+                menuMedico.inicar();
+                break;
+            }
+            case ADM:{
+                MenuAdminPresenter menuAdmin = new MenuAdminPresenter(this,(AdminModel) usuario);
+                menuAdmin.inicicar();
+                break;
+            }
+            default:{
+                System.err.println("Tipo de usuario desconhido: " + tipo);
+                irPara("menuInicial");
+            }
+        }
+    }
+
+
 }
