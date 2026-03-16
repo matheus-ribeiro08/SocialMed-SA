@@ -20,24 +20,36 @@ public class CadastrarUsuarioPresenter {
     }
 
     public void iniciarCadastro(){
-        try {
-            String nome = view.pedirNome();
-            String senha = view.pedirSenha();
-            String email = view.pedirEmail();
-            String cpf = view.pedirCPF();
-            String telefone = view.pedirTelefone();
+        boolean cadastrando = true;
 
-            validarInformacoes(nome,senha,email,cpf,telefone);
+        while (cadastrando) {
+            try {
+                String nome = view.pedirNome();
+                String senha = view.pedirSenha();
+                String email = view.pedirEmail();
+                String cpf = view.pedirCPF();
+                String telefone = view.pedirTelefone();
 
-            UsuarioModel usuario = new UsuarioModel(nome,email,senha,telefone,cpf);
+                validarInformacoes(nome, senha, email, cpf, telefone);
 
-            usuarioService.cadastrar(usuario);
+                UsuarioModel usuario = new UsuarioModel(nome, email, senha, telefone, cpf);
 
-            System.out.println("Cadastro realizado com sucesso!");
-            roteadorCadastro.irPara("login");
-        }catch (Exception e){
-            System.err.println("Erro no cadastro!");
+                usuarioService.cadastrar(usuario);
 
+                System.out.println("Cadastro realizado com sucesso!");
+                roteadorCadastro.irPara("login");
+
+                cadastrando = false;
+            } catch (Exception e) {
+                System.err.println("Erro no cadastro!");
+
+                if (perguntarTentarNovamente()) {
+                    iniciarCadastro();
+                } else {
+                    roteadorCadastro.irPara("login");
+                    cadastrando = false;
+                }
+            }
         }
     }
 

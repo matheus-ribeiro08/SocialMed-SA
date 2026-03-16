@@ -1,6 +1,7 @@
 package org.example.presenter;
 
 import org.example.dao.UsuarioDAO;
+import org.example.enums.TipoUsuario;
 import org.example.exception.EmailInvalido;
 import org.example.exception.SenhaInvalida;
 import org.example.model.UsuarioModel;
@@ -29,11 +30,32 @@ public class LoginUsuarioPresenter {
 
             UsuarioModel usuario = usuarioService.login(email, senha);
 
-            //if ("secretario".equals(usuario.getTipo())) {
-            //      roteadorCadastro.irPara("menuSecretario", usuario);
-            //} else {
-            //      roteadorCadastro.irPara("menuPaciente", usuario);
-            //}
+            TipoUsuario tipo = usuario.getTipoUsuario();
+
+            System.out.println("Login realizado com sucesso!");
+
+            switch (tipo){
+                case SECRETARIO:{
+                    roteadorCadastro.irPara("menuSecretario", usuario);
+                    break;
+                }
+                case MEDICO:{
+                    roteadorCadastro.irPara("menuMedico", usuario);
+                    break;
+                }
+                case ADM:{
+                    roteadorCadastro.irPara("menuAdmin", usuario);
+                    break;
+                }
+                case PACIENTE:{
+                    roteadorCadastro.irPara("menuPaciente", usuario);
+                    break;
+                }
+                default:{
+
+                }
+            }
+
         }catch (Exception e){
             System.err.println("Erro!");
         }

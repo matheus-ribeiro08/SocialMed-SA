@@ -1,5 +1,7 @@
 package org.example.model;
 
+import org.example.enums.TipoUsuario;
+
 import java.time.LocalDate;
 
 public class PacienteModel extends UsuarioModel{
@@ -7,9 +9,9 @@ public class PacienteModel extends UsuarioModel{
     private long idPaciente;
     private String enderecoPaciente;
 
-    public PacienteModel(long idUsuario, String nomeUsuario, LocalDate dataNascimentoUsuario, String emailUsuario, String senhaUsuario,
+    public PacienteModel(long idUsuario, String nomeUsuario, TipoUsuario tipoUsuario, String emailUsuario, String senhaUsuario,
                          String telefoneUsuario, String cpfUsuario, long idPaciente, String enderecoPaciente) {
-        super(idUsuario, nomeUsuario, emailUsuario, senhaUsuario, telefoneUsuario, cpfUsuario);
+        super(idUsuario, nomeUsuario, emailUsuario, senhaUsuario, telefoneUsuario, cpfUsuario, tipoUsuario);
         this.idPaciente = idPaciente;
         this.enderecoPaciente = enderecoPaciente;
     }

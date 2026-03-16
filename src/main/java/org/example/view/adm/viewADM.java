@@ -1,6 +1,7 @@
 package org.example.view.adm;
 
 import org.example.utils.Ferramentas;
+import org.example.viewInterface.viewInterfaceAdm.IADMView;
 
 public class viewADM implements IADMView {
 

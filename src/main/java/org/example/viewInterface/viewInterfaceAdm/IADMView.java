@@ -1,4 +1,4 @@
-package org.example.view.adm;
+package org.example.viewInterface.viewInterfaceAdm;
 
 public interface IADMView {
 

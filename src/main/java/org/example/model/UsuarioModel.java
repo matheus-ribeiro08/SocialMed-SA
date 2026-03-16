@@ -1,5 +1,7 @@
 package org.example.model;
 
+import org.example.enums.TipoUsuario;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
@@ -11,13 +13,15 @@ public class UsuarioModel {
     private String senhaUsuario;
     private String telefoneUsuario;
     private String cpfUsuario;
+    private TipoUsuario tipoUsuario;
 
-    public UsuarioModel(long idUsuario,String nomeUsuario, String emailUsuario,String senhaUsuario, String telefoneUsuario, String cpfUsuario) {
+    public UsuarioModel(long idUsuario,String nomeUsuario, String emailUsuario,String senhaUsuario, String telefoneUsuario, String cpfUsuario, TipoUsuario tipoUsuario) {
         this.nomeUsuario = nomeUsuario;
         this.emailUsuario = emailUsuario;
         this.senhaUsuario = senhaUsuario;
         this.telefoneUsuario = telefoneUsuario;
         this.cpfUsuario = cpfUsuario;
+        this.tipoUsuario = tipoUsuario;
     }
 
     public UsuarioModel(){
@@ -74,6 +78,13 @@ public class UsuarioModel {
     
     public void setId(int idUsuario){this.idUsuario = idUsuario;}
 
+    public TipoUsuario getTipoUsuario() {
+        return tipoUsuario;
+    }
+
+    public void setTipoUsuario(TipoUsuario tipoUsuario) {
+        this.tipoUsuario = tipoUsuario;
+    }
 
     public UsuarioModel(String nomeUsuario, String emailUsuario, String senhaUsuario, String telefoneUsuario, String cpfUsuario) {
         this.nomeUsuario = nomeUsuario;
