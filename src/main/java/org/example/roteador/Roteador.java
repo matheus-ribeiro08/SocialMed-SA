@@ -8,7 +8,7 @@ import org.example.view.cadastro.CadastroViewConsole;
 import org.example.view.login.LoginViewConsole;
 import org.example.viewInterface.viewLogin.ILoginView;
 
-public class RoteadorCadastro {
+public class Roteador {
 
     public void irPara(String destino){
         irPara(destino, null);
@@ -38,10 +38,13 @@ public class RoteadorCadastro {
             case "menuPaciente":{
 
 
+
                 break;
             }
 
             case "menuSecretario":{
+
+
 
                 break;
             }

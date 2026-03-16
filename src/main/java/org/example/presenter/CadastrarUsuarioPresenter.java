@@ -2,18 +2,18 @@ package org.example.presenter;
 
 import org.example.exception.*;
 import org.example.model.UsuarioModel;
-import org.example.roteador.RoteadorCadastro;
+import org.example.roteador.Roteador;
 import org.example.service.UsuarioService;
 import org.example.utils.Ferramentas;
 import org.example.viewInterface.viewInterfaceCadastro.ICadastroView;
 
 public class CadastrarUsuarioPresenter {
 
-    private RoteadorCadastro roteadorCadastro;
+    private Roteador roteadorCadastro;
     private ICadastroView view;
     private UsuarioService usuarioService;
 
-    public CadastrarUsuarioPresenter (RoteadorCadastro roteadorCadastro, ICadastroView view){
+    public CadastrarUsuarioPresenter (Roteador roteadorCadastro, ICadastroView view){
         this.roteadorCadastro = roteadorCadastro;
         this.view = view;
         this.usuarioService = new UsuarioService();

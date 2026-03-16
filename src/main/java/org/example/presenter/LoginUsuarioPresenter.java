@@ -1,21 +1,20 @@
 package org.example.presenter;
 
-import org.example.dao.UsuarioDAO;
 import org.example.enums.TipoUsuario;
 import org.example.exception.EmailInvalido;
 import org.example.exception.SenhaInvalida;
 import org.example.model.UsuarioModel;
-import org.example.roteador.RoteadorCadastro;
+import org.example.roteador.Roteador;
 import org.example.service.UsuarioService;
 import org.example.viewInterface.viewLogin.ILoginView;
 
 public class LoginUsuarioPresenter {
 
-    private RoteadorCadastro roteadorCadastro;
+    private Roteador roteadorCadastro;
     private ILoginView view;
     private UsuarioService usuarioService;
 
-    public LoginUsuarioPresenter(RoteadorCadastro roteadorCadastro, ILoginView view){
+    public LoginUsuarioPresenter(Roteador roteadorCadastro, ILoginView view){
         this.roteadorCadastro = roteadorCadastro;
         this.view = view;
         this.usuarioService = new UsuarioService();

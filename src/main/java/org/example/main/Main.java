@@ -1,12 +1,12 @@
 package org.example.main;
 
-import org.example.roteador.RoteadorCadastro;
+import org.example.roteador.Roteador;
 
 public class Main {
     public static void main(String[] args) {
 
         try {
-            RoteadorCadastro roteador = new RoteadorCadastro();
+            Roteador roteador = new Roteador();
 
             roteador.irPara("menuInicial");
         }catch (Exception e){
