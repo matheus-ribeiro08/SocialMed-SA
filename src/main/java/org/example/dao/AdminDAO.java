@@ -9,7 +9,7 @@ import java.sql.*;
 
 public class AdminDAO {
     public boolean cadastrarMedico(MedicoModel medico){
-        String sqlUsuario = "INSERT INTO Usuario (nome_usuario, data_Nascimento, email_Usuario, senha_Usuario, telefone_Usuario, cpf_Usuario) VALUES (?, ?, ?, ?, ?, ?)";
+        String sqlUsuario = "INSERT INTO Usuario (nome_usuario, email_Usuario, senha_Usuario, telefone_Usuario, cpf_Usuario) VALUES (?, ?, ?, ?, ?, ?)";
         String sqlMedico = "INSERT INTO Medico (id_Usuario, especialidade_Medico) VALUES (?, ?)";
 
         Connection conn = null;
