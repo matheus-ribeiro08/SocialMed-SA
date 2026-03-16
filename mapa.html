@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel de Controle Interativo - Rede Hospitalar</title>
+    
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    
+    <style>
+        body { margin: 0; padding: 0; font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; display: flex; height: 100vh; overflow: hidden; background-color: #f4f7f6; }
+        
+        .sidebar { width: 340px; background-color: #198754; color: white; padding: 30px 25px; box-shadow: 4px 0 15px rgba(0,0,0,0.15); z-index: 1000; display: flex; flex-direction: column; transition: background-color 0.4s ease, box-shadow 0.4s ease; }
+        .sidebar h2 { margin-top: 0; font-size: 24px; border-bottom: 2px solid rgba(255,255,255,0.2); padding-bottom: 15px; margin-bottom: 20px; transition: color 0.3s ease; display: flex; align-items: center; gap: 10px; }
+        .sidebar p { font-size: 15px; color: #d1e7dd; line-height: 1.6; margin-bottom: 25px; transition: color 0.3s ease; }
+        
+        .stat-box { background-color: rgba(20, 108, 67, 0.8); padding: 20px; border-radius: 12px; margin-bottom: 20px; text-align: center; box-shadow: 0 4px 6px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease; border: 1px solid rgba(255,255,255,0.05); }
+        .stat-box:hover { transform: translateY(-3px); box-shadow: 0 6px 12px rgba(0,0,0,0.15); background-color: rgba(20, 108, 67, 1); }
+        .stat-box h3 { margin: 0 0 8px 0; font-size: 36px; color: #fff; transition: color 0.4s ease, opacity 0.2s ease; }
+        .stat-box span { font-size: 13px; color: #a3cfbb; text-transform: uppercase; font-weight: bold; letter-spacing: 1px; }
+        .stat-updating { opacity: 0; transform: scale(0.9); }
+
+        .main-content { flex-grow: 1; display: flex; flex-direction: column; position: relative; }
+        #meuMapa { flex-grow: 1; width: 100%; height: 100%; z-index: 1; }
+
+        .leaflet-popup-content-wrapper { border-radius: 10px; padding: 5px; box-shadow: 0 5px 20px rgba(0,0,0,0.2); border: 1px solid rgba(0,0,0,0.1); }
+        .leaflet-popup-content { margin: 15px; line-height: 1.4; }
+        .popup-custom h3 { color: #198754; margin: 0 0 10px 0; font-size: 18px; font-weight: 700; border-bottom: 2px solid #e2e8f0; padding-bottom: 8px; }
+        .popup-custom p { margin: 8px 0; font-size: 14px; color: #4a5568; }
+        
+        .sidebar-footer { margin-top: auto; font-size: 12px; text-align: center; color: #a3cfbb; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 15px; }
+
+        .custom-icon-leaflet { background: none; border: none; }
+
+        .hospital-icon { 
+            background-color: white; 
+            border: 3px solid #198754; 
+            border-radius: 50%; 
+            width: 100%; 
+            height: 100%; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            font-size: 22px; 
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3); 
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
+            cursor: pointer; 
+        }
+
+        .hospital-icon:hover { 
+            transform: scale(1.25) translateY(-8px); 
+            background-color: #198754; 
+            box-shadow: 0 10px 20px rgba(25, 135, 84, 0.5); 
+        }
+
+        .weg-marker { 
+            background-color: #00579D; 
+            color: white; 
+            padding: 6px 12px; 
+            border-radius: 20px; 
+            border: 2px solid white; 
+            font-weight: bold; 
+            box-shadow: 0 4px 8px rgba(0,0,0,0.4); 
+            font-size: 13px; 
+            white-space: nowrap; 
+            text-align: center; 
+            cursor: pointer; 
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        
+        .weg-marker:hover { 
+            transform: scale(1.15) translateY(-5px); 
+            background-color: #004680; 
+            box-shadow: 0 8px 15px rgba(0, 87, 157, 0.5);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="sidebar" id="painel-lateral">
+        <h2 id="nome-unidade">🏥 Visão Geral (Rede)</h2>
+        <p id="desc-unidade">Painel de monitoramento integrado em tempo real de todas as unidades hospitalares credenciadas.</p>
+        
+        <div class="stat-box">
+            <h3 id="total-pacientes">0</h3>
+            <span id="label-pacientes">Pacientes na Rede</span>
+        </div>
+        
+        <div class="stat-box">
+            <h3 id="taxa-ocupacao">0%</h3>
+            <span id="label-ocupacao">Ocupação Total</span>
+        </div>
+        
+        <div class="sidebar-footer">
+            Clique em um hospital ou no mapa para Alternar Visualização<br>
+            Atualizado: Agora
+        </div>
+    </div>
+
+    <div class="main-content">
+        <div id="meuMapa"></div>
+    </div>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    
+    <script>
+        // Zoom e posicionamento inicial ajustados para englobar os hospitais e a WEG I
+        var mapa = L.map('meuMapa', { zoomControl: false }).setView([-26.4830, -49.0810], 14);
+        L.control.zoom({ position: 'topright' }).addTo(mapa);
+
+        L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}', {
+            attribution: 'Tiles &copy; Esri',
+            maxZoom: 19
+        }).addTo(mapa);
+
+        const capSaoJose = 250;
+        const capMaternidade = 80;
+        const capGeral = capSaoJose + capMaternidade;
+
+        let pacSaoJose = Math.floor(Math.random() * (capSaoJose * 0.95 - capSaoJose * 0.6 + 1)) + Math.floor(capSaoJose * 0.6); 
+        let pacMaternidade = Math.floor(Math.random() * (capMaternidade * 0.95 - capMaternidade * 0.4 + 1)) + Math.floor(capMaternidade * 0.4);  
+        let pacGeral = pacSaoJose + pacMaternidade;
+
+        const elNomeUnidade = document.getElementById('nome-unidade');
+        const elDescUnidade = document.getElementById('desc-unidade');
+        const elTotalPacientes = document.getElementById('total-pacientes');
+        const elTaxaOcupacao = document.getElementById('taxa-ocupacao');
+        const elLabelPacientes = document.getElementById('label-pacientes');
+        const elLabelOcupacao = document.getElementById('label-ocupacao');
+
+        function atualizarPainel(titulo, descricao, pacientes, capacidade, labelPac, labelOcup) {
+            elTotalPacientes.classList.add('stat-updating');
+            elTaxaOcupacao.classList.add('stat-updating');
+
+            setTimeout(() => {
+                elNomeUnidade.innerText = titulo;
+                elDescUnidade.innerText = descricao;
+                elTotalPacientes.innerText = pacientes;
+                elLabelPacientes.innerText = labelPac;
+                elLabelOcupacao.innerText = labelOcup;
+
+                let porcentagem = Math.round((pacientes / capacidade) * 100);
+                elTaxaOcupacao.innerText = porcentagem + "%";
+
+                if (porcentagem >= 90) { elTaxaOcupacao.style.color = "#ff6b6b"; } 
+                else if (porcentagem >= 75) { elTaxaOcupacao.style.color = "#feca57"; } 
+                else { elTaxaOcupacao.style.color = "#a3cfbb"; }
+
+                elTotalPacientes.classList.remove('stat-updating');
+                elTaxaOcupacao.classList.remove('stat-updating');
+            }, 150);
+        }
+
+        const visGeral = () => atualizarPainel("🏥 Visão Geral (Rede)", "Painel de monitoramento integrado de todas as unidades hospitalares.", pacGeral, capGeral, "Pacientes na Rede", "Ocupação Total");
+        const visSaoJose = () => atualizarPainel("🏥 Hospital São José", "Rua Waldemar Rau, Centro. Unidade de referência com Pronto Socorro Adulto 24h.", pacSaoJose, capSaoJose, "Pacientes no H.S.J.", "Ocupação H.S.J.");
+        const visMaternidade = () => atualizarPainel("🍼 Maternidade Jaraguá", "Rua Pref. Leopoldo Mahan, Morro Boa Vista. Especialidade em Pediatria e Obstetrícia.", pacMaternidade, capMaternidade, "Pacientes na Mat.", "Ocupação Maternidade");
+
+        visGeral(); 
+
+        mapa.on('click', function(e) {
+            if (e.originalEvent.target.id === 'meuMapa' || e.originalEvent.target.classList.contains('leaflet-container')) {
+                 visGeral();
+            }
+        });
+
+        var iconeHospitalPersonalizado = L.divIcon({
+            className: 'custom-icon-leaflet',
+            html: '<div class="hospital-icon">🏥</div>',
+            iconSize: [44, 44],
+            iconAnchor: [22, 22], 
+            popupAnchor: [0, -20] 
+        });
+
+        const estiloCirculo = { color: '#198754', fillColor: '#198754', fillOpacity: 0.12, radius: 600, weight: 2 };
+
+        var marcadorSaoJose = L.marker([-26.4912, -49.0725], {icon: iconeHospitalPersonalizado}).addTo(mapa);
+        marcadorSaoJose.bindPopup("<div class='popup-custom'><h3>Hospital São José</h3><p>Referência em Urgência e Emergência Adulto.</p></div>");
+        L.circle([-26.4912, -49.0725], estiloCirculo).addTo(mapa);
+        marcadorSaoJose.on('click', visSaoJose);
+
+        var marcadorMaternidade = L.marker([-26.4831, -49.0755], {icon: iconeHospitalPersonalizado}).addTo(mapa);
+        marcadorMaternidade.bindPopup("<div class='popup-custom'><h3>Hosp. e Maternidade</h3><p>Referência em Saúde Materno-Infantil.</p></div>");
+        L.circle([-26.4831, -49.0755], estiloCirculo).addTo(mapa);
+        marcadorMaternidade.on('click', visMaternidade);
+
+        var iconeWeg = L.divIcon({
+            className: 'custom-icon-leaflet',
+            html: '<div class="weg-marker">⚡ WEG I (Apresentação)</div>',
+            iconSize: [160, 30],
+            iconAnchor: [80, 15],
+            popupAnchor: [0, -15]
+        });
+
+        // AGORA SIM! Coordenada exata cravada no galpão "Weg Equip. Elétricos Fábrica I"
+        var marcadorWeg = L.marker([-26.4798, -49.0902], {icon: iconeWeg}).addTo(mapa);
+        marcadorWeg.bindPopup("<div class='popup-custom'><h3 style='color: #00579D; border-bottom: 2px solid #00579D;'>⚡ WEG I (Parque Fabril)</h3><p><b>Local de Apresentação do Projeto!</b></p><p><i>Nova Brasília.</i></p></div>");
+        
+    </script>
+</body>
+</html>
