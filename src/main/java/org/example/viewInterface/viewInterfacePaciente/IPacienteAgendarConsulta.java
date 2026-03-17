@@ -3,6 +3,7 @@ package org.example.viewInterface.viewInterfacePaciente;
 import org.example.model.HospitalModel;
 import org.example.model.MedicoModel;
 
+import java.time.LocalDate;
 import java.util.List;
 
 public interface IPacienteAgendarConsulta {

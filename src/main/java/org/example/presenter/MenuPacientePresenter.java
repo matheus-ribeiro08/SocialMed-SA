@@ -66,5 +66,13 @@ public class MenuPacientePresenter {
             }
         }
     }
+
+    public void verConsultas() {
+        // chamar dao com a service
+
+        // enviar valor para a view utilizando um método
+
+
+    }
 }
 
