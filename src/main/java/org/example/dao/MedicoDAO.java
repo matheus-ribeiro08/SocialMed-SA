@@ -4,6 +4,7 @@ import org.example.database.ConnectionFactory;
 import org.example.model.ConsultaModel;
 import org.example.model.MedicoModel;
 
+import javax.xml.transform.Result;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -124,5 +125,42 @@ public class MedicoDAO
             System.err.println("Erro: " + e.getMessage());
         }
         return medicos;
+    }
+
+    public MedicoModel buscarPorId (int idMedico)
+    {
+        MedicoModel medico = null;
+
+        String sql = "SELECT u.*, m.id_medico, m.especialidade_medico " +
+                    "FROM Medico m " +
+                    "INNER JOIN Usuario u ON id_Usuario = id_Usuario " +
+                    "WHERE m.id_Medico = ?";
+
+        try(Connection conn = ConnectionFactory.getConnection();
+            PreparedStatement stmt = conn.prepareStatement(sql))
+        {
+            stmt.setInt(1, idMedico);
+
+            try (ResultSet rs = stmt.executeQuery())
+            {
+                if(rs.next())
+                {
+                    medico = new MedicoModel();
+                    medico.setIdMedico(rs.getInt("id_Medico"));
+                    medico.setNomeUsuario(rs.getString("nome_usuario"));
+                    medico.setEmailUsuario(rs.getString("email_Usuario"));
+                    medico.setSenhaUsuario(rs.getString("senha_Usuario"));
+                    medico.setTelefoneUsuario(rs.getString("telefone_Usuario"));
+                    medico.setCpfUsuario(rs.getString("cpf_Usuario"));
+                    medico.setEspecialidadeMedico(rs.getString("especialidade_Medico"));
+
+                }
+            }
+        }
+        catch (SQLException e)
+        {
+            System.err.println("Erro ao buscar medico por ID");
+        }
+        return medico;
     }
 }
