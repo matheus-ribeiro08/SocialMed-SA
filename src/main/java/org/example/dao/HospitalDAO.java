@@ -3,6 +3,7 @@ package org.example.dao;
 import org.example.database.ConnectionFactory;
 import org.example.model.HospitalModel;
 
+import javax.xml.transform.Result;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -36,5 +37,39 @@ public class HospitalDAO
         return hospitais;
     }
 
+    public HospitalModel buscarPorId(int idHospital)
+    {
+        HospitalModel hospitalModel = null;
+
+        String sql = "SELECT * FROM Hospital WHERE id_Hospital = ?";
+
+
+        try(Connection conn = ConnectionFactory.getConnection();
+            PreparedStatement stmt = conn.prepareStatement(sql))
+        {
+            stmt.setInt(1, idHospital);
+
+            try(ResultSet rs = stmt.executeQuery())
+            {
+                if(rs.next())
+                {
+                    hospitalModel = new HospitalModel(
+                            rs.getInt("id_Hospital"),
+                            rs.getString("CNPJ_Hospital"),
+                            rs.getString("endereco_Hospital"),
+                            rs.getInt("quantidade_Pessoas"),
+                            rs.getString("nome_Hospital"),
+                            rs.getInt("quantidadeSalas_Hospital"),
+                            rs.getString("agenda_Hospital")
+                    );
+                }
+            }
+        }
+        catch (SQLException e )
+        {
+            System.err.println("Erro ao buscar hospital por ID");
+        }
+        return hospitalModel;
+    }
 
 }
