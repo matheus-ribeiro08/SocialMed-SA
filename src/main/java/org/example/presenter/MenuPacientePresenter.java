@@ -1,6 +1,7 @@
 package org.example.presenter;
 
 import org.example.enums.TipoUsuario;
+import org.example.model.ConsultaModel;
 import org.example.model.PacienteModel;
 import org.example.model.UsuarioModel;
 import org.example.roteador.Roteador;
@@ -73,6 +74,13 @@ public class MenuPacientePresenter {
         // enviar valor para a view utilizando um método
 
 
+    }
+
+    public void agendar(){
+        try {
+            ConsultaModel consulta = new ConsultaModel();
+            consulta.setIdPaciente() = ;
+        }
     }
 }
 
