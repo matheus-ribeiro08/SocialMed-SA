@@ -9,8 +9,11 @@ import org.example.model.HospitalModel;
 import org.example.model.MedicoModel;
 
 import java.sql.SQLException;
+import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
@@ -83,6 +86,29 @@ public class ConsultaService {
         }
     }
 
+    public List<ConsultaModel> listarConsultasAtivas(int idPaciente) throws SQLException{
+        LocalDateTime agora = LocalDateTime.now();
+        return consultaDAO.listarConsultasPorPaciente(idPaciente).stream().filter(c -> c.)
+    }
 
+    public boolean cancelarConsulta(int idConsulta) throws SQLException{
+        if(idConsulta <= 0){
+            throw new IllegalArgumentException("Id da consulta invalido");
+        }
+        return consultaDAO.deletarConsulta(idConsulta);
+    }
 
+    private boolean idMedicoDisponivel(int idMedico, LocalDateTime horario) throws SQLException{
+        List<ConsultaModel> consultaMedico = consultaDAO.listarConsultas(idMedico);
+        return consultaMedico.stream().noneMatch(c -> c.getHorarioConsulta().equals(horario));
+    }
+
+    public LocalDateTime converterStringParaDateTime(String data, String hora) throws Exception{
+        try {
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
+            return LocalDateTime.parse(data + " " + hora, formatter);
+        }catch (DateTimeException e){
+            throw new Exception("Data ou hora invalida" + e.getMessage());
+        }
+    }
 }

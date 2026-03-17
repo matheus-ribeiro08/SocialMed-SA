@@ -78,8 +78,9 @@ public class MenuPacientePresenter {
 
     public void agendar(){
         try {
-            ConsultaModel consulta = new ConsultaModel();
-            consulta.setIdPaciente() = ;
+
+            String especilidade = view.pedirEspecialidade();
+            var medicos = consultaService.buscar
         }
     }
 }
