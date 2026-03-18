@@ -99,7 +99,7 @@ public class ConsultaService {
     }
 
     private boolean idMedicoDisponivel(int idMedico, LocalDateTime horario) throws SQLException{
-        List<ConsultaModel> consultaMedico = consultaDAO.listarConsultas(idMedico);
+        List<ConsultaModel> consultaMedico = consultaDAO.listarConsultasPorMedico(idMedico);
         return consultaMedico.stream().noneMatch(c -> c.getHorarioConsulta().equals(horario));
     }
 
