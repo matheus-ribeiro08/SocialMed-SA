@@ -8,12 +8,14 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import static java.sql.Statement.RETURN_GENERATED_KEYS;
+
 public class AvaliacaoDAO {
     public boolean cadastrarAvaliacao(AvaliacaoModel avaliacao){
         String sql = "INSERT INTO AvaliacaoMedico (id_Medico, nota_Avaliacao, comentarios_Avaliacao, data_Publicacao) VALUES (?, ?, ?, ?)";
 
         try (Connection conn = ConnectionFactory.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(sql)){
+             PreparedStatement stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)){
 
             stmt.setInt(1, avaliacao.getIdMedico());
             stmt.setDouble(2, avaliacao.getNotaAvaliacao());
