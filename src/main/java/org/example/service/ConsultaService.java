@@ -46,7 +46,7 @@ public class ConsultaService {
         return medicoDAO.buscarPorId(idMedico);
     }
 
-    public void agendarConsulta(ConsultaModel consulta) throws ConsultaException, SQLException {
+    public void agendarConsulta(ConsultaModel consulta) throws Exception {
 
         validarConsulta(consulta);
 
@@ -88,7 +88,7 @@ public class ConsultaService {
 
     public List<ConsultaModel> listarConsultasAtivas(int idPaciente) throws SQLException{
         LocalDateTime agora = LocalDateTime.now();
-        return consultaDAO.listarConsultasPorPaciente(idPaciente).stream().filter(c -> c.)
+        return consultaDAO.listarConsultasPorPaciente(idPaciente);
     }
 
     public boolean cancelarConsulta(int idConsulta) throws SQLException{
