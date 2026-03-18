@@ -2,9 +2,7 @@ package org.example.roteador;
 
 import org.example.enums.TipoUsuario;
 import org.example.model.*;
-import org.example.presenter.CadastrarUsuarioPresenter;
-import org.example.presenter.LoginUsuarioPresenter;
-import org.example.presenter.MenuPacientePresenter;
+import org.example.presenter.*;
 import org.example.utils.Ferramentas;
 import org.example.view.cadastro.CadastroViewConsole;
 import org.example.view.login.LoginViewConsole;
@@ -13,108 +11,83 @@ import org.example.viewInterface.viewLogin.ILoginView;
 
 public class Roteador {
 
-    public void irPara(String destino){
-        irPara(destino, null);
+    public enum Destino{
+        MENU_INICIAL,
+        CADASTRO,
+        LOGIN,
+        MENU_PACIENTE,
+        MENU_SECRETARIO,
+        MENU_MEDICO,
+        MENU_ADMIN,
+        SAIR,
+        ERRO;
     }
 
-    public void irPara(String destino, UsuarioModel usuario){
-        switch (destino){
-            case "menuInicial":{
-                mostrarMenuInicial();
-                break;
+    public boolean requerAutentificacao(){
+        return  this == MENU_PACIENTE ||
+                this == MENU_SECRETARIO ||
+                this == MENU_MEDICO ||
+                this == MENU_ADMIN;
+    }
+
+    private final PresenterFactory presenterFactory;
+
+    public Roteador(){
+        this.presenterFactory = new PresenterFactory(this);
+    }
+
+    public void irPara(Destino destino, UsuarioModel usuario){
+        try {
+
+            if (destino.requerAutentificacao() && usuario == null){
+                throw new SecurityException("Usuario nao autenticado");
             }
 
-            case "cadastro": {
-                CadastroViewConsole cadastroView = new CadastroViewConsole();
-                CadastrarUsuarioPresenter cadastroPresenter = new CadastrarUsuarioPresenter(this, cadastroView);
-                cadastroPresenter.iniciarCadastro();
-                break;
-            }
-
-            case "login":{
-                ILoginView loginView = new LoginViewConsole();
-                LoginUsuarioPresenter loginUsuarioPresenter = new LoginUsuarioPresenter(this, loginView);
-                loginUsuarioPresenter.iniciarLogin();
-                break;
-            }
-
-            case "menuPaciente":
-            case "menuSecretario":
-            case "menuMedico":
-            case "menuAdmin":{
-                if(usuario == null){
-                    System.err.println("Erro: Usuario não informado!");
-                    irPara("menuInicial");
+            switch (destino){
+                case MENU_INICIAL:{
+                    presenterFactory.criarMenuInicialPresenter().iniciar();
                     break;
                 }
-            redirecionarPorTipoUsuario(usuario);
-            break;
-
-        }
-
-            default:{
-                System.out.println("Destino invalido: " + destino);
-                irPara("menuInicial");
+                case CADASTRO:{
+                    presenterFactory.criarCadastroPresenter().iniciar();
+                    break;
+                }
+                case LOGIN:{
+                    presenterFactory.criarLoginPresenter().inicar();
+                    break;
+                }
+                case SAIR:{
+                    presenterFactory.criarSairPresenter().inicar();
+                    break;
+                }
+                case MENU_PACIENTE:{
+                    presenterFactory.criarMenuPacientePresenter((PacienteModel) usuario).iniciar();
+                    break;
+                }
+                case MENU_SECRETARIO:{
+                    presenterFactory.criarMenuSecretarioPresenter((SecretarioModel) usuario).inicar();
+                    break;
+                }
+                case MENU_MEDICO:{
+                    presenterFactory.criarMenuMedicoPrenseter((MedicoModel) usuario).iniciar();
+                    break;
+                }
+                case MENU_ADMIN:{
+                    presenterFactory.cirarMenuAdminPresenter((AdminModel) usuario).iniciar();
+                }
+                case ERRO:{
+                    presenterFactory.criarErroPrenseter().iniciar();
+                    break;
+                }
+                default:{
+                    throw new IllegalArgumentException("Destino invalido!" + destino);
+                }
             }
-        }
-    }
-
-    public void mostrarMenuInicial(){
-        ILoginView viewTemp = new LoginViewConsole();
-        int opcao = viewTemp.mostrarMenuInicial();
-
-        switch (opcao){
-            case 1:{
-                irPara("login");
-                break;
-            }
-            case 2:{
-                irPara("cadastro");
-                break;
-            }
-            case 0:{
-                System.out.println("Saindo do sistema...");
-                Ferramentas.Delay(1500);
-                break;
-            }
-            default:{
-                System.out.println("Opção invalida");
-                mostrarMenuInicial();
-            }
-        }
-    }
-
-    private void redirecionarPorTipoUsuario(UsuarioModel usuario){
-
-        TipoUsuario tipo = usuario.getTipoUsuario();
-
-        switch (tipo){
-            case PACIENTE:{
-                MenuPacientePresenter menuPaciente = new MenuPacientePresenter(this, (PacienteModel) usuario);
-                menuPaciente.iniciar();
-                break;
-            }
-            case SECRETARIO:{
-                MenuSecretarioPresenter menu Paciente = newSecretarioPresenter(this,(SecretarioModel) usuario);
-                menuSecretario.inicar();
-                break;
-            }
-            case MEDICO:{
-                MenuMedicoPresenter menuMedico = new MenuMedicoPresenter(this,(MedicoModel) usuario);
-                menuMedico.inicar();
-                break;
-            }
-            case ADM:{
-                MenuAdminPresenter menuAdmin = new MenuAdminPresenter(this,(AdminModel) usuario);
-                menuAdmin.inicicar();
-                break;
-            }
-            default:{
-                System.err.println("Tipo de usuario desconhido: " + tipo);
-                irPara("menuInicial");
-            }
+        }catch (SecurityException e){
+            irPara(Destino.LOGIN);
+        }catch (Exception e){
+            irPara(Destino.ERRO);
         }
     }
-
 
 }
