@@ -48,14 +48,14 @@ public class AgendarConsultaView implements IPacienteAgendarConsulta {
         System.out.println("                 ██║╚██╔╝██║██╔══╝  ██║  ██║██║██║      ██║   ██║╚════██║     ██║  ██║██║╚════██║██╔═══╝ ██║   ██║██║╚██╗██║██║╚██╗ ██╔╝██╔══╝  ██║╚════██║                  ");
         System.out.println("                 ██║ ╚═╝ ██║███████╗██████╔╝██║╚██████╗╗╚██████╔╝███████║     ██████╔╝██║███████║██║     ╚██████╔╝██║ ╚████║██║ ╚████╔╝ ███████╗██║███████║                  ");
         System.out.println("                 ╚═╝     ╚═╝╚══════╝╚═════╝ ╚═╝ ╚═════╝╝ ╚═════╝ ╚══════╝     ╚═════╝ ╚═╝╚══════╝╚═╝      ╚═════╝ ╚═╝  ╚═══╝╚═╝  ╚═══╝  ╚══════╝╚═╝╚══════╝                  ");
-        System.out.println("─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────");
+        System.out.println("───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── \n");
 
         if(medicos.isEmpty()){
             System.out.println("Nenhum medico disponivel");
             return;
         }
-
         for (MedicoModel m : medicos){
+            System.out.println("─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────");
             System.out.printf("ID: %d - Dr(a). %s%n", m.getIdMedico(), m.getNomeUsuario());
             System.out.printf("   Especialidade: %s%n%n", m.getEspecialidadeMedico());
         }
@@ -92,6 +92,7 @@ public class AgendarConsultaView implements IPacienteAgendarConsulta {
         }
 
         for(HospitalModel h : hospitais) {
+            System.out.println("─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────");
             System.out.printf("Id: %d - %s%n" + h.getIdHospital() + h.getNomeHospital());
             System.out.printf("    Endereço: %s%n", h.getEnderecoHospital());
         }
@@ -100,7 +101,8 @@ public class AgendarConsultaView implements IPacienteAgendarConsulta {
 
     @Override
     public int selecionarHospital(){
-        System.out.println("Digite o ID do hospital desejado: ");
+        System.out.println("─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────");
+        System.out.println(" ➤ Digite o ID do hospital desejado: ");
 
         return Ferramentas.lInteiro();
     }
