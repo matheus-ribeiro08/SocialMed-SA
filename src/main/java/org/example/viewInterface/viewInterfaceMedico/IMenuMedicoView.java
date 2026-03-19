@@ -33,7 +33,7 @@ public interface IMenuMedicoView
     String lerInformacaoAdicional();;
     String lerTipoExame();
 
-    MedicoModel lerDadosAtualizacaoMedico(MedicoModel medico);
+    MedicoModel lerDadosAtualizacaoMedico(MedicoModel medico);]
     boolean perguntarAcesso(String pergunta);
     boolean perguntarAcao(String pergunta);
 
