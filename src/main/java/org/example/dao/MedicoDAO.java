@@ -13,54 +13,6 @@ import java.util.List;
 import java.sql.*;
 public class MedicoDAO
 {
-    public boolean cadastrarMedico(MedicoModel medico) {
-        String sqlUsuario = "INSERT INTO Usuario (nome_usuario, email_Usuario, senha_Usuario, telefone_Usuario, cpf_Usuario) VALUES (?, ?, ?, ?, ?)";
-        String sqlMedico = "INSERT INTO Medico (id_Usuario, especialidade_Medico) VALUES (?, ?)";
-        Connection conn = null;
-
-        try {
-            conn = ConnectionFactory.getConnection();
-            conn.setAutoCommit(false);
-
-            try (PreparedStatement stmtUsuario = conn.prepareStatement(sqlUsuario, Statement.RETURN_GENERATED_KEYS)) {
-                stmtUsuario.setString(1, medico.getNomeUsuario());
-                stmtUsuario.setString(2, medico.getEmailUsuario());
-                stmtUsuario.setString(3, medico.getSenhaUsuario());
-                stmtUsuario.setString(4, medico.getTelefoneUsuario());
-                stmtUsuario.setString(5, medico.getCpfUsuario());
-                stmtUsuario.executeUpdate();
-
-                try (ResultSet rs = stmtUsuario.getGeneratedKeys()) {
-                    if (rs.next()) {
-                        int idUsuario = rs.getInt(1);
-                        try (PreparedStatement stmtMedico = conn.prepareStatement(sqlMedico)) {
-                            stmtMedico.setInt(1, idUsuario);
-                            stmtMedico.setString(2, medico.getEspecialidadeMedico());
-                            stmtMedico.executeUpdate();
-                        }
-                    } else {
-                        throw new SQLException("Erro: Nenhum ID gerado.");
-                    }
-                }
-            }
-            conn.commit();
-            return true;
-
-        } catch (SQLException e)
-        {
-            if (conn != null)
-            {
-                try
-                {
-                    conn.rollback();
-                }
-                catch (SQLException ex) {}
-            }
-            return false;
-        } finally {
-            if (conn != null) { try { conn.setAutoCommit(true); conn.close(); } catch (SQLException ex) {} }
-        }
-    }
     public List<ConsultaModel> listarConsultasPorMedico(int idMedico) {
         List<ConsultaModel> consultasMedico = new ArrayList<>();
         String sql = "SELECT * FROM Consultas WHERE id_Medico = ? ORDER BY horario_Consulta ASC";
