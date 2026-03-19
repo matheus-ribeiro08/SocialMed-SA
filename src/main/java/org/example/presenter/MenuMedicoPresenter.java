@@ -14,13 +14,13 @@ public class MenuMedicoPresenter {
 
     private final Roteador roteador;
     private final MedicoModel medico;
-    private final MenuMedicoView view;
+    private final IMenuMedicoView view;
     private final ConsultaService consultaService;
     private final PacienteService pacienteService;
     private final MedicoService medicoService;
     private final ProntuarioService prontuarioService;
 
-    public MenuMedicoPresenter(Roteador roteador, MedicoModel medico, MenuMedicoView view, ConsultaService consultaService,
+    public MenuMedicoPresenter(Roteador roteador, MedicoModel medico, IMenuMedicoView view, ConsultaService consultaService,
                                PacienteService pacienteService, MedicoService medicoService, ProntuarioService prontuarioService) {
         this.roteador = roteador;
         this.medico = medico;
@@ -283,29 +283,6 @@ public class MenuMedicoPresenter {
             medico.setEspecialidadeMedico(dadosAtualizados.getEspecialidadeMedico());
         }catch (Exception e){
             view.mostrarMensagemErro("Erro ao editar perfil");
-        }
-    }
-
-    private void emitirAtestado(){
-        view.mostrarTitulo("Emitir atestado");
-
-        try {
-            String cpf = view.lerCpf();
-            PacienteModel paciente = pacienteService.buscarPorCpf(cpf);
-
-            if(paciente == null){
-                view.mostrarMensagemInfo("Paciente nao encontrado");
-                return;
-            }
-
-            String conteudo = view.lerConteudoAtestado;
-            int dias = view.lerDiasAtestado();
-
-            String atestado = medicoService.emitirAtestado(medico, paciente, conteudo, dias);
-
-            view.mostrarAtestado(atestado);
-        }catch (Exception e){
-            view.mostrarMensagemErro("Erro ao emitir atestado");
         }
     }
 
