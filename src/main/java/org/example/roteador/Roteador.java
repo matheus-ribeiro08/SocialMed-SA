@@ -1,13 +1,7 @@
 package org.example.roteador;
 
-import org.example.enums.TipoUsuario;
 import org.example.model.*;
 import org.example.presenter.*;
-import org.example.utils.Ferramentas;
-import org.example.view.cadastro.CadastroViewConsole;
-import org.example.view.login.LoginViewConsole;
-import org.example.view.paciente.MenuPacienteView;
-import org.example.viewInterface.viewLogin.ILoginView;
 
 public class Roteador {
 

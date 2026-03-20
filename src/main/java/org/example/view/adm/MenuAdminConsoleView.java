@@ -14,10 +14,6 @@ import java.util.List;
 
 public class MenuAdminConsoleView implements IMenuAdminView {
 
-    private final DateTimeFormatter formatterData = DateTimeFormatter.ofPattern("dd/mm/yyyy");
-    private final DateTimeFormatter formatterHora = DateTimeFormatter.ofPattern("HH:mm");
-    private final DateTimeFormatter formatterDataHora = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
-
     @Override
     public int mostrarMenuPrincipal(String nomeAdmin) {
 
@@ -104,7 +100,7 @@ public class MenuAdminConsoleView implements IMenuAdminView {
     }
 
     @Override
-    public MedicoModel lerDadosNovoMedico() {
+    public void lerDadosNovoMedico(MedicoModel medico) {
         System.out.println("───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────");
         System.out.println("                           ███╗   ██╗ ██████╗ ██╗   ██╗ ██████╗    ███╗   ███╗███████╗██████╗ ██╗ ██████╗ ██████╗                                      ");
         System.out.println("                           ████╗  ██║██╔═══██╗██║   ██║██╔═══██╗   ████╗ ████║██╔════╝██╔══██╗██║██╔════╝██╔═══██╗                                     ");
@@ -115,56 +111,228 @@ public class MenuAdminConsoleView implements IMenuAdminView {
         System.out.println("───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────");
 
         String nome = lerNomeCompleto();
+        medico.setNomeUsuario(nome);
+
         String cpf = lerCpf();
+        medico.setCpfUsuario(cpf);
+
         String email = lerEmail();
+        medico.setEmailUsuario(email);
+
         String telefone = lerTelefone();
-        String dataNascimento = lerDatanascimento();
-        String endereco = lerEndereco();
-        String crm = lerCrm();
+        medico.setTelefoneUsuario(telefone);
+
         String especialidade = lerEspecialidade();
+        medico.setEspecialidadeMedico(especialidade);
 
+        medico.setTipoUsuario(TipoUsuario.MEDICO);
+    }
 
-        return null;
+    private String lerEspecialidade(){
+        System.out.println("Digite a especialidade: ");
+
+        return Ferramentas.lString().trim();
     }
 
     @Override
-    public SecretarioModel lerDadosNovoSecretario() {
+    public void lerDadosNovoSecretario(SecretarioModel secretario) {
 
         System.out.println("───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────");
-        System.out.println("                  ███╗   ██╗ ██████╗ ██╗   ██╗ ██████╗    ███████╗███████╗ ██████╗██████╗ ███████╗████████╗ █████╗ ██████╗ ██╗ ██████╗                 ");
-        System.out.println("                  ████╗  ██║██╔═══██╗██║   ██║██╔═══██╗   ██╔════╝██╔════╝██╔════╝██╔══██╗██╔════╝╚══██╔══╝██╔══██╗██╔══██╗██║██╔═══██╗                ");
-        System.out.println("                  ██╔██╗ ██║██║   ██║██║   ██║██║   ██║   ███████╗█████╗  ██║     ██████╔╝█████╗     ██║   ███████║██████╔╝██║██║   ██║                ");
-        System.out.println("                  ██║╚██╗██║██║   ██║╚██╗ ██╔╝██║   ██║   ╚════██║██╔══╝  ██║     ██╔══██╗██╔══╝     ██║   ██╔══██║██╔══██╗██║██║   ██║                ");
-        System.out.println("                  ██║ ╚████║╚██████╔╝ ╚████╔╝ ╚██████╔╝   ███████║███████╗╚██████╗██║  ██║███████╗   ██║   ██║  ██║██║  ██║██║╚██████╔╝                ");
-        System.out.println("                  ╚═╝  ╚═══╝ ╚═════╝   ╚═══╝   ╚═════╝    ╚══════╝╚══════╝ ╚═════╝╚═╝  ╚═╝╚══════╝   ╚═╝   ╚═╝  ╚═╝╚═╝  ╚═╝╚═╝ ╚═════╝                 ");
+        System.out.println("                      ███╗   ██╗ ██████╗ ██╗   ██╗ ██████╗   ███████╗███████╗ ██████╗██████╗ ███████╗████████╗ █████╗ ██╗ ██████╗                      ");
+        System.out.println("                      ████╗  ██║██╔═══██╗██║   ██║██╔═══██╗  ██╔════╝██╔════╝██╔════╝██╔══██╗██╔════╝╚══██╔══╝██╔══██╗██║██╔═══██╗                     ");
+        System.out.println("                      ██╔██╗ ██║██║   ██║██║   ██║██║   ██║  ███████╗█████╗  ██║     ██████╔╝█████╗     ██║   ███████║██║██║   ██║                     ");
+        System.out.println("                      ██║╚██╗██║██║   ██║╚██╗ ██╔╝██║   ██║  ╚════██║██╔══╝  ██║     ██╔══██╗██╔══╝     ██║   ██╔══██║██║██║   ██║                     ");
+        System.out.println("                      ██║ ╚████║╚██████╔╝ ╚████╔╝ ╚██████╔╝  ███████║███████╗╚██████╗██║  ██║███████╗   ██║   ██║  ██║██║╚██████╔╝                     ");
+        System.out.println("                      ╚═╝  ╚═══╝ ╚═════╝   ╚═══╝   ╚═════╝   ╚══════╝╚══════╝ ╚═════╝╚═╝  ╚═╝╚══════╝   ╚═╝   ╚═╝  ╚═╝╚═╝ ╚═════╝                      ");
         System.out.println("───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────");
 
-        return null;
+        String nome = lerNomeCompleto();
+        secretario.setNomeUsuario(nome);
+
+        String cpf = lerCpf();
+        secretario.setCpfUsuario(cpf);
+
+        String email = lerEmail();
+        secretario.setEmailUsuario(email);
+
+        String telefone = lerTelefone();
+        secretario.setTelefoneUsuario(telefone);
+
+        String turno = lerTurno();
+        secretario.setTurnoTrabalhadoSecretario(turno);
+
+        secretario.setTipoUsuario(TipoUsuario.SECRETARIO);
+
+    }
+
+    private String lerTurno() {
+        System.out.print("Digite o turno: ");
+
+        return Ferramentas.lString().trim();
+    }
+
+    private String lerEndereco() {
+        System.out.print("Digite o endereço: ");
+
+        return Ferramentas.lString().trim();
+    }
+
+    private String lerTelefone() {
+        System.out.print("Digite o telefone: ");
+
+        return Ferramentas.lString().trim();
+    }
+
+    private String lerEmail() {
+        System.out.print("Digite o email: ");
+
+        return Ferramentas.lString().trim();
+    }
+
+    private String lerNomeCompleto() {
+        System.out.print("Digite o nome");
+
+        return Ferramentas.lString();
     }
 
     @Override
-    public UsuarioModel lerDadosAtualizacaoUsuario(UsuarioModel usuarioExistente) {
-        return null;
+    public void lerDadosAtualizacaoUsuario(UsuarioModel usuarioExistente, UsuarioModel usuarioAtualizado) {
+        System.out.println("───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────");
+        System.out.println("             ██████╗  █████╗ ██████╗  ██████╗ ███████╗   █████╗ ████████╗██╗   ██╗ █████╗ ██╗     ██╗███████╗ █████╗  ██████╗ ███████╗                 ");
+        System.out.println("             ██╔══██╗██╔══██╗██╔══██╗██╔═══██╗██╔════╝  ██╔══██╗╚══██╔══╝██║   ██║██╔══██╗██║     ██║    ██╔╝██╔══██╗██╔═══██╗██╔════╝                 ");
+        System.out.println("             ██║  ██║███████║██║  ██║██║   ██║███████╗  ███████║   ██║   ██║   ██║███████║██║     ██║   ██╔╝ ███████║██║   ██║███████╗                 ");
+        System.out.println("             ██║  ██║██╔══██║██║  ██║██║   ██║╚════██║  ██╔══██║   ██║   ██║   ██║██╔══██║██║     ██║  ██╔╝  ██╔══██║██║   ██║╚════██║                 ");
+        System.out.println("             ██████╔╝██║  ██║██████╔╝╚██████╔╝███████║  ██║  ██║   ██║   ╚██████╔╝██║  ██║███████╗██║███████╗██║  ██║╚██████╔╝███████║                 ");
+        System.out.println("             ╚═════╝ ╚═╝  ╚═╝╚═════╝  ╚═════╝ ╚══════╝  ╚═╝  ╚═╝   ╚═╝    ╚═════╝ ╚═╝  ╚═╝╚══════╝╚═╝╚══════╝╚═╝  ╚═╝ ╚═════╝ ╚══════╝                 ");
+        System.out.println("───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────");
+        System.out.println("(Deixe em branco se quiser manter os dados atuais!)");
+        System.out.println("───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────");
+
+        System.out.println("Nome: [" + usuarioExistente.getNomeUsuario() + "]:");
+        String nome = Ferramentas.lString().trim();
+        usuarioAtualizado.setNomeUsuario(nome.isEmpty() ? usuarioExistente.getNomeUsuario() : nome);
+
+        System.out.println("Email: [" + usuarioExistente.getEmailUsuario() + "]:");
+        String email = Ferramentas.lString().trim();
+        usuarioAtualizado.setEmailUsuario(email.isEmpty() ? usuarioExistente.getEmailUsuario() : email);
+
+        System.out.println("Telefone: [" + usuarioExistente.getTelefoneUsuario() + "]:");
+        String telefone = Ferramentas.lString().trim();
+        usuarioAtualizado.setTelefoneUsuario(telefone.isEmpty() ? usuarioExistente.getTelefoneUsuario() : telefone);
+
+        usuarioAtualizado.setIdUsuario(usuarioExistente.getIdUsuario());
+        usuarioAtualizado.setSenhaUsuario(usuarioExistente.getSenhaUsuario());
+        usuarioAtualizado.setCpfUsuario(usuarioExistente.getCpfUsuario());
+        usuarioAtualizado.setTipoUsuario(usuarioExistente.getTipoUsuario());
     }
 
     @Override
-    public MedicoModel lerDadosAtualizacaoMedico(MedicoModel medicoExistente) {
-        return null;
+    public void lerDadosAtualizacaoMedico(MedicoModel medicoExistente, MedicoModel medicoAtualizado) {
+        System.out.println("───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────");
+        System.out.println("             ██████╗  █████╗ ██████╗  ██████╗ ███████╗   █████╗ ████████╗██╗   ██╗ █████╗ ██╗     ██╗███████╗ █████╗  ██████╗ ███████╗                 ");
+        System.out.println("             ██╔══██╗██╔══██╗██╔══██╗██╔═══██╗██╔════╝  ██╔══██╗╚══██╔══╝██║   ██║██╔══██╗██║     ██║    ██╔╝██╔══██╗██╔═══██╗██╔════╝                 ");
+        System.out.println("             ██║  ██║███████║██║  ██║██║   ██║███████╗  ███████║   ██║   ██║   ██║███████║██║     ██║   ██╔╝ ███████║██║   ██║███████╗                 ");
+        System.out.println("             ██║  ██║██╔══██║██║  ██║██║   ██║╚════██║  ██╔══██║   ██║   ██║   ██║██╔══██║██║     ██║  ██╔╝  ██╔══██║██║   ██║╚════██║                 ");
+        System.out.println("             ██████╔╝██║  ██║██████╔╝╚██████╔╝███████║  ██║  ██║   ██║   ╚██████╔╝██║  ██║███████╗██║███████╗██║  ██║╚██████╔╝███████║                 ");
+        System.out.println("             ╚═════╝ ╚═╝  ╚═╝╚═════╝  ╚═════╝ ╚══════╝  ╚═╝  ╚═╝   ╚═╝    ╚═════╝ ╚═╝  ╚═╝╚══════╝╚═╝╚══════╝╚═╝  ╚═╝ ╚═════╝ ╚══════╝                 ");
+        System.out.println("───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────");
+        System.out.println("(Deixe em branco se quiser manter os dados atuais!)");
+        System.out.println("───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────");
+
+        System.out.println("Nome: [" + medicoExistente.getNomeUsuario() + "]:");
+        String nome = Ferramentas.lString().trim();
+        medicoAtualizado.setNomeUsuario(nome.isEmpty() ? medicoExistente.getNomeUsuario() : nome);
+
+        System.out.println("Email: [" + medicoExistente.getEmailUsuario() + "]:");
+        String email = Ferramentas.lString().trim();
+        medicoAtualizado.setEmailUsuario(email.isEmpty() ? medicoExistente.getEmailUsuario() : email);
+
+        System.out.println("Telefone: [" + medicoExistente.getTelefoneUsuario() + "]:");
+        String telefone = Ferramentas.lString().trim();
+        medicoAtualizado.setTelefoneUsuario(telefone.isEmpty() ? medicoExistente.getTelefoneUsuario() : telefone);
+
+        medicoAtualizado.setIdUsuario(medicoExistente.getIdUsuario());
+        medicoAtualizado.setSenhaUsuario(medicoExistente.getSenhaUsuario());
+        medicoAtualizado.setCpfUsuario(medicoExistente.getCpfUsuario());
+        medicoAtualizado.setTipoUsuario(medicoExistente.getTipoUsuario());
+
+
     }
 
     @Override
     public void mostrarListaUsuarios(List<UsuarioModel> usuarios) {
+        if(usuarios == null || usuarios.isEmpty()){
+            System.out.println("Nenhum usuario cadastrado");
+            return;
+        }
 
+        System.out.println("───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────");
+        System.out.println("                    ██╗     ██╗███████╗████████╗ █████╗   ██╗   ██╗███████╗██╗   ██╗ █████╗ ██████╗ ██╗ ██████╗ ███████╗                               ");
+        System.out.println("                    ██║     ██║██╔════╝╚══██╔══╝██╔══██╗  ██║   ██║██╔════╝██║   ██║██╔══██╗██╔══██╗██║██╔═══██╗██╔════╝                               ");
+        System.out.println("                    ██║     ██║███████╗   ██║   ███████║  ██║   ██║███████╗██║   ██║███████║██████╔╝██║██║   ██║███████╗                               ");
+        System.out.println("                    ██║     ██║╚════██║   ██║   ██╔══██║  ██║   ██║╚════██║██║   ██║██╔══██║██╔══██╗██║██║   ██║╚════██║                               ");
+        System.out.println("                    ███████╗██║███████║   ██║   ██║  ██║  ╚██████╔╝███████║╚██████╔╝██║  ██║██║  ██║██║╚██████╔╝███████║                               ");
+        System.out.println("                    ╚══════╝╚═╝╚══════╝   ╚═╝   ╚═╝  ╚═╝   ╚═════╝ ╚══════╝ ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝╚═╝ ╚═════╝ ╚══════╝                               ");
+        System.out.println("───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────");
+
+        System.out.println("───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────");
+
+        for(UsuarioModel usuario : usuarios){
+            System.out.println("Id: " + usuario.getIdUsuario());
+            System.out.println("Nome: " + usuario.getNomeUsuario());
+            System.out.println("Tipo: " + usuario.getTipoUsuario());
+            System.out.println("Cpf: " + usuario.getCpfUsuario());
+            System.out.println("───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────");
+
+        }
     }
 
     @Override
     public void mostrarListaMedicos(List<MedicoModel> medicos) {
+        if(medicos == null || medicos.isEmpty()){
+            System.out.println("Nenhum medico cadastrado");
+            return;
+        }
+
+        System.out.println("───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────");
+        System.out.println("                        ██╗     ██╗███████╗████████╗ █████╗    ███╗   ███╗███████╗██████╗ ██╗ ██████╗ ██████╗ ███████╗                                 ");
+        System.out.println("                        ██║     ██║██╔════╝╚══██╔══╝██╔══██╗   ████╗ ████║██╔════╝██╔══██╗██║██╔════╝██╔═══██╗██╔════╝                                 ");
+        System.out.println("                        ██║     ██║███████╗   ██║   ███████║   ██╔████╔██║█████╗  ██║  ██║██║██║     ██║   ██║███████╗                                 ");
+        System.out.println("                        ██║     ██║╚════██║   ██║   ██╔══██║   ██║╚██╔╝██║██╔══╝  ██║  ██║██║██║     ██║   ██║╚════██║                                 ");
+        System.out.println("                        ███████╗██║███████║   ██║   ██║  ██║   ██║ ╚═╝ ██║███████╗██████╔╝██║╚██████╗╚██████╔╝███████║                                 ");
+        System.out.println("                        ╚══════╝╚═╝╚══════╝   ╚═╝   ╚═╝  ╚═╝   ╚═╝     ╚═╝╚══════╝╚═════╝ ╚═╝ ╚═════╝ ╚═════╝ ╚══════╝                                 ");
+        System.out.println("───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────");
+
+        System.out.println("───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────");
+        for(MedicoModel medico : medicos){
+            System.out.println("Id: " + medico.getIdUsuario());
+            System.out.println("Nome: " + medico.getNomeUsuario());
+            System.out.println("Cpf: " + medico.getCpfUsuario());
+            System.out.println("Especialidade: " + medico.getEspecialidadeMedico());
+            System.out.println("───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────");
+        }
 
     }
 
     @Override
     public void mostrarDadosUsuarioCompleto(UsuarioModel usuario) {
+        System.out.println("───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────");
+        System.out.println("                           ██████╗  █████╗ ██████╗  ██████╗ ███████╗ ██╗   ██╗███████╗██╗   ██╗ █████╗ ██████╗ ██╗ ██████╗                             ");
+        System.out.println("                           ██╔══██╗██╔══██╗██╔══██╗██╔═══██╗██╔════╝ ██║   ██║██╔════╝██║   ██║██╔══██╗██╔══██╗██║██╔═══██╗                            ");
+        System.out.println("                           ██║  ██║███████║██║  ██║██║   ██║███████╗ ██║   ██║███████╗██║   ██║███████║██████╔╝██║██║   ██║                            ");
+        System.out.println("                           ██║  ██║██╔══██║██║  ██║██║   ██║╚════██║ ██║   ██║╚════██║██║   ██║██╔══██║██╔══██╗██║██║   ██║                            ");
+        System.out.println("                           ██████╔╝██║  ██║██████╔╝╚██████╔╝███████║ ╚██████╔╝███████║╚██████╔╝██║  ██║██║  ██║██║╚██████╔╝                            ");
+        System.out.println("                           ╚═════╝ ╚═╝  ╚═╝╚═════╝  ╚═════╝ ╚══════╝  ╚═════╝ ╚══════╝ ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝╚═╝ ╚═════╝                             ");
+        System.out.println("───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────");
 
+        System.out.println("───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────");
+        System.out.println("Id: " + usuario.getIdUsuario());
+        System.out.println("Nome: " + usuario.getNomeUsuario());
+        System.out.println("Tipo: " + usuario.getTipoUsuario());
+        System.out.println("Telefone: " + usuario.getTelefoneUsuario());
+        System.out.println("Senha: " + usuario.getSenhaUsuario());
+        System.out.println("Cpf: " + usuario.getCpfUsuario());
+        System.out.println("Email: " + usuario.getEmailUsuario());
     }
 
     @Override
@@ -178,42 +346,28 @@ public class MenuAdminConsoleView implements IMenuAdminView {
         System.out.println("            ╚══════╝╚══════╝╚══════╝╚══════╝ ╚═════╝╚═╝ ╚═════╝ ╚═╝  ╚═══╝╚═╝  ╚═╝╚═╝  ╚═╝  ╚═╝     ╚═╝╚══════╝╚═════╝ ╚═╝ ╚═════╝ ╚═════╝             ");
         System.out.println("───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────");
 
-
-        return 0;
-    }
-
-    @Override
-    public int mostrarMenuDetalhesMedico(MedicoModel medico) {
-        return 0;
-    }
-
-    @Override
-    public int mostrarMenuDetalhesPaciente(PacienteModel paciente) {
-        return 0;
-    }
-
-    @Override
-    public int mostrarMenuDetalhesSecretario(SecretarioModel secretario) {
-        return 0;
+        System.out.println("Digite o id do medico desejado: ");
+        return Ferramentas.lLong();
     }
 
     @Override
     public void mostrarTitulo(String titulo) {
-
+        System.out.println("\n" + titulo);
+        System.out.println("───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────");
     }
 
     @Override
     public void mostrarMensagemSucesso(String mensagem) {
-
+        System.out.println("\n" + mensagem);
     }
 
     @Override
     public void mostrarMensagemErro(String mensagem) {
-
+        System.out.println("\n" + mensagem);
     }
 
     @Override
     public void mostrarMensagemInfo(String mensagem) {
-
+        System.out.println("\n" + mensagem);
     }
 }

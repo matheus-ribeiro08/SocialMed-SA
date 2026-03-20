@@ -10,6 +10,13 @@ public class Ferramentas {
 
     }
 
+    public static long lLong(){
+        long num = ler.nextLong();
+
+        ler.nextLine();
+
+        return num;
+    }
 
     public static void Delay(int ms) {
         try{Thread.sleep(ms);}catch(InterruptedException e){}

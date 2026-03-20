@@ -1,12 +1,9 @@
 package org.example.presenter;
 
 import org.example.enums.TipoUsuario;
-import org.example.model.ConsultaModel;
 import org.example.model.PacienteModel;
-import org.example.model.UsuarioModel;
 import org.example.roteador.Roteador;
 import org.example.utils.Ferramentas;
-import org.example.view.paciente.MenuPacienteView;
 
 public class MenuPacientePresenter {
 
