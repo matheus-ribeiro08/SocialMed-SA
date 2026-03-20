@@ -50,7 +50,7 @@ public class AdminService {
         return medicoDAO.atualizar(medico);
    }
 
-   public boolean removerMedico(AdminModel admin, long idMedico){
+   public boolean removerMedico(AdminModel admin, int idMedico){
         validarAdmin(admin);
         validarMedicoExistente(idMedico);
 

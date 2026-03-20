@@ -54,10 +54,6 @@ public class MenuAdminPresenter {
                         gerenciarPacientes();
                         break;
                     }
-                    case 5:{
-                        gerarRelatorios();
-                        break;
-                    }
                     case 6:{
                         visualizarPerfil();
                         break;
@@ -221,53 +217,7 @@ public class MenuAdminPresenter {
 
     }
 
-    private void desativarUsuario(){
-        view.mostrarTitulo("Desativar usuario");
 
-        String cpf = view.lerCpf();
-
-        try {
-            UsuarioModel usuario = usuarioService.buscarPorCpf(cpf);
-
-            if(usuario == null){
-                view.mostrarMensagemErro("Usuario nao encontrado");
-                return;
-            }
-
-            view.mostrarDadosUsuarioCompleto(usuario);
-
-            if(view.perguntarAcao("Confirmar desativação?")){
-                adminService.desativarUsuario(admin, usuario.getIdUsuario());
-                view.mostrarMensagemSucesso("Usuario desativado com sucesso!");
-            }
-        }catch (Exception e){
-            view.mostrarMensagemErro("Erro ao desativar usuario");
-        }
-    }
-
-    private void ativarUsuario(){
-        view.mostrarTitulo("Ativar usuario");
-
-        String cpf = view.lerCpf();
-
-        try {
-            UsuarioModel usuario = usuarioService.buscarPorCpf(cpf);
-
-            if(usuario == null){
-                view.mostrarMensagemErro("Usuario nao encontrado");
-                return;
-            }
-
-            view.mostrarDadosUsuarioCompleto(usuario);
-
-            if(view.perguntarAcao("Confirmar ativação?")){
-                adminService.ativarUsuario(admin, usuario.getIdUsuario());
-                view.mostrarMensagemSucesso("Usuario ativado com sucesso!");
-            }
-        }catch (Exception e){
-            view.mostrarMensagemErro("Erro ao ativar usuario");
-        }
-    }
 
     private void gerenciarMedicos(){
         view.mostrarTitulo("Gerenciar medico");
@@ -290,49 +240,11 @@ public class MenuAdminPresenter {
                 return;
             }
 
-            visualizarDetalhesMedico(medico);
         }catch (Exception e){
             System.err.println("Erro ao gerencar Medico");
         }
     }
 
-    private void visualizarDetalhesMedico(MedicoModel medico){
-        boolean visualizando = true;
-
-        while (visualizando){
-            int opcao = view.mostrarMenuDetalhesMedico(medico);
-
-            switch (opcao){
-                case 1:{
-                    verAgendaMedico(medico);
-                    break;
-                }
-                case 2:{
-                    verHistoricoMedico(medico);
-                    break;
-                }
-                case 3:{
-                    editarMedico(medico);
-                    break;
-                }
-                case 4:{
-                    if(view.perguntarAcao("Remover médico?")){
-                        adminService.RemoverMedico(admin, medico.getIdMedico());
-                        view.mostrarMensagemSucesso("Medico removido!");
-                        visualizando = false;
-                    }
-                    break;
-                }
-                case 0:{
-                    visualizando = false;
-                    break;
-                }
-                default:{
-                    view.mostrarMensagemErro("Opção invalida");
-                }
-            }
-        }
-    }
 
     private void verAgendaMedico(MedicoModel medico){
         //implementar visualização da agenda do medico
@@ -384,6 +296,33 @@ public class MenuAdminPresenter {
                     view.mostrarMensagemErro("Opção invalida");
                 }
             }
+        }
+    }
+
+    private void gerenciarSecretarios(){
+        view.mostrarTitulo("Gerenciar secretario");
+
+        try {
+            List<SecretarioModel> secretarios = usuarioService.listarMedicos();
+
+            if(secretarios.isEmpty()){
+                view.mostrarMensagemInfo("Nenhum secretario cadastrado");
+                return;
+            }
+
+            view.mostrarListaSecretarios(secretarios);
+
+            long id = view.selecionarMedico();
+            MedicoModel medico = usuarioService.buscarMedicoPorId(id);
+
+            if(medico == null){
+                view.mostrarMensagemErro("Medico nao encontrado");
+                return;
+            }
+
+            visualizarDetalhesMedico(medico);
+        }catch (Exception e){
+            System.err.println("Erro ao gerencar Medico");
         }
     }
 

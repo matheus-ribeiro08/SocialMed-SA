@@ -19,6 +19,7 @@ public interface IMenuAdminView {
     void lerDadosNovoSecretario(SecretarioModel secretario);
     void lerDadosAtualizacaoUsuario(UsuarioModel usuarioExistente, UsuarioModel usuarioAtualizado);
     void lerDadosAtualizacaoMedico(MedicoModel medicoExistente, MedicoModel medicoAtualizado);
+    void mostrarListaSecretarios(List<SecretarioModel> secretarios);
     void mostrarListaUsuarios(List<UsuarioModel> usuarios);
     void mostrarListaMedicos(List<MedicoModel> medicos);
     void mostrarDadosUsuarioCompleto(UsuarioModel usuario);

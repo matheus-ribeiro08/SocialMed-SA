@@ -315,6 +315,33 @@ public class MenuAdminConsoleView implements IMenuAdminView {
     }
 
     @Override
+    public void mostrarListaSecretarios(List<SecretarioModel> secretarios) {
+        if(secretarios == null || secretarios.isEmpty()){
+            System.out.println("Nenhum secretario cadastrado");
+            return;
+        }
+
+        System.out.println("───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────");
+        System.out.println("                      ██╗     ██╗███████╗████████╗ █████╗     ███████╗███████╗ ██████╗██████╗ ███████╗████████╗ █████╗ ██╗ ██████╗                     ");
+        System.out.println("                      ██║     ██║██╔════╝╚══██╔══╝██╔══██╗    ██╔════╝██╔════╝██╔════╝██╔══██╗██╔════╝╚══██╔══╝██╔══██╗██║██╔═══██╗                    ");
+        System.out.println("                      ██║     ██║███████╗   ██║   ███████║    ███████╗█████╗  ██║     ██████╔╝█████╗     ██║   ███████║██║██║   ██║                    ");
+        System.out.println("                      ██║     ██║╚════██║   ██║   ██╔══██║    ╚════██║██╔══╝  ██║     ██╔══██╗██╔══╝     ██║   ██╔══██║██║██║   ██║                    ");
+        System.out.println("                      ███████╗██║███████║   ██║   ██║  ██║    ███████║███████╗╚██████╗██║  ██║███████╗   ██║   ██║  ██║██║╚██████╔╝                    ");
+        System.out.println("                      ╚══════╝╚═╝╚══════╝   ╚═╝   ╚═╝  ╚═╝    ╚══════╝╚══════╝ ╚═════╝╚═╝  ╚═╝╚══════╝   ╚═╝   ╚═╝  ╚═╝╚═╝ ╚═════╝                     ");
+        System.out.println("───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────");
+
+        System.out.println("───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────");
+        for(SecretarioModel secretario : secretarios){
+            System.out.println("Id: " + secretario.getIdUsuario());
+            System.out.println("Nome: " + secretario.getNomeUsuario());
+            System.out.println("Cpf: " + secretario.getCpfUsuario());
+            System.out.println("Turno: " + secretario.getTurnoTrabalhadoSecretario());
+            System.out.println("───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────");
+        }
+
+    }
+
+    @Override
     public void mostrarDadosUsuarioCompleto(UsuarioModel usuario) {
         System.out.println("───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────");
         System.out.println("                           ██████╗  █████╗ ██████╗  ██████╗ ███████╗ ██╗   ██╗███████╗██╗   ██╗ █████╗ ██████╗ ██╗ ██████╗                             ");
