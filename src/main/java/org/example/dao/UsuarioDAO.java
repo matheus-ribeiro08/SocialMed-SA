@@ -10,7 +10,7 @@ import java.util.List;
 public class UsuarioDAO
 {
     public UsuarioModel login(String cpf, String senha) throws SQLException {
-        String sql = "SELECT * FROM Usuario WHERE cpf_usuario = ? AND senha_usuario = ?";
+        String sql = "SELECT * FROM Usuario WHERE cpf_Usuario = ? AND senha_usuario = ?";
         UsuarioModel usuarioModel = null;
 
         try (Connection conn = ConnectionFactory.getConnection();
@@ -23,14 +23,7 @@ public class UsuarioDAO
             {
                 if (rs.next())
                 {
-                    usuarioModel = new UsuarioModel(
-                            rs.getInt("id_Usuario"),
-                            rs.getString("nome_usuario"),
-                            rs.getString("cpf_usuario"),
-                            rs.getString("telefone_Usuario"),
-                            rs.getString("email_Usuario"),
-                            rs.getString("senha_Usuario")
-                    );
+                    usuarioModel = extrairUsuario(rs);
                 }
             }
         }
