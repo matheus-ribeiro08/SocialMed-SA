@@ -38,7 +38,6 @@ public class ProntuarioDAO
     public List<ProntuarioModel> listarProntuarios(int idPaciente)
     {
         List<ProntuarioModel> prontuarios = new ArrayList<>();
-
         String sql = "SELECT * FROM Prontuario WHERE id_Paciente = ?";
 
         try(Connection conn = ConnectionFactory.getConnection();
