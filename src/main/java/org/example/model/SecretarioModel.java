@@ -6,11 +6,11 @@ import java.time.LocalDate;
 
 public class SecretarioModel extends UsuarioModel{
 
-    private long idSecretario;
+    private int idSecretario;
     private String turnoTrabalhadoSecretario;
 
-    public SecretarioModel(long idUsuario, String nomeUsuario, String emailUsuario,
-                           String senhaUsuario, String telefoneUsuario, String cpfUsuario, TipoUsuario tipoUsuario, long idSecretario, String turnoTrabalhadoSecretario) {
+    public SecretarioModel(int idUsuario, String nomeUsuario, String emailUsuario,
+                           String senhaUsuario, String telefoneUsuario, String cpfUsuario, TipoUsuario tipoUsuario, int idSecretario, String turnoTrabalhadoSecretario) {
         super(idUsuario, nomeUsuario, emailUsuario, senhaUsuario, telefoneUsuario, cpfUsuario, tipoUsuario);
         this.idSecretario = idSecretario;
         this.turnoTrabalhadoSecretario = turnoTrabalhadoSecretario;
@@ -20,7 +20,7 @@ public class SecretarioModel extends UsuarioModel{
         return idSecretario;
     }
 
-    public void setIdSecretario(long idSecretario) {
+    public void setIdSecretario(int idSecretario) {
         this.idSecretario = idSecretario;
     }
 

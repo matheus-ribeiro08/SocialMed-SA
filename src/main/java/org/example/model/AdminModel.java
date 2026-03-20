@@ -6,11 +6,11 @@ import java.time.LocalDate;
 
 public class AdminModel extends UsuarioModel{
 
-    private long idAdmin;
+    private int idAdmin;
     private String senhaEspecial;
 
-    public AdminModel(long idUsuario, String nomeUsuario, TipoUsuario tipoUsuario, String emailUsuario,
-                      String senhaUsuario, String telefoneUsuario, String cpfUsuario, long idAdmin, String senhaEspecial) {
+    public AdminModel(int idUsuario, String nomeUsuario, TipoUsuario tipoUsuario, String emailUsuario,
+                      String senhaUsuario, String telefoneUsuario, String cpfUsuario, int idAdmin, String senhaEspecial) {
         super(idUsuario, nomeUsuario, emailUsuario, senhaUsuario, telefoneUsuario, cpfUsuario, tipoUsuario);
         this.idAdmin = idAdmin;
         this.senhaEspecial = senhaEspecial;
@@ -20,7 +20,7 @@ public class AdminModel extends UsuarioModel{
         return idAdmin;
     }
 
-    public void setIdAdmin(long idAdmin) {
+    public void setIdAdmin(int idAdmin) {
         this.idAdmin = idAdmin;
     }
 

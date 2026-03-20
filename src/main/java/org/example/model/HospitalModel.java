@@ -2,7 +2,7 @@ package org.example.model;
 
 public class HospitalModel {
 
-    private long idHospital;
+    private int idHospital;
     private String cnpjHospital;
     private String enderecoHospital;
     private int quantPessoasHospital;
@@ -10,7 +10,7 @@ public class HospitalModel {
     private int quantidadeSalasHopital;
     private String agendaHospital;
 
-    public HospitalModel(long idHospital, String cnpjHospital, String enderecoHospital, int quantPessoasHospital,
+    public HospitalModel(int idHospital, String cnpjHospital, String enderecoHospital, int quantPessoasHospital,
                          String nomeHospital, int quantidadeSalasHopital, String agendaHospital) {
         this.idHospital = idHospital;
         this.cnpjHospital = cnpjHospital;
@@ -25,7 +25,7 @@ public class HospitalModel {
         return idHospital;
     }
 
-    public void setIdHospital(long idHospital) {
+    public void setIdHospital(int idHospital) {
         this.idHospital = idHospital;
     }
 

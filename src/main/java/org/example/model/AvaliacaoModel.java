@@ -4,13 +4,13 @@ import java.time.LocalDate;
 import java.util.Date;
 
 public class AvaliacaoModel {
-    private long idAvaliacao;
+    private int idAvaliacao;
     private double notaAvaliacao;
     private String comentariosAvaliacao;
     private LocalDate dataPublicacao;
     private int idMedico;
 
-    public AvaliacaoModel(long idAvaliacao, double notaAvaliacao, String comentariosAvaliacao, LocalDate dataPublicacao, int idMedico) {
+    public AvaliacaoModel(int idAvaliacao, double notaAvaliacao, String comentariosAvaliacao, LocalDate dataPublicacao, int idMedico) {
         this.idAvaliacao = idAvaliacao;
         this.notaAvaliacao = notaAvaliacao;
         this.comentariosAvaliacao = comentariosAvaliacao;
@@ -26,7 +26,7 @@ public class AvaliacaoModel {
         return idAvaliacao;
     }
 
-    public void setIdAvaliacao(long idAvaliacao) {
+    public void setIdAvaliacao(int idAvaliacao) {
         this.idAvaliacao = idAvaliacao;
     }
 

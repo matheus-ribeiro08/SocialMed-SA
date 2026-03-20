@@ -7,7 +7,7 @@ import java.time.format.DateTimeFormatter;
 
 public class UsuarioModel {
 
-    private long idUsuario;
+    private int idUsuario;
     private String nomeUsuario;
     private String emailUsuario;
     private String senhaUsuario;
@@ -15,7 +15,7 @@ public class UsuarioModel {
     private String cpfUsuario;
     private TipoUsuario tipoUsuario;
 
-    public UsuarioModel(long idUsuario,String nomeUsuario, String emailUsuario,String senhaUsuario, String telefoneUsuario, String cpfUsuario, TipoUsuario tipoUsuario) {
+    public UsuarioModel(int idUsuario,String nomeUsuario, String emailUsuario,String senhaUsuario, String telefoneUsuario, String cpfUsuario, TipoUsuario tipoUsuario) {
         this.nomeUsuario = nomeUsuario;
         this.emailUsuario = emailUsuario;
         this.senhaUsuario = senhaUsuario;
@@ -32,7 +32,7 @@ public class UsuarioModel {
         return idUsuario;
     }
 
-    public void setIdUsuario(long idUsuario) {
+    public void setIdUsuario(int idUsuario) {
         this.idUsuario = idUsuario;
     }
 

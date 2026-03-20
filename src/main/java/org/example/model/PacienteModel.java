@@ -6,11 +6,11 @@ import java.time.LocalDate;
 
 public class PacienteModel extends UsuarioModel{
 
-    private long idPaciente;
+    private int idPaciente;
     private String enderecoPaciente;
 
-    public PacienteModel(long idUsuario, String nomeUsuario, TipoUsuario tipoUsuario, String emailUsuario, String senhaUsuario,
-                         String telefoneUsuario, String cpfUsuario, long idPaciente, String enderecoPaciente) {
+    public PacienteModel(int idUsuario, String nomeUsuario, TipoUsuario tipoUsuario, String emailUsuario, String senhaUsuario,
+                         String telefoneUsuario, String cpfUsuario, int idPaciente, String enderecoPaciente) {
         super(idUsuario, nomeUsuario, emailUsuario, senhaUsuario, telefoneUsuario, cpfUsuario, tipoUsuario);
         this.idPaciente = idPaciente;
         this.enderecoPaciente = enderecoPaciente;
@@ -20,7 +20,7 @@ public class PacienteModel extends UsuarioModel{
         return idPaciente;
     }
 
-    public void setIdPaciente(long idPaciente) {
+    public void setIdPaciente(int idPaciente) {
         this.idPaciente = idPaciente;
     }
 

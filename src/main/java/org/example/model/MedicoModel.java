@@ -6,10 +6,10 @@ import java.time.LocalDate;
 
 public class MedicoModel extends UsuarioModel{
 
-    private long idMedico;
+    private int idMedico;
     private String especialidadeMedico;
 
-    public MedicoModel(long idUsuario, String nomeUsuario, String emailUsuario, String senhaUsuario,
+    public MedicoModel(int idUsuario, String nomeUsuario, String emailUsuario, String senhaUsuario,
                        String telefoneUsuario, String cpfUsuario, TipoUsuario tipoUsuario, long idMedico, String especialidadeMedico) {
         super(idUsuario, nomeUsuario, emailUsuario, senhaUsuario, telefoneUsuario, cpfUsuario, tipoUsuario);
         this.idMedico = idMedico;
@@ -25,7 +25,7 @@ public class MedicoModel extends UsuarioModel{
         return idMedico;
     }
 
-    public void setIdMedico(long idMedico) {
+    public void setIdMedico(int idMedico) {
         this.idMedico = idMedico;
     }
 

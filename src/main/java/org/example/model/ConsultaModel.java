@@ -5,7 +5,7 @@ import java.time.LocalDateTime;
 
 public class ConsultaModel {
 
-    private long idConsulta;
+    private int idConsulta;
     private int idHospital;
     private String localEndereco;
     private int idPaciente;
@@ -16,7 +16,7 @@ public class ConsultaModel {
         return idConsulta;
     }
 
-    public void setIdConsulta(long idConsulta) {
+    public void setIdConsulta(int idConsulta) {
         this.idConsulta = idConsulta;
     }
 
@@ -60,7 +60,7 @@ public class ConsultaModel {
         this.horarioConsulta = horarioConsulta;
     }
 
-    public ConsultaModel(long idConsulta, int idHospital, String localEndereco, int idPaciente, int idMedico, LocalDateTime horarioConsulta) {
+    public ConsultaModel(int idConsulta, int idHospital, String localEndereco, int idPaciente, int idMedico, LocalDateTime horarioConsulta) {
         this.idConsulta = idConsulta;
         this.idHospital = idHospital;
         this.localEndereco = localEndereco;

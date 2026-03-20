@@ -5,7 +5,9 @@ import org.example.dao.MedicoDAO;
 import org.example.enums.TipoUsuario;
 import org.example.model.*;
 import org.example.roteador.Roteador;
+import org.example.service.AdminService;
 import org.example.service.UsuarioService;
+import org.example.viewInterface.viewInterfaceAdm.IMenuAdminView;
 
 import java.util.List;
 
@@ -13,17 +15,17 @@ public class MenuAdminPresenter {
 
     private final Roteador roteador;
     private final AdminModel admin;
-    private final MenuAdminView view;
+    private final IMenuAdminView view;
     private final AdminService adminService;
     private final UsuarioService usuarioService;
     private final RelatorioService relatorioService;
 
-    public MenuAdminPresenter(Roteador roteador, AdminModel admin){
+    public MenuAdminPresenter(Roteador roteador, AdminModel admin, IMenuAdminView view){
         this.roteador = roteador;
         this.admin = admin;
         this.view = view;
 
-        this.adminService = new AdminServece();
+        this.adminService = new AdminService();
         this.usuarioService = new UsuarioService();
         this.relatorioService = new RelatorioService();
     }
@@ -122,7 +124,7 @@ public class MenuAdminPresenter {
         }
     }
 
-    private void listarTodosOsUsuarios{
+    private void listarTodosOsUsuarios(){
         view.mostrarTitulo("Lista de usuarios");
 
         try {
@@ -198,7 +200,7 @@ public class MenuAdminPresenter {
         String cpf = view.lerCpf();
 
         try {
-            UsuarioModel usuario = usuarioService.buscarPorCpf(criarMedico();
+            UsuarioModel usuario = usuarioService.buscarPorCpf(criarMedico());
 
             if(usuario == null){
                 view.mostrarMensagemErro("Usuario nao encontrado");

@@ -4,13 +4,13 @@ import java.time.LocalDate;
 
 public class SolicitacaoModel {
 
-    private long id;
+    private int id;
     private MedicoModel medico;
     private PacienteModel paciente;
     private LocalDate dataAbertura;
     private LocalDate dataFechamento;
 
-    public SolicitacaoModel(long id, MedicoModel medico, PacienteModel paciente, LocalDate dataAbertura, LocalDate dataFechamento) {
+    public SolicitacaoModel(int id, MedicoModel medico, PacienteModel paciente, LocalDate dataAbertura, LocalDate dataFechamento) {
         this.id = id;
         this.medico = medico;
         this.paciente = paciente;
@@ -22,7 +22,7 @@ public class SolicitacaoModel {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
