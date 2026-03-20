@@ -151,4 +151,53 @@ public class UsuarioDAO
         Usuario.setId(rs.getInt("id_Usuario"));
         return Usuario;
     }
+
+    public boolean atualizarNomeUsuario(int idUsuario, String novoNome)
+    {
+        String sql = "UPDATE Usuario SET nome_usuario WHERE id_Usuario = ?";
+
+        try(Connection conn = ConnectionFactory.getConnection();
+            PreparedStatement stmt = conn.prepareStatement(sql))
+        {
+            stmt.setInt(1, idUsuario);
+            stmt.setString(2, novoNome);
+
+            return stmt.executeUpdate() > 0;
+
+        } catch (SQLException e)
+        {
+            System.err.println("Erro ao atualizar Nome do Usuario");
+        }
+        return false;
+    }
+    public boolean atualizarEmailUsuario(int idUsuario, String novoEmail) {
+        String sql = "UPDATE Usuario SET email_usuario WHERE id_Usuario = ?";
+
+        try (Connection conn = ConnectionFactory.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setInt(1, idUsuario);
+            stmt.setString(2, novoEmail);
+
+            return stmt.executeUpdate() > 0;
+
+        } catch (SQLException e) {
+            System.err.println("Erro ao atualizar Email do Usuario");
+        }
+        return false;
+    }
+    public boolean atualizarTelefoneUsuario(int idUsuario, String novoTelefone) {
+        String sql = "UPDATE Usuario SET telefone_usuario WHERE id_Usuario = ?";
+
+        try (Connection conn = ConnectionFactory.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setInt(1, idUsuario);
+            stmt.setString(2, novoTelefone);
+
+            return stmt.executeUpdate() > 0;
+
+        } catch (SQLException e) {
+            System.err.println("Erro ao atualizar Telefone do Usuario");
+        }
+        return false;
+    }
 }
