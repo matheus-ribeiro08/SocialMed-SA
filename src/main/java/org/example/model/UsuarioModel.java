@@ -28,7 +28,7 @@ public class UsuarioModel {
 
     }
 
-    public long getIdUsuario() {
+    public int getIdUsuario() {
         return idUsuario;
     }
 

@@ -71,7 +71,7 @@ public class AdminService {
 
     public boolean atualizarSecretario(AdminModel admin, SecretarioModel secretario){
         validarAdmin(admin);
-        validarSecretarioExistente(secretario.getIdUsuario());
+        validarSecretarioExistente(secretario.getIdSecretario());
 
         return secretarioDAO.atualizar(secretario);
     }

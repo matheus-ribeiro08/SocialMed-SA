@@ -16,7 +16,7 @@ public class PacienteModel extends UsuarioModel{
         this.enderecoPaciente = enderecoPaciente;
     }
 
-    public long getIdPaciente() {
+    public int getIdPaciente() {
         return idPaciente;
     }
 

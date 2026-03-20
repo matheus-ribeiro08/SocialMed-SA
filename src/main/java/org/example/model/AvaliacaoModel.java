@@ -22,7 +22,7 @@ public class AvaliacaoModel {
 
     }
 
-    public long getIdAvaliacao() {
+    public int getIdAvaliacao() {
         return idAvaliacao;
     }
 

@@ -10,7 +10,7 @@ public class MedicoModel extends UsuarioModel{
     private String especialidadeMedico;
 
     public MedicoModel(int idUsuario, String nomeUsuario, String emailUsuario, String senhaUsuario,
-                       String telefoneUsuario, String cpfUsuario, TipoUsuario tipoUsuario, long idMedico, String especialidadeMedico) {
+                       String telefoneUsuario, String cpfUsuario, TipoUsuario tipoUsuario, int idMedico, String especialidadeMedico) {
         super(idUsuario, nomeUsuario, emailUsuario, senhaUsuario, telefoneUsuario, cpfUsuario, tipoUsuario);
         this.idMedico = idMedico;
         this.especialidadeMedico = especialidadeMedico;
@@ -21,7 +21,7 @@ public class MedicoModel extends UsuarioModel{
     }
 
 
-    public long getIdMedico() {
+    public int getIdMedico() {
         return idMedico;
     }
 

@@ -18,7 +18,7 @@ public class SolicitacaoModel {
         this.dataFechamento = dataFechamento;
     }
 
-    public long getId() {
+    public int getId() {
         return id;
     }
 
