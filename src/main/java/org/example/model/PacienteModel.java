@@ -32,4 +32,7 @@ public class PacienteModel extends UsuarioModel{
         this.enderecoPaciente = enderecoPaciente;
     }
 
+    public PacienteModel(){
+    }
+
 }

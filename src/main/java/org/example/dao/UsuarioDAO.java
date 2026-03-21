@@ -5,6 +5,7 @@ import org.example.model.MedicoModel;
 import org.example.model.UsuarioModel;
 
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.List;
 
 public class UsuarioDAO
@@ -105,7 +106,8 @@ public class UsuarioDAO
             PreparedStatement stmt = conn.prepareStatement(sql))
         {
             stmt.setString(1, cpf);
-            ResultSet rs = stmt.getResultSet();
+
+            ResultSet rs = stmt.executeQuery();
 
             if(rs.next())
             {
@@ -200,4 +202,64 @@ public class UsuarioDAO
         }
         return false;
     }
+
+    public UsuarioModel buscarPorId (int idUsuario)
+    {
+        UsuarioModel usuario = null;
+
+        String sql = "SELECT * FROM Usuario WHERE id_usuario = ?";
+
+        try(Connection conn = ConnectionFactory.getConnection();
+            PreparedStatement stmt = conn.prepareStatement(sql))
+        {
+            stmt.setInt(1, idUsuario);
+
+            try (ResultSet rs = stmt.executeQuery())
+            {
+                if(rs.next())
+                {
+                    usuario = new UsuarioModel();
+                    usuario.setIdUsuario(rs.getInt("id_Usuario"));
+                    usuario.setNomeUsuario(rs.getString("nome_usuario"));
+                    usuario.setEmailUsuario(rs.getString("email_Usuario"));
+                    usuario.setSenhaUsuario(rs.getString("senha_Usuario"));
+                    usuario.setTelefoneUsuario(rs.getString("telefone_Usuario"));
+                    usuario.setCpfUsuario(rs.getString("cpf_Usuario"));
+
+                }
+            }
+        }
+        catch (SQLException e)
+        {
+            System.err.println("Erro ao buscar usuario por ID");
+        }
+        return usuario;
+    }
+
+    public List<UsuarioModel> listarTodosUsuarios() {
+        List<UsuarioModel> usuarios = new ArrayList<>();
+        String sql = "SELECT * FROM Usuario";
+
+        try(Connection conn = ConnectionFactory.getConnection();
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            ResultSet rs = stmt.executeQuery()) {
+
+            while (rs.next()) {
+                UsuarioModel usuario = new UsuarioModel();
+                usuario.setIdUsuario(rs.getInt("id_Usuario"));
+                usuario.setNomeUsuario(rs.getString("nome_usuario"));
+                usuario.setEmailUsuario(rs.getString("email_Usuario"));
+                usuario.setSenhaUsuario(rs.getString("senha_Usuario"));
+                usuario.setTelefoneUsuario(rs.getString("telefone_Usuario"));
+                usuario.setCpfUsuario(rs.getString("cpf_Usuario"));
+
+                usuarios.add(usuario);
+            }
+
+        }catch (SQLException e){
+            System.err.println("Erro ao buscar o CPF.");
+        }
+        return usuarios;
+    }
+
 }

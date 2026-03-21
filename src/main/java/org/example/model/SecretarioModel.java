@@ -16,6 +16,10 @@ public class SecretarioModel extends UsuarioModel{
         this.turnoTrabalhadoSecretario = turnoTrabalhadoSecretario;
     }
 
+    public SecretarioModel(){
+
+    }
+
     public int getIdSecretario() {
         return idSecretario;
     }

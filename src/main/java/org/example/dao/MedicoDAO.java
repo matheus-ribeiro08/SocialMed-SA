@@ -3,6 +3,7 @@ package org.example.dao;
 import org.example.database.ConnectionFactory;
 import org.example.model.ConsultaModel;
 import org.example.model.MedicoModel;
+import org.example.model.SecretarioModel;
 
 import javax.xml.transform.Result;
 import java.sql.PreparedStatement;
@@ -60,7 +61,7 @@ public class MedicoDAO
             {
                 MedicoModel medico = new MedicoModel();
 
-                medico.setIdMedico(rs.getLong("id_Usuario"));
+                medico.setIdUsuario(rs.getInt("id_Usuario"));
                 medico.setNomeUsuario(rs.getString("nome_usuario"));
                 medico.setEmailUsuario(rs.getString("email_Usuario"));
                 medico.setSenhaUsuario(rs.getString("senha_Usuario"));
@@ -83,10 +84,10 @@ public class MedicoDAO
     {
         MedicoModel medico = null;
 
-        String sql = "SELECT u.*, m.id_medico, m.especialidade_medico " +
-                    "FROM Medico m " +
-                    "INNER JOIN Usuario u ON id_Usuario = id_Usuario " +
-                    "WHERE m.id_Medico = ?";
+        String sql = "SELECT u.*, m.id_Medico, m.especialidade_medico " +
+                "FROM Medico m " +
+                "INNER JOIN Usuario u ON m.id_Usuario = u.id_Usuario " +
+                "WHERE m.id_Medico = ?";
 
         try(Connection conn = ConnectionFactory.getConnection();
             PreparedStatement stmt = conn.prepareStatement(sql))
@@ -98,13 +99,14 @@ public class MedicoDAO
                 if(rs.next())
                 {
                     medico = new MedicoModel();
+                    medico.setIdUsuario(rs.getInt("id_Usuario"));
                     medico.setIdMedico(rs.getInt("id_Medico"));
                     medico.setNomeUsuario(rs.getString("nome_usuario"));
                     medico.setEmailUsuario(rs.getString("email_Usuario"));
                     medico.setSenhaUsuario(rs.getString("senha_Usuario"));
                     medico.setTelefoneUsuario(rs.getString("telefone_Usuario"));
                     medico.setCpfUsuario(rs.getString("cpf_Usuario"));
-                    medico.setEspecialidadeMedico(rs.getString("especialidade_Medico"));
+                    medico.setEspecialidadeMedico(rs.getString("especialidade_medico"));
 
                 }
             }
