@@ -56,7 +56,7 @@ public class ProntuarioDAO
                     prontuarioModel.setIdMedico(rs.getInt("id_Medico"));
                     prontuarioModel.setDiagnostico(rs.getString("diagnosticos"));
                     prontuarioModel.setSintomas(rs.getString("sintomas"));
-                    prontuarioModel.setPrescricaoMedica(rs.getString("prescrica_Medica"));
+                    prontuarioModel.setPrescricaoMedica(rs.getString("prescricao_Medica"));
                     prontuarioModel.setObservacoes((rs.getString("observacao")));
 
                     Timestamp dataBanco = rs.getTimestamp("data_Registro");
@@ -70,6 +70,45 @@ public class ProntuarioDAO
         } catch (SQLException e)
         {
             System.err.println("Erro ao listar Prontuarios");
+        }
+        return prontuarios;
+    }
+
+    public List<ProntuarioModel> listarProntuariosPorMedico(int idMedico)
+    {
+        List<ProntuarioModel> prontuarios = new ArrayList<>();
+        String sql = "SELECT * FROM Prontuario WHERE id_Medico = ?";
+
+        try(Connection conn = ConnectionFactory.getConnection();
+            PreparedStatement stmt = conn.prepareStatement(sql))
+        {
+            stmt.setInt(1, idMedico);
+
+            try(ResultSet rs = stmt.executeQuery())
+            {
+                while(rs.next())
+                {
+                    ProntuarioModel prontuarioModel = new ProntuarioModel();
+
+                    prontuarioModel.setIdProntuario(rs.getInt("id_Prontuario"));
+                    prontuarioModel.setIdPaciente(rs.getInt("id_Paciente"));
+                    prontuarioModel.setIdMedico(rs.getInt("id_Medico"));
+                    prontuarioModel.setDiagnostico(rs.getString("diagnosticos"));
+                    prontuarioModel.setSintomas(rs.getString("sintomas"));
+                    prontuarioModel.setPrescricaoMedica(rs.getString("prescricao_Medica"));
+                    prontuarioModel.setObservacoes((rs.getString("observacao")));
+
+                    Timestamp dataBanco = rs.getTimestamp("data_Registro");
+                    if(dataBanco != null)
+                    {
+                        prontuarioModel.setDataRegistro(dataBanco.toLocalDateTime());
+                    }
+                    prontuarios.add(prontuarioModel);
+                }
+            }
+        } catch (SQLException e)
+        {
+            System.err.println("Erro ao listar Prontuarios por Medico");
         }
         return prontuarios;
     }
