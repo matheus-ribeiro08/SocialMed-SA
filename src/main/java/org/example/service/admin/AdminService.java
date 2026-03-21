@@ -1,7 +1,5 @@
-package org.example.service;
+package org.example.service.admin;
 
-import com.mysql.cj.conf.HostInfo;
-import org.example.enums.TipoUsuario;
 import org.example.model.*;
 import org.example.dao.AdminDAO;
 import org.example.dao.UsuarioDAO;
@@ -10,9 +8,6 @@ import org.example.dao.SecretarioDAO;
 import org.example.dao.PacienteDAO;
 import org.example.dao.ConsultaDAO;
 import org.example.validator.UsuarioValidator;
-
-import java.time.LocalDateTime;
-import java.util.List;
 
 public class AdminService {
     private final AdminDAO adminDAO;
@@ -83,7 +78,25 @@ public class AdminService {
         return secretarioDAO.remover();
     }
 
-        // ==================== Métodos de Usuários ====================
+    // ==================== Métodos de Pacientes ====================
+
+
+    public boolean atualizarPaciente(AdminModel admin, PacienteModel paciente){
+        validarAdmin(admin);
+        validarPacienteExistente(paciente.getIdPaciente());
+
+        return secretarioDAO.atualizar(paciente);
+    }
+
+
+    public boolean removerPaciente(AdminModel admin, int idPaciente){
+        validarAdmin(admin);
+        validarMedicoExistente(idPaciente);
+
+        return pacienteDAO.remover();
+    }
+
+    // ==================== Métodos de Usuários ====================
 
     public boolean atualizarUsuario(AdminModel admin, UsuarioModel usuario) {
         validarAdmin(admin);
@@ -131,7 +144,18 @@ public class AdminService {
 
         SecretarioModel secretario = secretarioDAO.buscarPorId(id);
         if(secretario == null){
-            throw new RuntimeException("Medico não autentificado!");
+            throw new RuntimeException("Secretario não autentificado!");
+        }
+    }
+
+    private void validarPacienteExistente(int id){
+        if(id <= 0){
+            throw new RuntimeException("Id de paciente invalido!");
+        }
+
+        PacienteModel paciente = pacienteDAO.buscarPorId(id);
+        if(paciente == null){
+            throw new RuntimeException("Paciente não autentificado!");
         }
     }
 

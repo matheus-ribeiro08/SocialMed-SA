@@ -1,4 +1,4 @@
-package org.example.presenter;
+package org.example.presenter.menuInicial;
 
 import org.example.roteador.Roteador;
 import org.example.view.login.LoginViewConsole;
@@ -18,15 +18,15 @@ public class MenuInicialPresenter {
 
         switch (opcao){
             case 1:{
-                roteador.irPara(Roteador.Destino.LOGIN);
+                roteador.irPara(Roteador.Destino.LOGIN, null);
                 break;
             }
             case 2:{
-                roteador.irPara(Roteador.Destino.CADASTRO);
+                roteador.irPara(Roteador.Destino.CADASTRO, null);
                 break;
             }
             case 0:{
-                roteador.irPara(Roteador.Destino.SAIR);
+                roteador.irPara(Roteador.Destino.SAIR, null);
                 break;
             }
             default:{

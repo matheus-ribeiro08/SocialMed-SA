@@ -1,12 +1,10 @@
-package org.example.service;
+package org.example.service.usuario;
 
 import org.example.dao.MedicoDAO;
 import org.example.dao.PacienteDAO;
 import org.example.dao.SecretarioDAO;
 import org.example.dao.UsuarioDAO;
 import org.example.enums.TipoUsuario;
-import org.example.exception.CpfInvalido;
-import org.example.exception.EmailInvalido;
 import org.example.model.MedicoModel;
 import org.example.model.PacienteModel;
 import org.example.model.SecretarioModel;

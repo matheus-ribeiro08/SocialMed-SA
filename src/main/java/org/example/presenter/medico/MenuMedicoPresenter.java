@@ -1,12 +1,12 @@
-package org.example.presenter;
+package org.example.presenter.medico;
 
 import org.example.model.ConsultaModel;
 import org.example.model.MedicoModel;
 import org.example.model.PacienteModel;
 import org.example.roteador.Roteador;
-import org.example.service.ConsultaService;
-import org.example.service.MedicoService;
-import org.example.service.PacienteService;
+import org.example.service.consulta.ConsultaService;
+import org.example.service.medico.MedicoService;
+import org.example.service.paciente.PacienteService;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package org.example.service;
+package org.example.service.consulta;
 
 import org.example.dao.ConsultaDAO;
 import org.example.dao.HospitalDAO;
@@ -10,12 +10,9 @@ import org.example.model.MedicoModel;
 
 import java.sql.SQLException;
 import java.time.DateTimeException;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Date;
 import java.util.List;
-import java.util.Locale;
 
 public class ConsultaService {
 

@@ -1,13 +1,13 @@
-package org.example.presenter;
+package org.example.presenter.secretario;
 
 import org.example.enums.TipoUsuario;
 import org.example.model.ConsultaModel;
 import org.example.model.PacienteModel;
 import org.example.model.SecretarioModel;
 import org.example.roteador.Roteador;
-import org.example.service.ConsultaService;
-import org.example.service.PacienteService;
-import org.example.service.SecretarioService;
+import org.example.service.consulta.ConsultaService;
+import org.example.service.paciente.PacienteService;
+import org.example.service.secretario.SecretarioService;
 
 import java.util.List;
 

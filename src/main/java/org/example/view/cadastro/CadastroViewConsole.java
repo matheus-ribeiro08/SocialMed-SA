@@ -1,6 +1,6 @@
 package org.example.view.cadastro;
 
-import org.example.presenter.UsuarioPresenter;
+import org.example.presenter.usuario.UsuarioPresenter;
 import org.example.utils.Ferramentas;
 import org.example.viewInterface.viewInterfaceCadastro.ICadastroView;
 

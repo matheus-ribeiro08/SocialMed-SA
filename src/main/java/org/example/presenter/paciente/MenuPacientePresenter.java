@@ -1,4 +1,4 @@
-package org.example.presenter;
+package org.example.presenter.paciente;
 
 import org.example.enums.TipoUsuario;
 import org.example.model.PacienteModel;

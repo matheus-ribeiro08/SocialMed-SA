@@ -3,6 +3,7 @@ package org.example.dao;
 import org.example.database.ConnectionFactory;
 import org.example.model.MedicoModel;
 import org.example.model.PacienteModel;
+import org.example.model.SecretarioModel;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -147,6 +148,43 @@ public class PacienteDAO
         catch (SQLException e)
         {
             System.err.println("Erro ao buscar paciente por Cpf");
+        }
+        return paciente;
+    }
+
+    public PacienteModel buscarPorId (int idPaciente)
+    {
+        PacienteModel paciente = null;
+
+        String sql = "SELECT u.*, p.id_Paciente, p.turno_Paciente " +
+                "FROM Paciente p " +
+                "INNER JOIN Usuario u ON p.id_Usuario = u.id_Usuario " +
+                "WHERE p.id_Paciente = ?";
+
+        try(Connection conn = ConnectionFactory.getConnection();
+            PreparedStatement stmt = conn.prepareStatement(sql))
+        {
+            stmt.setInt(1, idPaciente);
+
+            try (ResultSet rs = stmt.executeQuery())
+            {
+                if(rs.next())
+                {
+                    paciente = new PacienteModel();
+                    paciente.setIdUsuario(rs.getInt("id_Usuario"));
+                    paciente.setIdPaciente(rs.getInt("id_Paciente"));
+                    paciente.setNomeUsuario(rs.getString("nome_usuario"));
+                    paciente.setEmailUsuario(rs.getString("email_Usuario"));
+                    paciente.setSenhaUsuario(rs.getString("senha_Usuario"));
+                    paciente.setTelefoneUsuario(rs.getString("telefone_Usuario"));
+                    paciente.setCpfUsuario(rs.getString("cpf_Usuario"));
+                    paciente.setEnderecoPaciente(rs.getString("endereco_Paciente"));
+                }
+            }
+        }
+        catch (SQLException e)
+        {
+            System.err.println("Erro ao buscar Paciente por ID");
         }
         return paciente;
     }

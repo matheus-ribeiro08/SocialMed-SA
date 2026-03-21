@@ -1,15 +1,28 @@
-package org.example.presenter;
+package org.example.presenter.factory;
 
 import org.example.model.AdminModel;
 import org.example.model.MedicoModel;
 import org.example.model.PacienteModel;
+import org.example.model.SecretarioModel;
+import org.example.presenter.acoes.ErroPresenter;
+import org.example.presenter.acoes.SairPresenter;
+import org.example.presenter.admin.MenuAdminPresenter;
+import org.example.presenter.cadastro.CadastrarUsuarioPresenter;
+import org.example.presenter.login.LoginUsuarioPresenter;
+import org.example.presenter.medico.MenuMedicoPresenter;
+import org.example.presenter.menuInicial.MenuInicialPresenter;
+import org.example.presenter.paciente.MenuPacientePresenter;
+import org.example.presenter.secretario.MenuSecretarioPresenter;
 import org.example.roteador.Roteador;
+import org.example.view.adm.MenuAdminConsoleView;
 import org.example.view.cadastro.CadastroViewConsole;
 import org.example.view.login.LoginViewConsole;
+import org.example.viewInterface.viewInterfaceAdm.IMenuAdminView;
 
 public class PresenterFactory {
 
     private final Roteador roteador;
+
 
     public PresenterFactory(Roteador roteador){
         this.roteador = roteador;
@@ -35,8 +48,8 @@ public class PresenterFactory {
         return new MenuPacientePresenter(roteador, paciente);
     }
 
-    public MenuSecretarioPresenter criarMenuSecretarioPresenter(SecretarioPresenter secretario){
-        return new MenuSecretarioPresenter(roteador, paciente);
+    public MenuSecretarioPresenter criarMenuSecretarioPresenter(SecretarioModel secretario){
+        return new MenuSecretarioPresenter(roteador, secretario);
     }
 
     public MenuMedicoPresenter criarMenuMedicoPresenter(MedicoModel medico){
@@ -44,7 +57,8 @@ public class PresenterFactory {
     }
 
     public MenuAdminPresenter criarMenuAdminPresenter(AdminModel admin){
-        return new MenuAdminPresenter(roteador, admin);
+        IMenuAdminView view = new MenuAdminConsoleView();
+        return new MenuAdminPresenter(roteador, admin, view);
     }
 
     public ErroPresenter criarErroPresenter(){

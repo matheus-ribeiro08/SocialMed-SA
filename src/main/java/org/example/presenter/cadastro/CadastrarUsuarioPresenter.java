@@ -1,9 +1,9 @@
-package org.example.presenter;
+package org.example.presenter.cadastro;
 
 import org.example.exception.*;
 import org.example.model.UsuarioModel;
 import org.example.roteador.Roteador;
-import org.example.service.UsuarioService;
+import org.example.service.usuario.UsuarioService;
 import org.example.utils.Ferramentas;
 import org.example.viewInterface.viewInterfaceCadastro.ICadastroView;
 

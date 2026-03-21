@@ -22,15 +22,19 @@ public interface IMenuAdminView {
     String lerTurno();
     String lerEspecialidade();
     String lerSenha();
+    int lerId();
     void lerDadosNovoMedico();
-    void lerDadosNovoSecretario(SecretarioModel secretario);
-    void lerDadosAtualizacaoUsuario(UsuarioModel usuarioExistente, UsuarioModel usuarioAtualizado);
+    void lerDadosNovoSecretario();
+    int mostrarMenuDetalhePaciente(PacienteModel paciente);
+    int mostrarMenuDetalheMedico(MedicoModel medico);
+    void lerDadosAtualizacaoUsuario(UsuarioModel usuario);
     void lerDadosAtualizacaoMedico(MedicoModel medicoExistente, MedicoModel medicoAtualizado);
     void mostrarListaSecretarios(List<SecretarioModel> secretarios);
     void mostrarListaUsuarios(List<UsuarioModel> usuarios);
+    void mostrarListaPacientes(List<PacienteModel> pacientes)
     void mostrarListaMedicos(List<MedicoModel> medicos);
     void mostrarDadosUsuarioCompleto(UsuarioModel usuario);
-    long selecionarMedico();
+    int selecionarMedico();
     void mostrarTitulo(String titulo);
     void mostrarMensagemSucesso(String mensagem);
     void mostrarMensagemErro(String mensagem);

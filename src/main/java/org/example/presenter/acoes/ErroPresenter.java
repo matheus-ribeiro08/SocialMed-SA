@@ -1,4 +1,4 @@
-package org.example.presenter;
+package org.example.presenter.acoes;
 
 import org.example.roteador.Roteador;
 
@@ -20,6 +20,6 @@ public class ErroPresenter {
 
         }
 
-        roteador.irPara(Roteador.Destino.MENU_INICIAL);
+        roteador.irPara(Roteador.Destino.MENU_INICIAL, null);
     }
 }

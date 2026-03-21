@@ -16,6 +16,13 @@ public class SecretarioModel extends UsuarioModel{
         this.turnoTrabalhadoSecretario = turnoTrabalhadoSecretario;
     }
 
+    public SecretarioModel(String nomeUsuario, String emailUsuario, String senhaUsuario, String telefoneUsuario, String cpfUsuario,
+                       TipoUsuario tipoUsuario, String turnoTrabalhadoSecretario) {
+        super(nomeUsuario, emailUsuario, senhaUsuario, telefoneUsuario, cpfUsuario, tipoUsuario);
+        this.turnoTrabalhadoSecretario = turnoTrabalhadoSecretario;
+    }
+
+
     public SecretarioModel(){
 
     }

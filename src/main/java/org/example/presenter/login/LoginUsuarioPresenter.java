@@ -1,11 +1,11 @@
-package org.example.presenter;
+package org.example.presenter.login;
 
 import org.example.enums.TipoUsuario;
 import org.example.exception.EmailInvalido;
 import org.example.exception.SenhaInvalida;
 import org.example.model.UsuarioModel;
 import org.example.roteador.Roteador;
-import org.example.service.UsuarioService;
+import org.example.service.usuario.UsuarioService;
 import org.example.viewInterface.viewLogin.ILoginView;
 
 public class LoginUsuarioPresenter {
@@ -35,19 +35,19 @@ public class LoginUsuarioPresenter {
 
             switch (tipo){
                 case SECRETARIO:{
-                    roteadorCadastro.irPara("menuSecretario", usuario);
+                    roteadorCadastro.irPara(Roteador.Destino.MENU_SECRETARIO, usuario);
                     break;
                 }
                 case MEDICO:{
-                    roteadorCadastro.irPara("menuMedico", usuario);
+                    roteadorCadastro.irPara(Roteador.Destino.MENU_MEDICO, usuario);
                     break;
                 }
                 case ADM:{
-                    roteadorCadastro.irPara("menuAdmin", usuario);
+                    roteadorCadastro.irPara(Roteador.Destino.MENU_ADMIN, usuario);
                     break;
                 }
                 case PACIENTE:{
-                    roteadorCadastro.irPara("menuPaciente", usuario);
+                    roteadorCadastro.irPara(Roteador.Destino.MENU_PACIENTE, usuario);
                     break;
                 }
                 default:{
