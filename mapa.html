@@ -173,26 +173,26 @@
 
         const estiloCirculo = { color: '#198754', fillColor: '#198754', fillOpacity: 0.12, radius: 600, weight: 2 };
 
-        var marcadorSaoJose = L.marker([-26.4912, -49.0725], {icon: iconeHospitalPersonalizado}).addTo(mapa);
+        var marcadorSaoJose = L.marker([-26.48877139896759, -49.08390704067372], {icon: iconeHospitalPersonalizado}).addTo(mapa);
         marcadorSaoJose.bindPopup("<div class='popup-custom'><h3>Hospital São José</h3><p>Referência em Urgência e Emergência Adulto.</p></div>");
-        L.circle([-26.4912, -49.0725], estiloCirculo).addTo(mapa);
+        L.circle([-26.48877139896759, -49.08390704067372], estiloCirculo).addTo(mapa);
         marcadorSaoJose.on('click', visSaoJose);
 
-        var marcadorMaternidade = L.marker([-26.4831, -49.0755], {icon: iconeHospitalPersonalizado}).addTo(mapa);
+        var marcadorMaternidade = L.marker([-26.474567264621346, -49.0820532464301], {icon: iconeHospitalPersonalizado}).addTo(mapa);
         marcadorMaternidade.bindPopup("<div class='popup-custom'><h3>Hosp. e Maternidade</h3><p>Referência em Saúde Materno-Infantil.</p></div>");
-        L.circle([-26.4831, -49.0755], estiloCirculo).addTo(mapa);
+        L.circle([-26.474567264621346, -49.0820532464301], estiloCirculo).addTo(mapa);
         marcadorMaternidade.on('click', visMaternidade);
 
         var iconeWeg = L.divIcon({
             className: 'custom-icon-leaflet',
-            html: '<div class="weg-marker">⚡ WEG I (Apresentação)</div>',
+            html: '<div class="weg-marker"> ⚡ WEG I </div>',
             iconSize: [160, 30],
             iconAnchor: [80, 15],
             popupAnchor: [0, -15]
         });
 
         // AGORA SIM! Coordenada exata cravada no galpão "Weg Equip. Elétricos Fábrica I"
-        var marcadorWeg = L.marker([-26.4798, -49.0902], {icon: iconeWeg}).addTo(mapa);
+        var marcadorWeg = L.marker([-26.47893162210566, -49.093689289289614], {icon: iconeWeg}).addTo(mapa);
         marcadorWeg.bindPopup("<div class='popup-custom'><h3 style='color: #00579D; border-bottom: 2px solid #00579D;'>⚡ WEG I (Parque Fabril)</h3><p><b>Local de Apresentação do Projeto!</b></p><p><i>Nova Brasília.</i></p></div>");
         
     </script>
