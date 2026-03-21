@@ -3,6 +3,7 @@ package org.example.viewInterface.viewInterfaceMedico;
 import org.example.model.ConsultaModel;
 import org.example.model.MedicoModel;
 import org.example.model.PacienteModel;
+import org.example.model.ProntuarioModel;
 
 import java.util.List;
 

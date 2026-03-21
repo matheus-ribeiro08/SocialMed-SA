@@ -102,6 +102,10 @@ public class UsuarioService {
         return pacienteDAO.listarTodosPacientes();
     }
 
+    public List<UsuarioModel> listarTodosUsuarios(){
+        return usuarioDAO.listarTodosUsuarios();
+    }
+
     public PacienteModel buscarPacientePorCpf(String cpf){
         if(cpf == null || cpf.trim().isEmpty()){
             throw new RuntimeException("Cpf nao pode ser vazio");
@@ -111,7 +115,7 @@ public class UsuarioService {
     }
 
     public List<UsuarioModel> buscarUsuariosPorTipo(TipoUsuario tipo){
-        List<UsuarioModel> todos = usuarioDAO.listarTodos();
+        List<UsuarioModel> todos = usuarioDAO.listarTodosUsuarios();
         List<UsuarioModel> filtrados = new ArrayList<>();
 
         for(UsuarioModel usuario: todos){

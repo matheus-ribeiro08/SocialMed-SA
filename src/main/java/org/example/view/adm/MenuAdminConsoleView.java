@@ -100,7 +100,7 @@ public class MenuAdminConsoleView implements IMenuAdminView {
     }
 
     @Override
-    public void lerDadosNovoMedico(MedicoModel medico) {
+    public void lerDadosNovoMedico(){
         System.out.println("───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────");
         System.out.println("                           ███╗   ██╗ ██████╗ ██╗   ██╗ ██████╗    ███╗   ███╗███████╗██████╗ ██╗ ██████╗ ██████╗                                      ");
         System.out.println("                           ████╗  ██║██╔═══██╗██║   ██║██╔═══██╗   ████╗ ████║██╔════╝██╔══██╗██║██╔════╝██╔═══██╗                                     ");
@@ -109,26 +109,10 @@ public class MenuAdminConsoleView implements IMenuAdminView {
         System.out.println("                           ██║ ╚████║╚██████╔╝ ╚████╔╝ ╚██████╔╝   ██║ ╚═╝ ██║███████╗██████╔╝██║╚██████╗╚██████╔╝                                     ");
         System.out.println("                           ╚═╝  ╚═══╝ ╚═════╝   ╚═══╝   ╚═════╝    ╚═╝     ╚═╝╚══════╝╚═════╝ ╚═╝ ╚═════╝ ╚═════╝                                      ");
         System.out.println("───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────");
-
-        String nome = lerNomeCompleto();
-        medico.setNomeUsuario(nome);
-
-        String cpf = lerCpf();
-        medico.setCpfUsuario(cpf);
-
-        String email = lerEmail();
-        medico.setEmailUsuario(email);
-
-        String telefone = lerTelefone();
-        medico.setTelefoneUsuario(telefone);
-
-        String especialidade = lerEspecialidade();
-        medico.setEspecialidadeMedico(especialidade);
-
-        medico.setTipoUsuario(TipoUsuario.MEDICO);
     }
 
-    private String lerEspecialidade(){
+    @Override
+    public String lerEspecialidade(){
         System.out.println("Digite a especialidade: ");
 
         return Ferramentas.lString().trim();
@@ -165,31 +149,43 @@ public class MenuAdminConsoleView implements IMenuAdminView {
 
     }
 
-    private String lerTurno() {
+    @Override
+    public String lerTurno() {
         System.out.print("Digite o turno: ");
 
         return Ferramentas.lString().trim();
     }
 
-    private String lerEndereco() {
+    @Override
+    public String lerEndereco() {
         System.out.print("Digite o endereço: ");
 
         return Ferramentas.lString().trim();
     }
 
-    private String lerTelefone() {
+    @Override
+    public String lerTelefone() {
         System.out.print("Digite o telefone: ");
 
         return Ferramentas.lString().trim();
     }
 
-    private String lerEmail() {
+    @Override
+    public String lerSenha(){
+        System.out.println("Digite a senha: ");
+
+        return Ferramentas.lString().trim();
+    }
+
+    @Override
+    public String lerEmail() {
         System.out.print("Digite o email: ");
 
         return Ferramentas.lString().trim();
     }
 
-    private String lerNomeCompleto() {
+    @Override
+    public String lerNomeCompleto() {
         System.out.print("Digite o nome");
 
         return Ferramentas.lString();

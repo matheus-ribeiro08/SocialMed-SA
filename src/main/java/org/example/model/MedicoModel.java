@@ -16,6 +16,17 @@ public class MedicoModel extends UsuarioModel{
         this.especialidadeMedico = especialidadeMedico;
     }
 
+    public MedicoModel(String nomeUsuario, String emailUsuario, String senhaUsuario, String telefoneUsuario, String cpfUsuario,
+                       TipoUsuario tipoUsuario, String especialidadeMedico) {
+        super(nomeUsuario, emailUsuario, senhaUsuario, telefoneUsuario, cpfUsuario, tipoUsuario);
+        this.especialidadeMedico = especialidadeMedico;
+    }
+
+    public MedicoModel(String nomeUsuario, String emailUsuario, String senhaUsuario, String telefoneUsuario, String cpfUsuario, String especialidadeMedico) {
+        super(nomeUsuario, emailUsuario, senhaUsuario, telefoneUsuario, cpfUsuario);
+        this.especialidadeMedico = especialidadeMedico;
+    }
+
     public MedicoModel(){
 
     }

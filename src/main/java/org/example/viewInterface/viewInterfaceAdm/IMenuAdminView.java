@@ -15,7 +15,14 @@ public interface IMenuAdminView {
     String lerCpf();
     boolean perguntarAcao(String mensagem);
     TipoUsuario selecionarTipoUsuario();
-    void lerDadosNovoMedico(MedicoModel medico);
+    String lerNomeCompleto();
+    String lerEmail();
+    String lerTelefone();
+    String lerEndereco();
+    String lerTurno();
+    String lerEspecialidade();
+    String lerSenha();
+    void lerDadosNovoMedico();
     void lerDadosNovoSecretario(SecretarioModel secretario);
     void lerDadosAtualizacaoUsuario(UsuarioModel usuarioExistente, UsuarioModel usuarioAtualizado);
     void lerDadosAtualizacaoMedico(MedicoModel medicoExistente, MedicoModel medicoAtualizado);

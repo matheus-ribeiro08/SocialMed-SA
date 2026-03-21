@@ -6,6 +6,7 @@ import org.example.enums.TipoUsuario;
 import org.example.model.*;
 import org.example.roteador.Roteador;
 import org.example.service.AdminService;
+import org.example.service.RelatorioService;
 import org.example.service.UsuarioService;
 import org.example.viewInterface.viewInterfaceAdm.IMenuAdminView;
 
@@ -60,12 +61,12 @@ public class MenuAdminPresenter {
                     }
                     case 7:{
                         executando = false;
-                        roteador.irPara(Roteador.Destino.MENU_INICIAL);
+                        roteador.irPara(Roteador.Destino.MENU_INICIAL, null);
                         break;
                     }
                     case 0:{
                         executando = false;
-                        roteador.irPara(Roteador.Destino.SAIR);
+                        roteador.irPara(Roteador.Destino.SAIR, null);
                         break;
                     }
                     default:{
@@ -101,14 +102,6 @@ public class MenuAdminPresenter {
                     editarUsuario();
                     break;
                 }
-                case 5: {
-                    desativarUsuario();
-                    break;
-                }
-                case 6: {
-                    ativarUsuario();
-                    break;
-                }
                 case 0: {
                     gerenciado = false;
                     break;
@@ -124,7 +117,7 @@ public class MenuAdminPresenter {
         view.mostrarTitulo("Lista de usuarios");
 
         try {
-            List<UsuarioModel> usuarios = usuarioService.listarTodos();
+            List<UsuarioModel> usuarios = usuarioService.listarTodosUsuarios();
 
             if(usuarios.isEmpty()){
                 view.mostrarMensagemInfo("Nenhum usuario cadastrado");
@@ -179,8 +172,24 @@ public class MenuAdminPresenter {
     }
 
     private void criarMedico(){
-        MedicoModel medico = view.lerDadosNovoMedico();
+        MedicoModel medico = null;
+
+        view.lerDadosNovoMedico();
+
+        String nomeCompleto = view.lerNomeCompleto();
+        String senha = view.lerSenha();
+        String cpf = view.lerCpf();
+        String email = view.lerEmail();
+        String telefone = view.lerTelefone();
+        String especialidade = view.lerEspecialidade();
+        TipoUsuario tipoUsuario = TipoUsuario.MEDICO;
+
+        MedicoModel medicoModel = new MedicoModel(nomeCompleto,senha,cpf, email, telefone, especialidade, tipoUsuario);
+
+
+
         adminService.criarMedico(admin, medico);
+
         view.mostrarMensagemSucesso("Medico criado com sucesso!");
     }
 
