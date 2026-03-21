@@ -181,7 +181,7 @@ public class MenuMedicoConsoleView implements IMenuMedicoView {
     @Override
     public String lerTelefone() {
         System.out.println("───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────");
-        System.out.print(" ➤ Digite o telefone: ");
+        System.out.print(" ➤igite o telefone: ");
 
         return Ferramentas.lString().trim();
     }

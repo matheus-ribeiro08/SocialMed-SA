@@ -62,7 +62,7 @@ public class PacienteDAO
                 }
             }
             System.err.println("Erro ao cadastrar paciente: " + e.getMessage());
-            return false;
+            throw e;
         }
         finally
         {
@@ -156,7 +156,7 @@ public class PacienteDAO
     {
         PacienteModel paciente = null;
 
-        String sql = "SELECT u.*, p.id_Paciente, p.turno_Paciente " +
+        String sql = "SELECT u.*, p.id_Paciente, p.endereco_Paciente " +
                 "FROM Paciente p " +
                 "INNER JOIN Usuario u ON p.id_Usuario = u.id_Usuario " +
                 "WHERE p.id_Paciente = ?";
@@ -188,5 +188,134 @@ public class PacienteDAO
         }
         return paciente;
     }
+
+    public boolean atualizarPaciente(PacienteModel paciente) throws  SQLException {
+        String sqlUsuario = "UPDATE Usuario SET nome_Usuario = ?, email_Usuario = ?, senha_Usuario = ?, telefone_Usuario = ? WHERE id_Usuario = ?";
+        String sqlPaciente = "UPDATE Paciente SET endereco_Paciente = ? WHERE id_Paciente = ?";
+
+        Connection conn = null;
+
+
+        try {
+            conn = ConnectionFactory.getConnection();
+            conn.setAutoCommit(false);
+
+            try (PreparedStatement stmt = conn.prepareStatement(sqlUsuario)) {
+                stmt.setString(1, paciente.getNomeUsuario());
+                stmt.setString(2, paciente.getEmailUsuario());
+                stmt.setString(3, paciente.getSenhaUsuario());
+                stmt.setString(4, paciente.getTelefoneUsuario());
+                stmt.setInt(5, paciente.getIdUsuario());
+
+                int linhasAfestadas = stmt.executeUpdate();
+                if (linhasAfestadas == 0) {
+                    throw new SQLException("Usuario nao encontrado para atualização");
+                }
+
+            }
+
+            try (PreparedStatement stmt = conn.prepareStatement(sqlPaciente)) {
+                stmt.setString(1, paciente.getEnderecoPaciente());
+                stmt.setInt(2, paciente.getIdPaciente());
+
+                int linhasAfetadas = stmt.executeUpdate();
+                if (linhasAfetadas == 0) {
+                    throw new SQLException("Paciente nao encontrado para atualização");
+                }
+            }
+
+                conn.commit();
+                return true;
+
+            } catch (SQLException e) {
+                if (conn != null) {
+                    try {
+                        conn.rollback();
+                    } catch (SQLException ex) {
+                        System.err.println("Erro ao dar rollback!");
+                    }
+                }
+                System.err.println("Erro ao atualizar paciente");
+                throw e;
+            } finally {
+                if (conn != null) {
+                    try {
+                        conn.setAutoCommit(true);
+                        conn.close();
+                    } catch (SQLException e) {
+                        System.err.println("Erro ao fechar conexao");
+                    }
+                }
+        }
+    }
+
+    public boolean removerPaciente(int idPaciente) throws SQLException{
+        String sqlBuscarIdUsuario = "SELECT id_Usuario FROM Paciente WHERE id_Paciente = ?";
+        String sqlRemoverPaciente = "DELETE FROM Paciente WHERE id_Paciente = ?";
+        String sqlRemoverUsuario = "DELETE FROM Usuario WHERE id_Usuario = ?";
+
+        Connection conn = null;
+        Integer idUsuario = null;
+
+        try {
+            conn = ConnectionFactory.getConnection();
+            conn.setAutoCommit(false);
+
+            try(PreparedStatement stmt = conn.prepareStatement(sqlBuscarIdUsuario)){
+                stmt.setInt(1 , idPaciente);
+                try(ResultSet rs = stmt.executeQuery()) {
+                    if(rs.next()){
+                        idUsuario = rs.getInt("id_Usuario");
+                    }else {
+                        throw new SQLException("Paciente nao encontrado");
+                    }
+
+                }
+            }
+
+            try(PreparedStatement stmt  = conn.prepareStatement(sqlRemoverPaciente)) {
+                stmt.setInt(1, idPaciente);
+                int linhasAfetadas = stmt.executeUpdate();
+                if(linhasAfetadas == 0){
+                    throw new SQLException("Erro ao remover paciente");
+                }
+            }
+
+            try(PreparedStatement stmt  = conn.prepareStatement(sqlRemoverUsuario)) {
+                stmt.setInt(1, idUsuario);
+                int linhasAfetadas = stmt.executeUpdate();
+                if(linhasAfetadas == 0){
+                    throw new SQLException("Erro ao remover usuario");
+                }
+            }
+
+            conn.commit();
+            return true;
+
+        } catch (SQLException e) {
+            if (conn != null) {
+                try {
+                    conn.rollback();
+                } catch (SQLException ex) {
+                    System.err.println("Erro ao dar rollback!");
+                }
+            }
+            System.err.println("Erro ao remover paciente");
+            throw e;
+        } finally {
+            if (conn != null) {
+                try {
+                    conn.setAutoCommit(true);
+                    conn.close();
+                } catch (SQLException e) {
+                    System.err.println("Erro ao fechar conexao");
+                }
+            }
+        }
+    }
+
 }
+
+
+
 
