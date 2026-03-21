@@ -36,7 +36,15 @@ public class ConsultaService {
         return hospitalDAO.listarHospitais();
     }
 
-    public MedicoModel buscarPorId(int idMedico) throws SQLException{
+    public ConsultaModel buscarConsultaPorId(int idConsulta) throws SQLException{
+        if (idConsulta <= 0){
+            throw new IllegalArgumentException("Id da consulta inválido");
+        }
+        return consultaDAO.buscarPorId(consultaDAO);
+    }
+
+
+    public MedicoModel buscarMedicoPorId(int idMedico) throws SQLException{
         if (idMedico <= 0){
             throw new IllegalArgumentException("Id do médico inválido");
         }

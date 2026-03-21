@@ -1,12 +1,16 @@
 package org.example.presenter.medico;
 
+import org.example.enums.TipoUsuario;
 import org.example.model.ConsultaModel;
 import org.example.model.MedicoModel;
 import org.example.model.PacienteModel;
+import org.example.model.ProntuarioModel;
 import org.example.roteador.Roteador;
 import org.example.service.consulta.ConsultaService;
 import org.example.service.medico.MedicoService;
 import org.example.service.paciente.PacienteService;
+import org.example.viewInterface.viewInterfaceAdm.IMenuAdminView;
+import org.example.viewInterface.viewInterfaceMedico.IMenuMedicoView;
 
 import java.util.List;
 
@@ -20,23 +24,21 @@ public class MenuMedicoPresenter {
     private final MedicoService medicoService;
     private final ProntuarioService prontuarioService;
 
-    public MenuMedicoPresenter(Roteador roteador, MedicoModel medico, IMenuMedicoView view, ConsultaService consultaService,
-                               PacienteService pacienteService, MedicoService medicoService, ProntuarioService prontuarioService) {
+    public MenuMedicoPresenter(Roteador roteador, MedicoModel medico, IMenuMedicoView view) {
         this.roteador = roteador;
         this.medico = medico;
         this.view = view;
-        this.consultaService = consultaService;
-        this.pacienteService = pacienteService;
-        this.medicoService = medicoService;
-        this.prontuarioService = prontuarioService;
+        this.consultaService = new ConsultaService();
+        this.pacienteService = new PacienteService();
+        this.medicoService = new MedicoService();
+        this.prontuarioService = new ProntuarioService();
     }
 
     public void inicar(){
         boolean executando = true;
 
         while (executando){
-            int opcao = view.mostrarMenuPrincipal(medico.getNomeUsuario(), medico.getEspecialidadeMedico());
-
+            int opcao = view.mostrarMenuPrincipal(medico.getNomeUsuario());
             try {
                 switch (opcao){
                     case 1:{
@@ -68,25 +70,21 @@ public class MenuMedicoPresenter {
                         break;
                     }
                     case 8:{
-                        visualizarPerfil();
+                        editarPerfil(medico);
                         break;
                     }
                     case 9:{
-                        emitirAtestado();
-                        break;
-                    }
-                    case 10:{
                         solicitarExame();
                         break;
                     }
                     case 11:{
                         executando = false;
-                        roteador.irPara(Roteador.Destino.MENU_INICIAL);
+                        roteador.irPara(Roteador.Destino.MENU_INICIAL, null);
                         break;
                     }
                     case 0:{
                         executando = false;
-                        roteador.irPara(Roteador.Destino.SAIR);
+                        roteador.irPara(Roteador.Destino.SAIR, null);
                         break;
                     }
                     default:{
@@ -119,25 +117,25 @@ public class MenuMedicoPresenter {
         view.mostrarTitulo("Ateder paciente");
 
         try {
-            long idConsulta = view.LerIdConsulta();
-            ConsultaModel consulta = consultaService.buscarPorId(idConsulta);
+            int idConsulta = view.lerIdConsulta();
+            ConsultaModel consulta = consultaService.buscarConsultaPorId(idConsulta);
 
             if(consulta == null){
                 view.mostrarMensagemErro("Consulta nao encontrada!");
                 return;
             }
-            if(!consulta.getMedico().getId().equals(medico.getIdMedico())){
+            if(!(consulta.getIdMedico() == medico.getIdMedico())){
                 view.mostrarMensagemErro("Esta consulta não é com voce!");
                 return;
             }
 
             view.mostrarDadosConsultaCompleta(consulta);
 
-            ProntuarioModel prontuario = prontuarioService.buscarPorPaciente(consulta.getPaciente().getId());
+            ProntuarioModel prontuario = prontuarioService.buscarPorPaciente(consulta.getIdPaciente());
 
             if(prontuario == null){
                 prontuario = new ProntuarioModel();
-                prontuario.setPaciente(consulta.getPaciente());
+                prontuario.setIdPaciente(consulta.getIdPaciente());
             }
 
             String diagnostico = view.lerDiagnostico();
@@ -162,7 +160,7 @@ public class MenuMedicoPresenter {
             PacienteModel paciente = pacienteService.buscarPorCpf(cpf);
 
             if(paciente != null){
-                view.mostrarDadosPacientesCompleto(paciente);
+                view.mostrarDadosPacienteCompleto(paciente);
 
                 List<ConsultaModel> historico = consultaService.buscarHistoricoPacienteComMedico(paciente.getIdPaciente(), medico.getIdMedico());
 
@@ -194,7 +192,7 @@ public class MenuMedicoPresenter {
             if(prontuario == null){
                 view.mostrarMensagemInfo("Paciente nao possui prontuario");
 
-                if(view.perguntarAcesso("Deseja criar um prontuario?")){
+                if(view.perguntarAcao("Deseja criar um prontuario?")){
                     criarProntuario(prontuario);
                 }
             }else{
@@ -207,10 +205,16 @@ public class MenuMedicoPresenter {
 
     private void criarProntuario(PacienteModel paciente){
         try {
-            ProntuarioModel prontuario = new ProntuarioModel();
-            prontuario.setPaciente(paciente);
-            prontuario.setInformacoesIniciais(view.lerInformacoesIniciais());
+            ProntuarioModel prontuario = null;
 
+            int medico = view.lerIdMedico();
+            String sintomas = view.lerSintomas();
+            String diagnostico = view.lerDiagnostico();
+            String prescricaoMedica = view.lerPrescricao();
+            String observacoes = view.lerObservacoes();
+            String dataRegistro = view.lerData();
+
+            ProntuarioModel prontuario = new ProntuarioModel(medico, paciente.getIdPaciente(), sintomas, diagnostico, prescricaoMedica, observacoes, dataRegistro);
             prontuarioService.criar(prontuario);
             view.mostrarMensagemSucesso("Prontuario criado com sucesso!");
         }catch (Exception e){
@@ -266,21 +270,28 @@ public class MenuMedicoPresenter {
         }
     }
 
-    private void editarPerfil(){
+    private void editarPerfil(MedicoModel medico){
         view.mostrarTitulo("Editar perfil");
 
-        MedicoModel dadosAtualizados = view.lerDadosAtualizacaoMedico(medico);
-        dadosAtualizados.setId(medico.getIdMedico());
-        dadosAtualizados.setTipoUsuario(medico.getTipoUsuario());
-
         try {
-            medicoService.atualizarPerfil(dadosAtualizados);
+            String nomeCompleto = view.lerNomeCompleto();
+            String senha = view.lerSenha();
+            String cpf = view.lerCpf();
+            String email = view.lerEmail();
+            String telefone = view.lerTelefone();
+            String especialidade = view.lerEspecialidade();
+
+            medico.setNomeUsuario(nomeCompleto);
+            medico.setSenhaUsuario(senha);
+            medico.setCpfUsuario(cpf);
+            medico.setEmailUsuario(email);
+            medico.setTelefoneUsuario(telefone);
+            medico.setEspecialidadeMedico(especialidade);
+
+            medicoService.atualizarMedico(medico);
+
             view.mostrarMensagemSucesso("Perfil atualizado com sucesso");
 
-            medico.setNomeUsuario(dadosAtualizados.getNomeUsuario());
-            medico.setEmailUsuario(dadosAtualizados.getEmailUsuario());
-            medico.setTelefoneUsuario(dadosAtualizados.getTelefoneUsuario());
-            medico.setEspecialidadeMedico(dadosAtualizados.getEspecialidadeMedico());
         }catch (Exception e){
             view.mostrarMensagemErro("Erro ao editar perfil");
         }

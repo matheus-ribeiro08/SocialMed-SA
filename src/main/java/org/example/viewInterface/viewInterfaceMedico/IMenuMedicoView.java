@@ -9,7 +9,7 @@ import java.util.List;
 
 public interface IMenuMedicoView
 {
-    int mostrarMenuPrincipa(String nomeMedico, String especialidade);
+    int mostrarMenuPrincipal(String nome);
     void mostrarTitulo(String titulo);
 
     void mostrarMensagemErro(String mensagem);
@@ -21,11 +21,19 @@ public interface IMenuMedicoView
     void mostrarHistoricoAtendimentos(List<ConsultaModel> historico);
 
     void mostrarDadosConsultaCompleta(ConsultaModel consulta);
-    void mostrarDadosPacientesCompleto(PacienteModel paciente);
+    void mostrarDadosPacienteCompleto(PacienteModel paciente);
     void mostrarDadosMedico(MedicoModel medico);
     void mostrarProntuario(ProntuarioModel prontuario);
 
-    long lerIdConsulta();
+    String lerNomeCompleto();
+    String lerEmail();
+    String lerTelefone();
+    String lerEspecialidade();
+    String lerSenha();
+    String lerData();
+    String lerSintomas();
+    int lerIdConsulta();
+    int lerIdMedico();
     String lerDiagnostico();
     String lerPrescricao();
     String lerObservacoes();
@@ -34,8 +42,7 @@ public interface IMenuMedicoView
     String lerInformacaoAdicional();;
     String lerTipoExame();
 
-    MedicoModel lerDadosAtualizacaoMedico(MedicoModel medico);]
-    boolean perguntarAcesso(String pergunta);
+    void lerDadosAtualizacaoMedico(MedicoModel medico);
     boolean perguntarAcao(String pergunta);
 
 

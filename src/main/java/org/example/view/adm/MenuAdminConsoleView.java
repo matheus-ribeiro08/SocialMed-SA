@@ -238,11 +238,18 @@ public class MenuAdminConsoleView implements IMenuAdminView {
         System.out.println("             ██████╔╝██║  ██║██████╔╝╚██████╔╝███████║  ██║  ██║   ██║   ╚██████╔╝██║  ██║███████╗██║███████╗██║  ██║╚██████╔╝███████║                 ");
         System.out.println("             ╚═════╝ ╚═╝  ╚═╝╚═════╝  ╚═════╝ ╚══════╝  ╚═╝  ╚═╝   ╚═╝    ╚═════╝ ╚═╝  ╚═╝╚══════╝╚═╝╚══════╝╚═╝  ╚═╝ ╚═════╝ ╚══════╝                 ");
         System.out.println("───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────");
-
+        System.out.println("───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────");
+        System.out.println("Id: " + usuario.getIdUsuario());
+        System.out.println("Nome: " + usuario.getNomeUsuario());
+        System.out.println("Telefone: " + usuario.getTelefoneUsuario());
+        System.out.println("Cpf: " + usuario.getCpfUsuario());
+        System.out.println("Email: " + usuario.getEmailUsuario());
+        System.out.println("Tipo: " + usuario.getTipoUsuario());
+        System.out.println("───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────");
     }
 
     @Override
-    public void lerDadosAtualizacaoMedico(MedicoModel medicoExistente, MedicoModel medicoAtualizado) {
+    public void lerDadosAtualizacaoMedico(MedicoModel medico) {
         System.out.println("───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────");
         System.out.println("             ██████╗  █████╗ ██████╗  ██████╗ ███████╗   █████╗ ████████╗██╗   ██╗ █████╗ ██╗     ██╗███████╗ █████╗  ██████╗ ███████╗                 ");
         System.out.println("             ██╔══██╗██╔══██╗██╔══██╗██╔═══██╗██╔════╝  ██╔══██╗╚══██╔══╝██║   ██║██╔══██╗██║     ██║    ██╔╝██╔══██╗██╔═══██╗██╔════╝                 ");
@@ -251,25 +258,14 @@ public class MenuAdminConsoleView implements IMenuAdminView {
         System.out.println("             ██████╔╝██║  ██║██████╔╝╚██████╔╝███████║  ██║  ██║   ██║   ╚██████╔╝██║  ██║███████╗██║███████╗██║  ██║╚██████╔╝███████║                 ");
         System.out.println("             ╚═════╝ ╚═╝  ╚═╝╚═════╝  ╚═════╝ ╚══════╝  ╚═╝  ╚═╝   ╚═╝    ╚═════╝ ╚═╝  ╚═╝╚══════╝╚═╝╚══════╝╚═╝  ╚═╝ ╚═════╝ ╚══════╝                 ");
         System.out.println("───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────");
-
-        System.out.println("Nome: [" + medicoExistente.getNomeUsuario() + "]:");
-        String nome = Ferramentas.lString().trim();
-        medicoAtualizado.setNomeUsuario(nome.isEmpty() ? medicoExistente.getNomeUsuario() : nome);
-
-        System.out.println("Email: [" + medicoExistente.getEmailUsuario() + "]:");
-        String email = Ferramentas.lString().trim();
-        medicoAtualizado.setEmailUsuario(email.isEmpty() ? medicoExistente.getEmailUsuario() : email);
-
-        System.out.println("Telefone: [" + medicoExistente.getTelefoneUsuario() + "]:");
-        String telefone = Ferramentas.lString().trim();
-        medicoAtualizado.setTelefoneUsuario(telefone.isEmpty() ? medicoExistente.getTelefoneUsuario() : telefone);
-
-        medicoAtualizado.setIdUsuario(medicoExistente.getIdUsuario());
-        medicoAtualizado.setSenhaUsuario(medicoExistente.getSenhaUsuario());
-        medicoAtualizado.setCpfUsuario(medicoExistente.getCpfUsuario());
-        medicoAtualizado.setTipoUsuario(medicoExistente.getTipoUsuario());
-
-
+        System.out.println("───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────");
+        System.out.println("Id: " + medico.getIdUsuario());
+        System.out.println("Nome: " + medico.getNomeUsuario());
+        System.out.println("Telefone: " + medico.getTelefoneUsuario());
+        System.out.println("Cpf: " + medico.getCpfUsuario());
+        System.out.println("Email: " + medico.getEmailUsuario());
+        System.out.println("Especialidade: " + medico.getEspecialidadeMedico());
+        System.out.println("───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────");
     }
 
     @Override

@@ -43,7 +43,7 @@ public class Roteador {
                     break;
                 }
                 case CADASTRO:{
-                    presenterFactory.criarCadastroPresenter().iniciar();
+                    presenterFactory.criarCadastroPresenter().iniciarCadastro();
                     break;
                 }
                 case LOGIN:{
@@ -51,26 +51,26 @@ public class Roteador {
                     break;
                 }
                 case SAIR:{
-                    presenterFactory.criarSairPresenter().inicar();
+                    presenterFactory.criarSairPresenter().iniciar();
                     break;
                 }
                 case MENU_PACIENTE:{
-                    presenterFactory.criarMenuPacientePresenter((PacienteModel) usuario).iniciar();
+                    presenterFactory.criarMenuPacientePresenter((PacienteModel) usuario).inicar();
                     break;
                 }
                 case MENU_SECRETARIO:{
-                    presenterFactory.criarMenuSecretarioPresenter((SecretarioModel) usuario).inicar();
+                    presenterFactory.criarMenuSecretarioPresenter((SecretarioModel) usuario).iniciar();
                     break;
                 }
                 case MENU_MEDICO:{
-                    presenterFactory.criarMenuMedicoPrenseter((MedicoModel) usuario).iniciar();
+                    presenterFactory.criarMenuMedicoPresenter((MedicoModel) usuario).inicar();
                     break;
                 }
                 case MENU_ADMIN:{
-                    presenterFactory.cirarMenuAdminPresenter((AdminModel) usuario).iniciar();
+                    presenterFactory.criarMenuAdminPresenter((AdminModel) usuario).iniciar();
                 }
                 case ERRO:{
-                    presenterFactory.criarErroPrenseter().iniciar();
+                    presenterFactory.criarErroPresenter().iniciar();
                     break;
                 }
                 default:{

@@ -7,4 +7,5 @@ public interface ICadastroView {
         String pedirCPF();
         String pedirTelefone();
         String pedirEmail();
+        String pedirEndereco();
 }

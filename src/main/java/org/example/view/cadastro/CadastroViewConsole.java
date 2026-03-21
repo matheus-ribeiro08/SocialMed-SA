@@ -34,6 +34,14 @@ public class CadastroViewConsole implements ICadastroView {
     }
 
     @Override
+    public String pedirEndereco(){
+        System.out.println("───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────");
+        System.out.println(" ➤ Digite o seu endereço: ");
+
+        return Ferramentas.lString();
+    }
+
+    @Override
     public String pedirSenha() {
         System.out.println("───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────");
         System.out.println(" ➤ Digite a sua senha");

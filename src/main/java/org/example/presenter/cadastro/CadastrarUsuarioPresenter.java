@@ -1,8 +1,11 @@
 package org.example.presenter.cadastro;
 
+import org.example.enums.TipoUsuario;
 import org.example.exception.*;
+import org.example.model.PacienteModel;
 import org.example.model.UsuarioModel;
 import org.example.roteador.Roteador;
+import org.example.service.paciente.PacienteService;
 import org.example.service.usuario.UsuarioService;
 import org.example.utils.Ferramentas;
 import org.example.viewInterface.viewInterfaceCadastro.ICadastroView;
@@ -12,11 +15,13 @@ public class CadastrarUsuarioPresenter {
     private Roteador roteadorCadastro;
     private ICadastroView view;
     private UsuarioService usuarioService;
+    private PacienteService pacienteService;
 
     public CadastrarUsuarioPresenter (Roteador roteadorCadastro, ICadastroView view){
         this.roteadorCadastro = roteadorCadastro;
         this.view = view;
         this.usuarioService = new UsuarioService();
+        this.pacienteService = new PacienteService();
     }
 
     public void iniciarCadastro(){
@@ -29,15 +34,17 @@ public class CadastrarUsuarioPresenter {
                 String email = view.pedirEmail();
                 String cpf = view.pedirCPF();
                 String telefone = view.pedirTelefone();
+                String endereco = view.pedirEndereco();
+                TipoUsuario tipoUsuario = TipoUsuario.PACIENTE;
 
                 validarInformacoes(nome, senha, email, cpf, telefone);
 
-                UsuarioModel usuario = new UsuarioModel(nome, email, senha, telefone, cpf);
+                PacienteModel paciente = new PacienteModel(nome, tipoUsuario, email, senha, telefone, cpf, endereco);
 
-                usuarioService.cadastrar(usuario);
+                pacienteService.cadastrar(paciente);
 
                 System.out.println("Cadastro realizado com sucesso!");
-                roteadorCadastro.irPara("login");
+                roteadorCadastro.irPara(Roteador.Destino.LOGIN, null);
 
                 cadastrando = false;
             } catch (Exception e) {
@@ -46,7 +53,7 @@ public class CadastrarUsuarioPresenter {
                 if (perguntarTentarNovamente()) {
                     iniciarCadastro();
                 } else {
-                    roteadorCadastro.irPara("login");
+                    roteadorCadastro.irPara(Roteador.Destino.LOGIN, null);
                     cadastrando = false;
                 }
             }

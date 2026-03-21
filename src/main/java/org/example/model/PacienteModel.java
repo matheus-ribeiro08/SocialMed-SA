@@ -16,6 +16,12 @@ public class PacienteModel extends UsuarioModel{
         this.enderecoPaciente = enderecoPaciente;
     }
 
+    public PacienteModel(String nomeUsuario, TipoUsuario tipoUsuario, String emailUsuario, String senhaUsuario,
+                         String telefoneUsuario, String cpfUsuario, String enderecoPaciente) {
+        super(nomeUsuario, emailUsuario, senhaUsuario, telefoneUsuario, cpfUsuario, tipoUsuario);
+        this.enderecoPaciente = enderecoPaciente;
+    }
+
     public int getIdPaciente() {
         return idPaciente;
     }
