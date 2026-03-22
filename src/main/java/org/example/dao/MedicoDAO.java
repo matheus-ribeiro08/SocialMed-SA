@@ -243,4 +243,27 @@ public class MedicoDAO
             }
         }
     }
+    public MedicoModel buscarPorIdUsuario(int idUsuario)
+    {
+        String sql = "SELECT * FROM Medico WHERE id_Usuario = ?";
+        MedicoModel medico = null;
+
+        try (Connection conn = ConnectionFactory.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setInt(1, idUsuario);
+
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    medico = new MedicoModel();
+                    medico.setIdMedico(rs.getInt("id_Medico"));
+                    medico.setId(rs.getInt("id_Usuario"));
+                    medico.setEspecialidadeMedico(rs.getString("especialidade_Medico"));
+                }
+            }
+        } catch (SQLException e) {
+            System.err.println("Erro ao buscar medico pelo ID do usuário: ");
+        }
+        return medico;
+    }
 }
