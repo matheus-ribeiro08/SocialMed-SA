@@ -24,6 +24,16 @@ public class UsuarioModel {
         this.tipoUsuario = tipoUsuario;
     }
 
+    public UsuarioModel(String nomeUsuario, String emailUsuario,
+                        String senhaUsuario, String cpfUsuario,
+                        String telefoneUsuario) {
+        this.nomeUsuario = nomeUsuario;
+        this.emailUsuario = emailUsuario;
+        this.senhaUsuario = senhaUsuario;
+        this.cpfUsuario = cpfUsuario;
+        this.telefoneUsuario = telefoneUsuario;
+    }
+
     public UsuarioModel(){
 
     }

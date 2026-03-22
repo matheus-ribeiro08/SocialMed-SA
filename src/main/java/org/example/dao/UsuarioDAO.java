@@ -150,10 +150,37 @@ public class UsuarioDAO
                 rs.getString("cpf_Usuario"),
                 rs.getString("telefone_Usuario")
         );
-        Usuario.setId(rs.getInt("id_Usuario"));
+        Usuario.setIdUsuario(rs.getInt("id_Usuario"));
         return Usuario;
     }
 
+    public boolean atualizarUsuario(UsuarioModel usuario){
+        String sql = "UPDATE Usuario SET nome_usuario = ?, email_Usuario = ?, senha_Usuario = ?, telefone_Usuario = ? WHERE id_Usuario = ?";
+
+        try(Connection conn = ConnectionFactory.getConnection();
+            PreparedStatement stmt = conn.prepareStatement(sql)){
+
+            stmt.setString(1, usuario.getNomeUsuario());
+            stmt.setString(2, usuario.getEmailUsuario());
+            stmt.setString(3, usuario.getSenhaUsuario());
+            stmt.setString(4, usuario.getTelefoneUsuario());
+            stmt.setInt(5, usuario.getIdUsuario());
+
+            int linhasAfetadas = stmt.executeUpdate();
+
+            if(linhasAfetadas > 0){
+                System.out.println("Usuario Id " + usuario.getIdUsuario() + " Atualizado com sucesso");
+                return true;
+            }else {
+                System.err.println("Usuario Id " + usuario.getIdUsuario() + " nao encontrado para atualização");
+                return false;
+            }
+
+        }catch (SQLException e){
+            System.err.println("Erro ao atualizar usuario");
+            return false;
+        }
+    }
     public boolean atualizarNomeUsuario(int idUsuario, String novoNome)
     {
         String sql = "UPDATE Usuario SET nome_usuario WHERE id_Usuario = ?";

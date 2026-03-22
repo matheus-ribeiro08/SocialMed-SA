@@ -66,28 +66,28 @@ public class AdminService {
         return adminDAO.cadastrarSecretario(secretario);
     }
 
-    public boolean atualizarSecretario(AdminModel admin, SecretarioModel secretario){
+    public boolean atualizarSecretario(AdminModel admin, SecretarioModel secretario) throws SQLException {
         validarAdmin(admin);
         validarSecretarioExistente(secretario.getIdSecretario());
 
-        return secretarioDAO.atualizar(secretario);
+        return secretarioDAO.atualizarSecretario(secretario);
     }
 
-    public boolean removerSecretario(AdminModel admin, int idSecretario){
+    public boolean removerSecretario(AdminModel admin, int idSecretario) throws SQLException {
         validarAdmin(admin);
         validarMedicoExistente(idSecretario);
 
-        return secretarioDAO.remover();
+        return secretarioDAO.removerSecretario(idSecretario);
     }
 
     // ==================== Métodos de Pacientes ====================
 
 
-    public boolean atualizarPaciente(AdminModel admin, PacienteModel paciente){
+    public boolean atualizarPaciente(AdminModel admin, PacienteModel paciente) throws SQLException {
         validarAdmin(admin);
         validarPacienteExistente(paciente.getIdPaciente());
 
-        return secretarioDAO.atualizar(paciente);
+        return pacienteDAO.atualizarPaciente(paciente);
     }
 
 
