@@ -12,7 +12,7 @@ public class ConsultaModel {
     private int idMedico;
     private LocalDateTime horarioConsulta;
 
-    public long getIdConsulta() {
+    public int getIdConsulta() {
         return idConsulta;
     }
 
