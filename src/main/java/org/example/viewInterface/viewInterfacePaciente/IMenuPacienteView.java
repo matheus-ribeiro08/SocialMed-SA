@@ -15,14 +15,17 @@ public interface IMenuPacienteView {
     void mostrarMensagemSucesso(String mensagem);
     void mostrarMensagemInfo(String mensagem);
 
+    void mostrarDadosPaciente(PacienteModel paciente);
     void mostrarListaConsultas(List<ConsultaModel> consultas);
-    void mostrarDetalhesConsulta(List<ConsultaModel> consultas);
-    void mostrarProntuario(List<ConsultaModel> historico);
+    void mostrarDetalhesConsulta(ConsultaModel consulta);
+    void mostrarProntuario(ProntuarioModel prontuarioModel);
 
-    void mostrarHistoricoConsultas(ConsultaModel consulta);
+    void abrirMapaLocalizacao();
+    void mostrarHistoricoConsultas(List<ConsultaModel> consultas);
     void mostrarAgenda(List<ConsultaModel> consultas);
     void mostrarListaMedicos(List<MedicoModel> medicos);
 
+    String lerNomeCompleto();
     String lerCpf();
     int lerIdConsulta();
     String lerData();
