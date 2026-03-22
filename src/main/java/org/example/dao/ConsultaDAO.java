@@ -194,4 +194,32 @@ public class ConsultaDAO {
         }
         return consulta;
     }
+
+    public List<ConsultaModel> buscarProximasConsultas(){
+        List<ConsultaModel> proximasConsultas = new ArrayList<>();
+
+        String sql = "SELECT * FROM Consultas WHERE horario_Consulta >= NOW() ORDER BY horario_Consulta ASC";
+
+        try(Connection conn = ConnectionFactory.getConnection();
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            ResultSet rs = stmt.executeQuery()) {
+
+            while (rs.next()){
+                ConsultaModel consulta = new ConsultaModel(
+                        rs.getInt("id_Consultas"),
+                        rs.getInt("id_Hospital"),
+                        rs.getString("local_Consulta"),
+                        rs.getInt("id_Paciente"),
+                        rs.getInt("id_Medico"),
+                        rs.getTimestamp("horario_Consulta").toLocalDateTime()
+                );
+                proximasConsultas.add(consulta);
+            }
+
+        }catch (SQLException e){
+            System.err.println("Erro ao buscar proximas consultas");
+        }
+
+        return proximasConsultas;
+    }
 }

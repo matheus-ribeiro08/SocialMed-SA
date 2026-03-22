@@ -9,6 +9,7 @@ import org.example.roteador.Roteador;
 import org.example.service.consulta.ConsultaService;
 import org.example.service.medico.MedicoService;
 import org.example.service.paciente.PacienteService;
+import org.example.service.prontuario.ProntuarioService;
 import org.example.viewInterface.viewInterfaceAdm.IMenuAdminView;
 import org.example.viewInterface.viewInterfaceMedico.IMenuMedicoView;
 
