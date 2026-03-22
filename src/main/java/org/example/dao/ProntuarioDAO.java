@@ -205,4 +205,40 @@ public class ProntuarioDAO
         }
         return listaProntuarios;
     }
+
+    public ProntuarioModel buscarPorPaciente(int idPaciente)
+    {
+        String sql = "SELECT * FROM Prontuario WHERE id_Paciente = ? ORDER BY data_Registro DESC LIMIT 1";
+        ProntuarioModel prontuario = null;
+
+        try (Connection conn = ConnectionFactory.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setInt(1, idPaciente);
+
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    prontuario = new ProntuarioModel();
+
+                    prontuario.setIdProntuario(rs.getInt("id_Prontuario"));
+                    prontuario.setIdPaciente(rs.getInt("id_Paciente"));
+                    prontuario.setIdMedico(rs.getInt("id_Medico"));
+                    prontuario.setIdConsulta(rs.getInt("id_Consultas"));
+                    prontuario.setDiagnostico(rs.getString("diagnostico"));
+                    prontuario.setSintomas(rs.getString("sintomas"));
+                    prontuario.setPrescricaoMedica(rs.getString("prescricao_Medica"));
+                    prontuario.setObservacoes(rs.getString("observacoes"));
+
+                    Timestamp dataBanco = rs.getTimestamp("data_Registro");
+                    if (dataBanco != null) {
+                        prontuario.setDataRegistro(dataBanco.toLocalDateTime());
+                    }
+                }
+            }
+        } catch (SQLException e) {
+            System.err.println("Erro ao buscar o prontuário mais recente do paciente: " + e.getMessage());
+        }
+
+        return prontuario;
+    }
 }
