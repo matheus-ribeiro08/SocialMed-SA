@@ -40,7 +40,7 @@ public class ConsultaService {
         if (idConsulta <= 0){
             throw new IllegalArgumentException("Id da consulta inválido");
         }
-        return consultaDAO.buscarPorId(consultaDAO);
+        return consultaDAO.buscarPorId(idConsulta);
     }
 
 

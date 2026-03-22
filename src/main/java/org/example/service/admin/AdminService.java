@@ -7,7 +7,6 @@ import org.example.dao.MedicoDAO;
 import org.example.dao.SecretarioDAO;
 import org.example.dao.PacienteDAO;
 import org.example.dao.ConsultaDAO;
-import org.example.validator.UsuarioValidator;
 
 import java.sql.SQLException;
 
@@ -103,7 +102,7 @@ public class AdminService {
     public boolean atualizarUsuario(AdminModel admin, UsuarioModel usuario) {
         validarAdmin(admin);
 
-        return usuarioDAO.atualizar(usuario);
+        return usuarioDAO.atualizarUsuario(usuario);
     }
 
     // ==================== Métodos de Hospital ====================
