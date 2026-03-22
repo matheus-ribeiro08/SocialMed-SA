@@ -244,6 +244,26 @@ public class SecretarioDAO {
     }
 
     public SecretarioModel buscarPorIdUsuario(int idUsuario) {
-        return null;
+        String sql = "SELECT * FROM Secretario WHERE id_Usuario = ?";
+        SecretarioModel secretario = null;
+
+        try (Connection conn = ConnectionFactory.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setInt(1, idUsuario);
+
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    secretario = new SecretarioModel();
+                    secretario.setIdSecretario(rs.getInt("id_Secretario"));
+                    secretario.setId(rs.getInt("id_Usuario"));
+                    secretario.setTurnoTrabalhadoSecretario(rs.getString("turno_Secretario"));
+                }
+            }
+        } catch (SQLException e) {
+            System.err.println("Erro ao buscar secretário pelo ID do usuário: " + e.getMessage());
+        }
+
+        return secretario;
     }
 }
