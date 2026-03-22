@@ -65,7 +65,7 @@ public class ExameDAO {
         return exame;
     }
 
-    public List<ExameModel> listarPorPacientes(int idPaciente){
+    public List<ExameModel> listarPorPaciente(int idPaciente){
         List<ExameModel> exames = new ArrayList<>();
         String sql = "SELECT * FROM Exame WHERE id_Paciente = ? ORDER BY data_Solicitacao DESC";
 
@@ -87,7 +87,7 @@ public class ExameDAO {
         return exames;
     }
 
-    public List<ExameModel> listarPorMedicos(int idMedico){
+    public List<ExameModel> listarPorMedico(int idMedico){
         List<ExameModel> exames = new ArrayList<>();
         String sql = "SELECT * FROM Exame WHERE id_Medico = ? ORDER BY data_Solicitacao DESC";
 
@@ -109,7 +109,7 @@ public class ExameDAO {
         return exames;
     }
 
-    public List<ExameModel> listarExamesPendentes(int idMedico){
+    public List<ExameModel> listarExamesPendentes(){
         List<ExameModel> exames = new ArrayList<>();
         String sql = "SELECT * FROM Exame WHERE status_Exame = 'SOLICITADO' ORDER BY data_Solicitacao ASC";
 
@@ -144,7 +144,7 @@ public class ExameDAO {
         }
     }
 
-    public boolean cancelarConsulta(int idExame){
+    public boolean cancelarExame(int idExame){
         return atualizarStatus(idExame, "CANCELADO");
     }
 
