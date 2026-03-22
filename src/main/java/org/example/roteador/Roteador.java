@@ -1,28 +1,10 @@
 package org.example.roteador;
 
+import org.example.enums.Destinos;
 import org.example.model.*;
 import org.example.presenter.factory.PresenterFactory;
 
 public class Roteador {
-
-    public enum Destino{
-        MENU_INICIAL,
-        CADASTRO,
-        LOGIN,
-        MENU_PACIENTE,
-        MENU_SECRETARIO,
-        MENU_MEDICO,
-        MENU_ADMIN,
-        SAIR,
-        ERRO;
-    }
-
-    public boolean requerAutentificacao(){
-        return  this == MENU_PACIENTE ||
-                this == MENU_SECRETARIO ||
-                this == MENU_MEDICO ||
-                this == MENU_ADMIN;
-    }
 
     private final PresenterFactory presenterFactory;
 
@@ -30,10 +12,10 @@ public class Roteador {
         this.presenterFactory = new PresenterFactory(this);
     }
 
-    public void irPara(Destino destino, UsuarioModel usuario){
+    public void irPara(Destinos destino, UsuarioModel usuario){
         try {
 
-            if (destino.requerAutentificacao() && usuario == null){
+            if (destino.isMenuUsuario() && usuario == null){
                 throw new SecurityException("Usuario nao autenticado");
             }
 
@@ -47,7 +29,7 @@ public class Roteador {
                     break;
                 }
                 case LOGIN:{
-                    presenterFactory.criarLoginPresenter().inicar();
+                    presenterFactory.criarLoginUsuarioPresenter().iniciarLogin();
                     break;
                 }
                 case SAIR:{
@@ -55,7 +37,7 @@ public class Roteador {
                     break;
                 }
                 case MENU_PACIENTE:{
-                    presenterFactory.criarMenuPacientePresenter((PacienteModel) usuario).inicar();
+                    presenterFactory.criarMenuPacientePresenter((PacienteModel) usuario).iniciar();
                     break;
                 }
                 case MENU_SECRETARIO:{
@@ -78,9 +60,9 @@ public class Roteador {
                 }
             }
         }catch (SecurityException e){
-            irPara(Destino.LOGIN);
+            irPara(Destinos.LOGIN, null);
         }catch (Exception e){
-            irPara(Destino.ERRO);
+            irPara(Destinos.ERRO, null);
         }
     }
 
