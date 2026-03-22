@@ -21,7 +21,7 @@ public class MedicoService {
     private final UsuarioDAO usuarioDAO;
     private final PacienteDAO pacienteDAO;
 
-    private MedicoService(){
+    public MedicoService(){
         this.medicoDAO = new MedicoDAO();
         this.consultaDAO = new ConsultaDAO();
         this.prontuarioDAO = new ProntuarioDAO();
