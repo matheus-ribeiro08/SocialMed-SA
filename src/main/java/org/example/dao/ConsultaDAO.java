@@ -224,6 +224,22 @@ public class ConsultaDAO {
         return proximasConsultas;
     }
 
-    public boolean atualizarHorario(int idConsulta, LocalDateTime novoHorario) {
+    public boolean atualizarHorario(int idConsulta, LocalDateTime novoHorario) throws SQLException
+    {
+        String sql = "UPDATE Consultas SET horario_Consulta = ? WHERE id_Consulta = ?";
+
+        try(Connection conn = ConnectionFactory.getConnection();
+            PreparedStatement stmt = conn.prepareStatement(sql))
+        {
+            stmt.setTimestamp(1, java.sql.Timestamp.valueOf(novoHorario));
+            stmt.setInt(2, idConsulta);
+
+            int linhasAfetadas = stmt.executeUpdate();
+            return linhasAfetadas > 0;
+        } catch (SQLException e)
+        {
+            System.err.println("Erro ao atualizar horario da consulta");
+            throw e;
+        }
     }
 }

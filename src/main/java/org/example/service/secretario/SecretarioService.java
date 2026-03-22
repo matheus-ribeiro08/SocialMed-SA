@@ -265,8 +265,12 @@ public class SecretarioService {
         {
             throw new SecretarioException("Paciente ja possui uma consulta agendada nesse horario");
         }
+        boolean atualizou = consultaDAO.atualizarHorario(idConsulta, novoHorario);
+        if (!atualizou) {
+            throw new SecretarioException("Não foi possível atualizar o horário no banco de dados.");
+        }
 
-        return consultaDAO.atualizarHorario(idConsulta, novoHorario);
+        return true;
     }
 
     public List<ConsultaModel> listarConsultasPorPaciente(int idPaciente) throws SQLException, SecretarioException {
