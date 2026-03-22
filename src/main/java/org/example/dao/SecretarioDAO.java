@@ -1,12 +1,8 @@
 package org.example.dao;
 
 import org.example.database.ConnectionFactory;
-import org.example.model.ConsultaModel;
-import org.example.model.MedicoModel;
-import org.example.model.PacienteModel;
 import org.example.model.SecretarioModel;
 
-import java.awt.desktop.SystemEventListener;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -245,5 +241,9 @@ public class SecretarioDAO {
                 }
             }
         }
+    }
+
+    public SecretarioModel buscarPorIdUsuario(int idUsuario) {
+        return null;
     }
 }

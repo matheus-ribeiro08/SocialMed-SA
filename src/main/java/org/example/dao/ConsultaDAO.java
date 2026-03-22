@@ -4,6 +4,7 @@ import org.example.database.ConnectionFactory;
 import org.example.model.ConsultaModel;
 
 import java.sql.*;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -221,5 +222,8 @@ public class ConsultaDAO {
         }
 
         return proximasConsultas;
+    }
+
+    public boolean atualizarHorario(int idConsulta, LocalDateTime novoHorario) {
     }
 }
