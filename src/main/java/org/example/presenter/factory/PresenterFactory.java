@@ -17,6 +17,8 @@ import org.example.roteador.Roteador;
 import org.example.view.adm.MenuAdminConsoleView;
 import org.example.view.cadastro.CadastroViewConsole;
 import org.example.view.login.LoginViewConsole;
+import org.example.view.medico.MenuMedicoConsoleView;
+import org.example.view.paciente.MenuPacienteConsoleView;
 import org.example.viewInterface.viewInterfaceAdm.IMenuAdminView;
 
 public class PresenterFactory {
@@ -36,7 +38,7 @@ public class PresenterFactory {
         return new CadastrarUsuarioPresenter(roteador, new CadastroViewConsole());
     }
 
-    public LoginUsuarioPresenter loginUsuarioPresenter(){
+    public LoginUsuarioPresenter criarLoginUsuarioPresenter(){
         return new LoginUsuarioPresenter(roteador, new LoginViewConsole());
     }
 
@@ -45,15 +47,15 @@ public class PresenterFactory {
     }
 
     public MenuPacientePresenter criarMenuPacientePresenter(PacienteModel paciente){
-        return new MenuPacientePresenter(roteador, paciente);
+        return new MenuPacientePresenter(roteador, paciente, new MenuPacienteConsoleView());
     }
 
     public MenuSecretarioPresenter criarMenuSecretarioPresenter(SecretarioModel secretario){
-        return new MenuSecretarioPresenter(roteador, secretario);
+        return new MenuSecretarioPresenter(roteador, secretario, new));
     }
 
     public MenuMedicoPresenter criarMenuMedicoPresenter(MedicoModel medico){
-        return new MenuMedicoPresenter(roteador, medico);
+        return new MenuMedicoPresenter(roteador, medico, new MenuMedicoConsoleView());
     }
 
     public MenuAdminPresenter criarMenuAdminPresenter(AdminModel admin){

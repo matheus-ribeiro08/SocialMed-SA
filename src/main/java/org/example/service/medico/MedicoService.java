@@ -2,10 +2,7 @@ package org.example.service.medico;
 
 import org.example.dao.*;
 import org.example.exception.MedicoException;
-import org.example.model.ConsultaModel;
-import org.example.model.MedicoModel;
-import org.example.model.PacienteModel;
-import org.example.model.ProntuarioModel;
+import org.example.model.*;
 
 import java.sql.SQLException;
 import java.time.LocalDateTime;
@@ -20,6 +17,7 @@ public class MedicoService {
     private final ProntuarioDAO prontuarioDAO;
     private final UsuarioDAO usuarioDAO;
     private final PacienteDAO pacienteDAO;
+    private final ExameDAO exameDAO;
 
     private MedicoService(){
         this.medicoDAO = new MedicoDAO();
@@ -27,14 +25,16 @@ public class MedicoService {
         this.prontuarioDAO = new ProntuarioDAO();
         this.usuarioDAO = new UsuarioDAO();
         this.pacienteDAO = new PacienteDAO();
+        this.exameDAO = new ExameDAO();
     }
 
-    public MedicoService(MedicoDAO medicoDAO, ConsultaDAO consultaDAO, ProntuarioDAO prontuarioDAO, UsuarioDAO usuarioDAO, PacienteDAO pacienteDAO) {
+    public MedicoService(MedicoDAO medicoDAO, ConsultaDAO consultaDAO, ProntuarioDAO prontuarioDAO, UsuarioDAO usuarioDAO, PacienteDAO pacienteDAO, ExameDAO exameDAO) {
         this.medicoDAO = medicoDAO;
         this.consultaDAO = consultaDAO;
         this.prontuarioDAO = prontuarioDAO;
         this.usuarioDAO = usuarioDAO;
         this.pacienteDAO = pacienteDAO;
+        this.exameDAO = exameDAO;
     }
 
     public MedicoModel buscarPorId(int idMedico) throws SQLException, MedicoException{
@@ -188,7 +188,7 @@ public class MedicoService {
         if(observacoes != null && !observacoes.trim().isEmpty()){
             sb.append(observacoes);
         }else{
-            sb.append("Atendimento realizado sem observações adicionais")
+            sb.append("Atendimento realizado sem observações adicionais");
         }
 
         return sb.toString();
