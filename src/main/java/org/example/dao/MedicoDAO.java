@@ -3,6 +3,7 @@ package org.example.dao;
 import org.example.database.ConnectionFactory;
 import org.example.model.ConsultaModel;
 import org.example.model.MedicoModel;
+import org.example.model.PacienteModel;
 import org.example.model.SecretarioModel;
 
 import javax.xml.transform.Result;
@@ -116,5 +117,130 @@ public class MedicoDAO
             System.err.println("Erro ao buscar medico por ID");
         }
         return medico;
+    }
+
+    public boolean atualizarMedico(MedicoModel medico) throws  SQLException {
+        String sqlUsuario = "UPDATE Usuario SET nome_Usuario = ?, email_Usuario = ?, senha_Usuario = ?, telefone_Usuario = ? WHERE id_Usuario = ?";
+        String sqlMedico = "UPDATE Medico SET especialidade_Medico = ? WHERE id_Medico = ?";
+
+        Connection conn = null;
+
+
+        try {
+            conn = ConnectionFactory.getConnection();
+            conn.setAutoCommit(false);
+
+            try (PreparedStatement stmt = conn.prepareStatement(sqlUsuario)) {
+                stmt.setString(1, medico.getNomeUsuario());
+                stmt.setString(2, medico.getEmailUsuario());
+                stmt.setString(3, medico.getSenhaUsuario());
+                stmt.setString(4, medico.getTelefoneUsuario());
+                stmt.setInt(5, medico.getIdUsuario());
+
+                int linhasAfetadas = stmt.executeUpdate();
+                if (linhasAfetadas == 0) {
+                    throw new SQLException("Usuario nao encontrado para atualização");
+                }
+
+            }
+
+            try (PreparedStatement stmt = conn.prepareStatement(sqlMedico)) {
+                stmt.setString(1, medico.getEspecialidadeMedico());
+                stmt.setInt(2, medico.getIdMedico());
+
+                int linhasAfetadas = stmt.executeUpdate();
+                if (linhasAfetadas == 0) {
+                    throw new SQLException("Medico nao encontrado para atualização");
+                }
+            }
+
+            conn.commit();
+            return true;
+
+        } catch (SQLException e) {
+            if (conn != null) {
+                try {
+                    conn.rollback();
+                } catch (SQLException ex) {
+                    System.err.println("Erro ao dar rollback!");
+                }
+            }
+            System.err.println("Erro ao atualizar medico");
+            throw e;
+        } finally {
+            if (conn != null) {
+                try {
+                    conn.setAutoCommit(true);
+                    conn.close();
+                } catch (SQLException e) {
+                    System.err.println("Erro ao fechar conexao");
+                }
+            }
+        }
+    }
+
+    public boolean removerMedico(int idMedico) throws SQLException{
+        String sqlBuscarIdUsuario = "SELECT id_Usuario FROM Medico WHERE id_Medico = ?";
+        String sqlRemoverMedico = "DELETE FROM Medico WHERE id_Medico = ?";
+        String sqlRemoverUsuario = "DELETE FROM Usuario WHERE id_Usuario = ?";
+
+        Connection conn = null;
+        Integer idUsuario = null;
+
+        try {
+            conn = ConnectionFactory.getConnection();
+            conn.setAutoCommit(false);
+
+            try(PreparedStatement stmt = conn.prepareStatement(sqlBuscarIdUsuario)){
+                stmt.setInt(1 , idMedico);
+                try(ResultSet rs = stmt.executeQuery()) {
+                    if(rs.next()){
+                        idUsuario = rs.getInt("id_Usuario");
+                    }else {
+                        throw new SQLException("Medico nao encontrado");
+                    }
+
+                }
+            }
+
+            try(PreparedStatement stmt  = conn.prepareStatement(sqlRemoverMedico)) {
+                stmt.setInt(1, idMedico);
+                int linhasAfetadas = stmt.executeUpdate();
+                if(linhasAfetadas == 0){
+                    throw new SQLException("Erro ao remover medico");
+                }
+            }
+
+            try(PreparedStatement stmt  = conn.prepareStatement(sqlRemoverUsuario)) {
+                stmt.setInt(1, idUsuario);
+                int linhasAfetadas = stmt.executeUpdate();
+                if(linhasAfetadas == 0){
+                    throw new SQLException("Erro ao remover usuario");
+                }
+            }
+
+            conn.commit();
+            return true;
+
+        } catch (SQLException e) {
+            if (conn != null) {
+                try {
+                    conn.rollback();
+                } catch (SQLException ex) {
+                    System.err.println("Erro ao dar rollback!");
+                }
+            }
+            System.err.println("Erro ao remover medico");
+            throw e;
+        } finally {
+            if (conn != null) {
+                try {
+                    conn.setAutoCommit(true);
+                    conn.close();
+                } catch (SQLException e) {
+                    System.err.println("Erro ao fechar conexao");
+                }
+            }
+        }
     }
 }

@@ -9,6 +9,8 @@ import org.example.dao.PacienteDAO;
 import org.example.dao.ConsultaDAO;
 import org.example.validator.UsuarioValidator;
 
+import java.sql.SQLException;
+
 public class AdminService {
     private final AdminDAO adminDAO;
     private final UsuarioDAO usuarioDAO;
@@ -38,18 +40,18 @@ public class AdminService {
         return adminDAO.cadastrarMedico(medico);
    }
 
-   public boolean atualizarMedico(AdminModel admin, MedicoModel medico){
+   public boolean atualizarMedico(AdminModel admin, MedicoModel medico) throws SQLException {
         validarAdmin(admin);
         validarMedicoExistente(medico.getIdMedico());
 
-        return medicoDAO.atualizar(medico);
+        return medicoDAO.atualizarMedico(medico);
    }
 
-   public boolean removerMedico(AdminModel admin, int idMedico){
+   public boolean removerMedico(AdminModel admin, int idMedico) throws SQLException {
         validarAdmin(admin);
         validarMedicoExistente(idMedico);
 
-        return medicoDao.remover(idMedico);
+        return medicoDAO.removerMedico(idMedico);
    }
 
     // ==================== Métodos de Secretarios ====================
@@ -89,11 +91,11 @@ public class AdminService {
     }
 
 
-    public boolean removerPaciente(AdminModel admin, int idPaciente){
+    public boolean removerPaciente(AdminModel admin, int idPaciente) throws SQLException {
         validarAdmin(admin);
         validarMedicoExistente(idPaciente);
 
-        return pacienteDAO.remover();
+        return pacienteDAO.removerPaciente(idPaciente);
     }
 
     // ==================== Métodos de Usuários ====================
