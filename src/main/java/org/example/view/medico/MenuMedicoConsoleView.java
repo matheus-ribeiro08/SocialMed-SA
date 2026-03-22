@@ -321,6 +321,8 @@ public class MenuMedicoConsoleView implements IMenuMedicoView {
     @Override
     public String lerData(){
 
+
+        return Ferramentas.lString();
     }
 
     @Override
