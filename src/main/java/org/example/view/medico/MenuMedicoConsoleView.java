@@ -10,30 +10,30 @@ public class MenuMedicoConsoleView implements IMenuMedicoView {
 
     @Override
     public int mostrarMenuPrincipal(String nome){
-        System.out.println("───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────");
-        System.out.println("                                ███╗   ███╗███████╗███╗   ██╗██╗   ██╗    ███╗   ███╗███████╗██████╗ ██╗ ██████╗ ██████╗                               ");
+        System.out.println(Ferramentas.GREENclaro+"───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────");
+        System.out.println(Ferramentas.RESET+"                                ███╗   ███╗███████╗███╗   ██╗██╗   ██╗    ███╗   ███╗███████╗██████╗ ██╗ ██████╗ ██████╗                               ");
         System.out.println("                                ████╗ ████║██╔════╝████╗  ██║██║   ██║    ████╗ ████║██╔════╝██╔══██╗██║██╔════╝██╔═══██╗                              ");
         System.out.println("                                ██╔████╔██║█████╗  ██╔██╗ ██║██║   ██║    ██╔████╔██║█████╗  ██║  ██║██║██║     ██║   ██║                              ");
         System.out.println("                                ██║╚██╔╝██║██╔══╝  ██║╚██╗██║██║   ██║    ██║╚██╔╝██║██╔══╝  ██║  ██║██║██║     ██║   ██║                              ");
         System.out.println("                                ██║ ╚═╝ ██║███████╗██║ ╚████║╚██████╔╝    ██║ ╚═╝ ██║███████╗██████╔╝██║╚██████╗╚██████╔╝                              ");
         System.out.println("                                ╚═╝     ╚═╝╚══════╝╚═╝  ╚═══╝ ╚═════╝     ╚═╝     ╚═╝╚══════╝╚═════╝ ╚═╝ ╚═════╝ ╚═════╝                               ");
-        System.out.println("───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────\n");
-        System.out.println("───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────");
-        System.out.println(" OPÇÕES                                                                                                                                                ");
-        System.out.println("───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────");
-        System.out.println(" (1) ➔ Ver agenda de hoje                                                                                                                              ");
-        System.out.println(" (2) ➔ Ver proximas consultas                                                                                                                          ");
-        System.out.println(" (3) ➔ Atender Paciente                                                                                                                                ");
-        System.out.println(" (4) ➔ Buscar paciente                                                                                                                                 ");
-        System.out.println(" (5) ➔ Ver Prontuario                                                                                                                                  ");
-        System.out.println(" (6) ➔ Atualizar Prontuario                                                                                                                            ");
-        System.out.println(" (7) ➔ Ver historico de consultas                                                                                                                      ");
-        System.out.println(" (8) ➔ Editar Perfil                                                                                                                                   ");
-        System.out.println(" (9) ➔ Solicitar exame                                                                                                                                 ");
-        System.out.println(" (11) ➔ Voltar para menu inicial                                                                                                                       ");
-        System.out.println(" (0) ➔ Sair do sistema                                                                                                                                 ");
-        System.out.println("───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────");
-        System.out.printf(" ➤ Digite a opção desejada: ");
+        System.out.println(Ferramentas.GREENclaro+"───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────\n"+Ferramentas.RESET);
+        System.out.println(Ferramentas.GREENclaro+"───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────");
+        System.out.println(Ferramentas.RESET+" OPÇÕES                                                                                                                                                ");
+        System.out.println(Ferramentas.GREENclaro+"───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────");
+        System.out.println(Ferramentas.RESET+" (1) "+Ferramentas.GREENescuro+"➔"+Ferramentas.RESET+" Ver agenda de hoje                                                                                                                              ");
+        System.out.println(Ferramentas.RESET+" (2) "+Ferramentas.GREENescuro+"➔"+Ferramentas.RESET+" Ver proximas consultas                                                                                                                          ");
+        System.out.println(Ferramentas.RESET+" (3) "+Ferramentas.GREENescuro+"➔"+Ferramentas.RESET+" Atender Paciente                                                                                                                                ");
+        System.out.println(Ferramentas.RESET+" (4) "+Ferramentas.GREENescuro+"➔"+Ferramentas.RESET+" Buscar paciente                                                                                                                                 ");
+        System.out.println(Ferramentas.RESET+" (5) "+Ferramentas.GREENescuro+"➔"+Ferramentas.RESET+" Ver Prontuario                                                                                                                                  ");
+        System.out.println(Ferramentas.RESET+" (6) "+Ferramentas.GREENescuro+"➔"+Ferramentas.RESET+" Atualizar Prontuario                                                                                                                            ");
+        System.out.println(Ferramentas.RESET+" (7) "+Ferramentas.GREENescuro+"➔"+Ferramentas.RESET+" Ver historico de consultas                                                                                                                      ");
+        System.out.println(Ferramentas.RESET+" (8) "+Ferramentas.GREENescuro+"➔"+Ferramentas.RESET+" Editar Perfil                                                                                                                                   ");
+        System.out.println(Ferramentas.RESET+" (9) "+Ferramentas.GREENescuro+"➔"+Ferramentas.RESET+" Solicitar exame                                                                                                                                 ");
+        System.out.println(Ferramentas.RESET+" (10) "+Ferramentas.GREENescuro+"➔"+Ferramentas.RESET+" Voltar para menu inicial                                                                                                                       ");
+        System.out.println(Ferramentas.RESET+" (11) "+Ferramentas.GREENescuro+"➔"+Ferramentas.RESET+" Sair do sistema                                                                                                                                 ");
+        System.out.println(Ferramentas.GREENclaro+"───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────"+Ferramentas.RESET);
+        System.out.printf(Ferramentas.YELLOW+" ➤"+Ferramentas.RESET+" Digite a opção desejada: ");
 
         return Ferramentas.lInteiro();
     }
@@ -51,7 +51,7 @@ public class MenuMedicoConsoleView implements IMenuMedicoView {
 
     @Override
     public void mostrarMensagemErro(String mensagem){
-        System.out.println("\n" + mensagem);
+        System.err.println("\n" + mensagem);
     }
 
     @Override
@@ -66,48 +66,48 @@ public class MenuMedicoConsoleView implements IMenuMedicoView {
             return;
         }
 
-        System.out.println("───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────");
-        System.out.println("                    ██╗     ██╗███████╗████████╗ █████╗      ██████╗ ██████╗ ███╗   ██╗███████╗██╗   ██╗██╗  ████████╗ █████╗ ███████╗                 ");
+        System.out.println(Ferramentas.GREENclaro+"───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────");
+        System.out.println(Ferramentas.RESET+"                    ██╗     ██╗███████╗████████╗ █████╗      ██████╗ ██████╗ ███╗   ██╗███████╗██╗   ██╗██╗  ████████╗ █████╗ ███████╗                 ");
         System.out.println("                    ██║     ██║██╔════╝╚══██╔══╝██╔══██╗    ██╔════╝██╔═══██╗████╗  ██║██╔════╝██║   ██║██║  ╚══██╔══╝██╔══██╗██╔════╝                 ");
         System.out.println("                    ██║     ██║███████╗   ██║   ███████║    ██║     ██║   ██║██╔██╗ ██║███████╗██║   ██║██║     ██║   ███████║███████╗                 ");
         System.out.println("                    ██║     ██║╚════██║   ██║   ██╔══██║    ██║     ██║   ██║██║╚██╗██║╚════██║██║   ██║██║     ██║   ██╔══██║╚════██║                 ");
         System.out.println("                    ███████╗██║███████║   ██║   ██║  ██║    ╚██████╗╚██████╔╝██║ ╚████║███████║╚██████╔╝███████╗██║   ██║  ██║███████║                 ");
         System.out.println("                    ╚══════╝╚═╝╚══════╝   ╚═╝   ╚═╝  ╚═╝     ╚═════╝ ╚═════╝ ╚═╝  ╚═══╝╚══════╝ ╚═════╝ ╚══════╝╚═╝   ╚═╝  ╚═╝╚══════╝                 ");
-        System.out.println("───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────");
-
-        System.out.println("───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────");
+        System.out.println(Ferramentas.GREENclaro+"───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────");
+        System.out.println(Ferramentas.RESET+" OPÇÕES");
+        System.out.println(Ferramentas.GREENclaro+"───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────"+Ferramentas.RESET);
         for(ConsultaModel consulta : consultas){
             System.out.println("Id: " + consulta.getIdConsulta());
             System.out.println("Paciente: " + consulta.getIdPaciente());
             System.out.println("Medico: " + consulta.getIdMedico());
             System.out.println("Horario: " + consulta.getHorarioConsulta());
             System.out.println("Endereço: " + consulta.getLocalEndereco());
-            System.out.println("───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────");
+            System.out.println(Ferramentas.GREENclaro+"───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────"+Ferramentas.RESET);
         }
     }
 
     @Override
     public void mostrarHistoricoConsultas(List<ConsultaModel> consultas) {
         if (consultas == null || consultas.isEmpty()) {
-            System.out.println("Nenhum histórico encontrado.");
+            System.err.println("Nenhum histórico encontrado.");
             return;
         }
-        System.out.println("───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────");
-        System.out.println("     ██╗  ██╗██╗███████╗████████╗ ██████╗ ██████╗ ██╗ ██████╗  ██████╗    ██████╗ ██████╗ ███╗   ██╗███████╗██╗   ██╗██╗  ████████╗ █████╗ ███████╗    ");
+        System.out.println(Ferramentas.GREENclaro+"───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────");
+        System.out.println(Ferramentas.RESET+"     ██╗  ██╗██╗███████╗████████╗ ██████╗ ██████╗ ██╗ ██████╗  ██████╗    ██████╗ ██████╗ ███╗   ██╗███████╗██╗   ██╗██╗  ████████╗ █████╗ ███████╗    ");
         System.out.println("     ██║  ██║██║██╔════╝╚══██╔══╝██╔═══██╗██╔══██╗██║██╔═══██╗██╔═══██╗  ██╔════╝██╔═══██╗████╗  ██║██╔════╝██║   ██║██║  ╚══██╔══╝██╔══██╗██╔════╝    ");
         System.out.println("     ███████║██║███████╗   ██║   ██║   ██║██████╔╝██║██║   ██║██║   ██║  ██║     ██║   ██║██╔██╗ ██║███████╗██║   ██║██║     ██║   ███████║███████╗    ");
         System.out.println("     ██╔══██║██║╚════██║   ██║   ██║   ██║██╔══██╗██║██║   ██║██║   ██║  ██║     ██║   ██║██║╚██╗██║╚════██║██║   ██║██║     ██║   ██╔══██║╚════██║    ");
         System.out.println("     ██║  ██║██║███████║   ██║   ╚██████╔╝██║  ██║██║╚██████╔╝╚██████╔╝  ╚██████╗╚██████╔╝██║ ╚████║███████║╚██████╔╝███████╗██║   ██║  ██║███████║    ");
         System.out.println("     ╚═╝  ╚═╝╚═╝╚══════╝   ╚═╝    ╚═════╝ ╚═╝  ╚═╝╚═╝ ╚═════╝  ╚═════╝    ╚═════╝ ╚═════╝ ╚═╝  ╚═══╝╚══════╝ ╚═════╝ ╚══════╝╚═╝   ╚═╝  ╚═╝╚══════╝    ");
-        System.out.println("───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────");
-
-        System.out.println("───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────");
+        System.out.println(Ferramentas.GREENclaro+"───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────"+Ferramentas.RESET);
+        System.out.println(" SEU HISTÓRICO");
+        System.out.println(Ferramentas.GREENclaro+"───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────");
         for (ConsultaModel c : consultas) {
-            System.out.println("ID: " + c.getIdConsulta());
+            System.out.println(Ferramentas.RESET+"ID: " + c.getIdConsulta());
             System.out.println("Paciente: " + c.getIdPaciente());
             System.out.println("Data/Hora: " + c.getHorarioConsulta());
             System.out.println("Local: " + c.getLocalEndereco());
-            System.out.println("───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────");
+            System.out.println(Ferramentas.GREENclaro+"───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────"+Ferramentas.RESET);
         }
     }
 
@@ -117,97 +117,101 @@ public class MenuMedicoConsoleView implements IMenuMedicoView {
             System.out.println("Nenhum histórico encontrado.");
             return;
         }
-        System.out.println("─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────");
-        System.out.println("  ██╗  ██╗██╗███████╗████████╗ ██████╗ ██████╗ ██╗ ██████╗  ██████╗     █████╗ ████████╗███████╗███╗   ██╗██████╗ ██╗███╗   ███╗███████╗███╗   ██╗████████╗ ██████╗  ");
+        System.out.println(Ferramentas.GREENclaro+"─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────");
+        System.out.println(Ferramentas.RESET+"  ██╗  ██╗██╗███████╗████████╗ ██████╗ ██████╗ ██╗ ██████╗  ██████╗     █████╗ ████████╗███████╗███╗   ██╗██████╗ ██╗███╗   ███╗███████╗███╗   ██╗████████╗ ██████╗  ");
         System.out.println("  ██║  ██║██║██╔════╝╚══██╔══╝██╔═══██╗██╔══██╗██║██╔═══██╗██╔═══██╗   ██╔══██╗╚══██╔══╝██╔════╝████╗  ██║██╔══██╗██║████╗ ████║██╔════╝████╗  ██║╚══██╔══╝██╔═══██╗ ");
         System.out.println("  ███████║██║███████╗   ██║   ██║   ██║██████╔╝██║██║   ██║██║   ██║   ███████║   ██║   █████╗  ██╔██╗ ██║██║  ██║██║██╔████╔██║█████╗  ██╔██╗ ██║   ██║   ██║   ██║ ");
         System.out.println("  ██╔══██║██║╚════██║   ██║   ██║   ██║██╔══██╗██║██║   ██║██║   ██║   ██╔══██║   ██║   ██╔══╝  ██║╚██╗██║██║  ██║██║██║╚██╔╝██║██╔══╝  ██║╚██╗██║   ██║   ██║   ██║ ");
         System.out.println("  ██║  ██║██║███████║   ██║   ╚██████╔╝██║  ██║██║╚██████╔╝╚██████╔╝   ██║  ██║   ██║   ███████╗██║ ╚████║██████╔╝██║██║ ╚═╝ ██║███████╗██║ ╚████║   ██║   ╚██████╔╝ ");
         System.out.println("  ╚═╝  ╚═╝╚═╝╚══════╝   ╚═╝    ╚═════╝ ╚═╝  ╚═╝╚═╝ ╚═════╝  ╚═════╝    ╚═╝  ╚═╝   ╚═╝   ╚══════╝╚═╝  ╚═══╝╚═════╝ ╚═╝╚═╝     ╚═╝╚══════╝╚═╝  ╚═══╝   ╚═╝    ╚═════╝  ");
-        System.out.println("─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────");
-
-        System.out.println("───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────");
+        System.out.println(Ferramentas.GREENclaro+"─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────"+Ferramentas.RESET);
+        System.out.println(" SEU HISTÓRICO");
+        System.out.println(Ferramentas.GREENclaro+"───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────"+Ferramentas.RESET);
         for (ConsultaModel c : historico) {
             System.out.println("ID: " + c.getIdConsulta());
             System.out.println("Paciente: " + c.getIdPaciente());
             System.out.println("Data/Hora: " + c.getHorarioConsulta());
             System.out.println("Local: " + c.getLocalEndereco());
-            System.out.println("───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────");
+            System.out.println(Ferramentas.GREENclaro+"───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────"+Ferramentas.RESET);
         }
     }
 
     @Override
     public void mostrarDadosConsultaCompleta(ConsultaModel consulta) {
-        System.out.println("───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────");
+        System.out.println(Ferramentas.GREENclaro+"───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────"+Ferramentas.RESET);
         System.out.println("                     ██████╗  █████╗ ██████╗  ██████╗ ███████╗     ██████╗ ██████╗ ███╗   ██╗███████╗██╗   ██╗██╗  ████████╗ █████╗                    ");
         System.out.println("                     ██╔══██╗██╔══██╗██╔══██╗██╔═══██╗██╔════╝    ██╔════╝██╔═══██╗████╗  ██║██╔════╝██║   ██║██║  ╚══██╔══╝██╔══██╗                   ");
         System.out.println("                     ██║  ██║███████║██║  ██║██║   ██║███████╗    ██║     ██║   ██║██╔██╗ ██║███████╗██║   ██║██║     ██║   ███████║                   ");
         System.out.println("                     ██║  ██║██╔══██║██║  ██║██║   ██║╚════██║    ██║     ██║   ██║██║╚██╗██║╚════██║██║   ██║██║     ██║   ██╔══██║                   ");
         System.out.println("                     ██████╔╝██║  ██║██████╔╝╚██████╔╝███████║    ╚██████╗╚██████╔╝██║ ╚████║███████║╚██████╔╝███████╗██║   ██║  ██║                   ");
         System.out.println("                     ╚═════╝ ╚═╝  ╚═╝╚═════╝  ╚═════╝ ╚══════╝     ╚═════╝ ╚═════╝ ╚═╝  ╚═══╝╚══════╝ ╚═════╝ ╚══════╝╚═╝   ╚═╝  ╚═╝                   ");
-        System.out.println("───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────");
-        System.out.println("───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────");
+        System.out.println(Ferramentas.GREENclaro+"───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────"+Ferramentas.RESET);
+        System.out.println(" DADOS");
+        System.out.println(Ferramentas.GREENclaro+"───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────"+Ferramentas.RESET);
         System.out.println("Id: " + consulta.getIdConsulta());
         System.out.println("Paciente: " + consulta.getIdPaciente());
         System.out.println("Medico: " + consulta.getIdMedico());
         System.out.println("Horario: " + consulta.getHorarioConsulta());
         System.out.println("Endereço: " + consulta.getLocalEndereco());
-        System.out.println("───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────");
+        System.out.println(Ferramentas.GREENclaro+"───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────"+Ferramentas.RESET);
 
     }
 
     @Override
     public void mostrarDadosPacienteCompleto(PacienteModel paciente) {
-        System.out.println("───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────");
-        System.out.println("                           ██████╗  █████╗ ██████╗  ██████╗ ███████╗   ██████╗  █████╗  ██████╗██╗███████╗███╗   ██╗████████╗███████╗                            ");
+        System.out.println(Ferramentas.GREENclaro+"───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────");
+        System.out.println(Ferramentas.RESET+"                           ██████╗  █████╗ ██████╗  ██████╗ ███████╗   ██████╗  █████╗  ██████╗██╗███████╗███╗   ██╗████████╗███████╗                            ");
         System.out.println("                           ██╔══██╗██╔══██╗██╔══██╗██╔═══██╗██╔════╝   ██╔══██╗██╔══██╗██╔════╝██║██╔════╝████╗  ██║╚══██╔══╝██╔════╝                            ");
         System.out.println("                           ██║  ██║███████║██║  ██║██║   ██║███████╗   ██████╔╝███████║██║     ██║█████╗  ██╔██╗ ██║   ██║   █████╗                              ");
         System.out.println("                           ██║  ██║██╔══██║██║  ██║██║   ██║╚════██║   ██╔═══╝ ██╔══██║██║     ██║██╔══╝  ██║╚██╗██║   ██║   ██╔══╝                              ");
         System.out.println("                           ██████╔╝██║  ██║██████╔╝╚██████╔╝███████║   ██║     ██║  ██║╚██████╗██║███████╗██║ ╚████║   ██║   ███████╗                            ");
         System.out.println("                           ╚═════╝ ╚═╝  ╚═╝╚═════╝  ╚═════╝ ╚══════╝   ╚═╝     ╚═╝  ╚═╝ ╚═════╝╚═╝╚══════╝╚═╝  ╚═══╝   ╚═╝   ╚══════╝                            ");
-        System.out.println("───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────");
-        System.out.println("───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────");
+        System.out.println(Ferramentas.GREENclaro+"───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────"+ Ferramentas.RESET);
+        System.out.println(" DADOS");
+        System.out.println(Ferramentas.GREENclaro+"───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────"+ Ferramentas.RESET);
         System.out.println("Id: " + paciente.getIdUsuario());
         System.out.println("Nome: " + paciente.getNomeUsuario());
         System.out.println("Telefone: " + paciente.getTelefoneUsuario());
         System.out.println("Cpf: " + paciente.getCpfUsuario());
         System.out.println("Email: " + paciente.getEmailUsuario());
         System.out.println("Endereço: " + paciente.getEnderecoPaciente());
-        System.out.println("───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────");
+        System.out.println(Ferramentas.GREENclaro+"───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────"+Ferramentas.RESET);
 
     }
 
     @Override
     public void mostrarDadosMedico(MedicoModel medico) {
-        System.out.println("───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────");
-        System.out.println("                         ██████╗  █████╗ ██████╗  ██████╗ ███████╗  ███╗   ███╗███████╗██████╗ ██╗ ██████╗ ██████╗ ███████╗                            ");
+        System.out.println(Ferramentas.GREENclaro+"───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────");
+        System.out.println(Ferramentas.RESET+"                         ██████╗  █████╗ ██████╗  ██████╗ ███████╗  ███╗   ███╗███████╗██████╗ ██╗ ██████╗ ██████╗ ███████╗                            ");
         System.out.println("                         ██╔══██╗██╔══██╗██╔══██╗██╔═══██╗██╔════╝  ████╗ ████║██╔════╝██╔══██╗██║██╔════╝██╔═══██╗██╔════╝                            ");
         System.out.println("                         ██║  ██║███████║██║  ██║██║   ██║███████╗  ██╔████╔██║█████╗  ██║  ██║██║██║     ██║   ██║███████╗                            ");
         System.out.println("                         ██║  ██║██╔══██║██║  ██║██║   ██║╚════██║  ██║╚██╔╝██║██╔══╝  ██║  ██║██║██║     ██║   ██║╚════██║                            ");
         System.out.println("                         ██████╔╝██║  ██║██████╔╝╚██████╔╝███████║  ██║ ╚═╝ ██║███████╗██████╔╝██║╚██████╗╚██████╔╝███████║                            ");
         System.out.println("                         ╚═════╝ ╚═╝  ╚═╝╚═════╝  ╚═════╝ ╚══════╝  ╚═╝     ╚═╝╚══════╝╚═════╝ ╚═╝ ╚═════╝ ╚═════╝ ╚══════╝                            ");
-        System.out.println("───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────");
-        System.out.println("───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────");
+        System.out.println(Ferramentas.GREENclaro+"───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────"+ Ferramentas.RESET);
+        System.out.println(" DADOS");
+        System.out.println(Ferramentas.GREENclaro+"───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────"+ Ferramentas.RESET);
         System.out.println("Id: " + medico.getIdUsuario());
         System.out.println("Nome: " + medico.getNomeUsuario());
         System.out.println("Telefone: " + medico.getTelefoneUsuario());
         System.out.println("Cpf: " + medico.getCpfUsuario());
         System.out.println("Email: " + medico.getEmailUsuario());
         System.out.println("Especialidade: " + medico.getEspecialidadeMedico());
-        System.out.println("───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────");
+        System.out.println(Ferramentas.GREENclaro+"───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────"+ Ferramentas.RESET);
     }
 
     @Override
     public void mostrarProntuario(ProntuarioModel prontuario) {
-        System.out.println("───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────");
-        System.out.println("             ██████╗  █████╗ ██████╗  ██████╗ ███████╗   ██████╗ ██████╗  ██████╗ ███╗   ██╗████████╗██╗   ██╗ █████╗ ██████╗ ██╗ ██████╗              ");
+        System.out.println(Ferramentas.GREENclaro+"───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────");
+        System.out.println(Ferramentas.RESET+"             ██████╗  █████╗ ██████╗  ██████╗ ███████╗   ██████╗ ██████╗  ██████╗ ███╗   ██╗████████╗██╗   ██╗ █████╗ ██████╗ ██╗ ██████╗              ");
         System.out.println("             ██╔══██╗██╔══██╗██╔══██╗██╔═══██╗██╔════╝   ██╔══██╗██╔══██╗██╔═══██╗████╗  ██║╚══██╔══╝██║   ██║██╔══██╗██╔══██╗██║██╔═══██╗             ");
         System.out.println("             ██║  ██║███████║██║  ██║██║   ██║███████╗   ██████╔╝██████╔╝██║   ██║██╔██╗ ██║   ██║   ██║   ██║███████║██████╔╝██║██║   ██║             ");
         System.out.println("             ██║  ██║██╔══██║██║  ██║██║   ██║╚════██║   ██╔═══╝ ██╔══██╗██║   ██║██║╚██╗██║   ██║   ██║   ██║██╔══██║██╔══██╗██║██║   ██║             ");
         System.out.println("             ██████╔╝██║  ██║██████╔╝╚██████╔╝███████║   ██║     ██║  ██║╚██████╔╝██║ ╚████║   ██║   ╚██████╔╝██║  ██║██║  ██║██║╚██████╔╝             ");
         System.out.println("             ╚═════╝ ╚═╝  ╚═╝╚═════╝  ╚═════╝ ╚══════╝   ╚═╝     ╚═╝  ╚═╝ ╚═════╝ ╚═╝  ╚═══╝   ╚═╝    ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝╚═╝ ╚═════╝              ");
-        System.out.println("───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────");
-        System.out.println("───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────");
+        System.out.println(Ferramentas.GREENclaro+"───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────"+ Ferramentas.RESET);
+        System.out.println(" DADOS");
+        System.out.println(Ferramentas.GREENclaro+"───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────"+ Ferramentas.RESET);
         System.out.println("Id: " + prontuario.getIdProntuario());
         System.out.println("Medico: " + prontuario.getIdMedico());
         System.out.println("Paciente: " + prontuario.getIdPaciente());
@@ -217,13 +221,13 @@ public class MenuMedicoConsoleView implements IMenuMedicoView {
         System.out.println("Prescrição medica: " + prontuario.getPrescricaoMedica());
         System.out.println("Data: " + prontuario.getDataRegistro());
         System.out.println("Sintomas: " + prontuario.getSintomas());
-        System.out.println("───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────");
+        System.out.println(Ferramentas.GREENclaro+"───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────"+ Ferramentas.RESET);
     }
 
     @Override
     public String lerTelefone() {
         System.out.println("───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────");
-        System.out.print(" ➤igite o telefone: ");
+        System.out.print(Ferramentas.YELLOW+" ➤"+Ferramentas.RESET+" igite o telefone: ");
 
         return Ferramentas.lString().trim();
     }
@@ -231,7 +235,7 @@ public class MenuMedicoConsoleView implements IMenuMedicoView {
     @Override
     public String lerSenha(){
         System.out.println("───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────");
-        System.out.println(" ➤ Digite a senha: ");
+        System.out.println(Ferramentas.YELLOW+" ➤"+Ferramentas.RESET+" Digite a senha: ");
 
         return Ferramentas.lString().trim();
     }
@@ -239,7 +243,7 @@ public class MenuMedicoConsoleView implements IMenuMedicoView {
     @Override
     public String lerEmail() {
         System.out.println("───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────");
-        System.out.print(" ➤ Digite o email: ");
+        System.out.print(Ferramentas.YELLOW+" ➤"+Ferramentas.RESET+" Digite o email: ");
 
         return Ferramentas.lString().trim();
     }
@@ -247,7 +251,7 @@ public class MenuMedicoConsoleView implements IMenuMedicoView {
     @Override
     public String lerNomeCompleto() {
         System.out.println("───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────");
-        System.out.print(" ➤ Digite o nome");
+        System.out.print(Ferramentas.YELLOW+" ➤"+Ferramentas.RESET+" Digite o nome");
 
         return Ferramentas.lString();
     }
@@ -255,7 +259,7 @@ public class MenuMedicoConsoleView implements IMenuMedicoView {
     @Override
     public String lerEspecialidade() {
         System.out.println("───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────");
-        System.out.println(" ➤ Digite a especilidade: ");
+        System.out.println(Ferramentas.YELLOW+" ➤"+Ferramentas.RESET+" Digite a especilidade: ");
 
         return Ferramentas.lString();
     }
@@ -264,7 +268,7 @@ public class MenuMedicoConsoleView implements IMenuMedicoView {
     @Override
     public int lerIdConsulta() {
         System.out.println("───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────");
-        System.out.printf(" ➤ Digite o id da consulta: ");
+        System.out.printf(Ferramentas.YELLOW+" ➤"+Ferramentas.RESET+" Digite o id da consulta: ");
 
         return Ferramentas.lInteiro();
     }
@@ -272,7 +276,7 @@ public class MenuMedicoConsoleView implements IMenuMedicoView {
     @Override
     public String lerDiagnostico() {
         System.out.println("───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────");
-        System.out.printf(" ➤ Digite o diagnostico: ");
+        System.out.printf(Ferramentas.YELLOW+" ➤"+Ferramentas.RESET+" Digite o diagnostico: ");
 
         return Ferramentas.lString();
     }
@@ -280,7 +284,7 @@ public class MenuMedicoConsoleView implements IMenuMedicoView {
     @Override
     public String lerPrescricao() {
         System.out.println("───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────");
-        System.out.printf(" ➤ Digite a prescricao: ");
+        System.out.printf(Ferramentas.YELLOW+" ➤"+Ferramentas.RESET+" Digite a prescricao: ");
 
         return Ferramentas.lString();
     }
@@ -288,7 +292,7 @@ public class MenuMedicoConsoleView implements IMenuMedicoView {
     @Override
     public String lerObservacoes() {
         System.out.println("───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────");
-        System.out.printf(" ➤ Digite as observações: ");
+        System.out.printf(Ferramentas.YELLOW+" ➤"+Ferramentas.RESET+" Digite as observações: ");
 
         return Ferramentas.lString();
     }
@@ -296,7 +300,7 @@ public class MenuMedicoConsoleView implements IMenuMedicoView {
     @Override
     public String lerCpf() {
         System.out.println("───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────");
-        System.out.printf(" ➤ Digite o cpf: ");
+        System.out.printf(Ferramentas.YELLOW+" ➤"+Ferramentas.RESET+" Digite o cpf: ");
 
         return Ferramentas.lString();
     }
@@ -304,7 +308,7 @@ public class MenuMedicoConsoleView implements IMenuMedicoView {
     @Override
     public String lerInformacoesIniciais() {
         System.out.println("───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────");
-        System.out.printf(" ➤ Digite as informações iniciais: ");
+        System.out.printf(Ferramentas.YELLOW+" ➤"+Ferramentas.RESET+" Digite as informações iniciais: ");
 
         return Ferramentas.lString();
     }
@@ -312,7 +316,7 @@ public class MenuMedicoConsoleView implements IMenuMedicoView {
     @Override
     public String lerInformacaoAdicional() {
         System.out.println("───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────");
-        System.out.printf(" ➤ Digite as informações adicionais: ");
+        System.out.printf(Ferramentas.YELLOW+" ➤"+Ferramentas.RESET+" Digite as informações adicionais: ");
 
         return Ferramentas.lString();
     }
@@ -320,7 +324,7 @@ public class MenuMedicoConsoleView implements IMenuMedicoView {
     @Override
     public int lerIdMedico() {
         System.out.println("───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────");
-        System.out.printf(" ➤ Digite o id do medico desejado: ");
+        System.out.printf(Ferramentas.YELLOW+" ➤"+Ferramentas.RESET+" Digite o id do medico desejado: ");
 
         return Ferramentas.lInteiro();
     }
@@ -328,29 +332,30 @@ public class MenuMedicoConsoleView implements IMenuMedicoView {
     @Override
     public String lerTipoExame() {
         System.out.println("───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────");
-        System.out.printf(" ➤ Digite o tipo de exame: ");
+        System.out.printf(Ferramentas.YELLOW+" ➤"+Ferramentas.RESET+" Digite o tipo de exame: ");
 
         return Ferramentas.lString();
     }
 
     @Override
     public void lerDadosAtualizacaoMedico(MedicoModel medico) {
-        System.out.println("───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────");
-        System.out.println("             ██████╗  █████╗ ██████╗  ██████╗ ███████╗   █████╗ ████████╗██╗   ██╗ █████╗ ██╗     ██╗███████╗ █████╗  ██████╗ ███████╗                 ");
+        System.out.println(Ferramentas.GREENclaro+"───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────");
+        System.out.println(Ferramentas.RESET+"             ██████╗  █████╗ ██████╗  ██████╗ ███████╗   █████╗ ████████╗██╗   ██╗ █████╗ ██╗     ██╗███████╗ █████╗  ██████╗ ███████╗                 ");
         System.out.println("             ██╔══██╗██╔══██╗██╔══██╗██╔═══██╗██╔════╝  ██╔══██╗╚══██╔══╝██║   ██║██╔══██╗██║     ██║    ██╔╝██╔══██╗██╔═══██╗██╔════╝                 ");
         System.out.println("             ██║  ██║███████║██║  ██║██║   ██║███████╗  ███████║   ██║   ██║   ██║███████║██║     ██║   ██╔╝ ███████║██║   ██║███████╗                 ");
         System.out.println("             ██║  ██║██╔══██║██║  ██║██║   ██║╚════██║  ██╔══██║   ██║   ██║   ██║██╔══██║██║     ██║  ██╔╝  ██╔══██║██║   ██║╚════██║                 ");
         System.out.println("             ██████╔╝██║  ██║██████╔╝╚██████╔╝███████║  ██║  ██║   ██║   ╚██████╔╝██║  ██║███████╗██║███████╗██║  ██║╚██████╔╝███████║                 ");
         System.out.println("             ╚═════╝ ╚═╝  ╚═╝╚═════╝  ╚═════╝ ╚══════╝  ╚═╝  ╚═╝   ╚═╝    ╚═════╝ ╚═╝  ╚═╝╚══════╝╚═╝╚══════╝╚═╝  ╚═╝ ╚═════╝ ╚══════╝                 ");
-        System.out.println("───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────");
-        System.out.println("───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────");
+        System.out.println(Ferramentas.GREENclaro+"───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────");
+        System.out.println(Ferramentas.RESET+" DADOS");
+        System.out.println(Ferramentas.GREENclaro+"───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────"+ Ferramentas.RESET);
         System.out.println("Id: " + medico.getIdUsuario());
         System.out.println("Nome: " + medico.getNomeUsuario());
         System.out.println("Telefone: " + medico.getTelefoneUsuario());
         System.out.println("Cpf: " + medico.getCpfUsuario());
         System.out.println("Email: " + medico.getEmailUsuario());
         System.out.println("Especialidade: " + medico.getEspecialidadeMedico());
-        System.out.println("───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────");
+        System.out.println(Ferramentas.GREENclaro+"───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────"+ Ferramentas.RESET);
     }
 
     @Override
@@ -363,7 +368,7 @@ public class MenuMedicoConsoleView implements IMenuMedicoView {
     @Override
     public String lerData(){
         System.out.println("───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────");
-        System.out.print(" ➤ Digite a data (dd/MM/yyyy): ");
+        System.out.print(Ferramentas.YELLOW+" ➤"+Ferramentas.RESET+" Digite a data (dd/MM/yyyy): ");
 
         return Ferramentas.lString().trim();
     }
@@ -371,7 +376,7 @@ public class MenuMedicoConsoleView implements IMenuMedicoView {
     @Override
     public String lerSintomas(){
         System.out.println("───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────");
-        System.out.printf(" ➤ Digite os sintomas: ");
+        System.out.printf(Ferramentas.YELLOW+" ➤"+Ferramentas.RESET+" Digite os sintomas: ");
 
         return Ferramentas.lString();
     }
