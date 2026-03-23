@@ -48,4 +48,20 @@ public class HospitalService {
         }
     }
 
+    public HospitalModel buscarHospitalDoMedico(int idMedico) throws HospitalException{
+        if(idMedico <= 0){
+            throw new HospitalException("ID do medico invalido");
+        }
+        try {
+            List<HospitalModel> hospitais = hospitalDAO.buscarHospitaisPorMedico(idMedico);
+            if(hospitais.isEmpty()){
+                throw new HospitalException("Nenhum hospital encotrado para o medico informado");
+            }
+
+            return hospitais.get(0);
+        } catch (SQLException e) {
+            throw new HospitalException("Erro ao buscar hospital do medico");
+        }
+    }
+
 }

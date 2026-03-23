@@ -1,5 +1,6 @@
 package org.example.main;
 
+import org.example.enums.Destinos;
 import org.example.roteador.Roteador;
 
 public class Main {
@@ -8,7 +9,7 @@ public class Main {
         try {
             Roteador roteador = new Roteador();
 
-            roteador.irPara("menuInicial");
+            roteador.irPara(Destinos.MENU_INICIAL, null);
         }catch (Exception e){
             System.out.println("Erro fatal no sistema!");
         }

@@ -21,6 +21,10 @@ public class HospitalModel {
         this.agendaHospital = agendaHospital;
     }
 
+    public HospitalModel(){
+
+    }
+
     public int getIdHospital() {
         return idHospital;
     }

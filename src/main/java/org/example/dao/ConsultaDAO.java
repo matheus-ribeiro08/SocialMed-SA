@@ -4,6 +4,7 @@ import org.example.database.ConnectionFactory;
 import org.example.model.ConsultaModel;
 
 import java.sql.*;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -198,6 +199,34 @@ public class ConsultaDAO {
             System.err.println("Erro ao exibir historico de Consulta");
         }
         return historicoConsultas;
+    }
+
+    public List<ConsultaModel> listarConsultasPorMedicoEData(int idMedico, LocalDate data)throws SQLException{
+
+        String sql = "SELECT * FROM Consultas WHERE id_Medico = ? AND DATE(horario_Consulta) = ?";
+        List<ConsultaModel> consultas = new ArrayList<>();
+        try(Connection conn = ConnectionFactory.getConnection();
+            PreparedStatement stmt = conn.prepareStatement(sql)){
+            stmt.setInt(1, idMedico);
+            stmt.setDate(2, java.sql.Date.valueOf(data));
+            try(ResultSet rs = stmt.executeQuery()){
+                while (rs.next()){
+                    consultas.add(extrairConsulta(rs));
+                }
+        }
+        }
+        return consultas;
+    }
+
+    public ConsultaModel extrairConsulta(ResultSet rs) throws SQLException{
+        int idConsulta = rs.getInt("id_Consultas");
+        int idHospital = rs.getInt("id_Hospital");
+        String localConsulta = rs.getString("local_Consulta");
+        int idPaciente = rs.getInt("id_Paciente");
+        int idMedico = rs.getInt("id_Medico");
+        LocalDateTime horario = rs.getTimestamp("horario_Consulta").toLocalDateTime();
+
+        return new ConsultaModel(idConsulta, idHospital, localConsulta, idPaciente, idMedico, horario);
     }
 
     public ConsultaModel buscarPorId(int idConsulta){

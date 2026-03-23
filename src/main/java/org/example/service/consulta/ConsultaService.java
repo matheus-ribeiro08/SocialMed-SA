@@ -11,10 +11,13 @@ import org.example.model.MedicoModel;
 import org.example.model.PacienteModel;
 
 import java.sql.SQLException;
-import java.time.DateTimeException;
-import java.time.LocalDateTime;
+import java.time.*;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 public class ConsultaService {
@@ -63,6 +66,69 @@ public class ConsultaService {
         }
         return pacienteDAO.buscarPorId(idPaciente);
     }
+
+    public List<ConsultaModel> buscarConsultasPorPaciente(int idPaciente) throws SQLException{
+        if (idPaciente <= 0){
+            throw new IllegalArgumentException("Id do paciente inválido");
+        }
+        return consultaDAO.listarConsultasPorPaciente(idPaciente);
+    }
+
+    public List<String> buscarHorariosDisponiveis(int idMedico, String dataStr){
+
+        if (idMedico <= 0){
+            throw new ConsultaException("Id do medico invalido");
+        }
+        if(dataStr == null || dataStr.trim().isEmpty()){
+            throw new ConsultaException("Data nao informada");
+        }
+
+        LocalDate data;
+
+        try {
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+            data = LocalDate.parse(dataStr, formatter);
+        }catch (DateTimeParseException e){
+            throw new ConsultaException("Formato de data invalido");
+        }
+
+        if(data.isBefore(LocalDate.now())){
+            throw new ConsultaException("Nao é possivel agendar consultas em datas passadas");
+        }
+
+        List<ConsultaModel> consultaDoDia;
+        try {
+            consultaDoDia = consultaDAO.listarConsultasPorMedicoEData(idMedico, data);
+        }catch (SQLException e){
+            throw new ConsultaException("Erro ao buscar horarios ja disponiveis");
+        }
+
+        Set<String> horariosOcupados = new HashSet<>();
+        for (ConsultaModel c : consultaDoDia){
+            LocalDateTime horario = c.getHorarioConsulta();
+            if(horario.toLocalDate().equals(data)){
+                String horarioStr = horario.format(DateTimeFormatter.ofPattern("HH:mm"));
+                horariosOcupados.add(horarioStr);
+            }
+        }
+
+        List<String> horariosDisponiveis = new ArrayList<>();
+        LocalTime inicio = LocalTime.of(8, 0);
+        LocalTime fim = LocalTime.of(18, 0);
+        Duration intervalo = Duration.ofMinutes(30);
+
+        LocalTime horarioAtual = inicio;
+        while (horarioAtual.isBefore(fim)) {
+            String horarioStr = horarioAtual.format(DateTimeFormatter.ofPattern("HH:mm"));
+            if (!horariosOcupados.contains(horarioStr)) {
+                horariosDisponiveis.add(horarioStr);
+            }
+            horarioAtual = horarioAtual.plus(intervalo);
+        }
+
+        return horariosDisponiveis;
+    }
+
 
     public void agendarConsulta(ConsultaModel consulta) throws Exception {
 

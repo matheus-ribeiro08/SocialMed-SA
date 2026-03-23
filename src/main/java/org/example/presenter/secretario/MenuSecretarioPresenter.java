@@ -1,5 +1,6 @@
 package org.example.presenter.secretario;
 
+import org.example.enums.Destinos;
 import org.example.enums.TipoUsuario;
 import org.example.model.*;
 import org.example.roteador.Roteador;
@@ -79,7 +80,7 @@ public class MenuSecretarioPresenter {
                         break;
                     case 0:
                         executando = false;
-                        roteador.irPara(Roteador.Destino.MENU_INICIAL, null);
+                        roteador.irPara(Destinos.MENU_INICIAL, null);
                         break;
                     default:
                         view.mostrarMensagemErro("Opção inválida");

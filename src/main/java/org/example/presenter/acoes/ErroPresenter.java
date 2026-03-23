@@ -1,5 +1,6 @@
 package org.example.presenter.acoes;
 
+import org.example.enums.Destinos;
 import org.example.roteador.Roteador;
 
 public class ErroPresenter {
@@ -20,6 +21,6 @@ public class ErroPresenter {
 
         }
 
-        roteador.irPara(Roteador.Destino.MENU_INICIAL, null);
+        roteador.irPara(Destinos.MENU_INICIAL, null);
     }
 }

@@ -19,6 +19,7 @@ import org.example.view.cadastro.CadastroViewConsole;
 import org.example.view.login.LoginViewConsole;
 import org.example.view.medico.MenuMedicoConsoleView;
 import org.example.view.paciente.MenuPacienteConsoleView;
+import org.example.view.secretario.MenuSecretarioConsoleView;
 import org.example.viewInterface.viewInterfaceAdm.IMenuAdminView;
 
 public class PresenterFactory {
@@ -51,7 +52,7 @@ public class PresenterFactory {
     }
 
     public MenuSecretarioPresenter criarMenuSecretarioPresenter(SecretarioModel secretario){
-        return new MenuSecretarioPresenter(roteador, secretario, new));
+        return new MenuSecretarioPresenter(roteador, secretario, new MenuSecretarioConsoleView());
     }
 
     public MenuMedicoPresenter criarMenuMedicoPresenter(MedicoModel medico){

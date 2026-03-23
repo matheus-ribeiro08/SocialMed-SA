@@ -72,4 +72,38 @@ public class HospitalDAO
         return hospitalModel;
     }
 
+    public List<HospitalModel> buscarHospitaisPorMedico(int idMedico) throws SQLException{
+        String sql = "SELECT h. * FROM Hospital h" +
+                "INNER JOIN Medico_Hospital mh ON h.id_Hospital = mh.id_Hospital" +
+                "WHERE mh.id_Medico = ?";
+
+        List<HospitalModel> hospitais = new ArrayList<>();
+        try(Connection conn = ConnectionFactory.getConnection();
+            PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setInt(1, idMedico);
+            try(ResultSet rs = stmt.executeQuery()) {
+                while (rs.next()){
+                    hospitais.add(extrairHospital(rs));
+                }
+            }
+
+        }
+        return hospitais;
+    }
+
+    private HospitalModel extrairHospital(ResultSet rs) throws SQLException{
+        HospitalModel hospital = new HospitalModel();
+        hospital.setIdHospital(rs.getInt("id_Hospital"));
+        hospital.setCnpjHospital(rs.getString("CNPJ_Hospital"));
+        hospital.setEnderecoHospital(rs.getString("endereco_Hospital"));
+        hospital.setQuantPessoasHospital(rs.getInt("quantidade_Pessoas"));
+        hospital.setNomeHospital(rs.getString("nome_Hospital"));
+        hospital.setQuantidadeSalasHopital(rs.getInt("quantidadeSalas_Hospital"));
+        //hospital.setAgendaHospital();
+        //Ainda nao implementado no banco
+        return hospital;
+
+    }
+
 }

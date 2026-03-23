@@ -5,6 +5,7 @@ import org.example.enums.TipoUsuario;
 import org.example.model.*;
 import org.example.roteador.Roteador;
 import org.example.service.consulta.ConsultaService;
+import org.example.service.hospital.HospitalService;
 import org.example.service.medico.MedicoService;
 import org.example.service.paciente.PacienteService;
 import org.example.service.prontuario.ProntuarioService;
@@ -12,6 +13,8 @@ import org.example.utils.Ferramentas;
 import org.example.viewInterface.viewInterfacePaciente.IMenuPacienteView;
 
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 public class MenuPacientePresenter {
@@ -23,6 +26,7 @@ public class MenuPacientePresenter {
     private final PacienteService pacienteService;
     private final MedicoService medicoService;
     private final ProntuarioService prontuarioService;
+    private final HospitalService hospitalService;
 
     public MenuPacientePresenter(Roteador roteador, PacienteModel paciente, IMenuPacienteView view){
         this.roteador = roteador;
@@ -32,6 +36,7 @@ public class MenuPacientePresenter {
         this.pacienteService = new PacienteService();
         this.medicoService = new MedicoService();
         this.prontuarioService = new ProntuarioService();
+        this.hospitalService = new HospitalService();
     }
 
     public void iniciar() {
@@ -96,7 +101,7 @@ public class MenuPacientePresenter {
         view.mostrarTitulo("Minhas consultas");
 
         try {
-            List<ConsultaModel> consultas = consultaService.buscarConsultaPorPaciente(paciente.getIdPaciente());
+            List<ConsultaModel> consultas = consultaService.buscarConsultasPorPaciente(paciente.getIdPaciente());
 
             if(consultas.isEmpty()){
                 view.mostrarMensagemInfo("Nenhuma consulta agendada");
@@ -119,6 +124,7 @@ public class MenuPacientePresenter {
 
             if(medicos.isEmpty()){
                 view.mostrarMensagemInfo("Nenhum medico encontrado para esta especialidade");
+                return;
             }
 
             view.mostrarListaMedicos(medicos);
@@ -132,8 +138,16 @@ public class MenuPacientePresenter {
             }
 
             String data = view.lerData();
-            List<String> horarios = consultaService.buscarHorariosDisponiveis(medico.getIdMedico());
-            String horario = view.selecionarHorario(horarios);
+            List<String> horarios = consultaService.buscarHorariosDisponiveis(medico.getIdMedico(), data);
+
+            if(horarios.isEmpty()){
+                view.mostrarMensagemInfo("Nenhum horario disponivel para esta data");
+                return;
+            }
+
+            String horarioStr = view.selecionarHorario(horarios);
+            LocalDateTime horarioConsulta = consultaService.converterStringParaDateTime(data, horarioStr);
+
             if(horarios.isEmpty()){
                 view.mostrarMensagemInfo("Nenhum horario disponivel para esta data");
                 return;
@@ -146,18 +160,15 @@ public class MenuPacientePresenter {
             ConsultaModel consulta = new ConsultaModel();
             consulta.setIdMedico(medico.getIdMedico());
             consulta.setIdPaciente(paciente.getIdPaciente());
-            consulta.setIdHospital(hospital.getIdHospital);
-            consulta.setLocalEndereco(hospital.getEnderecoHospital);
-            consulta.setHorarioConsulta(horario);
+            consulta.setIdHospital(hospital.getIdHospital());
+            consulta.setLocalEndereco(hospital.getEnderecoHospital());
+            consulta.setHorarioConsulta(horarioConsulta);
             
-            ConsultaModel consulta = consultaService.agendarConsulta();
+            consultaService.agendarConsulta(consulta);
 
-            if(consulta != null){
-                view.mostrarMensagemSucesso("Consulta agendada com sucesso!");
-                view.mostrarDetalhesConsulta(consulta);
-            }else{
-                view.mostrarMensagemErro("Erro ao agendar consulta");
-            }
+            view.mostrarMensagemSucesso("Consulta agendada com sucesso!");
+            view.mostrarDetalhesConsulta(consulta);
+
         }catch (Exception e){
             view.mostrarMensagemErro("Erro ao agendar consulta");
         }
@@ -167,7 +178,7 @@ public class MenuPacientePresenter {
         view.mostrarTitulo("Cancelar consulta");
 
         try {
-            List<ConsultaModel> consultas = consultaService.buscarConsultaPorPaciente(paciente.getIdPaciente());
+            List<ConsultaModel> consultas = consultaService.buscarConsultasPorPaciente(paciente.getIdPaciente());
 
             if(consultas.isEmpty()){
                 view.mostrarMensagemInfo("Nenhumna consulta ativa para cancelar");
@@ -208,18 +219,15 @@ public class MenuPacientePresenter {
     private void acessarProntuario(){
         view.mostrarTitulo("Meu prontuario");
 
-
         try {
-            List<ProntuarioModel> prontuarios = prontuarioService.buscarPorPaciente(paciente.getIdPaciente());
+            ProntuarioModel prontuario = prontuarioService.buscarPorPaciente(paciente.getIdPaciente());
 
-            if(prontuarios == null || prontuarios.isEmpty()){
+            if(prontuario == null){
                 view.mostrarMensagemInfo("Voce ainda nao possui prontuario");
                 return;
             }
 
-            for(ProntuarioModel prontuario : prontuarios){
-                view.mostrarProntuario(prontuario);
-            }
+            view.mostrarProntuario(prontuario);
 
         }catch (Exception e){
             view.mostrarMensagemErro("Erro ao acessar prontuario");
@@ -230,7 +238,7 @@ public class MenuPacientePresenter {
         view.mostrarTitulo("Historico consultas");
 
         try {
-            List<ConsultaModel> historico = consultaService.buscarHistoricoCompletoPaciente(paciente.getIdPaciente());
+            List<ConsultaModel> historico = consultaService.listarHistoricoConsultaPaciente(paciente.getIdPaciente());
 
             if(historico.isEmpty()){
                 view.mostrarMensagemInfo("Nenhum historico de consultas encontrado");
@@ -282,7 +290,7 @@ public class MenuPacientePresenter {
         try {
             String especialidade = view.lerEspecialidade();
 
-            List<MedicoModel> medicos = medicoService.buscarMedicosPorEspecialidade(especialidade);
+            List<MedicoModel> medicos = medicoService.buscarMedicoPorEspecialidade(especialidade);
 
             if(medicos.isEmpty()){
                 view.mostrarMensagemInfo("Nenhum medico encontrado para a especialidade");

@@ -1,5 +1,6 @@
 package org.example.presenter.cadastro;
 
+import org.example.enums.Destinos;
 import org.example.enums.TipoUsuario;
 import org.example.exception.*;
 import org.example.model.PacienteModel;
@@ -44,7 +45,7 @@ public class CadastrarUsuarioPresenter {
                 pacienteService.cadastrar(paciente);
 
                 System.out.println("Cadastro realizado com sucesso!");
-                roteadorCadastro.irPara(Roteador.Destino.LOGIN, null);
+                roteadorCadastro.irPara(Destinos.LOGIN, null);
 
                 cadastrando = false;
             } catch (Exception e) {
@@ -53,7 +54,7 @@ public class CadastrarUsuarioPresenter {
                 if (perguntarTentarNovamente()) {
                     iniciarCadastro();
                 } else {
-                    roteadorCadastro.irPara(Roteador.Destino.LOGIN, null);
+                    roteadorCadastro.irPara(Destinos.LOGIN, null);
                     cadastrando = false;
                 }
             }

@@ -1,5 +1,6 @@
 package org.example.presenter.login;
 
+import org.example.enums.Destinos;
 import org.example.enums.TipoUsuario;
 import org.example.exception.EmailInvalido;
 import org.example.exception.SenhaInvalida;
@@ -35,19 +36,19 @@ public class LoginUsuarioPresenter {
 
             switch (tipo){
                 case SECRETARIO:{
-                    roteadorCadastro.irPara(Roteador.Destino.MENU_SECRETARIO, usuario);
+                    roteadorCadastro.irPara(Destinos.MENU_SECRETARIO, usuario);
                     break;
                 }
                 case MEDICO:{
-                    roteadorCadastro.irPara(Roteador.Destino.MENU_MEDICO, usuario);
+                    roteadorCadastro.irPara(Destinos.MENU_MEDICO, usuario);
                     break;
                 }
                 case ADM:{
-                    roteadorCadastro.irPara(Roteador.Destino.MENU_ADMIN, usuario);
+                    roteadorCadastro.irPara(Destinos.MENU_ADMIN, usuario);
                     break;
                 }
                 case PACIENTE:{
-                    roteadorCadastro.irPara(Roteador.Destino.MENU_PACIENTE, usuario);
+                    roteadorCadastro.irPara(Destinos.MENU_PACIENTE, usuario);
                     break;
                 }
                 default:{
