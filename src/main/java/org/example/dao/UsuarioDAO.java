@@ -1,6 +1,7 @@
 package org.example.dao;
 
 import org.example.database.ConnectionFactory;
+import org.example.enums.TipoUsuario;
 import org.example.model.MedicoModel;
 import org.example.model.UsuarioModel;
 
@@ -36,7 +37,7 @@ public class UsuarioDAO
     }
     public boolean cadastrarUsuario(UsuarioModel usuario)
     {
-        String sql = "INSERT INTO Usuario (nome_usuario, email_Usuario, senha_Usuario, telefone_Usuario, cpf_Usuario) VALUES (?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO Usuario (nome_usuario, email_Usuario, senha_Usuario, telefone_Usuario, cpf_Usuario, tipo_Usuario) VALUES (?, ?, ?, ?, ?, ?)";
 
         try (Connection conn = ConnectionFactory.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
@@ -46,6 +47,7 @@ public class UsuarioDAO
             stmt.setString(3, usuario.getSenhaUsuario());
             stmt.setString(4, usuario.getTelefoneUsuario());
             stmt.setString(5, usuario.getCpfUsuario());
+            stmt.setInt(6, usuario.getTipoUsuario().getCodigo());
 
             int linhasAfetadas = stmt.executeUpdate();
             return linhasAfetadas > 0;
@@ -86,7 +88,7 @@ public class UsuarioDAO
         {
             stmt.setString(1, email);
 
-            try(ResultSet rs = stmt.executeQuery()){
+            try(ResultSet rs = stmt.getResultSet()) {
                 if(rs.next())
                 {
                     return rs.getString("email_Usuario");
@@ -151,6 +153,14 @@ public class UsuarioDAO
                 rs.getString("telefone_Usuario")
         );
         Usuario.setIdUsuario(rs.getInt("id_Usuario"));
+
+        int codigoTipo = rs.getInt("tipo_Usuario");
+
+        // Coloque estas duas linhas para forçar o Java a nos contar a verdade:
+        System.out.println("🚨 ATENÇÃO! O Java encontrou a pessoa: " + rs.getString("nome_Usuario"));
+        System.out.println("🚨 ATENÇÃO! O Java leu o tipo: " + codigoTipo);
+
+        Usuario.setTipoUsuario(TipoUsuario.fromCodigo(codigoTipo));
         return Usuario;
     }
 

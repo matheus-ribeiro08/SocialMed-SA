@@ -23,12 +23,12 @@ public class LoginUsuarioPresenter {
 
     public void iniciarLogin(){
         try {
-            String email = view.pedirEmail();
+            String cpf = view.pedirCpf();
             String senha = view.pedirSenha();
 
-            validarCredenciais(email, senha);
+            validarCredenciais(cpf, senha);
 
-            UsuarioModel usuario = usuarioService.login(email, senha);
+            UsuarioModel usuario = usuarioService.login(cpf, senha);
 
             TipoUsuario tipo = usuario.getTipoUsuario();
 
@@ -57,13 +57,13 @@ public class LoginUsuarioPresenter {
             }
 
         }catch (Exception e){
-            System.err.println("Erro!");
+            System.err.println("Erro!" + e);
         }
     }
 
 
-    public void validarCredenciais(String email, String senha){
-        if(email == null || email.isBlank()){
+    public void validarCredenciais(String cpf, String senha){
+        if(cpf == null || cpf.isBlank()){
             throw new EmailInvalido("Email invalido");
         }
         if(senha == null || senha.isBlank()){

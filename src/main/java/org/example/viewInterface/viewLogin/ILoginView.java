@@ -5,4 +5,5 @@ public interface ILoginView {
     int mostrarMenuInicial();
     String pedirEmail();
     String pedirSenha();
+    String pedirCpf();
 }

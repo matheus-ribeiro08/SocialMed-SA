@@ -1,6 +1,7 @@
 package org.example.dao;
 
 import org.example.database.ConnectionFactory;
+import org.example.enums.TipoUsuario;
 import org.example.model.ConsultaModel;
 import org.example.model.MedicoModel;
 import org.example.model.PacienteModel;
@@ -175,6 +176,62 @@ public class MedicoDAO
                 } catch (SQLException e) {
                     System.err.println("Erro ao fechar conexao");
                 }
+            }
+        }
+    }
+    public boolean cadastrarMedico(MedicoModel medico){
+        String sqlUsuario = "INSERT INTO Usuario (nome_usuario, email_Usuario, senha_Usuario, telefone_Usuario, cpf_Usuario, tipo_Usuario) VALUES (?, ?, ?, ?, ?, ?, ?)";
+        String sqlMedico = "INSERT INTO Medico (id_Usuario, especialidade_Medico) VALUES (?, ?)";
+
+        Connection conn = null;
+
+        try{
+            conn = ConnectionFactory.getConnection();
+            conn.setAutoCommit(false);
+
+            try(PreparedStatement stmtUsuario = conn.prepareStatement(sqlUsuario, Statement.RETURN_GENERATED_KEYS)){
+                stmtUsuario.setString(1, medico.getNomeUsuario());
+                stmtUsuario.setString(2, medico.getEmailUsuario());
+                stmtUsuario.setString(3, medico.getSenhaUsuario());
+                stmtUsuario.setString(4, medico.getTelefoneUsuario());
+                stmtUsuario.setString(5, medico.getCpfUsuario());
+                stmtUsuario.setInt(6, TipoUsuario.MEDICO.getCodigo());
+
+                stmtUsuario.executeUpdate();
+
+                try(ResultSet rs = stmtUsuario.getGeneratedKeys()){
+                    if (rs.next()){
+                        int idUsuario = rs.getInt(1);
+
+                        try(PreparedStatement stmtMedico = conn.prepareStatement(sqlMedico)){
+                            stmtMedico.setInt(1, idUsuario);
+                            stmtMedico.setString(2, medico.getEspecialidadeMedico());
+
+                            stmtMedico.executeUpdate();
+                        }
+                    }else {
+                        throw new SQLException("Erro ao gerar ID do usuário");
+                    }
+                }
+            }
+
+            conn.commit();
+            return true;
+
+        } catch (SQLException e) {
+            if(conn != null){
+                try{
+                    conn.rollback();
+                } catch (SQLException ex){}
+            }
+
+            return false;
+        } finally {
+            if(conn != null){
+                try{
+                    conn.setAutoCommit(true);
+                    conn.close();
+                } catch (SQLException ex) {}
             }
         }
     }

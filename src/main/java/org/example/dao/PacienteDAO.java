@@ -1,6 +1,7 @@
 package org.example.dao;
 
 import org.example.database.ConnectionFactory;
+import org.example.enums.TipoUsuario;
 import org.example.model.MedicoModel;
 import org.example.model.PacienteModel;
 import org.example.model.SecretarioModel;
@@ -12,7 +13,7 @@ import java.util.List;
 public class PacienteDAO
 {
     public boolean cadastrarPaciente(PacienteModel paciente) throws SQLException {
-        String sqlUsuario = "INSERT INTO Usuario (nome_Usuario, email_Usuario, senha_Usuario, telefone_Usuario, cpf_Usuario) VALUES (?, ?, ?, ?, ?)";
+        String sqlUsuario = "INSERT INTO Usuario (nome_Usuario, email_Usuario, senha_Usuario, telefone_Usuario, cpf_Usuario, tipo_Usuario) VALUES (?, ?, ?, ?, ?, ?)";
         String sqlPaciente = "INSERT INTO Paciente (id_Usuario, endereco_Paciente) VALUES (?, ?)";
 
         Connection conn = null;
@@ -27,6 +28,7 @@ public class PacienteDAO
                 stmt.setString(3, paciente.getSenhaUsuario());
                 stmt.setString(4, paciente.getTelefoneUsuario());
                 stmt.setString(5, paciente.getCpfUsuario());
+                stmt.setInt(6, TipoUsuario.PACIENTE.getCodigo());
 
                 stmt.executeUpdate();
 

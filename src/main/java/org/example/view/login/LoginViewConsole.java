@@ -23,26 +23,35 @@ public class LoginViewConsole implements ILoginView {
         System.out.println("2 - Cadastrar-se");
         System.out.println("0 - Sair");
         System.out.println("──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────");
-        System.out.println(" ➤ Escolha: ");
+        System.out.print(" ➤ Escolha: ");
 
         return Ferramentas.lInteiro();
     }
 
     @Override
-    public String pedirEmail() {
+    public String pedirSenha() {
         System.out.println("───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────");
-        System.out.println(" ➤ Digite o seu email");
+        System.out.print(" ➤ Digite a sua senha: ");
 
         return Ferramentas.lString();
     }
 
     @Override
-    public String pedirSenha() {
+    public String pedirEmail() {
         System.out.println("───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────");
-        System.out.println(" ➤ Digite a sua senha; ");
+        System.out.print(" ➤ Digite o seu email: ");
 
         return Ferramentas.lString();
     }
+
+    @Override
+    public String pedirCpf() {
+        System.out.println("───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────");
+        System.out.print(" ➤ Digite o seu cpf: ");
+
+        return Ferramentas.lString();
+    }
+
 
 
 }
