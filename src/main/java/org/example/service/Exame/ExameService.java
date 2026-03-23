@@ -118,7 +118,7 @@ public class ExameService {
             if (medicoExistente == null) {
                 throw new ExameException("Medico nao encontrado no sistema");
             }
-        }catch (SQLException e) {
+        }catch (ExameException e) {
             throw new ExameException("Erro ao validar medico:");
 
         }
@@ -136,7 +136,7 @@ public class ExameService {
             if (pacienteExistente == null) {
                 throw new ExameException("Paciente não encontrado no sistema");
             }
-        } catch (SQLException e) {
+        } catch (ExameException e) {
             throw new ExameException("Erro ao validar paciente: " + e.getMessage(), e);
         }
     }

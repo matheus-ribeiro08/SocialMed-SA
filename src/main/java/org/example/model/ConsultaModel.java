@@ -12,6 +12,10 @@ public class ConsultaModel {
     private int idMedico;
     private LocalDateTime horarioConsulta;
 
+    public ConsultaModel() {
+
+    }
+
     public int getIdConsulta() {
         return idConsulta;
     }

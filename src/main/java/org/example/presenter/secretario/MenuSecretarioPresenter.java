@@ -1,243 +1,361 @@
 package org.example.presenter.secretario;
 
 import org.example.enums.TipoUsuario;
-import org.example.model.ConsultaModel;
-import org.example.model.PacienteModel;
-import org.example.model.SecretarioModel;
+import org.example.model.*;
 import org.example.roteador.Roteador;
 import org.example.service.consulta.ConsultaService;
+import org.example.service.medico.MedicoService;
 import org.example.service.paciente.PacienteService;
 import org.example.service.secretario.SecretarioService;
+import org.example.viewInterface.viewInterfaceSecretario.IMenuSecretarioView;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 public class MenuSecretarioPresenter {
-
     private final Roteador roteador;
     private final SecretarioModel secretario;
-    private final MenuSecretarioView view;
-    private final PacienteService pacienteService;
-    private final ConsultaService consultaService;
+    private final IMenuSecretarioView view;
     private final SecretarioService secretarioService;
+    private final ConsultaService consultaService;
+    private final PacienteService pacienteService;
+    private final MedicoService medicoService;
 
-    public MenuSecretarioPresenter(Roteador roteador, SecretarioModel secretario, MenuSecretarioView view, PacienteService pacienteService, ConsultaService consultaService, SecretarioService secretarioService) {
+    public MenuSecretarioPresenter(Roteador roteador, SecretarioModel secretario, IMenuSecretarioView view) {
         this.roteador = roteador;
         this.secretario = secretario;
         this.view = view;
-        this.pacienteService = pacienteService;
-        this.consultaService = consultaService;
-        this.secretarioService = secretarioService;
+        this.secretarioService = new SecretarioService();
+        this.consultaService = new ConsultaService();
+        this.pacienteService = new PacienteService();
+        this.medicoService = new MedicoService();
     }
 
-    public void iniciar(){
+    public void iniciar() {
         boolean executando = true;
 
         while (executando) {
             int opcao = view.mostrarMenuPrincipal(secretario.getNomeUsuario());
-
             try {
                 switch (opcao) {
-                    case 1: {
+                    case 1:
                         cadastrarPaciente();
                         break;
-                    }
-                    case 2: {
+                    case 2:
                         buscarPaciente();
                         break;
-                    }
-                    case 3: {
-                        listrarPacientes();
+                    case 3:
+                        listarPacientes();
                         break;
-                    }
-                    case 4: {
+                    case 4:
+                        atualizarPaciente();
+                        break;
+                    case 5:
+                        removerPaciente();
+                        break;
+                    case 6:
                         agendarConsulta();
                         break;
-                    }
-                    case 5: {
+                    case 7:
                         cancelarConsulta();
                         break;
-                    }
-                    case 6: {
-                        listarConsultaHoje();
+                    case 8:
+                        reagendarConsulta();
                         break;
-                    }
-                    case 7:{
-                        listarConsultasPendentes();
+                    case 9:
+                        listarConsultas();
                         break;
-                    }
-                    case 8:{
-                        visualizarPerfil();
+                    case 10:
+                        listarConsultasPorPaciente();
                         break;
-                    }
-                    case 9:{
+                    case 11:
+                        listarConsultasPorMedico();
+                        break;
+                    case 12:
+                        listarMedicos();
+                        break;
+                    case 13:
+                        editarPerfil();
+                        break;
+                    case 0:
                         executando = false;
-                        roteador.irPara(Roteador.Destino.SAIR);
+                        roteador.irPara(Roteador.Destino.MENU_INICIAL, null);
                         break;
-                    }
-                    default:{
-                        view.mostrarMensagemErro("Erro");
-                    }
-
+                    default:
+                        view.mostrarMensagemErro("Opção inválida");
                 }
-            }catch (Exception e){
+            } catch (Exception e) {
                 view.mostrarMensagemErro("Erro");
             }
         }
     }
 
-    private void cadastrarPaciente(){
-        view.mostrarTitulo("Cadastrar novo paciente");
-
-        PacienteModel paciente = view.lerDadosPaciente();
-        paciente.setTipoUsuario(TipoUsuario.PACIENTE);
+    private void cadastrarPaciente() {
+        view.mostrarTitulo("CADASTRAR PACIENTE");
 
         try {
-            secretarioService.cadastrarPaciente(secretario, paciente);
+            String nome = view.lerNomeCompleto();
+            String email = view.lerEmail();
+            String senha = view.lerSenha();
+            String cpf = view.lerCpf();
+            String telefone = view.lerTelefone();
+            String endereco = view.lerEndereco();
+
+            PacienteModel paciente = new PacienteModel();
+            paciente.setNomeUsuario(nome);
+            paciente.setEmailUsuario(email);
+            paciente.setSenhaUsuario(senha);
+            paciente.setCpfUsuario(cpf);
+            paciente.setTelefoneUsuario(telefone);
+            paciente.setEnderecoPaciente(endereco);
+
+            secretarioService.cadastrarPaciente(paciente);
             view.mostrarMensagemSucesso("Paciente cadastrado com sucesso!");
-        }catch (Exception e){
+        } catch (Exception e) {
             view.mostrarMensagemErro("Erro ao cadastrar paciente");
         }
     }
 
-    private void buscarPaciente(){
-        view.mostrarTitulo("Buscar paciente");
-
-        String cpf = view.lerCpf();
+    private void buscarPaciente() {
+        view.mostrarTitulo("BUSCAR PACIENTE");
 
         try {
-            PacienteModel paciente = pacienteService.buscarPorCpf();
-
-            if(paciente != null){
-                view.mostrarDadosPaciente(paciente);
-
-                if(view.perguntarAcao("Deseja editar esse paciente?")){
-                    editarPaciente(paciente);
-                }
-            }else {
-                view.mostrarMensagemErro("Paciente não encontrado!");
-            }
-        }catch (Exception e){
-            view.mostrarMensagemErro("Erro ao buscar paciente");
+            String cpf = view.lerCpf();
+            PacienteModel paciente = secretarioService.buscarPacientePorCpf(cpf);
+            view.mostrarDadosPacienteCompleto(paciente);
+        } catch (Exception e) {
+            view.mostrarMensagemErro("Erro ao buscar paciente: " + e.getMessage());
         }
     }
 
-    private void listrarPacientes(){
-        view.mostrarTitulo("Lista de paciente");
+    private void listarPacientes() {
+        view.mostrarTitulo("LISTAR PACIENTES");
 
         try {
-            List<PacienteModel> pacientes = pacienteService.listarTodos();
-
-            if(pacientes.isEmpty()){
-                view.mostrarMensagemInfo("Nehum paciente cadastrado.");
-            }else{
+            List<PacienteModel> pacientes = secretarioService.listarTodosPacientes();
+            if (pacientes.isEmpty()) {
+                view.mostrarMensagemInfo("Nenhum paciente cadastrado");
+            } else {
                 view.mostrarListaPacientes(pacientes);
             }
-        }catch (Exception e){
-            view.mostrarMensagemErro("Erro ao listar pacientes");
+        } catch (Exception e) {
+            view.mostrarMensagemErro("Erro ao listar pacientes: " + e.getMessage());
         }
     }
 
-    private void agendarConsulta(){
-        view.mostrarTitulo("Agendar consulta");
+    private void atualizarPaciente() {
+        view.mostrarTitulo("ATUALIZAR PACIENTE");
 
         try {
-            String cpfPaciente = view.lerCpfPaciente();
-            PacienteModel paciente = pacienteService.buscarPorCpf(cpfPaciente);
+            int idPaciente = view.lerIdPaciente();
+            PacienteModel paciente = secretarioService.buscarPacientePorId(idPaciente);
 
-            if(paciente == null){
-             view.mostrarMensagemErro("Paciente nao encontrado");
-             return;
+            view.mostrarDadosPacienteCompleto(paciente);
+
+            if (view.perguntarAcao("Deseja atualizar os dados deste paciente?")) {
+                String nome = view.lerNomeCompleto();
+                String email = view.lerEmail();
+                String telefone = view.lerTelefone();
+                String endereco = view.lerEndereco();
+
+                paciente.setNomeUsuario(nome);
+                paciente.setEmailUsuario(email);
+                paciente.setTelefoneUsuario(telefone);
+                paciente.setEnderecoPaciente(endereco);
+
+                secretarioService.atualizarPaciente(paciente);
+                view.mostrarMensagemSucesso("Paciente atualizado com sucesso!");
             }
+        } catch (Exception e) {
+            view.mostrarMensagemErro("Paciente atualizado com sucesso!");
+        }
+    }
 
-            ConsultaModel consulta = view.lerDadosConsulta(paciente);
-            consulta.setSecretario(secretario);
+    private void removerPaciente() {
+        view.mostrarTitulo("REMOVER PACIENTE");
 
-            secretarioService.agendarConsulta(secretario, consulta);
-            view.mostrarMensagemSucesso("Consulta agendada com sucesso!");
+        try {
+            int idPaciente = view.lerIdPaciente();
+            PacienteModel paciente = secretarioService.buscarPacientePorId(idPaciente);
 
-        }catch (Exception e){
+            view.mostrarDadosPacienteCompleto(paciente);
+
+            if (view.perguntarAcao("Tem certeza que deseja remover este paciente")) {
+                secretarioService.removerPaciente(idPaciente);
+                view.mostrarMensagemSucesso("Paciente removido com sucesso");
+            }
+        } catch (Exception e) {
+            view.mostrarMensagemErro("Erro ao remover paciente");
+        }
+    }
+
+    private void agendarConsulta() {
+        view.mostrarTitulo("AGENDAR CONSULTA");
+
+        try {
+            List<MedicoModel> medicos = secretarioService.listarTodosMedicos();
+            view.mostrarListaMedicos(medicos);
+
+            int idMedico = view.lerIdMedico();
+            MedicoModel medico = secretarioService.buscarMedicoPorId(idMedico);
+
+            List<HospitalModel> hospitais = secretarioService.listarHospitais();
+            view.mostrarListaHospitais(hospitais);
+
+            int idHospital = view.lerIdHospital();
+            HospitalModel hospital = hospitais.stream()
+                    .filter(h -> h.getIdHospital() == idHospital)
+                    .findFirst()
+                    .orElse(null);
+
+            String cpf = view.lerCpf();
+            PacienteModel paciente = secretarioService.buscarPacientePorCpf(cpf);
+
+            String data = view.lerData();
+            String hora = view.lerHora();
+            LocalDateTime horario = consultaService.converterStringParaDateTime(data, hora);
+
+            ConsultaModel consulta = new ConsultaModel();
+            consulta.setIdMedico(idMedico);
+            consulta.setIdPaciente(paciente.getIdPaciente());
+            consulta.setIdHospital(idHospital);
+            consulta.setLocalEndereco(hospital != null ? hospital.getEnderecoHospital() : "");
+            consulta.setHorarioConsulta(horario);
+
+            secretarioService.agendarConsulta(consulta);
+            view.mostrarMensagemSucesso("Consulta agendada com sucesso");
+        } catch (Exception e) {
             view.mostrarMensagemErro("Erro ao agendar consulta");
         }
     }
 
-    private void cancelarConsulta(){
-        view.mostrarTitulo("cancelar consulta");
+    private void cancelarConsulta() {
+        view.mostrarTitulo("CANCELAR CONSULTA");
 
         try {
-            long idConsulta = view.lerIdConsulta();
-            ConsultaModel consulta = consultaService.buscarPorId(idConsulta);
+            int idConsulta = view.lerIdConsulta();
+            ConsultaModel consulta = consultaService.buscarConsultaPorId(idConsulta);
 
-            if(consulta == null){
-                view.mostrarMensagemErro("Consulta nao encontrada!");
-                return;
-            }
+            view.mostrarDadosConsultaCompleta(consulta);
 
-            view.mostrarDadosConsulta(consulta);
-
-            if(view.perguntarAcao("Confirmar cancelado")){
-                secretarioService.cancelarConsulta(secretario, consulta);
+            if (view.perguntarAcao("Tem certeza que deseja cancelar esta consulta?")) {
+                secretarioService.cancelarConsulta(idConsulta);
                 view.mostrarMensagemSucesso("Consulta cancelada com sucesso!");
             }
-        }catch (Exception e){
-            view.mostrarMensagemErro("Erro ao cancelar consulta");
+        } catch (Exception e) {
+            view.mostrarMensagemErro("Erro ao cancelar consulta.");
         }
-
     }
 
-    private void listarConsultaHoje(){
-        view.mostrarTitulo("Consultas de hoje");
+    private void reagendarConsulta() {
+        view.mostrarTitulo("REAGENDAR CONSULTA");
 
         try {
-            List<ConsultaModel> consultas = consultaService.buscarConsultasDoDia();
+            int idConsulta = view.lerIdConsulta();
+            ConsultaModel consulta = consultaService.buscarConsultaPorId(idConsulta);
 
-            if(consultas.isEmpty()){
-                view.mostrarMensagemInfo("Nenhuma consulta agendada para hoje");
-            }else{
+            view.mostrarDadosConsultaCompleta(consulta);
+
+            String data = view.lerData();
+            String hora = view.lerHora();
+            LocalDateTime novoHorario = consultaService.converterStringParaDateTime(data, hora);
+        } catch (Exception e) {
+            view.mostrarMensagemErro("Erro ao reagendar consulta.");
+        }
+    }
+
+    private void listarConsultas() {
+        view.mostrarTitulo("LISTAR CONSULTAS");
+
+        try {
+            List<ConsultaModel> consultas = secretarioService.listarTodasConsultas();
+            if (consultas.isEmpty()) {
+                view.mostrarMensagemInfo("Nenhuma consulta agendada");
+            } else {
                 view.mostrarListaConsultas(consultas);
             }
-        }catch (Exception e){
-            view.mostrarMensagemErro("Erro ao listar consultas de hoje");
+        } catch (Exception e) {
+            view.mostrarMensagemErro("Erro ao listar consultas");
         }
     }
 
-    private void listarConsultasPendentes(){
-        view.mostrarTitulo("Consultas Pendentes");
+    private void listarConsultasPorPaciente() {
+        view.mostrarTitulo("CONSULTAS POR PACIENTE");
 
         try {
-            List<ConsultaModel> consultas = consultaService.buscarConsultasPendentes();
+            int idPaciente = view.lerIdPaciente();
+            List<ConsultaModel> consultas = secretarioService.listarConsultasPorPaciente(idPaciente);
 
-            if(consultas.isEmpty()){
-                view.mostrarMensagemInfo("Nenhuma consulta pendente");
-            }else{
+            if (consultas.isEmpty()) {
+                view.mostrarMensagemInfo("Nenhuma consulta encontrada para este paciente");
+            } else {
                 view.mostrarListaConsultas(consultas);
             }
-        }catch (Exception e){
-            view.mostrarMensagemErro("Erro ao listar consultas pendentes");
+        } catch (Exception e) {
+            view.mostrarMensagemErro("Erro ao listar consultas");
         }
     }
 
-    private void visualizarPerfil(){
-        view.mostrarTitulo("MEU PERFIL");
-        view.mostrarDadosSecretario(secretario);
-
-        if(view.perguntarAcai("Deseja editar seus dados?")){
-            editarPerfil();
-        }
-    }
-
-    private void editarPerfil(){
-        view.mostrarTituli("Editar perfil");
-
-        SecretarioModel dadosAtualizados = view.lerDadosAtualizacaoSecretario(secretario);
-        dadosAtualizados.setIdSecretario(secretario.getIdSecretario());
-        dadosAtualizados.setTipoUsuario(secretario.getTipoUsuario());
+    private void listarConsultasPorMedico() {
+        view.mostrarTitulo("CONSULTAS POR MÉDICO");
 
         try {
-            secretario.setNomeUsuario(dadosAtualizados.getNomeUsuario());
-            secretario.setEmailUsuario(dadosAtualizados.getEmailUsuario());
-            secretario.setTelefoneUsuario(dadosAtualizados.getTelefoneUsuario());
-        }catch (Exception e){
-            view.mostrarMensagemErro("Erro ao atualizar perfil");
+            List<MedicoModel> medicos = secretarioService.listarTodosMedicos();
+            view.mostrarListaMedicos(medicos);
+
+            int idMedico = view.lerIdMedico();
+            List<ConsultaModel> consultas = secretarioService.listarConsultasPorMedico(idMedico);
+
+            if (consultas.isEmpty()) {
+                view.mostrarMensagemInfo("Nenhuma consulta encontrada para este médico");
+            } else {
+                view.mostrarListaConsultas(consultas);
+            }
+        } catch (Exception e) {
+            view.mostrarMensagemErro("Erro ao listar consultas");
         }
+    }
+
+    private void listarMedicos() {
+        view.mostrarTitulo("LISTAR MEDICOS");
+
+        try {
+            List<MedicoModel> medicos = secretarioService.listarTodosMedicos();
+            if (medicos.isEmpty()) {
+                view.mostrarMensagemInfo("Nenhum médico cadastrado");
+            } else {
+                view.mostrarListaMedicos(medicos);
+            }
+        } catch (Exception e) {
+            view.mostrarMensagemErro("Erro ao listar médico");
+        }
+    }
+
+    private void editarPerfil() {
+        view.mostrarTitulo("EDITAR PERFIL");
+
+        try {
+            view.mostrarDadosSecretario(secretario);
+
+            if (view.perguntarAcao("Deseja editar seus dados?")) {
+                String nome = view.lerNomeCompleto();
+                String email = view.lerEmail();
+                String senha = view.lerSenha();
+                String telefone = view.lerTelefone();
+                String turno = view.lerTurno();
+
+                secretario.setNomeUsuario(nome);
+                secretario.setEmailUsuario(email);
+                secretario.setSenhaUsuario(senha);
+                secretario.setTelefoneUsuario(telefone);
+                secretario.setTurnoTrabalhadoSecretario(turno);
+
+                secretarioService.atualizarSecretario(secretario);
+                view.mostrarMensagemSucesso("Perfil atualizado com sucesso");
+            }
+        } catch (Exception e) {
+            view.mostrarMensagemErro("Erro ao editar perfil");
+        }
+
     }
 }
