@@ -3,6 +3,8 @@ package org.example.dao;
 import org.example.database.ConnectionFactory;
 import org.example.enums.TipoUsuario;
 import org.example.model.MedicoModel;
+import org.example.model.PacienteModel;
+import org.example.model.SecretarioModel;
 import org.example.model.UsuarioModel;
 
 import java.sql.*;
@@ -145,23 +147,29 @@ public class UsuarioDAO
 
     public UsuarioModel extrairUsuario(ResultSet rs) throws  SQLException
     {
-        UsuarioModel Usuario = new UsuarioModel(
-                rs.getString("nome_Usuario"),
-                rs.getString("email_Usuario"),
-                rs.getString("senha_Usuario"),
-                rs.getString("cpf_Usuario"),
-                rs.getString("telefone_Usuario")
-        );
-        Usuario.setIdUsuario(rs.getInt("id_Usuario"));
-
+        UsuarioModel usuario = null;
         int codigoTipo = rs.getInt("tipo_Usuario");
 
-        // Coloque estas duas linhas para forçar o Java a nos contar a verdade:
-        System.out.println("🚨 ATENÇÃO! O Java encontrou a pessoa: " + rs.getString("nome_Usuario"));
-        System.out.println("🚨 ATENÇÃO! O Java leu o tipo: " + codigoTipo);
+        if (codigoTipo == 0) {
+            usuario = new PacienteModel();
+        } else if (codigoTipo == 1) {
+            usuario = new SecretarioModel();
+        } else if (codigoTipo == 2) {
+            usuario = new UsuarioModel();
+        } else {
+            usuario = new UsuarioModel();
+        }
 
-        Usuario.setTipoUsuario(TipoUsuario.fromCodigo(codigoTipo));
-        return Usuario;
+        usuario.setIdUsuario(rs.getInt("id_Usuario"));
+        usuario.setNomeUsuario(rs.getString("nome_Usuario"));
+        usuario.setEmailUsuario(rs.getString("email_Usuario"));
+        usuario.setSenhaUsuario(rs.getString("senha_Usuario"));
+        usuario.setTelefoneUsuario(rs.getString("telefone_Usuario"));
+        usuario.setCpfUsuario(rs.getString("cpf_Usuario"));
+
+        usuario.setTipoUsuario(TipoUsuario.fromCodigo(codigoTipo));
+
+        return usuario;
     }
 
     public boolean atualizarUsuario(UsuarioModel usuario){
