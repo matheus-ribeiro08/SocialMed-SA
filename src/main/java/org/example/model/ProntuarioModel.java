@@ -118,4 +118,18 @@ public class ProntuarioModel
         this.observacoes = observacoes;
         this.dataRegistro = dataRegistro;
     }
+
+    public ProntuarioModel(int idPaciente, int idMedico,
+                           String diagnostico, String sintomas, String prescricaoMedica,
+                           String observacoes, LocalDateTime dataRegistro)
+    {
+        this.idPaciente = idPaciente;
+        this.idMedico = idMedico;
+        this.diagnostico = diagnostico;
+        this.sintomas = sintomas;
+        this.prescricaoMedica = prescricaoMedica;
+        this.observacoes = observacoes;
+        this.dataRegistro = dataRegistro;
+    }
+
 }

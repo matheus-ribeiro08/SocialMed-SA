@@ -261,12 +261,13 @@ public class MenuPacienteConsoleView implements IMenuPacienteView {
     }
 
     @Override
-    public String lerData() {
+    public String lerData(){
         System.out.println("───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────");
-        System.out.print(" ➤ Digite a data: ");
+        System.out.print(" ➤ Digite a data (dd/MM/yyyy): ");
 
         return Ferramentas.lString().trim();
     }
+
 
     @Override
     public String lerNomeCompleto() {
@@ -334,11 +335,36 @@ public class MenuPacienteConsoleView implements IMenuPacienteView {
 
     @Override
     public int selecionarMedico(List<MedicoModel> medicos) {
-        return 0;
+        if (medicos == null || medicos.isEmpty()) {
+            System.out.println("Nenhum medico disponivel");
+            return -1;
+        }
+
+        while (true) {
+            System.out.println("───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────");
+            System.out.println("        ███████╗███████╗██╗     ███████╗ ██████╗██╗ ██████╗ ███╗   ██╗ █████╗ ██████╗   ███╗   ███╗███████╗██████╗ ██╗ ██████╗ ██████╗ ███████╗        ");
+            System.out.println("        ██╔════╝██╔════╝██║     ██╔════╝██╔════╝██║██╔═══██╗████╗  ██║██╔══██╗██╔══██╗  ████╗ ████║██╔════╝██╔══██╗██║██╔════╝██╔═══██╗██╔════╝        ");
+            System.out.println("        ███████╗█████╗  ██║     █████╗  ██║     ██║██║   ██║██╔██╗ ██║███████║██████╔╝  ██╔████╔██║█████╗  ██║  ██║██║██║     ██║   ██║███████╗        ");
+            System.out.println("        ╚════██║██╔══╝  ██║     ██╔══╝  ██║     ██║██║   ██║██║╚██╗██║██╔══██║██╔══██╗  ██║╚██╔╝██║██╔══╝  ██║  ██║██║██║     ██║   ██║╚════██║        ");
+            System.out.println("        ███████║███████╗███████╗███████╗╚██████╗██║╚██████╔╝██║ ╚████║██║  ██║██║  ██║  ██║ ╚═╝ ██║███████╗██████╔╝██║╚██████╗╚██████╔╝███████║        ");
+            System.out.println("        ╚══════╝╚══════╝╚══════╝╚══════╝ ╚═════╝╚═╝ ╚═════╝ ╚═╝  ╚═══╝╚═╝  ╚═╝╚═╝  ╚═╝  ╚═╝     ╚═╝╚══════╝╚═════╝ ╚═╝ ╚═════╝ ╚═════╝ ╚══════╝        ");
+            System.out.println("───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────");
+
+            System.out.println("───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────");
+            for (int i = 0; i < medicos.size(); i++) {
+                MedicoModel m = medicos.get(i);
+                System.out.printf(" (%d) %s - %s\n", i+1, m.getNomeUsuario(), m.getEspecialidadeMedico());
+            }
+            System.out.println("───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────");
+            System.out.print(" ➤ Digite o número correspondente: ");
+            return 0;
+        }
     }
 
     @Override
     public String selecionarHorario(List<String> horarios) {
+
+
         return "";
     }
 
@@ -348,7 +374,9 @@ public class MenuPacienteConsoleView implements IMenuPacienteView {
     }
 
     @Override
-    public boolean perguntarAcao(String pergunta) {
-        return false;
+    public boolean perguntarAcao(String mensagem) {
+        System.out.println(mensagem + "(S/N): ");
+        String resposta = Ferramentas.lString().trim().toUpperCase();
+        return resposta.equalsIgnoreCase(("S")) || resposta.equalsIgnoreCase("Sim");
     }
 }

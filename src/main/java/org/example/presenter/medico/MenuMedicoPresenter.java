@@ -1,5 +1,6 @@
 package org.example.presenter.medico;
 
+import org.example.enums.Destinos;
 import org.example.enums.TipoUsuario;
 import org.example.model.ConsultaModel;
 import org.example.model.MedicoModel;
@@ -13,6 +14,8 @@ import org.example.service.prontuario.ProntuarioService;
 import org.example.viewInterface.viewInterfaceAdm.IMenuAdminView;
 import org.example.viewInterface.viewInterfaceMedico.IMenuMedicoView;
 
+import java.sql.SQLException;
+import java.time.LocalDateTime;
 import java.util.List;
 
 public class MenuMedicoPresenter {
@@ -80,12 +83,12 @@ public class MenuMedicoPresenter {
                     }
                     case 11:{
                         executando = false;
-                        roteador.irPara(Roteador.Destino.MENU_INICIAL, null);
+                        roteador.irPara(Destinos.MENU_INICIAL, null);
                         break;
                     }
                     case 0:{
                         executando = false;
-                        roteador.irPara(Roteador.Destino.SAIR, null);
+                        roteador.irPara(Destinos.SAIR, null);
                         break;
                     }
                     default:{
@@ -98,6 +101,22 @@ public class MenuMedicoPresenter {
         }
     }
 
+    private void verAgendaHoje(){
+        view.mostrarTitulo("Agenda de hoje");
+
+        try {
+            List<ConsultaModel> consultasHoje = consultaService.buscarConsultasDoDia(medico.getIdMedico());
+
+            if(consultasHoje.isEmpty()){
+                view.mostrarMensagemInfo("Nenhuma consulta agendada para hoje");
+            }else{
+                view.mostrarListaConsultasDetalhadas(consultasHoje);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     private void verProximasConsultas(){
         view.mostrarTitulo("Proximas consultas");
 
@@ -107,7 +126,7 @@ public class MenuMedicoPresenter {
             if(consultas.isEmpty()){
                 view.mostrarMensagemInfo("Nenhuma consulta futura agendada");
             }else {
-                view.mostrarListaConsultaDetalhada(consultas);
+                view.mostrarListaConsultasDetalhadas(consultas);
             }
         }catch (Exception e){
             view.mostrarMensagemErro("Erro ao buscar consultas");
@@ -194,7 +213,7 @@ public class MenuMedicoPresenter {
                 view.mostrarMensagemInfo("Paciente nao possui prontuario");
 
                 if(view.perguntarAcao("Deseja criar um prontuario?")){
-                    criarProntuario(prontuario);
+                    criarProntuario(paciente);
                 }
             }else{
                 view.mostrarProntuario(prontuario);
@@ -206,16 +225,16 @@ public class MenuMedicoPresenter {
 
     private void criarProntuario(PacienteModel paciente){
         try {
-            ProntuarioModel prontuario = null;
 
-            int medico = view.lerIdMedico();
             String sintomas = view.lerSintomas();
             String diagnostico = view.lerDiagnostico();
             String prescricaoMedica = view.lerPrescricao();
             String observacoes = view.lerObservacoes();
-            String dataRegistro = view.lerData();
+            LocalDateTime dataRegistro = LocalDateTime.now();
 
-            ProntuarioModel prontuario = new ProntuarioModel(medico, paciente.getIdPaciente(), sintomas, diagnostico, prescricaoMedica, observacoes, dataRegistro);
+            ProntuarioModel prontuario = new ProntuarioModel(medico.getIdMedico(), paciente.getIdPaciente(), sintomas, diagnostico, prescricaoMedica,
+                            observacoes, dataRegistro);
+
             prontuarioService.criar(prontuario);
             view.mostrarMensagemSucesso("Prontuario criado com sucesso!");
         }catch (Exception e){
@@ -240,7 +259,7 @@ public class MenuMedicoPresenter {
             String novaInformacao = view.lerInformacaoAdicional();
             prontuarioService.adicionarInformacao(prontuario, novaInformacao, medico);
 
-            view.mostrarMensagemErro("Prontuario atualizado com sucesso");
+            view.mostrarMensagemSucesso("Prontuario atualizado com sucesso");
         }catch (Exception e){
             view.mostrarMensagemErro("Erro ao atualizar prontuario");
         }
@@ -267,7 +286,7 @@ public class MenuMedicoPresenter {
         view.mostrarDadosMedico(medico);
 
         if(view.perguntarAcao("Deseja editar seus dados?")){
-            editarPerfil();
+            editarPerfil(medico);
         }
     }
 

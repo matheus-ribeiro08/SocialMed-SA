@@ -1,14 +1,13 @@
 package org.example.presenter.paciente;
 
+import org.example.enums.Destinos;
 import org.example.enums.TipoUsuario;
-import org.example.model.ConsultaModel;
-import org.example.model.MedicoModel;
-import org.example.model.PacienteModel;
-import org.example.model.ProntuarioModel;
+import org.example.model.*;
 import org.example.roteador.Roteador;
 import org.example.service.consulta.ConsultaService;
 import org.example.service.medico.MedicoService;
 import org.example.service.paciente.PacienteService;
+import org.example.service.prontuario.ProntuarioService;
 import org.example.utils.Ferramentas;
 import org.example.viewInterface.viewInterfacePaciente.IMenuPacienteView;
 
@@ -81,7 +80,7 @@ public class MenuPacientePresenter {
                     }
                     case 0: {
                         execuntando = false;
-                        roteador.irPara(Roteador.Destino.MENU_INICIAL, null);
+                        roteador.irPara(Destinos.MENU_INICIAL, null);
                     }
                     default:{
                         view.mostrarMensagemErro("Opção invalida");
@@ -116,7 +115,7 @@ public class MenuPacientePresenter {
         try {
             String especialidade = view.lerEspecialidade();
 
-            List<MedicoModel> medicos = medicoService.buscarMedicosPorEspecialidade(especialidade);
+            List<MedicoModel> medicos = medicoService.buscarMedicoPorEspecialidade(especialidade);
 
             if(medicos.isEmpty()){
                 view.mostrarMensagemInfo("Nenhum medico encontrado para esta especialidade");
@@ -140,9 +139,18 @@ public class MenuPacientePresenter {
                 return;
             }
 
+            HospitalModel hospital = hospitalService.buscarHospitalDoMedico(medico.getIdMedico());
+
             String descricao = view.lerDescricaoAgendamento();
 
-            ConsultaModel consulta = consultaService.agendarConsulta(paciente.getIdPaciente(), medico.getIdMedico(), data, horario, descricao);
+            ConsultaModel consulta = new ConsultaModel();
+            consulta.setIdMedico(medico.getIdMedico());
+            consulta.setIdPaciente(paciente.getIdPaciente());
+            consulta.setIdHospital(hospital.getIdHospital);
+            consulta.setLocalEndereco(hospital.getEnderecoHospital);
+            consulta.setHorarioConsulta(horario);
+            
+            ConsultaModel consulta = consultaService.agendarConsulta();
 
             if(consulta != null){
                 view.mostrarMensagemSucesso("Consulta agendada com sucesso!");

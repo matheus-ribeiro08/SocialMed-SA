@@ -22,7 +22,7 @@ public class ProntuarioService
         this.prontuarioDAO = prontuarioDAO;
     }
 
-    public List<ProntuarioModel> buscarPorPaciente(int idPaciente)
+    public ProntuarioModel buscarPorPaciente(int idPaciente)
     {
         if(idPaciente <= 0)
         {
@@ -30,9 +30,9 @@ public class ProntuarioService
         }
 
         try {
-            return prontuarioDAO.listarProntuarios(idPaciente);
-        } catch (Exception e)
-        {
+            List<ProntuarioModel> lista = prontuarioDAO.listarProntuarios(idPaciente);
+            return lista.isEmpty() ? null : lista.get(0);
+        } catch (Exception e) {
             throw new RuntimeException("Erro ao buscar prontuarios ");
         }
     }
@@ -70,7 +70,7 @@ public class ProntuarioService
         }
     }
 
-    public boolean atualzar(ProntuarioModel prontuarioModel)
+    public boolean atualizar(ProntuarioModel prontuarioModel)
     {
         if(prontuarioModel == null || prontuarioModel.getIdProntuario() <= 0){
             throw new IllegalArgumentException("Prontuario Invalido");

@@ -266,4 +266,37 @@ public class MedicoDAO
         }
         return medico;
     }
+
+    public List<MedicoModel> buscarPorEspecialidade(String especialidade)
+    {
+        String sql = "SELECT u.*, m.id_Medico, m.especialidade_Medico FROM Medico m " +
+                "INNER JOIN Usuario u ON m.id_Usuario = u.id_Usuario " +
+                "WHERE m.especialidade_Medico LIKE ?";
+        List<MedicoModel> medicos = new ArrayList<>();
+
+        try (Connection conn = ConnectionFactory.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setString(1, "%" + especialidade + "%");
+            try (ResultSet rs = stmt.executeQuery()) {
+                while (rs.next()){
+                    MedicoModel medico = new MedicoModel();
+                    medico.setIdUsuario(rs.getInt("id_Usuario"));
+                    medico.setIdMedico(rs.getInt("id_Medico"));
+                    medico.setNomeUsuario(rs.getString("nome_usuario"));
+                    medico.setEmailUsuario(rs.getString("email_Usuario"));
+                    medico.setSenhaUsuario(rs.getString("senha_Usuario"));
+                    medico.setTelefoneUsuario(rs.getString("telefone_Usuario"));
+                    medico.setCpfUsuario(rs.getString("cpf_Usuario"));
+                    medico.setEspecialidadeMedico(rs.getString("especialidade_Medico"));
+                    medicos.add(medico);
+                }
+            }
+        }catch (SQLException e){
+            throw new RuntimeException("Erro ao buscar medico por especialidade");
+        }
+        return medicos;
+    }
 }
+
+
+

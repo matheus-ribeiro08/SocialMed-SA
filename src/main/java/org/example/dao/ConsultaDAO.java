@@ -168,6 +168,38 @@ public class ConsultaDAO {
         return historicoConsultas;
     }
 
+    public List<ConsultaModel> historicoDeConsultasPaciente(int idPaciente)
+    {
+        List<ConsultaModel> historicoConsultas = new ArrayList<>();
+
+        String sql = "SELECT * FROM Consultas WHERE id_Paciente = ? ORDER BY horario_Consulta DESC";
+        try(Connection conn = ConnectionFactory.getConnection();
+            PreparedStatement stmt = conn.prepareStatement(sql))
+        {
+            stmt.setInt(1, idPaciente);
+
+            try(ResultSet rs = stmt.executeQuery())
+            {
+                while(rs.next())
+                {
+                    ConsultaModel consulta = new ConsultaModel(
+                            rs.getInt("id_Consultas"),
+                            rs.getInt("id_Hospital"),
+                            rs.getString("local_Consulta"),
+                            rs.getInt("id_Paciente"),
+                            rs.getInt("id_Medico"),
+                            rs.getTimestamp("horario_Consulta").toLocalDateTime()
+                    );
+                    historicoConsultas.add(consulta);
+                }
+            }
+        } catch (SQLException e)
+        {
+            System.err.println("Erro ao exibir historico de Consulta");
+        }
+        return historicoConsultas;
+    }
+
     public ConsultaModel buscarPorId(int idConsulta){
         String sql = "SELECT * FROM Consultas WHERE id_Consultas = ?";
         ConsultaModel consulta = null;

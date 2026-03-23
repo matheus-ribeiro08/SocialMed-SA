@@ -29,13 +29,10 @@ public class MenuAdminConsoleView implements IMenuAdminView {
         System.out.println(" OPÇÕES                                                                                                                                                ");
         System.out.println("───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────");
         System.out.println(" (1) ➔ Gerenciar Usuarios                                                                                                                              ");
-        System.out.println(" (2) ➔ Gerenciar Medicos                                                                                                                          ");
-        System.out.println(" (3) ➔ Gerenciar Secretarios                                                                                                                               ");
-        System.out.println(" (4) ➔ Gerenciar Pacientes                                                                                                                                 ");
-        System.out.println(" (5) ➔ Acessar prontuario                                                                                                                              ");
-        System.out.println(" (6) ➔ Atualizar prontuario                                                                                                                            ");
-        System.out.println(" (7) ➔ Ver historico de consultas                                                                                                                      ");
-        System.out.println(" (8) ➔ Visualizar perfil                                                                                                                               ");
+        System.out.println(" (2) ➔ Gerenciar Medicos                                                                                                                               ");
+        System.out.println(" (3) ➔ Gerenciar Pacientes                                                                                                                             ");
+        System.out.println(" (4) ➔ Visualizar perfil                                                                                                                               ");
+        System.out.println(" (5) ➔ Fechar sistema                                                                                                                                  ");
         System.out.println(" (0) ➔ Voltar para menu inicial                                                                                                                        ");
         System.out.println("───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────");
         System.out.printf(" ➤ Digite a opção desejada: ");
@@ -57,12 +54,9 @@ public class MenuAdminConsoleView implements IMenuAdminView {
         System.out.println(" OPÇÕES                                                                                                                                                ");
         System.out.println("───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────");
         System.out.println(" (1) ➔ Listar todos os usuarios                                                                                                                        ");
-        System.out.println(" (2) ➔ Buscar usuario por Id                                                                                                                           ");
-        System.out.println(" (3) ➔ Buscar usuario por CPF                                                                                                                          ");
-        System.out.println(" (4) ➔ Criar novo usuario                                                                                                                              ");
-        System.out.println(" (5) ➔ Editar Usuario                                                                                                                                  ");
-        System.out.println(" (6) ➔ Desativar Usuario                                                                                                                               ");
-        System.out.println(" (7) ➔ Ativar Usuario                                                                                                                                  ");
+        System.out.println(" (2) ➔ Buscar usuario por CPF                                                                                                                          ");
+        System.out.println(" (3) ➔ Criar novo usuario                                                                                                                              ");
+        System.out.println(" (4) ➔ Editar Usuario                                                                                                                                  ");
         System.out.println(" (0) ➔ Voltar                                                                                                                                          ");
         System.out.println("───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────");
         System.out.printf(" ➤ Digite a opção desejada: ");
@@ -194,9 +188,11 @@ public class MenuAdminConsoleView implements IMenuAdminView {
         System.out.println("───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────");
         System.out.println(" OPÇÕES                                                                                                                                                ");
         System.out.println("───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────");
-        System.out.println(" (1) ➔ ver Agenda do Medico                                                                                                                            ");
-        System.out.println(" (2) ➔ ver historico medico                                                                                                                            ");
-        System.out.println(" (3) ➔ editar Medico                                                                                                                                   ");
+        System.out.println(" (1) ➔ Ver Agenda do Medico                                                                                                                            ");
+        System.out.println(" (2) ➔ Ver historico medico                                                                                                                            ");
+        System.out.println(" (3) ➔ Editar Medico                                                                                                                                   ");
+        System.out.println(" (4) ➔ Remover Medico                                                                                                                                  ");
+        System.out.println(" (0) ➔ Voltar                                                                                                                                          ");
         System.out.println("───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────");
         System.out.printf(" ➤ Digite a opção desejada: ");
 
@@ -217,9 +213,11 @@ public class MenuAdminConsoleView implements IMenuAdminView {
         System.out.println("───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────");
         System.out.println(" OPÇÕES                                                                                                                                                ");
         System.out.println("───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────");
-        System.out.println(" (1) ➔ ver Agenda do Paciente                                                                                                                          ");
-        System.out.println(" (2) ➔ ver historico Paciente                                                                                                                            ");
-        System.out.println(" (3) ➔ editar Paciente                                                                                                                                   ");
+        System.out.println(" (1) ➔ Ver Agenda do Paciente                                                                                                                          ");
+        System.out.println(" (2) ➔ Ver historico Paciente                                                                                                                          ");
+        System.out.println(" (3) ➔ Editar Paciente                                                                                                                                 ");
+        System.out.println(" (4) ➔ Remover Paciente                                                                                                                                ");
+        System.out.println(" (0) ➔ Voltar                                                                                                                                          ");
         System.out.println("───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────");
         System.out.printf(" ➤ Digite a opção desejada: ");
 

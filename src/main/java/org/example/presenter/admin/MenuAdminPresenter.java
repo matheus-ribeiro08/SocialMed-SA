@@ -1,14 +1,17 @@
 package org.example.presenter.admin;
 
+import org.example.enums.Destinos;
 import org.example.enums.TipoUsuario;
 import org.example.model.*;
 import org.example.roteador.Roteador;
 import org.example.service.admin.AdminService;
+import org.example.service.consulta.ConsultaService;
 import org.example.service.medico.MedicoService;
 import org.example.service.relatorio.RelatorioService;
 import org.example.service.usuario.UsuarioService;
 import org.example.viewInterface.viewInterfaceAdm.IMenuAdminView;
 
+import java.sql.SQLException;
 import java.util.List;
 
 public class MenuAdminPresenter {
@@ -20,6 +23,7 @@ public class MenuAdminPresenter {
     private final UsuarioService usuarioService;
     private final MedicoService medicoService;
     private final RelatorioService relatorioService;
+    private final ConsultaService consultaService;
 
     public MenuAdminPresenter(Roteador roteador, AdminModel admin, IMenuAdminView view) {
         this.roteador = roteador;
@@ -30,6 +34,7 @@ public class MenuAdminPresenter {
         this.usuarioService = new UsuarioService();
         this.medicoService = new MedicoService();
         this.relatorioService = new RelatorioService();
+        this.consultaService = new ConsultaService();
     }
 
     public void iniciar() {
@@ -58,12 +63,12 @@ public class MenuAdminPresenter {
                     }
                     case 5: {
                         executando = false;
-                        roteador.irPara(Roteador.Destino.MENU_INICIAL, null);
+                        roteador.irPara(Destinos.SAIR, null);
                         break;
                     }
                     case 0: {
                         executando = false;
-                        roteador.irPara(Roteador.Destino.SAIR, null);
+                        roteador.irPara(Destinos.MENU_INICIAL, null);
                         break;
                     }
                     default: {
@@ -77,6 +82,20 @@ public class MenuAdminPresenter {
     }
 
     private void visualizarPerfil() {
+        view.mostrarTitulo("Meu Perfil");
+        view.mostrarDadosUsuarioCompleto(admin);
+
+        if(view.perguntarAcao("Deseja editar seus dados?")){
+            UsuarioModel usuario = admin;
+            view.lerDadosAtualizacaoUsuario(usuario);
+
+            try {
+                adminService.atualizarUsuario(admin, usuario);
+                view.mostrarMensagemSucesso("Perfil atualizado com sucesso");
+            }catch (Exception e){
+                view.mostrarMensagemErro("Erro ao atualizar perfil");
+            }
+        }
     }
 
     private void gerenciarUsuarios() {
@@ -186,7 +205,7 @@ public class MenuAdminPresenter {
 
         MedicoModel medicoModel = new MedicoModel(nomeCompleto, senha, cpf, email, telefone, tipoUsuario, especialidade);
 
-        adminService.criarMedico(admin, medico);
+        adminService.criarMedico(admin, medicoModel);
 
         view.mostrarMensagemSucesso("Medico criado com sucesso!");
     }
@@ -206,7 +225,7 @@ public class MenuAdminPresenter {
 
         SecretarioModel secretarioModel = new SecretarioModel(nomeCompleto, senha, cpf, email, telefone, tipoUsuario, turno);
 
-        adminService.criarSecretario(admin, secretario);
+        adminService.criarSecretario(admin, secretarioModel);
 
         view.mostrarMensagemSucesso("Medico criado com sucesso!");
     }
@@ -282,9 +301,9 @@ public class MenuAdminPresenter {
                         break;
                     }
                     case 4: {
-                        if (view.perguntarAcao("Remover paciente?")) {
+                        if (view.perguntarAcao("Remover Medico?")) {
                             adminService.removerMedico(admin, medico.getIdMedico());
-                            view.mostrarMensagemSucesso("Paciente removido!");
+                            view.mostrarMensagemSucesso("Medico removido!");
                             visualizando = false;
                         }
                         break;
@@ -306,23 +325,82 @@ public class MenuAdminPresenter {
 
 
     private void verAgendaMedico(MedicoModel medico) {
-        //implementar visualização da agenda do medico
+        view.mostrarTitulo("Agenda do medico " + medico.getNomeUsuario());
+        try {
+            List<ConsultaModel> consultas = consultaService.listarConsultasAtivasPorMedico(medico.getIdMedico());
+
+            if(consultas.isEmpty()){
+                view.mostrarMensagemErro("Nenhuma consulta futura agendada para esse medico");
+            }else{
+                for(ConsultaModel c : consultas){
+                    view.mostrarMensagemInfo(String.format("ID: %d | Paciente: %d | Data/Hora: %s | Local: %s",
+                            c.getIdConsulta(), c.getIdPaciente(), c.getHorarioConsulta(), c.getLocalEndereco()));
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     private void verAgendaPaciente(PacienteModel paciente) {
+        view.mostrarTitulo("Agenda do paciente " + paciente.getNomeUsuario());
+        try {
+            List<ConsultaModel> consultas = consultaService.listarConsultasAtivasPorPaciente(paciente.getIdPaciente());
 
+            if(consultas.isEmpty()){
+                view.mostrarMensagemErro("Nenhuma consulta futura agendada para esse paciente");
+            }else{
+                for(ConsultaModel c : consultas){
+                    view.mostrarMensagemInfo(String.format("ID: %d | Medico: %d | Data/Hora: %s | Local: %s",
+                            c.getIdConsulta(), c.getIdMedico(), c.getHorarioConsulta(), c.getLocalEndereco()));
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     private void verHistoricoPaciente(PacienteModel paciente) {
+        view.mostrarTitulo("Historico de consultas - Paciente: " + paciente.getNomeUsuario());
+
+        try {
+            List<ConsultaModel> consultas = consultaService.listarHistoricoConsultaPaciente(paciente.getIdPaciente());
+
+            if(consultas.isEmpty()){
+                view.mostrarMensagemInfo("Nenhuma consulta passada encontrada para este paciente");
+            }else {
+                for (ConsultaModel c : consultas) {
+                    view.mostrarMensagemInfo(String.format("ID: %d | Médico: %d | Data/Hora: %s | Local: %s",
+                            c.getIdConsulta(), c.getIdMedico(), c.getHorarioConsulta(), c.getLocalEndereco()));
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
 
     }
 
     private void verHistoricoMedico(MedicoModel medico) {
-        //implementar visualização do historico do medico
+        view.mostrarTitulo("Historico de consultas - Medico: " + medico.getNomeUsuario());
+
+        try {
+            List<ConsultaModel> consultas = consultaService.listarHistoricoConsultaMedico(medico.getIdMedico());
+
+            if(consultas.isEmpty()){
+                view.mostrarMensagemInfo("Nenhuma consulta passada encontrada para este medico");
+            }else {
+                for (ConsultaModel c : consultas) {
+                    view.mostrarMensagemInfo(String.format("ID: %d | Paciente: %d | Data/Hora: %s | Local: %s",
+                            c.getIdConsulta(), c.getIdMedico(), c.getHorarioConsulta(), c.getLocalEndereco()));
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
     }
 
     private void editarMedico(MedicoModel medico) {
-
 
         try {
             if (medico == null) {
@@ -357,7 +435,7 @@ public class MenuAdminPresenter {
             List<PacienteModel> pacientes = usuarioService.listarTodos();
 
             if (pacientes.isEmpty()) {
-                view.mostrarMensagemInfo("Nenhum medico cadastrado");
+                view.mostrarMensagemInfo("Nenhum paciente cadastrado");
                 return;
             }
 

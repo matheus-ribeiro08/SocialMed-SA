@@ -19,7 +19,7 @@ public class MedicoService {
     private final PacienteDAO pacienteDAO;
     private final ExameDAO exameDAO;
 
-    private MedicoService(){
+    public MedicoService(){
         this.medicoDAO = new MedicoDAO();
         this.consultaDAO = new ConsultaDAO();
         this.prontuarioDAO = new ProntuarioDAO();
@@ -88,6 +88,17 @@ public class MedicoService {
             throw new MedicoException("Consulta nao encontrada");
         }
         return consulta;
+    }
+
+    public List<MedicoModel> buscarMedicoPorEspecialidade(String especialidade) throws SQLException, MedicoException{
+        if(especialidade == null || especialidade.trim().isEmpty()){
+            throw new MedicoException("Especialidade nao informada");
+        }
+        try {
+            return medicoDAO.buscarPorEspecialidade(especialidade);
+        }catch (MedicoException e){
+            throw new MedicoException("Erro ao buscar medico por especialidade");
+        }
     }
 
     public List<ConsultaModel> buscarProximasConsultasMedico(int idMedico, int limite) throws SQLException, MedicoException{

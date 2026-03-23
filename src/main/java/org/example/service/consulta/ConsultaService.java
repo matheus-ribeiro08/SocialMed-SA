@@ -74,12 +74,12 @@ public class ConsultaService {
         }
 
         PacienteModel paciente = pacienteDAO.buscarPorId(consulta.getIdPaciente());
-        if(medico == null){
+        if(paciente == null){
             throw new ConsultaException("Paciente não encontrado");
         }
 
         HospitalModel hospital = hospitalDAO.buscarPorId(consulta.getIdHospital());
-        if(medico == null){
+        if(hospital == null){
             throw new ConsultaException("Hospital não encontrado");
         }
 
@@ -137,11 +137,28 @@ public class ConsultaService {
         return todasConsultas.stream().filter(c -> c.getHorarioConsulta().isAfter(agora)).collect(Collectors.toList());
     }
 
+    public List<ConsultaModel> listarConsultasAtivasPorPaciente(int idPaciente) throws SQLException{
+        if(idPaciente <= 0){
+            throw new IllegalArgumentException("Id do paciente invalido");
+        }
+        LocalDateTime agora = LocalDateTime.now();
+        List<ConsultaModel> todasConsultas = consultaDAO.listarConsultasPorPaciente(idPaciente);
+
+        return todasConsultas.stream().filter(c -> c.getHorarioConsulta().isAfter(agora)).collect(Collectors.toList());
+    }
+
     public List<ConsultaModel> listarHistoricoConsultaMedico(int idMedico) throws SQLException{
         if(idMedico <= 0){
             throw new IllegalArgumentException("Id do medico invalido");
         }
         return consultaDAO.historicoDeConsultasMedico(idMedico);
+    }
+
+    public List<ConsultaModel> listarHistoricoConsultaPaciente(int idPaciente) throws SQLException{
+        if(idPaciente <= 0){
+            throw new IllegalArgumentException("Id do paciente invalido");
+        }
+        return consultaDAO.historicoDeConsultasPaciente(idPaciente);
     }
 
     public List<ConsultaModel> buscarProximasConsultasMedico(int idMedico, int limite) throws SQLException{

@@ -3,6 +3,7 @@ package org.example.dao;
 import org.example.database.ConnectionFactory;
 import org.example.model.ProntuarioModel;
 
+import java.lang.reflect.Type;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -10,14 +11,20 @@ import java.util.List;
 public class ProntuarioDAO
 {
     public  boolean cadastrarProntuario(ProntuarioModel prontuario) {
-        String sql = "INSERT INTO Prontuario (id_Paciente, id_Medico, id_Consultas, diagnosticos, sintomas, prescricao_Medica, observacoes, data_Registro) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO Prontuario (id_Paciente, id_Medico, id_Consultas, diagnosticos, sintomas, prescricao_Medica, observacoes, data_Registro) " +
+                "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
         try (Connection conn = ConnectionFactory.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(sql))
-        {
+             PreparedStatement stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)){
             stmt.setInt(1, prontuario.getIdPaciente());
             stmt.setInt(2, prontuario.getIdMedico());
-            stmt.setInt(3, prontuario.getIdConsulta());
+
+            Integer idconsulta = prontuario.getIdConsulta();
+            if (idconsulta != null && idconsulta > 0){
+                stmt.setInt(3, prontuario.getIdConsulta());
+            }else {
+                stmt.setNull(3, Types.INTEGER);
+            }
 
             stmt.setString(4, prontuario.getDiagnostico());
             stmt.setString(5, prontuario.getSintomas());
@@ -26,9 +33,15 @@ public class ProntuarioDAO
             stmt.setTimestamp(8, Timestamp.valueOf(prontuario.getDataRegistro()));
 
             int linhasAfetadas = stmt.executeUpdate();
+            if(linhasAfetadas > 0){
+                try(ResultSet rs = stmt.getGeneratedKeys()) {
+                    if(rs.next()){
+                        prontuario.setIdProntuario(rs.getInt(1));
+                    }
+                }
+            }
             return linhasAfetadas > 0;
-        }
-        catch (SQLException e)
+        }catch (SQLException e)
         {
             System.out.println("Erro ao cadastrar o Prontuario");
         }
