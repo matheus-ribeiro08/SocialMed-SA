@@ -20,6 +20,15 @@ public interface IMenuMedicoView
     void mostrarHistoricoConsultas(ConsultaModel consulta);
     void mostrarHistoricoAtendimentos(ConsultaModel historico);
 
+    void mostrarTituloDadosAtualizacao();
+    void mostrarTitloProntuario();
+    void mostrarTituloDadosMedico();
+    void mostrarTituloDadosPaciente();
+    void mostrarDadosConsulta();
+    void mostrarTituloAtendimentos();
+    void mostrarTituloHistoricoConsultas();
+    void mostrarTituloListaConsultas();
+
     void mostrarDadosConsultaCompleta(ConsultaModel consulta);
     void mostrarDadosPacienteCompleto(PacienteModel paciente);
     void mostrarDadosMedico(MedicoModel medico);

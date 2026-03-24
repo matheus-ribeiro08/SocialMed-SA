@@ -294,6 +294,8 @@ public class UsuarioDAO
                 usuario.setSenhaUsuario(rs.getString("senha_Usuario"));
                 usuario.setTelefoneUsuario(rs.getString("telefone_Usuario"));
                 usuario.setCpfUsuario(rs.getString("cpf_Usuario"));
+                int numeroDoBanco = rs.getInt("tipo_Usuario");
+                usuario.setTipoUsuario(TipoUsuario.values()[numeroDoBanco]);
 
                 usuarios.add(usuario);
             }

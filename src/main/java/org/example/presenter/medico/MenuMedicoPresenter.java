@@ -11,6 +11,7 @@ import org.example.service.consulta.ConsultaService;
 import org.example.service.medico.MedicoService;
 import org.example.service.paciente.PacienteService;
 import org.example.service.prontuario.ProntuarioService;
+import org.example.utils.Ferramentas;
 import org.example.viewInterface.viewInterfaceAdm.IMenuAdminView;
 import org.example.viewInterface.viewInterfaceMedico.IMenuMedicoView;
 
@@ -39,6 +40,8 @@ public class MenuMedicoPresenter {
     }
 
     public void inicar(){
+        Ferramentas.Delay(1500);
+        Ferramentas.limpaTerminalOpcional(30);
         boolean executando = true;
 
         while (executando){
@@ -84,25 +87,34 @@ public class MenuMedicoPresenter {
                     case 11:{
                         executando = false;
                         roteador.irPara(Destinos.MENU_INICIAL, null);
+                        Ferramentas.Delay(1500);
+                        Ferramentas.limpaTerminalOpcional(30);
                         break;
                     }
                     case 0:{
                         executando = false;
+                        Ferramentas.Delay(1500);
+                        Ferramentas.limpaTerminalOpcional(30);
                         roteador.irPara(Destinos.SAIR, null);
                         break;
                     }
                     default:{
                         view.mostrarMensagemErro("Opção invalida!");
+                        Ferramentas.Delay(1500);
+                        Ferramentas.limpaTerminalOpcional(30);
                     }
                 }
             }catch (Exception e){
                 view.mostrarMensagemErro("Erro!");
+                Ferramentas.Delay(1500);
+                Ferramentas.limpaTerminalOpcional(30);
             }
         }
     }
 
     private void verAgendaHoje(){
         view.mostrarTitulo("Agenda de hoje");
+        Ferramentas.limpaTerminalOpcional(30);
 
         try {
             List<ConsultaModel> consultasHoje = consultaService.buscarConsultasDoDia(medico.getIdMedico());
@@ -114,6 +126,8 @@ public class MenuMedicoPresenter {
                     view.mostrarListaConsultasDetalhadas(consulta);
                 }
             }
+            Ferramentas.Delay(1500);
+            Ferramentas.limpaTerminalOpcional(30);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -121,6 +135,7 @@ public class MenuMedicoPresenter {
 
     private void verProximasConsultas(){
         view.mostrarTitulo("Proximas consultas");
+        Ferramentas.limpaTerminalOpcional(30);
 
         try {
             List<ConsultaModel> consultas = consultaService.buscarProximasConsultasMedico(medico.getIdMedico(), 10);
@@ -132,6 +147,8 @@ public class MenuMedicoPresenter {
                     view.mostrarListaConsultasDetalhadas(consulta);
                 }
             }
+            Ferramentas.Delay(1500);
+            Ferramentas.limpaTerminalOpcional(30);
         }catch (Exception e){
             view.mostrarMensagemErro("Erro ao buscar consultas");
         }
@@ -139,6 +156,7 @@ public class MenuMedicoPresenter {
 
     private void atenderPaciente(){
         view.mostrarTitulo("Ateder paciente");
+        Ferramentas.limpaTerminalOpcional(30);
 
         try {
             int idConsulta = view.lerIdConsulta();
@@ -169,14 +187,19 @@ public class MenuMedicoPresenter {
             medicoService.realizarAtendimento(medico, consulta, diagnostico, prescricao, observacoes);
 
             view.mostrarTitulo("Atendimento Realizado com sucesso!");
+            Ferramentas.Delay(1500);
+            Ferramentas.limpaTerminalOpcional(30);
 
         }catch (Exception e){
             view.mostrarMensagemErro("Erro no atendimento");
+            Ferramentas.Delay(1500);
+            Ferramentas.limpaTerminalOpcional(30);
         }
     }
 
     private void buscarPaciente(){
         view.mostrarTitulo("Buscar paciente");
+        Ferramentas.limpaTerminalOpcional(30);
 
         String cpf = view.lerCpf();
 
@@ -192,11 +215,12 @@ public class MenuMedicoPresenter {
                     for(ConsultaModel h: historico){
                         view.mostrarHistoricoAtendimentos(h);
                     }
-
                 }
             }else{
                 view.mostrarMensagemErro("Paciente nao encontrado");
             }
+            Ferramentas.Delay(1500);
+            Ferramentas.limpaTerminalOpcional(30);
         }catch (Exception e){
             view.mostrarMensagemErro("Erro ao buscar paciente");
         }
@@ -204,6 +228,7 @@ public class MenuMedicoPresenter {
 
     private void acessarProntuario(){
         view.mostrarTitulo("Acessar prontuario");
+        Ferramentas.limpaTerminalOpcional(30);
 
         try {
             String cpf = view.lerCpf();
@@ -225,14 +250,17 @@ public class MenuMedicoPresenter {
             }else{
                 view.mostrarProntuario(prontuario);
             }
+            Ferramentas.Delay(1500);
+            Ferramentas.limpaTerminalOpcional(30);
         }catch (Exception e){
             view.mostrarMensagemErro("Erro ao acesssar prontuario");
         }
     }
 
     private void criarProntuario(PacienteModel paciente){
-        try {
+        Ferramentas.limpaTerminalOpcional(30);
 
+        try {
             String sintomas = view.lerSintomas();
             String diagnostico = view.lerDiagnostico();
             String prescricaoMedica = view.lerPrescricao();
@@ -244,13 +272,18 @@ public class MenuMedicoPresenter {
 
             prontuarioService.criar(prontuario);
             view.mostrarMensagemSucesso("Prontuario criado com sucesso!");
+            Ferramentas.Delay(1500);
+            Ferramentas.limpaTerminalOpcional(30);
         }catch (Exception e){
             view.mostrarMensagemErro("Erro ao criar Prontuario");
         }
+        Ferramentas.Delay(1500);
+        Ferramentas.limpaTerminalOpcional(30);
     }
 
     private void atualizarProntuario(){
         view.mostrarTitulo("Atualizar Prontuario");
+        Ferramentas.limpaTerminalOpcional(30);
 
         try {
             String cpf = view.lerCpf();
@@ -267,13 +300,18 @@ public class MenuMedicoPresenter {
             prontuarioService.adicionarInformacao(prontuario, novaInformacao, medico);
 
             view.mostrarMensagemSucesso("Prontuario atualizado com sucesso");
+            Ferramentas.Delay(1500);
+            Ferramentas.limpaTerminalOpcional(30);
         }catch (Exception e){
             view.mostrarMensagemErro("Erro ao atualizar prontuario");
+            Ferramentas.Delay(1500);
+            Ferramentas.limpaTerminalOpcional(30);
         }
     }
 
     private void verHistoricoConsultas(){
         view.mostrarTitulo("Historico de consultas");
+        Ferramentas.limpaTerminalOpcional(30);
 
         try {
             List<ConsultaModel> consultas = consultaService.buscarHistoricoMedico(medico.getIdMedico());
@@ -285,8 +323,12 @@ public class MenuMedicoPresenter {
                     view.mostrarHistoricoAtendimentos(consulta);
                 }
             }
+            Ferramentas.Delay(1500);
+            Ferramentas.limpaTerminalOpcional(30);
         }catch (Exception e){
             view.mostrarMensagemErro("Erro ao mostrar historico de consultas");
+            Ferramentas.Delay(1500);
+            Ferramentas.limpaTerminalOpcional(30);
         }
     }
 
@@ -297,10 +339,13 @@ public class MenuMedicoPresenter {
         if(view.perguntarAcao("Deseja editar seus dados?")){
             editarPerfil(medico);
         }
+        Ferramentas.Delay(1500);
+        Ferramentas.limpaTerminalOpcional(30);
     }
 
     private void editarPerfil(MedicoModel medico){
         view.mostrarTitulo("Editar perfil");
+        Ferramentas.limpaTerminalOpcional(30);
 
         try {
             String nomeCompleto = view.lerNomeCompleto();
@@ -320,14 +365,19 @@ public class MenuMedicoPresenter {
             medicoService.atualizarMedico(medico);
 
             view.mostrarMensagemSucesso("Perfil atualizado com sucesso");
+            Ferramentas.Delay(1500);
+            Ferramentas.limpaTerminalOpcional(30);
 
         }catch (Exception e){
             view.mostrarMensagemErro("Erro ao editar perfil");
+            Ferramentas.Delay(1500);
+            Ferramentas.limpaTerminalOpcional(30);
         }
     }
 
     private void solicitarExame(){
         view.mostrarTitulo("Solicitar exame");
+        Ferramentas.limpaTerminalOpcional(30);
 
         try {
             String cpf = view.lerCpf();
@@ -344,8 +394,13 @@ public class MenuMedicoPresenter {
             medicoService.solicitarExame(medico, paciente, tipoExame, observacoes);
 
             view.mostrarMensagemSucesso("Exame solicitado com sucesso!");
+            Ferramentas.Delay(1500);
+            Ferramentas.limpaTerminalOpcional(30);
+
         }catch (Exception e){
             view.mostrarMensagemErro("Erro ao solicitar exame");
+            Ferramentas.Delay(1500);
+            Ferramentas.limpaTerminalOpcional(30);
         }
     }
 }

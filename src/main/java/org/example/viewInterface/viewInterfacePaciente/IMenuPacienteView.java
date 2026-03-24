@@ -20,6 +20,10 @@ public interface IMenuPacienteView {
     void mostrarDetalhesConsulta(ConsultaModel consulta);
     void mostrarProntuario(ProntuarioModel prontuarioModel);
 
+    void mostrarTituloListaMedicos();
+    void mostrarTituloAgenda();
+    void mostrarTituloLista();
+
     void abrirMapaLocalizacao();
     void mostrarHistoricoConsultas(ConsultaModel consulta);
     void mostrarAgenda(ConsultaModel consulta);

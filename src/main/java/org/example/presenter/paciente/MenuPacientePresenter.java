@@ -41,6 +41,8 @@ MenuPacientePresenter {
     }
 
     public void iniciar() {
+        Ferramentas.Delay(1500);
+        Ferramentas.limpaTerminalOpcional(30);
         boolean execuntando = true;
 
         while (execuntando) {
@@ -92,14 +94,19 @@ MenuPacientePresenter {
                         view.mostrarMensagemErro("Opção invalida");
                     }
                 }
+                Ferramentas.Delay(1500);
+                Ferramentas.limpaTerminalOpcional(30);
             }catch (Exception e){
                 view.mostrarMensagemErro("Erro!");
+                Ferramentas.Delay(1500);
+                Ferramentas.limpaTerminalOpcional(30);
             }
         }
     }
 
     private void verMinhasConsultas(){
         view.mostrarTitulo("Minhas consultas");
+        Ferramentas.limpaTerminalOpcional(30);
 
         try {
             List<ConsultaModel> consultas = consultaService.buscarConsultasPorPaciente(paciente.getIdPaciente());
@@ -111,14 +118,19 @@ MenuPacientePresenter {
                 view.mostrarListaConsultas(consulta);
             }
         }
+            Ferramentas.Delay(1500);
+            Ferramentas.limpaTerminalOpcional(30);
         }catch (Exception e){
             view.mostrarMensagemErro("Erro ao ver as suas consultas");
+            Ferramentas.Delay(1500);
+            Ferramentas.limpaTerminalOpcional(30);
         }
 
     }
 
     private void agendarConsulta(){
         view.mostrarTitulo("Agendar consulta");
+        Ferramentas.limpaTerminalOpcional(30);
 
         try {
             String especialidade = view.lerEspecialidade();
@@ -173,14 +185,19 @@ MenuPacientePresenter {
 
             view.mostrarMensagemSucesso("Consulta agendada com sucesso!");
             view.mostrarDetalhesConsulta(consulta);
+            Ferramentas.Delay(1500);
+            Ferramentas.limpaTerminalOpcional(30);
 
         }catch (Exception e){
             view.mostrarMensagemErro("Erro ao agendar consulta");
+            Ferramentas.Delay(1500);
+            Ferramentas.limpaTerminalOpcional(30);
         }
     }
 
     private void cancelarConsulta(){
         view.mostrarTitulo("Cancelar consulta");
+        Ferramentas.limpaTerminalOpcional(30);
 
         try {
             List<ConsultaModel> consultas = consultaService.buscarConsultasPorPaciente(paciente.getIdPaciente());
@@ -216,15 +233,20 @@ MenuPacientePresenter {
                     view.mostrarMensagemErro("Erro ao cancelar consulta");
                 }
             }
+            Ferramentas.Delay(1500);
+            Ferramentas.limpaTerminalOpcional(30);
 
         } catch (SQLException e) {
             view.mostrarMensagemErro("Erro ao cancelar consulta");
+            Ferramentas.Delay(1500);
+            Ferramentas.limpaTerminalOpcional(30);
         }
     }
 
 
     private void acessarProntuario(){
         view.mostrarTitulo("Meu prontuario");
+        Ferramentas.limpaTerminalOpcional(30);
 
         try {
             ProntuarioModel prontuario = prontuarioService.buscarPorPaciente(paciente.getIdPaciente());
@@ -236,13 +258,19 @@ MenuPacientePresenter {
 
             view.mostrarProntuario(prontuario);
 
+            Ferramentas.Delay(1500);
+            Ferramentas.limpaTerminalOpcional(30);
+
         }catch (Exception e){
             view.mostrarMensagemErro("Erro ao acessar prontuario");
+            Ferramentas.Delay(1500);
+            Ferramentas.limpaTerminalOpcional(30);
         }
     }
 
     private void verHistoricoConsultas(){
         view.mostrarTitulo("Historico consultas");
+        Ferramentas.limpaTerminalOpcional(30);
 
         try {
             List<ConsultaModel> historico = consultaService.listarHistoricoConsultaPaciente(paciente.getIdPaciente());
@@ -254,14 +282,20 @@ MenuPacientePresenter {
                     view.mostrarHistoricoConsultas(consulta);
                 }
             }
+            Ferramentas.Delay(1500);
+            Ferramentas.limpaTerminalOpcional(30);
 
         }catch (Exception e){
             view.mostrarMensagemErro("Erro ao mostrar historico de consultas");
+            Ferramentas.Delay(1500);
+            Ferramentas.limpaTerminalOpcional(30);
         }
     }
 
     private void visualizarPerfil(){
         view.mostrarTitulo("Meu perfil");
+        Ferramentas.limpaTerminalOpcional(30);
+
         PacienteModel detalhesBanco = pacienteService.buscarDetalhe(paciente.getIdUsuario());
 
         if(detalhesBanco != null)
@@ -272,10 +306,13 @@ MenuPacientePresenter {
 
         if(view.perguntarAcao("Desejar editar seus dados?"));
         editarPerfil();
+        Ferramentas.Delay(1500);
+        Ferramentas.limpaTerminalOpcional(30);
     }
 
     private void editarPerfil(){
         view.mostrarTitulo("Editar perfil");
+        Ferramentas.limpaTerminalOpcional(30);
 
         try {
             view.lerDadosAtualizacaoPaciente(paciente);
@@ -293,13 +330,18 @@ MenuPacientePresenter {
             }else{
                 view.mostrarMensagemErro("Erro ao atualizar perfil");
             }
+            Ferramentas.Delay(1500);
+            Ferramentas.limpaTerminalOpcional(30);
         }catch (Exception e){
             view.mostrarMensagemErro("Erro ao editar perfil");
+            Ferramentas.Delay(1500);
+            Ferramentas.limpaTerminalOpcional(30);
         }
     }
 
     private void buscarMedicoPorEspecialidade(){
         view.mostrarTitulo("Buscar medico por especialidade");
+        Ferramentas.limpaTerminalOpcional(30);
 
         try {
             String especialidade = view.lerEspecialidade();
@@ -313,8 +355,12 @@ MenuPacientePresenter {
                     view.mostrarListaMedicos(medico);
                 }
             }
+            Ferramentas.Delay(1500);
+            Ferramentas.limpaTerminalOpcional(30);
         }catch (Exception e){
             view.mostrarMensagemErro("Erro ao buscar medicos");
+            Ferramentas.Delay(1500);
+            Ferramentas.limpaTerminalOpcional(30);
         }
     }
 

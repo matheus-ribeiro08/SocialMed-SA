@@ -60,8 +60,7 @@ public class MenuMedicoConsoleView implements IMenuMedicoView {
     }
 
     @Override
-    public void mostrarListaConsultasDetalhadas(ConsultaModel consulta) {
-
+    public void mostrarTituloListaConsultas(){
         System.out.println(Ferramentas.GREENclaro+"───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────");
         System.out.println(Ferramentas.RESET+"                    ██╗     ██╗███████╗████████╗ █████╗      ██████╗ ██████╗ ███╗   ██╗███████╗██╗   ██╗██╗  ████████╗ █████╗ ███████╗                 ");
         System.out.println("                    ██║     ██║██╔════╝╚══██╔══╝██╔══██╗    ██╔════╝██╔═══██╗████╗  ██║██╔════╝██║   ██║██║  ╚══██╔══╝██╔══██╗██╔════╝                 ");
@@ -70,7 +69,11 @@ public class MenuMedicoConsoleView implements IMenuMedicoView {
         System.out.println("                    ███████╗██║███████║   ██║   ██║  ██║    ╚██████╗╚██████╔╝██║ ╚████║███████║╚██████╔╝███████╗██║   ██║  ██║███████║                 ");
         System.out.println("                    ╚══════╝╚═╝╚══════╝   ╚═╝   ╚═╝  ╚═╝     ╚═════╝ ╚═════╝ ╚═╝  ╚═══╝╚══════╝ ╚═════╝ ╚══════╝╚═╝   ╚═╝  ╚═╝╚══════╝                 ");
         System.out.println(Ferramentas.GREENclaro+"───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────");
-        System.out.println(Ferramentas.RESET+" OPÇÕES");
+    }
+
+    @Override
+    public void mostrarListaConsultasDetalhadas(ConsultaModel consulta) {
+
         System.out.println(Ferramentas.GREENclaro+"───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────"+Ferramentas.RESET);
         System.out.println("Id: " + consulta.getIdConsulta());
         System.out.println("Paciente: " + consulta.getIdPaciente());
@@ -81,8 +84,7 @@ public class MenuMedicoConsoleView implements IMenuMedicoView {
     }
 
     @Override
-    public void mostrarHistoricoConsultas(ConsultaModel consulta) {
-
+    public void mostrarTituloHistoricoConsultas(){
         System.out.println(Ferramentas.GREENclaro+"───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────");
         System.out.println(Ferramentas.RESET+"     ██╗  ██╗██╗███████╗████████╗ ██████╗ ██████╗ ██╗ ██████╗  ██████╗    ██████╗ ██████╗ ███╗   ██╗███████╗██╗   ██╗██╗  ████████╗ █████╗ ███████╗    ");
         System.out.println("     ██║  ██║██║██╔════╝╚══██╔══╝██╔═══██╗██╔══██╗██║██╔═══██╗██╔═══██╗  ██╔════╝██╔═══██╗████╗  ██║██╔════╝██║   ██║██║  ╚══██╔══╝██╔══██╗██╔════╝    ");
@@ -92,6 +94,11 @@ public class MenuMedicoConsoleView implements IMenuMedicoView {
         System.out.println("     ╚═╝  ╚═╝╚═╝╚══════╝   ╚═╝    ╚═════╝ ╚═╝  ╚═╝╚═╝ ╚═════╝  ╚═════╝    ╚═════╝ ╚═════╝ ╚═╝  ╚═══╝╚══════╝ ╚═════╝ ╚══════╝╚═╝   ╚═╝  ╚═╝╚══════╝    ");
         System.out.println(Ferramentas.GREENclaro+"───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────"+Ferramentas.RESET);
         System.out.println(" SEU HISTÓRICO");
+    }
+
+    @Override
+    public void mostrarHistoricoConsultas(ConsultaModel consulta) {
+
         System.out.println(Ferramentas.GREENclaro+"───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────");
         System.out.println(Ferramentas.RESET+"ID: " + consulta.getIdConsulta());
         System.out.println("Paciente: " + consulta.getIdPaciente());
@@ -101,7 +108,7 @@ public class MenuMedicoConsoleView implements IMenuMedicoView {
     }
 
     @Override
-    public void mostrarHistoricoAtendimentos(ConsultaModel historico) {
+    public void mostrarTituloAtendimentos(){
         System.out.println(Ferramentas.GREENclaro+"─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────");
         System.out.println(Ferramentas.RESET+"  ██╗  ██╗██╗███████╗████████╗ ██████╗ ██████╗ ██╗ ██████╗  ██████╗     █████╗ ████████╗███████╗███╗   ██╗██████╗ ██╗███╗   ███╗███████╗███╗   ██╗████████╗ ██████╗  ");
         System.out.println("  ██║  ██║██║██╔════╝╚══██╔══╝██╔═══██╗██╔══██╗██║██╔═══██╗██╔═══██╗   ██╔══██╗╚══██╔══╝██╔════╝████╗  ██║██╔══██╗██║████╗ ████║██╔════╝████╗  ██║╚══██╔══╝██╔═══██╗ ");
@@ -111,16 +118,21 @@ public class MenuMedicoConsoleView implements IMenuMedicoView {
         System.out.println("  ╚═╝  ╚═╝╚═╝╚══════╝   ╚═╝    ╚═════╝ ╚═╝  ╚═╝╚═╝ ╚═════╝  ╚═════╝    ╚═╝  ╚═╝   ╚═╝   ╚══════╝╚═╝  ╚═══╝╚═════╝ ╚═╝╚═╝     ╚═╝╚══════╝╚═╝  ╚═══╝   ╚═╝    ╚═════╝  ");
         System.out.println(Ferramentas.GREENclaro+"─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────"+Ferramentas.RESET);
         System.out.println(" SEU HISTÓRICO");
-        System.out.println(Ferramentas.GREENclaro+"───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────"+Ferramentas.RESET);
-            System.out.println("ID: " + historico.getIdConsulta());
-            System.out.println("Paciente: " + historico.getIdPaciente());
-            System.out.println("Data/Hora: " + historico.getHorarioConsulta());
-            System.out.println("Local: " + historico.getLocalEndereco());
-            System.out.println(Ferramentas.GREENclaro+"───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────"+Ferramentas.RESET);
     }
 
     @Override
-    public void mostrarDadosConsultaCompleta(ConsultaModel consulta) {
+    public void mostrarHistoricoAtendimentos(ConsultaModel historico) {
+
+        System.out.println(Ferramentas.GREENclaro+"───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────"+Ferramentas.RESET);
+        System.out.println("ID: " + historico.getIdConsulta());
+        System.out.println("Paciente: " + historico.getIdPaciente());
+        System.out.println("Data/Hora: " + historico.getHorarioConsulta());
+        System.out.println("Local: " + historico.getLocalEndereco());
+        System.out.println(Ferramentas.GREENclaro+"───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────"+Ferramentas.RESET);
+    }
+
+    @Override
+    public void mostrarDadosConsulta(){
         System.out.println(Ferramentas.GREENclaro+"───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────"+Ferramentas.RESET);
         System.out.println("                     ██████╗  █████╗ ██████╗  ██████╗ ███████╗     ██████╗ ██████╗ ███╗   ██╗███████╗██╗   ██╗██╗  ████████╗ █████╗                    ");
         System.out.println("                     ██╔══██╗██╔══██╗██╔══██╗██╔═══██╗██╔════╝    ██╔════╝██╔═══██╗████╗  ██║██╔════╝██║   ██║██║  ╚══██╔══╝██╔══██╗                   ");
@@ -129,7 +141,11 @@ public class MenuMedicoConsoleView implements IMenuMedicoView {
         System.out.println("                     ██████╔╝██║  ██║██████╔╝╚██████╔╝███████║    ╚██████╗╚██████╔╝██║ ╚████║███████║╚██████╔╝███████╗██║   ██║  ██║                   ");
         System.out.println("                     ╚═════╝ ╚═╝  ╚═╝╚═════╝  ╚═════╝ ╚══════╝     ╚═════╝ ╚═════╝ ╚═╝  ╚═══╝╚══════╝ ╚═════╝ ╚══════╝╚═╝   ╚═╝  ╚═╝                   ");
         System.out.println(Ferramentas.GREENclaro+"───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────"+Ferramentas.RESET);
-        System.out.println(" DADOS");
+        System.out.println("DADOS: ");
+    }
+
+    @Override
+    public void mostrarDadosConsultaCompleta(ConsultaModel consulta) {
         System.out.println(Ferramentas.GREENclaro+"───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────"+Ferramentas.RESET);
         System.out.println("Id: " + consulta.getIdConsulta());
         System.out.println("Paciente: " + consulta.getIdPaciente());
@@ -141,7 +157,7 @@ public class MenuMedicoConsoleView implements IMenuMedicoView {
     }
 
     @Override
-    public void mostrarDadosPacienteCompleto(PacienteModel paciente) {
+    public void mostrarTituloDadosPaciente(){
         System.out.println(Ferramentas.GREENclaro+"───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────");
         System.out.println(Ferramentas.RESET+"                           ██████╗  █████╗ ██████╗  ██████╗ ███████╗   ██████╗  █████╗  ██████╗██╗███████╗███╗   ██╗████████╗███████╗                            ");
         System.out.println("                           ██╔══██╗██╔══██╗██╔══██╗██╔═══██╗██╔════╝   ██╔══██╗██╔══██╗██╔════╝██║██╔════╝████╗  ██║╚══██╔══╝██╔════╝                            ");
@@ -150,7 +166,11 @@ public class MenuMedicoConsoleView implements IMenuMedicoView {
         System.out.println("                           ██████╔╝██║  ██║██████╔╝╚██████╔╝███████║   ██║     ██║  ██║╚██████╗██║███████╗██║ ╚████║   ██║   ███████╗                            ");
         System.out.println("                           ╚═════╝ ╚═╝  ╚═╝╚═════╝  ╚═════╝ ╚══════╝   ╚═╝     ╚═╝  ╚═╝ ╚═════╝╚═╝╚══════╝╚═╝  ╚═══╝   ╚═╝   ╚══════╝                            ");
         System.out.println(Ferramentas.GREENclaro+"───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────"+ Ferramentas.RESET);
-        System.out.println(" DADOS");
+        System.out.println("DADOS: ");
+    }
+    @Override
+    public void mostrarDadosPacienteCompleto(PacienteModel paciente) {
+
         System.out.println(Ferramentas.GREENclaro+"───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────"+ Ferramentas.RESET);
         System.out.println("Id: " + paciente.getIdUsuario());
         System.out.println("Nome: " + paciente.getNomeUsuario());
@@ -163,7 +183,7 @@ public class MenuMedicoConsoleView implements IMenuMedicoView {
     }
 
     @Override
-    public void mostrarDadosMedico(MedicoModel medico) {
+    public void mostrarTituloDadosMedico(){
         System.out.println(Ferramentas.GREENclaro+"───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────");
         System.out.println(Ferramentas.RESET+"                         ██████╗  █████╗ ██████╗  ██████╗ ███████╗  ███╗   ███╗███████╗██████╗ ██╗ ██████╗ ██████╗ ███████╗                            ");
         System.out.println("                         ██╔══██╗██╔══██╗██╔══██╗██╔═══██╗██╔════╝  ████╗ ████║██╔════╝██╔══██╗██║██╔════╝██╔═══██╗██╔════╝                            ");
@@ -172,7 +192,12 @@ public class MenuMedicoConsoleView implements IMenuMedicoView {
         System.out.println("                         ██████╔╝██║  ██║██████╔╝╚██████╔╝███████║  ██║ ╚═╝ ██║███████╗██████╔╝██║╚██████╗╚██████╔╝███████║                            ");
         System.out.println("                         ╚═════╝ ╚═╝  ╚═╝╚═════╝  ╚═════╝ ╚══════╝  ╚═╝     ╚═╝╚══════╝╚═════╝ ╚═╝ ╚═════╝ ╚═════╝ ╚══════╝                            ");
         System.out.println(Ferramentas.GREENclaro+"───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────"+ Ferramentas.RESET);
-        System.out.println(" DADOS");
+        System.out.println("DADOS: ");
+    }
+
+    @Override
+    public void mostrarDadosMedico(MedicoModel medico) {
+
         System.out.println(Ferramentas.GREENclaro+"───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────"+ Ferramentas.RESET);
         System.out.println("Id: " + medico.getIdUsuario());
         System.out.println("Nome: " + medico.getNomeUsuario());
@@ -184,7 +209,7 @@ public class MenuMedicoConsoleView implements IMenuMedicoView {
     }
 
     @Override
-    public void mostrarProntuario(ProntuarioModel prontuario) {
+    public void mostrarTitloProntuario(){
         System.out.println(Ferramentas.GREENclaro+"───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────");
         System.out.println(Ferramentas.RESET+"             ██████╗  █████╗ ██████╗  ██████╗ ███████╗   ██████╗ ██████╗  ██████╗ ███╗   ██╗████████╗██╗   ██╗ █████╗ ██████╗ ██╗ ██████╗              ");
         System.out.println("             ██╔══██╗██╔══██╗██╔══██╗██╔═══██╗██╔════╝   ██╔══██╗██╔══██╗██╔═══██╗████╗  ██║╚══██╔══╝██║   ██║██╔══██╗██╔══██╗██║██╔═══██╗             ");
@@ -193,7 +218,12 @@ public class MenuMedicoConsoleView implements IMenuMedicoView {
         System.out.println("             ██████╔╝██║  ██║██████╔╝╚██████╔╝███████║   ██║     ██║  ██║╚██████╔╝██║ ╚████║   ██║   ╚██████╔╝██║  ██║██║  ██║██║╚██████╔╝             ");
         System.out.println("             ╚═════╝ ╚═╝  ╚═╝╚═════╝  ╚═════╝ ╚══════╝   ╚═╝     ╚═╝  ╚═╝ ╚═════╝ ╚═╝  ╚═══╝   ╚═╝    ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝╚═╝ ╚═════╝              ");
         System.out.println(Ferramentas.GREENclaro+"───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────"+ Ferramentas.RESET);
-        System.out.println(" DADOS");
+        System.out.println("DADOS: ");
+    }
+
+    @Override
+    public void mostrarProntuario(ProntuarioModel prontuario) {
+
         System.out.println(Ferramentas.GREENclaro+"───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────"+ Ferramentas.RESET);
         System.out.println("Id: " + prontuario.getIdProntuario());
         System.out.println("Medico: " + prontuario.getIdMedico());
@@ -321,7 +351,7 @@ public class MenuMedicoConsoleView implements IMenuMedicoView {
     }
 
     @Override
-    public void lerDadosAtualizacaoMedico(MedicoModel medico) {
+    public void mostrarTituloDadosAtualizacao(){
         System.out.println(Ferramentas.GREENclaro+"───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────");
         System.out.println(Ferramentas.RESET+"             ██████╗  █████╗ ██████╗  ██████╗ ███████╗   █████╗ ████████╗██╗   ██╗ █████╗ ██╗     ██╗███████╗ █████╗  ██████╗ ███████╗                 ");
         System.out.println("             ██╔══██╗██╔══██╗██╔══██╗██╔═══██╗██╔════╝  ██╔══██╗╚══██╔══╝██║   ██║██╔══██╗██║     ██║    ██╔╝██╔══██╗██╔═══██╗██╔════╝                 ");
@@ -330,7 +360,11 @@ public class MenuMedicoConsoleView implements IMenuMedicoView {
         System.out.println("             ██████╔╝██║  ██║██████╔╝╚██████╔╝███████║  ██║  ██║   ██║   ╚██████╔╝██║  ██║███████╗██║███████╗██║  ██║╚██████╔╝███████║                 ");
         System.out.println("             ╚═════╝ ╚═╝  ╚═╝╚═════╝  ╚═════╝ ╚══════╝  ╚═╝  ╚═╝   ╚═╝    ╚═════╝ ╚═╝  ╚═╝╚══════╝╚═╝╚══════╝╚═╝  ╚═╝ ╚═════╝ ╚══════╝                 ");
         System.out.println(Ferramentas.GREENclaro+"───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────");
-        System.out.println(Ferramentas.RESET+" DADOS");
+        System.out.println(Ferramentas.RESET+"DADOS: ");
+    }
+
+    @Override
+    public void lerDadosAtualizacaoMedico(MedicoModel medico) {
         System.out.println(Ferramentas.GREENclaro+"───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────"+ Ferramentas.RESET);
         System.out.println("Id: " + medico.getIdUsuario());
         System.out.println("Nome: " + medico.getNomeUsuario());
@@ -343,6 +377,7 @@ public class MenuMedicoConsoleView implements IMenuMedicoView {
 
     @Override
     public boolean perguntarAcao(String mensagem) {
+        System.out.println(Ferramentas.GREENclaro+"───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────"+ Ferramentas.RESET);
         System.out.println(mensagem + "(S/N): ");
         String resposta = Ferramentas.lString().trim().toUpperCase();
         return resposta.equalsIgnoreCase(("S")) || resposta.equalsIgnoreCase("Sim");

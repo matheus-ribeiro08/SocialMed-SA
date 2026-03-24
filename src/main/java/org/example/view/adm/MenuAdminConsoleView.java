@@ -66,6 +66,7 @@ public class MenuAdminConsoleView implements IMenuAdminView {
 
     @Override
     public String lerCpf() {
+        System.out.println(Ferramentas.GREENclaro+"───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────");
         System.out.println("Digite o CPF (11 numeros): ");
         return Ferramentas.lString().trim();
     }
@@ -79,10 +80,12 @@ public class MenuAdminConsoleView implements IMenuAdminView {
 
     @Override
     public TipoUsuario selecionarTipoUsuario() {
+        System.out.println(Ferramentas.GREENclaro+"───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────");
         System.out.println("\nTipos de usuario: ");
         System.out.println("  (1) ➔ Médico");
         System.out.println("  (2) ➔ Secretário");
         System.out.printf(Ferramentas.YELLOW+" ➤"+ Ferramentas.RESET+" Digite a opção desejada: ");
+        System.out.println(Ferramentas.GREENclaro+"───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────");
 
         int opcao = Ferramentas.lInteiro();
 
@@ -107,6 +110,7 @@ public class MenuAdminConsoleView implements IMenuAdminView {
 
     @Override
     public String lerEspecialidade(){
+        System.out.println(Ferramentas.GREENclaro+"───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────");
         System.out.println("Digite a especialidade: ");
 
         return Ferramentas.lString().trim();
@@ -128,6 +132,7 @@ public class MenuAdminConsoleView implements IMenuAdminView {
 
     @Override
     public String lerTurno() {
+        System.out.println(Ferramentas.GREENclaro+"───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────");
         System.out.print("Digite o turno: ");
 
         return Ferramentas.lString().trim();
@@ -135,6 +140,7 @@ public class MenuAdminConsoleView implements IMenuAdminView {
 
     @Override
     public String lerEndereco() {
+        System.out.println(Ferramentas.GREENclaro+"───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────");
         System.out.print("Digite o endereço: ");
 
         return Ferramentas.lString().trim();
@@ -142,6 +148,7 @@ public class MenuAdminConsoleView implements IMenuAdminView {
 
     @Override
     public String lerTelefone() {
+        System.out.println(Ferramentas.GREENclaro+"───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────");
         System.out.print("Digite o telefone: ");
 
         return Ferramentas.lString().trim();
@@ -149,13 +156,15 @@ public class MenuAdminConsoleView implements IMenuAdminView {
 
     @Override
     public String lerSenha(){
-        System.out.println("Digite a senha: ");
+        System.out.println(Ferramentas.GREENclaro+"───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────");
+        System.out.print("Digite a senha: ");
 
         return Ferramentas.lString().trim();
     }
 
     @Override
     public String lerEmail() {
+        System.out.println(Ferramentas.GREENclaro+"───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────");
         System.out.print("Digite o email: ");
 
         return Ferramentas.lString().trim();
@@ -163,14 +172,16 @@ public class MenuAdminConsoleView implements IMenuAdminView {
 
     @Override
     public String lerNomeCompleto() {
-        System.out.print("Digite o nome");
+        System.out.println(Ferramentas.GREENclaro+"───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────");
+        System.out.print("Digite o nome: ");
 
         return Ferramentas.lString();
     }
 
     @Override
     public int lerId(){
-        System.out.println("Digite o Id: ");
+        System.out.println(Ferramentas.GREENclaro+"───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────");
+        System.out.print("Digite o Id: ");
 
         return Ferramentas.lInteiro();
     }
@@ -225,7 +236,6 @@ public class MenuAdminConsoleView implements IMenuAdminView {
 
     }
 
-
     @Override
     public void lerDadosAtualizacaoUsuario(UsuarioModel usuario) {
         System.out.println(Ferramentas.GREENclaro+"───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────");
@@ -269,7 +279,7 @@ public class MenuAdminConsoleView implements IMenuAdminView {
     }
 
     @Override
-    public void mostrarListaPacientes(PacienteModel paciente) {
+    public void mostrarTituloListaPacientes(){
 
         System.out.println(Ferramentas.GREENclaro+"───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────");
         System.out.println(Ferramentas.RESET+"                  ██╗     ██╗███████╗████████╗ █████╗     ██████╗  █████╗  ██████╗██╗███████╗███╗   ██╗████████╗███████╗███████╗                       ");
@@ -280,17 +290,20 @@ public class MenuAdminConsoleView implements IMenuAdminView {
         System.out.println("                  ╚══════╝╚═╝╚══════╝   ╚═╝   ╚═╝  ╚═╝    ╚═╝     ╚═╝  ╚═╝ ╚═════╝╚═╝╚══════╝╚═╝  ╚═══╝   ╚═╝   ╚══════╝╚══════╝                       ");
         System.out.println(Ferramentas.GREENclaro+"───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────");
 
-        System.out.println(Ferramentas.GREENclaro+"───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────"+ Ferramentas.RESET);
-         System.out.println("Id: " + paciente.getIdUsuario());
-         System.out.println("Nome: " + paciente.getNomeUsuario());
-         System.out.println("Tipo: " + paciente.getTipoUsuario());
-         System.out.println("Cpf: " + paciente.getCpfUsuario());
-         System.out.println(Ferramentas.GREENclaro+"───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────"+ Ferramentas.RESET);
     }
 
     @Override
-    public void mostrarListaUsuarios(UsuarioModel usuario) {
+    public void mostrarListaPacientes(PacienteModel paciente) {
+        System.out.println(Ferramentas.GREENclaro+"───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────"+ Ferramentas.RESET);
+        System.out.println("Id: " + paciente.getIdUsuario());
+        System.out.println("Nome: " + paciente.getNomeUsuario());
+        System.out.println("Tipo: " + paciente.getTipoUsuario());
+        System.out.println("Cpf: " + paciente.getCpfUsuario());
+        System.out.println(Ferramentas.GREENclaro+"───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────"+ Ferramentas.RESET);
+    }
 
+    @Override
+    public void mostrarTituloListaUsuarios(){
         System.out.println(Ferramentas.GREENclaro+"───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────");
         System.out.println(Ferramentas.RESET+"                    ██╗     ██╗███████╗████████╗ █████╗   ██╗   ██╗███████╗██╗   ██╗ █████╗ ██████╗ ██╗ ██████╗ ███████╗                               ");
         System.out.println("                    ██║     ██║██╔════╝╚══██╔══╝██╔══██╗  ██║   ██║██╔════╝██║   ██║██╔══██╗██╔══██╗██║██╔═══██╗██╔════╝                               ");
@@ -299,6 +312,11 @@ public class MenuAdminConsoleView implements IMenuAdminView {
         System.out.println("                    ███████╗██║███████║   ██║   ██║  ██║  ╚██████╔╝███████║╚██████╔╝██║  ██║██║  ██║██║╚██████╔╝███████║                               ");
         System.out.println("                    ╚══════╝╚═╝╚══════╝   ╚═╝   ╚═╝  ╚═╝   ╚═════╝ ╚══════╝ ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝╚═╝ ╚═════╝ ╚══════╝                               ");
         System.out.println(Ferramentas.GREENclaro+"───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────"+ Ferramentas.RESET);
+
+    }
+
+    @Override
+    public void mostrarListaUsuarios(UsuarioModel usuario) {
 
         System.out.println(Ferramentas.GREENclaro+"───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────"+ Ferramentas.RESET);
         System.out.println("Id: " + usuario.getIdUsuario());
@@ -309,8 +327,7 @@ public class MenuAdminConsoleView implements IMenuAdminView {
     }
 
     @Override
-    public void mostrarListaMedicos(MedicoModel medico) {
-
+    public void mostrarTituloListaMedicos(){
         System.out.println(Ferramentas.GREENclaro+"───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────");
         System.out.println(Ferramentas.RESET+"                        ██╗     ██╗███████╗████████╗ █████╗    ███╗   ███╗███████╗██████╗ ██╗ ██████╗ ██████╗ ███████╗                                 ");
         System.out.println("                        ██║     ██║██╔════╝╚══██╔══╝██╔══██╗   ████╗ ████║██╔════╝██╔══██╗██║██╔════╝██╔═══██╗██╔════╝                                 ");
@@ -319,6 +336,10 @@ public class MenuAdminConsoleView implements IMenuAdminView {
         System.out.println("                        ███████╗██║███████║   ██║   ██║  ██║   ██║ ╚═╝ ██║███████╗██████╔╝██║╚██████╗╚██████╔╝███████║                                 ");
         System.out.println("                        ╚══════╝╚═╝╚══════╝   ╚═╝   ╚═╝  ╚═╝   ╚═╝     ╚═╝╚══════╝╚═════╝ ╚═╝ ╚═════╝ ╚═════╝ ╚══════╝                                 ");
         System.out.println(Ferramentas.GREENclaro+"───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────"+ Ferramentas.RESET);
+    }
+
+    @Override
+    public void mostrarListaMedicos(MedicoModel medico) {
 
         System.out.println(Ferramentas.GREENclaro+"───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────"+ Ferramentas.RESET);
         System.out.println("Id: " + medico.getIdUsuario());
@@ -328,9 +349,7 @@ public class MenuAdminConsoleView implements IMenuAdminView {
         System.out.println(Ferramentas.GREENclaro+"───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────"+ Ferramentas.RESET);
     }
 
-    @Override
-    public void mostrarListaSecretarios(SecretarioModel secretario) {
-
+    public void mostrarTituloListaSecretarios(){
         System.out.println(Ferramentas.GREENclaro+"───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────");
         System.out.println(Ferramentas.RESET+"                      ██╗     ██╗███████╗████████╗ █████╗     ███████╗███████╗ ██████╗██████╗ ███████╗████████╗ █████╗ ██╗ ██████╗                     ");
         System.out.println("                      ██║     ██║██╔════╝╚══██╔══╝██╔══██╗    ██╔════╝██╔════╝██╔════╝██╔══██╗██╔════╝╚══██╔══╝██╔══██╗██║██╔═══██╗                    ");
@@ -339,6 +358,10 @@ public class MenuAdminConsoleView implements IMenuAdminView {
         System.out.println("                      ███████╗██║███████║   ██║   ██║  ██║    ███████║███████╗╚██████╗██║  ██║███████╗   ██║   ██║  ██║██║╚██████╔╝                    ");
         System.out.println("                      ╚══════╝╚═╝╚══════╝   ╚═╝   ╚═╝  ╚═╝    ╚══════╝╚══════╝ ╚═════╝╚═╝  ╚═╝╚══════╝   ╚═╝   ╚═╝  ╚═╝╚═╝ ╚═════╝                     ");
         System.out.println(Ferramentas.GREENclaro+"───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────"+ Ferramentas.RESET);
+    }
+
+    @Override
+    public void mostrarListaSecretarios(SecretarioModel secretario) {
 
         System.out.println(Ferramentas.GREENclaro+"───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────"+ Ferramentas.RESET);
         System.out.println("Id: " + secretario.getIdUsuario());
@@ -366,6 +389,7 @@ public class MenuAdminConsoleView implements IMenuAdminView {
         System.out.println("Senha: " + usuario.getSenhaUsuario());
         System.out.println("Cpf: " + usuario.getCpfUsuario());
         System.out.println("Email: " + usuario.getEmailUsuario());
+        System.out.println(Ferramentas.GREENclaro+"───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────"+ Ferramentas.RESET);
     }
 
     @Override
@@ -385,22 +409,29 @@ public class MenuAdminConsoleView implements IMenuAdminView {
 
     @Override
     public void mostrarTitulo(String titulo) {
-        System.out.println("\n" + titulo);
+        System.out.println(Ferramentas.GREENclaro+"───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────");
+        System.out.println(titulo);
         System.out.println(Ferramentas.GREENclaro+"───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────"+ Ferramentas.RESET);
     }
 
     @Override
     public void mostrarMensagemSucesso(String mensagem) {
-        System.out.println("\n" + mensagem);
+        System.out.println(Ferramentas.GREENclaro+"───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────");
+        System.out.println(mensagem);
+        System.out.println(Ferramentas.GREENclaro+"───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────");
     }
 
     @Override
     public void mostrarMensagemErro(String mensagem) {
-        System.out.println("\n" + mensagem);
+        System.out.println(Ferramentas.GREENclaro+"───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────");
+        System.out.println(mensagem);
+        System.out.println(Ferramentas.GREENclaro+"───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────");
     }
 
     @Override
     public void mostrarMensagemInfo(String mensagem) {
-        System.out.println("\n" + mensagem);
+        System.out.println(Ferramentas.GREENclaro+"───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────");
+        System.out.println(mensagem);
+        System.out.println(Ferramentas.GREENclaro+"───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────");
     }
 }

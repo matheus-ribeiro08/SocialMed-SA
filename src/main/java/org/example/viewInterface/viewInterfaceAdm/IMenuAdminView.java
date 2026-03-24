@@ -39,5 +39,7 @@ public interface IMenuAdminView {
     void mostrarMensagemSucesso(String mensagem);
     void mostrarMensagemErro(String mensagem);
     void mostrarMensagemInfo(String mensagem);
-
+    void mostrarTituloListaPacientes();
+    void mostrarTituloListaUsuarios();
+    void mostrarTituloListaMedicos();
 }

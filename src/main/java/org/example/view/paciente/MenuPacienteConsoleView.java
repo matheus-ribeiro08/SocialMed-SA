@@ -80,7 +80,6 @@ public class MenuPacienteConsoleView implements IMenuPacienteView {
         System.out.println("───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────");
     }
 
-
     @Override
     public void mostrarMensagemSucesso(String mensagem) {
         System.out.println("\n" + mensagem);
@@ -97,8 +96,7 @@ public class MenuPacienteConsoleView implements IMenuPacienteView {
     }
 
     @Override
-    public void mostrarListaConsultas(ConsultaModel consulta) {
-
+    public void mostrarTituloLista(){
         System.out.println("───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────");
         System.out.println("                      ██╗     ██╗███████╗████████╗ █████╗      ██████╗ ██████╗ ███╗   ██╗███████╗██╗   ██╗██╗  ████████╗ █████╗ ███████╗                   ");
         System.out.println("                      ██║     ██║██╔════╝╚══██╔══╝██╔══██╗    ██╔════╝██╔═══██╗████╗  ██║██╔════╝██║   ██║██║  ╚══██╔══╝██╔══██╗██╔════╝                   ");
@@ -107,6 +105,10 @@ public class MenuPacienteConsoleView implements IMenuPacienteView {
         System.out.println("                      ███████╗██║███████║   ██║   ██║  ██║    ╚██████╗╚██████╔╝██║ ╚████║███████║╚██████╔╝███████╗██║   ██║  ██║███████║                   ");
         System.out.println("                      ╚══════╝╚═╝╚══════╝   ╚═╝   ╚═╝  ╚═╝     ╚═════╝ ╚═════╝ ╚═╝  ╚═══╝╚══════╝ ╚═════╝ ╚══════╝╚═╝   ╚═╝  ╚═╝╚══════╝                   ");
         System.out.println("───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────");
+    }
+
+    @Override
+    public void mostrarListaConsultas(ConsultaModel consulta) {
 
         System.out.println("───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────");
         System.out.println("Id: " + consulta.getIdConsulta());
@@ -187,7 +189,7 @@ public class MenuPacienteConsoleView implements IMenuPacienteView {
     }
 
     @Override
-    public void mostrarAgenda(ConsultaModel consulta) {
+    public void mostrarTituloAgenda(){
         System.out.println("───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────");
         System.out.println("                             ███╗   ███╗██╗███╗   ██╗██╗  ██╗ █████╗      █████╗  ██████╗ ███████╗███╗   ██╗██████╗  █████╗                            ");
         System.out.println("                             ████╗ ████║██║████╗  ██║██║  ██║██╔══██╗    ██╔══██╗██╔════╝ ██╔════╝████╗  ██║██╔══██╗██╔══██╗                           ");
@@ -196,6 +198,10 @@ public class MenuPacienteConsoleView implements IMenuPacienteView {
         System.out.println("                             ██║ ╚═╝ ██║██║██║ ╚████║██║  ██║██║  ██║    ██║  ██║╚██████╔╝███████╗██║ ╚████║██████╔╝██║  ██║                           ");
         System.out.println("                             ╚═╝     ╚═╝╚═╝╚═╝  ╚═══╝╚═╝  ╚═╝╚═╝  ╚═╝    ╚═╝  ╚═╝ ╚═════╝ ╚══════╝╚═╝  ╚═══╝╚═════╝ ╚═╝  ╚═╝                           ");
         System.out.println("───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────");
+    }
+
+    @Override
+    public void mostrarAgenda(ConsultaModel consulta) {
         System.out.println("───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────");
         System.out.println("Data: " + consulta.getHorarioConsulta());
         System.out.println("Medico(a): " + consulta.getIdMedico());
@@ -203,7 +209,7 @@ public class MenuPacienteConsoleView implements IMenuPacienteView {
     }
 
     @Override
-    public void mostrarListaMedicos(MedicoModel medico) {
+    public void mostrarTituloListaMedicos(){
         System.out.println("───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────");
         System.out.println("                           ██╗     ██╗███████╗████████╗ █████╗     ███╗   ███╗███████╗██████╗ ██╗ ██████╗ ██████╗ ███████╗                             ");
         System.out.println("                           ██║     ██║██╔════╝╚══██╔══╝██╔══██╗    ████╗ ████║██╔════╝██╔══██╗██║██╔════╝██╔═══██╗██╔════╝                             ");
@@ -212,6 +218,10 @@ public class MenuPacienteConsoleView implements IMenuPacienteView {
         System.out.println("                           ███████╗██║███████║   ██║   ██║  ██║    ██║ ╚═╝ ██║███████╗██████╔╝██║╚██████╗╚██████╔╝███████║                             ");
         System.out.println("                           ╚══════╝╚═╝╚══════╝   ╚═╝   ╚═╝  ╚═╝    ╚═╝     ╚═╝╚══════╝╚═════╝ ╚═╝ ╚═════╝ ╚═════╝ ╚══════╝                             ");
         System.out.println("───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────");
+    }
+
+    @Override
+    public void mostrarListaMedicos(MedicoModel medico) {
         System.out.println("───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────");
         System.out.println("Id: " + medico.getIdUsuario());
         System.out.println("Nome: " + medico.getNomeUsuario());

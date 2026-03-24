@@ -9,6 +9,7 @@ import org.example.service.consulta.ConsultaService;
 import org.example.service.medico.MedicoService;
 import org.example.service.relatorio.RelatorioService;
 import org.example.service.usuario.UsuarioService;
+import org.example.utils.Ferramentas;
 import org.example.viewInterface.viewInterfaceAdm.IMenuAdminView;
 
 import java.sql.SQLException;
@@ -38,6 +39,8 @@ public class MenuAdminPresenter {
     }
 
     public void iniciar() {
+        Ferramentas.Delay(1500);
+        Ferramentas.limpaTerminalOpcional(30);
         boolean executando = true;
 
         while (executando) {
@@ -83,15 +86,17 @@ public class MenuAdminPresenter {
 
     private void visualizarPerfil() {
         view.mostrarTitulo("Meu Perfil");
+        Ferramentas.limpaTerminalOpcional(30);
         view.mostrarDadosUsuarioCompleto(admin);
 
         if(view.perguntarAcao("Deseja editar seus dados?")){
             UsuarioModel usuario = admin;
             view.lerDadosAtualizacaoUsuario(usuario);
-
             try {
                 adminService.atualizarUsuario(admin, usuario);
                 view.mostrarMensagemSucesso("Perfil atualizado com sucesso");
+                Ferramentas.Delay(1500);
+                Ferramentas.limpaTerminalOpcional(30);
             }catch (Exception e){
                 view.mostrarMensagemErro("Erro ao atualizar perfil");
             }
@@ -99,6 +104,7 @@ public class MenuAdminPresenter {
     }
 
     private void gerenciarUsuarios() {
+        Ferramentas.limpaTerminalOpcional(30);
         boolean gerenciado = true;
 
         while (gerenciado) {
@@ -134,17 +140,20 @@ public class MenuAdminPresenter {
 
     private void listarTodosOsUsuarios() {
         view.mostrarTitulo("Lista de usuarios");
-
+        Ferramentas.limpaTerminalOpcional(30);
         try {
             List<UsuarioModel> usuarios = usuarioService.listarTodosUsuarios();
 
             if (usuarios.isEmpty()) {
                 view.mostrarMensagemInfo("Nenhum usuario cadastrado");
             } else {
+                view.mostrarTituloListaUsuarios();
                 for(UsuarioModel usuario : usuarios) {
                     view.mostrarListaUsuarios(usuario);
                 }
             }
+            Ferramentas.Delay(1500);
+            Ferramentas.limpaTerminalOpcional(30);
         } catch (Exception e) {
             view.mostrarMensagemErro("Erro ao listar usuarios");
         }
@@ -152,8 +161,11 @@ public class MenuAdminPresenter {
 
     private void buscarUsuario() {
         view.mostrarTitulo("Usuario");
+        Ferramentas.limpaTerminalOpcional(30);
 
         String cpf = view.lerCpf();
+        Ferramentas.Delay(1500);
+        Ferramentas.limpaTerminalOpcional(30);
 
         try {
             UsuarioModel usuario = usuarioService.buscarPorCpf(cpf);
@@ -163,6 +175,8 @@ public class MenuAdminPresenter {
             } else {
                 view.mostrarMensagemErro("Usuario nao encontrado");
             }
+            Ferramentas.Delay(1500);
+            Ferramentas.limpaTerminalOpcional(30);
         } catch (Exception e) {
             view.mostrarMensagemErro("Erro ao buscar usuario");
         }
@@ -170,6 +184,7 @@ public class MenuAdminPresenter {
 
     private void criarUsuario() {
         view.mostrarTitulo("Criar novo usuario");
+        Ferramentas.limpaTerminalOpcional(30);
 
         TipoUsuario tipo = view.selecionarTipoUsuario();
 
@@ -194,6 +209,7 @@ public class MenuAdminPresenter {
 
     private void criarMedico() {
         MedicoModel medico = null;
+        Ferramentas.limpaTerminalOpcional(30);
 
         view.lerDadosNovoMedico();
 
@@ -210,10 +226,13 @@ public class MenuAdminPresenter {
         adminService.criarMedico(admin, medicoModel);
 
         view.mostrarMensagemSucesso("Medico criado com sucesso!");
+        Ferramentas.Delay(1500);
+        Ferramentas.limpaTerminalOpcional(30);
     }
 
     private void criarSecretrario() {
         SecretarioModel secretario = null;
+        Ferramentas.limpaTerminalOpcional(30);
 
         view.lerDadosNovoSecretario();
 
@@ -229,11 +248,14 @@ public class MenuAdminPresenter {
 
         adminService.criarSecretario(admin, secretarioModel);
 
-        view.mostrarMensagemSucesso("Medico criado com sucesso!");
+        view.mostrarMensagemSucesso("Secretario criado com sucesso!");
+        Ferramentas.Delay(1500);
+        Ferramentas.limpaTerminalOpcional(30);
     }
 
     private void editarUsuario() {
         view.mostrarTitulo("Editar Usuario");
+        Ferramentas.limpaTerminalOpcional(30);
 
         String cpf = view.lerCpf();
 
@@ -259,6 +281,8 @@ public class MenuAdminPresenter {
 
             adminService.atualizarUsuario(admin, usuario);
             view.mostrarMensagemSucesso("Usuario atualizado com sucesso!");
+            Ferramentas.Delay(1500);
+            Ferramentas.limpaTerminalOpcional(30);
 
         } catch (Exception e) {
             view.mostrarMensagemErro("Erro ao editar usuario");
@@ -269,6 +293,7 @@ public class MenuAdminPresenter {
 
     private void gerenciarMedicos() {
         view.mostrarTitulo("Gerenciar medico");
+        Ferramentas.limpaTerminalOpcional(30);
 
         boolean visualizando = true;
 
@@ -309,6 +334,8 @@ public class MenuAdminPresenter {
                             adminService.removerMedico(admin, medico.getIdMedico());
                             view.mostrarMensagemSucesso("Medico removido!");
                             visualizando = false;
+                            Ferramentas.Delay(1500);
+                            Ferramentas.limpaTerminalOpcional(30);
                         }
                         break;
                     }
@@ -318,6 +345,7 @@ public class MenuAdminPresenter {
                     }
                     default: {
                         view.mostrarMensagemErro("Opção invalida");
+                        Ferramentas.limpaTerminalOpcional(30);
                     }
                 }
             }
@@ -330,6 +358,7 @@ public class MenuAdminPresenter {
 
     private void verAgendaMedico(MedicoModel medico) {
         view.mostrarTitulo("Agenda do medico " + medico.getNomeUsuario());
+        Ferramentas.limpaTerminalOpcional(30);
         try {
             List<ConsultaModel> consultas = consultaService.listarConsultasAtivasPorMedico(medico.getIdMedico());
 
@@ -341,13 +370,17 @@ public class MenuAdminPresenter {
                             c.getIdConsulta(), c.getIdPaciente(), c.getHorarioConsulta(), c.getLocalEndereco()));
                 }
             }
+            Ferramentas.Delay(1500);
+            Ferramentas.limpaTerminalOpcional(30);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
     }
 
     private void verAgendaPaciente(PacienteModel paciente) {
+        Ferramentas.limpaTerminalOpcional(30);
         view.mostrarTitulo("Agenda do paciente " + paciente.getNomeUsuario());
+        Ferramentas.limpaTerminalOpcional(30);
         try {
             List<ConsultaModel> consultas = consultaService.listarConsultasAtivasPorPaciente(paciente.getIdPaciente());
 
@@ -359,14 +392,16 @@ public class MenuAdminPresenter {
                             c.getIdConsulta(), c.getIdMedico(), c.getHorarioConsulta(), c.getLocalEndereco()));
                 }
             }
+            Ferramentas.Delay(1500);
+            Ferramentas.limpaTerminalOpcional(30);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
     }
 
     private void verHistoricoPaciente(PacienteModel paciente) {
+        Ferramentas.limpaTerminalOpcional(30);
         view.mostrarTitulo("Historico de consultas - Paciente: " + paciente.getNomeUsuario());
-
         try {
             List<ConsultaModel> consultas = consultaService.listarHistoricoConsultaPaciente(paciente.getIdPaciente());
 
@@ -378,6 +413,8 @@ public class MenuAdminPresenter {
                             c.getIdConsulta(), c.getIdMedico(), c.getHorarioConsulta(), c.getLocalEndereco()));
                 }
             }
+            Ferramentas.Delay(1500);
+            Ferramentas.limpaTerminalOpcional(30);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -385,6 +422,7 @@ public class MenuAdminPresenter {
     }
 
     private void verHistoricoMedico(MedicoModel medico) {
+        Ferramentas.limpaTerminalOpcional(30);
         view.mostrarTitulo("Historico de consultas - Medico: " + medico.getNomeUsuario());
 
         try {
@@ -398,6 +436,8 @@ public class MenuAdminPresenter {
                             c.getIdConsulta(), c.getIdMedico(), c.getHorarioConsulta(), c.getLocalEndereco()));
                 }
             }
+            Ferramentas.Delay(1500);
+            Ferramentas.limpaTerminalOpcional(30);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -405,6 +445,7 @@ public class MenuAdminPresenter {
     }
 
     private void editarMedico(MedicoModel medico) {
+        Ferramentas.limpaTerminalOpcional(30);
 
         try {
             if (medico == null) {
@@ -426,6 +467,8 @@ public class MenuAdminPresenter {
 
             adminService.atualizarMedico(admin, medico);
             view.mostrarMensagemSucesso("Medico atualizado com sucesso!");
+            Ferramentas.Delay(1500);
+            Ferramentas.limpaTerminalOpcional(30);
 
         } catch (Exception e) {
             view.mostrarMensagemErro("Erro ao editar usuario");
@@ -433,6 +476,7 @@ public class MenuAdminPresenter {
     }
 
     private void gerenciarPacientes() {
+        Ferramentas.limpaTerminalOpcional(30);
         boolean visualizando = true;
 
         try {
@@ -471,6 +515,7 @@ public class MenuAdminPresenter {
                             adminService.removerPaciente(admin, paciente.getIdPaciente());
                             view.mostrarMensagemSucesso("Paciente removido!");
                             visualizando = false;
+                            Ferramentas.limpaTerminalOpcional(30);
                         }
                         break;
                     }
@@ -480,20 +525,25 @@ public class MenuAdminPresenter {
                     }
                     default: {
                         view.mostrarMensagemErro("Opção invalida");
+                        Ferramentas.limpaTerminalOpcional(30);
                     }
                 }
             }
         } catch (Exception e) {
             view.mostrarMensagemErro("Erro ao gerenciar paciente");
+            Ferramentas.Delay(1500);
+            Ferramentas.limpaTerminalOpcional(30);
         }
     }
 
     private void editarPaciente(PacienteModel paciente) {
-
+        Ferramentas.limpaTerminalOpcional(30);
 
         try {
             if (paciente == null) {
                 view.mostrarMensagemErro("Paciente nao encontrado");
+                Ferramentas.Delay(1500);
+                Ferramentas.limpaTerminalOpcional(30);
                 return;
             }
 
@@ -511,6 +561,8 @@ public class MenuAdminPresenter {
 
             adminService.atualizarPaciente(admin, paciente);
             view.mostrarMensagemSucesso("Paciente atualizado com sucesso!");
+            Ferramentas.Delay(1500);
+            Ferramentas.limpaTerminalOpcional(30);
 
         } catch (Exception e) {
             view.mostrarMensagemErro("Erro ao editar paciente");
@@ -518,6 +570,7 @@ public class MenuAdminPresenter {
     }
 
     private void gerenciarSecretarios() {
+        Ferramentas.limpaTerminalOpcional(30);
         view.mostrarTitulo("Gerenciar secretario");
 
         try {
@@ -538,6 +591,9 @@ public class MenuAdminPresenter {
                 view.mostrarMensagemErro("Medico nao encontrado");
                 return;
             }
+
+            Ferramentas.Delay(1500);
+            Ferramentas.limpaTerminalOpcional(30);
 
         } catch (Exception e) {
             System.err.println("Erro ao gerencar Medico");
