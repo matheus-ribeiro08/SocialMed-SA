@@ -60,11 +60,7 @@ public class MenuMedicoConsoleView implements IMenuMedicoView {
     }
 
     @Override
-    public void mostrarListaConsultasDetalhadas(List<ConsultaModel> consultas) {
-        if(consultas == null || consultas.isEmpty()){
-            System.out.println("Nenhuma consulta marcada");
-            return;
-        }
+    public void mostrarListaConsultasDetalhadas(ConsultaModel consulta) {
 
         System.out.println("───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────");
         System.out.println("                    ██╗     ██╗███████╗████████╗ █████╗      ██████╗ ██████╗ ███╗   ██╗███████╗██╗   ██╗██╗  ████████╗ █████╗ ███████╗                 ");
@@ -76,22 +72,17 @@ public class MenuMedicoConsoleView implements IMenuMedicoView {
         System.out.println("───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────");
 
         System.out.println("───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────");
-        for(ConsultaModel consulta : consultas){
-            System.out.println("Id: " + consulta.getIdConsulta());
-            System.out.println("Paciente: " + consulta.getIdPaciente());
-            System.out.println("Medico: " + consulta.getIdMedico());
-            System.out.println("Horario: " + consulta.getHorarioConsulta());
-            System.out.println("Endereço: " + consulta.getLocalEndereco());
-            System.out.println("───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────");
-        }
+        System.out.println("Id: " + consulta.getIdConsulta());
+        System.out.println("Paciente: " + consulta.getIdPaciente());
+        System.out.println("Medico: " + consulta.getIdMedico());
+        System.out.println("Horario: " + consulta.getHorarioConsulta());
+        System.out.println("Endereço: " + consulta.getLocalEndereco());
+        System.out.println("───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────");
     }
 
     @Override
-    public void mostrarHistoricoConsultas(List<ConsultaModel> consultas) {
-        if (consultas == null || consultas.isEmpty()) {
-            System.out.println("Nenhum histórico encontrado.");
-            return;
-        }
+    public void mostrarHistoricoConsultas(ConsultaModel consulta) {
+
         System.out.println("───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────");
         System.out.println("     ██╗  ██╗██╗███████╗████████╗ ██████╗ ██████╗ ██╗ ██████╗  ██████╗    ██████╗ ██████╗ ███╗   ██╗███████╗██╗   ██╗██╗  ████████╗ █████╗ ███████╗    ");
         System.out.println("     ██║  ██║██║██╔════╝╚══██╔══╝██╔═══██╗██╔══██╗██║██╔═══██╗██╔═══██╗  ██╔════╝██╔═══██╗████╗  ██║██╔════╝██║   ██║██║  ╚══██╔══╝██╔══██╗██╔════╝    ");
@@ -102,21 +93,15 @@ public class MenuMedicoConsoleView implements IMenuMedicoView {
         System.out.println("───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────");
 
         System.out.println("───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────");
-        for (ConsultaModel c : consultas) {
-            System.out.println("ID: " + c.getIdConsulta());
-            System.out.println("Paciente: " + c.getIdPaciente());
-            System.out.println("Data/Hora: " + c.getHorarioConsulta());
-            System.out.println("Local: " + c.getLocalEndereco());
-            System.out.println("───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────");
-        }
+        System.out.println("ID: " + consulta.getIdConsulta());
+        System.out.println("Paciente: " + consulta.getIdPaciente());
+        System.out.println("Data/Hora: " + consulta.getHorarioConsulta());
+        System.out.println("Local: " + consulta.getLocalEndereco());
+        System.out.println("───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────");
     }
 
     @Override
-    public void mostrarHistoricoAtendimentos(List<ConsultaModel> historico) {
-        if (historico == null || historico.isEmpty()) {
-            System.out.println("Nenhum histórico encontrado.");
-            return;
-        }
+    public void mostrarHistoricoAtendimentos(ConsultaModel historico) {
         System.out.println("─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────");
         System.out.println("  ██╗  ██╗██╗███████╗████████╗ ██████╗ ██████╗ ██╗ ██████╗  ██████╗     █████╗ ████████╗███████╗███╗   ██╗██████╗ ██╗███╗   ███╗███████╗███╗   ██╗████████╗ ██████╗  ");
         System.out.println("  ██║  ██║██║██╔════╝╚══██╔══╝██╔═══██╗██╔══██╗██║██╔═══██╗██╔═══██╗   ██╔══██╗╚══██╔══╝██╔════╝████╗  ██║██╔══██╗██║████╗ ████║██╔════╝████╗  ██║╚══██╔══╝██╔═══██╗ ");
@@ -127,13 +112,11 @@ public class MenuMedicoConsoleView implements IMenuMedicoView {
         System.out.println("─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────");
 
         System.out.println("───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────");
-        for (ConsultaModel c : historico) {
-            System.out.println("ID: " + c.getIdConsulta());
-            System.out.println("Paciente: " + c.getIdPaciente());
-            System.out.println("Data/Hora: " + c.getHorarioConsulta());
-            System.out.println("Local: " + c.getLocalEndereco());
-            System.out.println("───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────");
-        }
+        System.out.println("ID: " + historico.getIdConsulta());
+        System.out.println("Paciente: " + historico.getIdPaciente());
+        System.out.println("Data/Hora: " + historico.getHorarioConsulta());
+        System.out.println("Local: " + historico.getLocalEndereco());
+        System.out.println("───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────");
     }
 
     @Override

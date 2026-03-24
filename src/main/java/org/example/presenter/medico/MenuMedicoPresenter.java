@@ -110,7 +110,9 @@ public class MenuMedicoPresenter {
             if(consultasHoje.isEmpty()){
                 view.mostrarMensagemInfo("Nenhuma consulta agendada para hoje");
             }else{
-                view.mostrarListaConsultasDetalhadas(consultasHoje);
+                for(ConsultaModel consulta : consultasHoje) {
+                    view.mostrarListaConsultasDetalhadas(consulta);
+                }
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -126,7 +128,9 @@ public class MenuMedicoPresenter {
             if(consultas.isEmpty()){
                 view.mostrarMensagemInfo("Nenhuma consulta futura agendada");
             }else {
-                view.mostrarListaConsultasDetalhadas(consultas);
+                for(ConsultaModel consulta : consultas) {
+                    view.mostrarListaConsultasDetalhadas(consulta);
+                }
             }
         }catch (Exception e){
             view.mostrarMensagemErro("Erro ao buscar consultas");
@@ -184,8 +188,10 @@ public class MenuMedicoPresenter {
 
                 List<ConsultaModel> historico = consultaService.buscarHistoricoPacienteComMedico(paciente.getIdPaciente(), medico.getIdMedico());
 
-                if(!historico.isEmpty()){
-                    view.mostrarHistoricoAtendimentos(historico);
+                if(!historico.isEmpty()) {
+                    for (ConsultaModel h : historico) {
+                        view.mostrarHistoricoAtendimentos(h);
+                    }
                 }
             }else{
                 view.mostrarMensagemErro("Paciente nao encontrado");
@@ -274,7 +280,8 @@ public class MenuMedicoPresenter {
             if(consultas.isEmpty()){
                 view.mostrarMensagemInfo("Nenhum historico de consultas encontrado");
             }else {
-                view.mostrarHistoricoConsultas(consultas);
+                for(ConsultaModel consulta : consultas)
+                view.mostrarHistoricoConsultas(consulta);
             }
         }catch (Exception e){
             view.mostrarMensagemErro("Erro ao mostrar historico de consultas");
