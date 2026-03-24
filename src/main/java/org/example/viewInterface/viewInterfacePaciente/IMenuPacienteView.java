@@ -16,15 +16,16 @@ public interface IMenuPacienteView {
     void mostrarMensagemInfo(String mensagem);
 
     void mostrarDadosPaciente(PacienteModel paciente);
-    void mostrarListaConsultas(List<ConsultaModel> consultas);
+    void mostrarListaConsultas(ConsultaModel consulta);
     void mostrarDetalhesConsulta(ConsultaModel consulta);
     void mostrarProntuario(ProntuarioModel prontuarioModel);
 
     void abrirMapaLocalizacao();
-    void mostrarHistoricoConsultas(List<ConsultaModel> consultas);
-    void mostrarAgenda(List<ConsultaModel> consultas);
-    void mostrarListaMedicos(List<MedicoModel> medicos);
+    void mostrarHistoricoConsultas(ConsultaModel consulta);
+    void mostrarAgenda(ConsultaModel consulta);
+    void mostrarListaMedicos(MedicoModel medico);
 
+    String lerHorario();
     String lerNomeCompleto();
     String lerCpf();
     int lerIdConsulta();
@@ -37,8 +38,7 @@ public interface IMenuPacienteView {
     String lerTelefone();
     String lerEndereco();;
 
-    int selecionarMedico(List<MedicoModel> medicos);
-    String selecionarHorario(List<String> horarios);
+    int selecionarMedico();
 
     void lerDadosAtualizacaoPaciente(PacienteModel paciente);
     boolean perguntarAcao(String pergunta);

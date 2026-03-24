@@ -107,8 +107,10 @@ MenuPacientePresenter {
             if(consultas.isEmpty()){
                 view.mostrarMensagemInfo("Nenhuma consulta agendada");
             }else{
-                view.mostrarListaConsultas(consultas);
+                for(ConsultaModel consulta : consultas){
+                view.mostrarListaConsultas(consulta);
             }
+        }
         }catch (Exception e){
             view.mostrarMensagemErro("Erro ao ver as suas consultas");
         }
@@ -128,9 +130,11 @@ MenuPacientePresenter {
                 return;
             }
 
-            view.mostrarListaMedicos(medicos);
+            for(MedicoModel medico : medicos) {
+                view.mostrarListaMedicos(medico);
+            }
 
-            int idMedico = view.selecionarMedico(medicos);
+            int idMedico = view.selecionarMedico();
             MedicoModel medico = medicoService.buscarPorId(idMedico);
 
             if(medico == null){
@@ -146,7 +150,7 @@ MenuPacientePresenter {
                 return;
             }
 
-            String horarioStr = view.selecionarHorario(horarios);
+            String horarioStr = view.lerHorario();
             LocalDateTime horarioConsulta = consultaService.converterStringParaDateTime(data, horarioStr);
 
             if(horarios.isEmpty()){
@@ -186,7 +190,9 @@ MenuPacientePresenter {
                 return;
             }
 
-            view.mostrarListaConsultas(consultas);
+            for(ConsultaModel consulta : consultas){
+                view.mostrarListaConsultas(consulta);
+            }
 
             int idConsulta = view.lerIdConsulta();
             ConsultaModel consulta = consultaService.buscarConsultaPorId(idConsulta);
@@ -244,7 +250,9 @@ MenuPacientePresenter {
             if(historico.isEmpty()){
                 view.mostrarMensagemInfo("Nenhum historico de consultas encontrado");
             }else {
-                view.mostrarHistoricoConsultas(historico);
+                for (ConsultaModel consulta : historico) {
+                    view.mostrarHistoricoConsultas(consulta);
+                }
             }
 
         }catch (Exception e){
@@ -301,7 +309,9 @@ MenuPacientePresenter {
             if(medicos.isEmpty()){
                 view.mostrarMensagemInfo("Nenhum medico encontrado para a especialidade");
             }else {
-                view.mostrarListaMedicos(medicos);
+                for(MedicoModel medico : medicos){
+                    view.mostrarListaMedicos(medico);
+                }
             }
         }catch (Exception e){
             view.mostrarMensagemErro("Erro ao buscar medicos");
