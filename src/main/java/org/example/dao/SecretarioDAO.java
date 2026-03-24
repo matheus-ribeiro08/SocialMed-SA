@@ -229,6 +229,27 @@ public class SecretarioDAO {
         }
     }
 
+    public SecretarioModel buscarDetalhesPorIdUsuario(int idUsuario) throws SQLException
+    {
+        String sql = "SELECT * FROM Secretario WHERE id_Usuario = ?";
+        SecretarioModel detalhes = new SecretarioModel();
+
+        try (Connection conn = ConnectionFactory.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setInt(1, idUsuario);
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    detalhes.setTurnoTrabalhadoSecretario(rs.getString("turno_Secretario"));
+                }
+            }
+        } catch (SQLException e)
+        {
+            System.err.println("Erro ao procurar detalhes do secretario");
+        }
+        return detalhes;
+    }
+
     public boolean removerSecretario(int idSecretario) throws SQLException{
         String sqlBuscarIdUsuario = "SELECT id_Usuario FROM Secretario WHERE id_Secretario = ?";
         String sqlRemoverSecretario = "DELETE FROM Secretario WHERE id_Secretario = ?";

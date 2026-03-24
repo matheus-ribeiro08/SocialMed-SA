@@ -355,6 +355,12 @@ public class MenuSecretarioPresenter {
         view.mostrarTitulo("EDITAR PERFIL");
 
         try {
+            SecretarioModel detalhesBanco = secretarioService.buscarDetalhes(secretario.getIdUsuario());
+
+            if (detalhesBanco != null) {
+                secretario.setTurnoTrabalhadoSecretario(detalhesBanco.getTurnoTrabalhadoSecretario());
+            }
+
             view.mostrarDadosSecretario(secretario);
 
             if (view.perguntarAcao("Deseja editar seus dados?")) {

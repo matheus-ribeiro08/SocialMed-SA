@@ -316,6 +316,16 @@ public class SecretarioService {
         return hospitalDAO.listarHospitais();
     }
 
+    public SecretarioModel buscarDetalhes(int idUsuario) {
+        try {
+            SecretarioDAO secretarioDAO = new SecretarioDAO();
+            return secretarioDAO.buscarDetalhesPorIdUsuario(idUsuario);
+        } catch (SQLException e) {
+            System.out.println("Erro ao carregar o perfil do secretário: ");
+            return null;
+        }
+    }
+
     private void validarSecretarioExistente(int idSecretario) throws SecretarioException {
         if (idSecretario <= 0) {
             throw new SecretarioException("ID do secretário inválido");
