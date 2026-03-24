@@ -16,6 +16,9 @@ public class AdminModel extends UsuarioModel{
         this.senhaEspecial = senhaEspecial;
     }
 
+    public AdminModel() {
+    }
+
     public int getIdAdmin() {
         return idAdmin;
     }

@@ -2,10 +2,7 @@ package org.example.dao;
 
 import org.example.database.ConnectionFactory;
 import org.example.enums.TipoUsuario;
-import org.example.model.MedicoModel;
-import org.example.model.PacienteModel;
-import org.example.model.SecretarioModel;
-import org.example.model.UsuarioModel;
+import org.example.model.*;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -155,9 +152,9 @@ public class UsuarioDAO
         } else if (codigoTipo == 1) {
             usuario = new SecretarioModel();
         } else if (codigoTipo == 2) {
-            usuario = new UsuarioModel();
+            usuario = new MedicoModel();
         } else {
-            usuario = new UsuarioModel();
+            usuario = new AdminModel();
         }
 
         usuario.setIdUsuario(rs.getInt("id_Usuario"));

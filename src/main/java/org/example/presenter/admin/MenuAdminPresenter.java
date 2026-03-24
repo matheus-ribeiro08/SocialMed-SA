@@ -141,7 +141,9 @@ public class MenuAdminPresenter {
             if (usuarios.isEmpty()) {
                 view.mostrarMensagemInfo("Nenhum usuario cadastrado");
             } else {
-                view.mostrarListaUsuarios(usuarios);
+                for(UsuarioModel usuario : usuarios) {
+                    view.mostrarListaUsuarios(usuario);
+                }
             }
         } catch (Exception e) {
             view.mostrarMensagemErro("Erro ao listar usuarios");
@@ -281,8 +283,6 @@ public class MenuAdminPresenter {
             for (MedicoModel medico: medicos) {
                 view.mostrarListaMedicos(medico);
             }
-
-            view.mostrarListaMedicos(medicos);
 
             int id = view.selecionarMedico();
             MedicoModel medico = usuarioService.buscarMedicoPorId(id);

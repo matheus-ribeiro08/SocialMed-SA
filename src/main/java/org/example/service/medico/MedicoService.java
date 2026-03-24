@@ -19,7 +19,7 @@ public class MedicoService {
     private final PacienteDAO pacienteDAO;
     private final ExameDAO exameDAO;
 
-    public MedicoService(){
+    public MedicoService() {
         this.medicoDAO = new MedicoDAO();
         this.consultaDAO = new ConsultaDAO();
         this.prontuarioDAO = new ProntuarioDAO();
@@ -37,20 +37,19 @@ public class MedicoService {
         this.exameDAO = exameDAO;
     }
 
-    public MedicoModel buscarPorId(int idMedico) throws SQLException, MedicoException{
-        if(idMedico >= 0){
+    public MedicoModel buscarPorId(int idMedico) throws SQLException, MedicoException {
+        if (idMedico >= 0) {
             throw new MedicoException("Id do medico invalido");
         }
 
         MedicoModel medico = medicoDAO.buscarPorId(idMedico);
-        if(medico == null){
+        if (medico == null) {
             throw new MedicoException("Medico nao encontrado");
         }
         return medico;
     }
 
-    public MedicoModel buscarDetalhes(int idUsuario)
-    {
+    public MedicoModel buscarDetalhes(int idUsuario) {
         try {
             MedicoDAO medicoDAO = new MedicoDAO();
             return medicoDAO.buscarDetalhesPorIdUsuario(idUsuario);
@@ -61,26 +60,26 @@ public class MedicoService {
     }
 
     public MedicoModel buscarPorIdUsuario(int idUsuario) throws SQLException, MedicoException {
-        if(idUsuario <= 0){
+        if (idUsuario <= 0) {
             throw new MedicoException("Usuario nao encontrado");
         }
 
         MedicoModel medico = medicoDAO.buscarPorIdUsuario(idUsuario);
-        if(medico == null){
+        if (medico == null) {
             throw new MedicoException("Medico nao encontrado para o usuario informado");
         }
         return medico;
     }
 
-    public List<MedicoModel> listarTodosMedicos() throws SQLException{
+    public List<MedicoModel> listarTodosMedicos() throws SQLException {
         return medicoDAO.listarTodosMedicos();
     }
 
-    public boolean atualizarMedico(MedicoModel medico) throws SQLException, MedicoException{
-        if(medico == null){
+    public boolean atualizarMedico(MedicoModel medico) throws SQLException, MedicoException {
+        if (medico == null) {
             throw new MedicoException("Medico nao pode ser nulo");
         }
-        if(medico.getIdMedico() <= 0){
+        if (medico.getIdMedico() <= 0) {
             throw new MedicoException("Id do medico invalido");
         }
 
@@ -89,33 +88,33 @@ public class MedicoService {
         return medicoDAO.atualizarMedico(medico);
     }
 
-    public ConsultaModel buscarConsultaPorId(int idConsulta) throws SQLException, MedicoException{
-        if(idConsulta <= 0){
+    public ConsultaModel buscarConsultaPorId(int idConsulta) throws SQLException, MedicoException {
+        if (idConsulta <= 0) {
             throw new MedicoException("Id da consulta invalido");
         }
 
         ConsultaModel consulta = consultaDAO.buscarPorId(idConsulta);
-        if(consulta == null){
+        if (consulta == null) {
             throw new MedicoException("Consulta nao encontrada");
         }
         return consulta;
     }
 
-    public List<MedicoModel> buscarMedicoPorEspecialidade(String especialidade) throws SQLException, MedicoException{
-        if(especialidade == null || especialidade.trim().isEmpty()){
+    public List<MedicoModel> buscarMedicoPorEspecialidade(String especialidade) throws SQLException, MedicoException {
+        if (especialidade == null || especialidade.trim().isEmpty()) {
             throw new MedicoException("Especialidade nao informada");
         }
         try {
             return medicoDAO.buscarPorEspecialidade(especialidade);
-        }catch (MedicoException e){
+        } catch (MedicoException e) {
             throw new MedicoException("Erro ao buscar medico por especialidade");
         }
     }
 
-    public List<ConsultaModel> buscarProximasConsultasMedico(int idMedico, int limite) throws SQLException, MedicoException{
+    public List<ConsultaModel> buscarProximasConsultasMedico(int idMedico, int limite) throws SQLException, MedicoException {
         validarMedicoExistente(idMedico);
 
-        if(limite <= 0){
+        if (limite <= 0) {
             throw new MedicoException("Limite invalido");
         }
 
@@ -125,17 +124,17 @@ public class MedicoService {
         return todasConsultas.stream().filter(c -> c.getHorarioConsulta().isAfter(agora)).limit(limite).collect(Collectors.toList());
     }
 
-    public List<ConsultaModel> buscarHistoricoMedico(int idMedico) throws SQLException, MedicoException{
+    public List<ConsultaModel> buscarHistoricoMedico(int idMedico) throws SQLException, MedicoException {
 
         validarMedicoExistente(idMedico);
         return consultaDAO.historicoDeConsultasMedico(idMedico);
     }
 
-    public List<ConsultaModel> buscarHistoricoPacienteComMedico(int idPaciente, int idMedico) throws SQLException, MedicoException{
+    public List<ConsultaModel> buscarHistoricoPacienteComMedico(int idPaciente, int idMedico) throws SQLException, MedicoException {
 
         validarMedicoExistente(idMedico);
 
-        if(idPaciente <= 0){
+        if (idPaciente <= 0) {
             throw new MedicoException("ID do paciente invalido");
         }
 
@@ -143,7 +142,7 @@ public class MedicoService {
         return historico.stream().filter(c -> c.getIdPaciente() == idPaciente).collect(Collectors.toList());
     }
 
-    public List<ConsultaModel> buscarConsultasHoje(int idMedico) throws SQLException, MedicoException{
+    public List<ConsultaModel> buscarConsultasHoje(int idMedico) throws SQLException, MedicoException {
 
         validarMedicoExistente(idMedico);
 
@@ -154,33 +153,33 @@ public class MedicoService {
         List<ConsultaModel> todosConsultas = consultaDAO.listarConsultasPorMedico(idMedico);
 
         return todosConsultas.stream().filter(c -> c.getHorarioConsulta().isAfter(inicioData) &&
-                                                            c.getHorarioConsulta().isBefore(fimDia)).collect(Collectors.toList());
+                c.getHorarioConsulta().isBefore(fimDia)).collect(Collectors.toList());
     }
 
     public void realizarAtendimento(MedicoModel medico, ConsultaModel consulta, String diagnostico, String prescricao,
-                                    String observacoes) throws SQLException, MedicoException{
-        if(medico == null){
+                                    String observacoes) throws SQLException, MedicoException {
+        if (medico == null) {
             throw new MedicoException("Medico nao autenticado");
         }
-        if(consulta == null){
+        if (consulta == null) {
             throw new MedicoException("Consulta nao pode ser nula");
         }
-        if(diagnostico == null){
+        if (diagnostico == null) {
             throw new MedicoException("Diagnostico é obrigatorio");
         }
-        if(prescricao == null || prescricao.trim().isEmpty()){
+        if (prescricao == null || prescricao.trim().isEmpty()) {
             throw new MedicoException("Prescrição é obrigatoria");
         }
 
         validarMedicoExistente(medico.getIdMedico());
 
-        if(consulta.getIdMedico() != medico.getIdMedico()){
+        if (consulta.getIdMedico() != medico.getIdMedico()) {
             throw new MedicoException("Esta consulta nao pertence ao medico logado");
         }
 
         ProntuarioModel prontuario = prontuarioDAO.buscarPorPaciente(consulta.getIdPaciente());
 
-        if(prontuario == null){
+        if (prontuario == null) {
             prontuario = new ProntuarioModel();
             prontuario.setIdPaciente(consulta.getIdPaciente());
             prontuario.setIdMedico(medico.getIdMedico());
@@ -192,14 +191,14 @@ public class MedicoService {
         prontuario.setPrescricaoMedica(prescricao);
         prontuario.setObservacoes(observacoes);
 
-        if(prontuario.getIdProntuario() == 0){
+        if (prontuario.getIdProntuario() == 0) {
             prontuarioDAO.cadastrarProntuario(prontuario);
-        }else {
+        } else {
             prontuarioDAO.atualizarProntuario(prontuario);
         }
     }
 
-    private String formatarObservacaoAtendimento(String observacoes, MedicoModel medico) throws SQLException, MedicoException{
+    private String formatarObservacaoAtendimento(String observacoes, MedicoModel medico) throws SQLException, MedicoException {
         StringBuilder sb = new StringBuilder();
         sb.append("[ATENDIMENTO - ");
         sb.append(LocalDateTime.now().format(java.time.format.DateTimeFormatter.ofPattern("dd//MM/yyyy HH:mm")));
@@ -207,28 +206,28 @@ public class MedicoService {
         sb.append(medico.getNomeUsuario());
         sb.append("]\n");
 
-        if(observacoes != null && !observacoes.trim().isEmpty()){
+        if (observacoes != null && !observacoes.trim().isEmpty()) {
             sb.append(observacoes);
-        }else{
+        } else {
             sb.append("Atendimento realizado sem observações adicionais");
         }
 
         return sb.toString();
     }
 
-    public ProntuarioModel buscarProntuarioPorPaciente(int idPaciente) throws SQLException, MedicoException{
-        if(idPaciente <= 0){
+    public ProntuarioModel buscarProntuarioPorPaciente(int idPaciente) throws SQLException, MedicoException {
+        if (idPaciente <= 0) {
             throw new MedicoException("Id do paciente invalido");
         }
 
         return prontuarioDAO.buscarPorPaciente(idPaciente);
     }
 
-    public boolean criarProntuario(ProntuarioModel prontuario) throws SQLException, MedicoException{
-        if(prontuario == null){
+    public boolean criarProntuario(ProntuarioModel prontuario) throws SQLException, MedicoException {
+        if (prontuario == null) {
             throw new MedicoException("Prontuario nao pode ser nulo");
         }
-        if(prontuario.getIdPaciente() <= 0){
+        if (prontuario.getIdPaciente() <= 0) {
             throw new MedicoException("Id do paciente invalido");
         }
 
@@ -236,25 +235,25 @@ public class MedicoService {
         return prontuarioDAO.cadastrarProntuario(prontuario);
     }
 
-    public boolean atualizarProntuario(ProntuarioModel prontuario) throws SQLException, MedicoException{
-        if(prontuario == null){
+    public boolean atualizarProntuario(ProntuarioModel prontuario) throws SQLException, MedicoException {
+        if (prontuario == null) {
             throw new MedicoException("Prontuario nao pode ser nulo");
         }
-        if(prontuario.getIdProntuario() <= 0){
+        if (prontuario.getIdProntuario() <= 0) {
             throw new MedicoException("Id do prontuario invalido");
         }
 
         return prontuarioDAO.atualizarProntuario(prontuario);
     }
 
-    public void adicionarInformacaoProntuario(ProntuarioModel prontuario, String novaInformacao, MedicoModel medico) throws SQLException, MedicoException{
-        if(prontuario == null){
+    public void adicionarInformacaoProntuario(ProntuarioModel prontuario, String novaInformacao, MedicoModel medico) throws SQLException, MedicoException {
+        if (prontuario == null) {
             throw new MedicoException("Prontuario nao encontrado");
         }
-        if(novaInformacao == null || novaInformacao.trim().isEmpty()){
+        if (novaInformacao == null || novaInformacao.trim().isEmpty()) {
             throw new MedicoException("Informaçao nao pode ser vazia");
         }
-        if(medico == null){
+        if (medico == null) {
             throw new MedicoException("Medico nao autenticado");
         }
 
@@ -266,30 +265,30 @@ public class MedicoService {
         );
 
         String observacoesAtuais = prontuario.getObservacoes();
-        if(observacoesAtuais == null || observacoesAtuais.isEmpty()){
+        if (observacoesAtuais == null || observacoesAtuais.isEmpty()) {
             prontuario.setObservacoes(informacaoAdicional);
-        }else{
+        } else {
             prontuario.setObservacoes(observacoesAtuais + informacaoAdicional);
         }
 
         prontuarioDAO.atualizarProntuario(prontuario);
     }
 
-    public PacienteModel buscarPacientePorCpf(String cpf) throws SQLException, MedicoException{
-        if(cpf == null || cpf.trim().isEmpty()){
+    public PacienteModel buscarPacientePorCpf(String cpf) throws SQLException, MedicoException {
+        if (cpf == null || cpf.trim().isEmpty()) {
             throw new MedicoException("Cpf nao informado");
         }
         return pacienteDAO.buscarPorCpf(cpf);
     }
 
-    public void solicitarExame(MedicoModel medico, PacienteModel paciente, String tipoExame, String observacoes) throws MedicoException{
-        if(medico == null){
+    public void solicitarExame(MedicoModel medico, PacienteModel paciente, String tipoExame, String observacoes) throws MedicoException {
+        if (medico == null) {
             throw new MedicoException("Medico nao autenticado");
         }
-        if(paciente == null){
+        if (paciente == null) {
             throw new MedicoException("Paciente nao autenticado");
         }
-        if(tipoExame == null || tipoExame.trim().isEmpty()){
+        if (tipoExame == null || tipoExame.trim().isEmpty()) {
             throw new MedicoException("Tipo de exame nao autenticado");
         }
 
@@ -310,40 +309,40 @@ public class MedicoService {
 
     }
 
-    private void validarMedicoExistente(int idMedico) throws MedicoException{
-        if(idMedico <= 0){
+    private void validarMedicoExistente(int idMedico) throws MedicoException {
+        if (idMedico <= 0) {
             throw new MedicoException("Id do medico invalido");
         }
 
         MedicoModel medico = medicoDAO.buscarPorId(idMedico);
-        if(medico == null){
+        if (medico == null) {
             throw new MedicoException("Medico nao encontrado");
         }
     }
 
-    private void validarPacienteExistente(int idPaciente) throws MedicoException{
-        if(idPaciente <= 0){
+    private void validarPacienteExistente(int idPaciente) throws MedicoException {
+        if (idPaciente <= 0) {
             throw new MedicoException("Id do paciente invalido");
         }
 
         PacienteModel paciente = pacienteDAO.buscarPorId(idPaciente);
-        if(paciente == null){
+        if (paciente == null) {
             throw new MedicoException("Paciente nao encontrado");
         }
     }
 
-    public boolean medicoExiste(int idMedico) throws MedicoException{
-        if(idMedico <= 0){
+    public boolean medicoExiste(int idMedico) throws MedicoException {
+        if (idMedico <= 0) {
             return false;
         }
         MedicoModel medico = medicoDAO.buscarPorId(idMedico);
         return medico != null;
     }
 
-    public boolean isMedicoDisponivel(int idMedico, LocalDateTime horario) throws SQLException, MedicoException{
+    public boolean isMedicoDisponivel(int idMedico, LocalDateTime horario) throws SQLException, MedicoException {
         validarMedicoExistente(idMedico);
 
-        if(horario == null){
+        if (horario == null) {
             throw new MedicoException("Horario nao informado");
         }
 
@@ -351,19 +350,17 @@ public class MedicoService {
         return consultas.stream().noneMatch(c -> c.getHorarioConsulta().equals(horario));
     }
 
-    public int contarConsultasRealizadas(int idMedico)throws  SQLException, MedicoException{
+    public int contarConsultasRealizadas(int idMedico) throws SQLException, MedicoException {
         validarMedicoExistente(idMedico);
 
         List<ConsultaModel> historico = consultaDAO.historicoDeConsultasMedico(idMedico);
         return historico.size();
     }
 
-    public int contarPacienteAtendidos(int idMedico) throws SQLException, MedicoException{
+    public int contarPacienteAtendidos(int idMedico) throws SQLException, MedicoException {
         validarMedicoExistente(idMedico);
 
         List<ConsultaModel> historico = consultaDAO.historicoDeConsultasMedico(idMedico);
         return (int) historico.stream().map(ConsultaModel::getIdPaciente).distinct().count();
     }
-
-
 }
