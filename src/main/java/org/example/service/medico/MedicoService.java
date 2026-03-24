@@ -49,6 +49,17 @@ public class MedicoService {
         return medico;
     }
 
+    public MedicoModel buscarDetalhes(int idUsuario)
+    {
+        try {
+            MedicoDAO medicoDAO = new MedicoDAO();
+            return medicoDAO.buscarDetalhesPorIdUsuario(idUsuario);
+        } catch (SQLException e) {
+            System.err.println("Erro ao carregar o perfil do médico");
+            return null;
+        }
+    }
+
     public MedicoModel buscarPorIdUsuario(int idUsuario) throws SQLException, MedicoException {
         if(idUsuario <= 0){
             throw new MedicoException("Usuario nao encontrado");

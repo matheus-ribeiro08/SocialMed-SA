@@ -137,7 +137,9 @@ public class MenuSecretarioPresenter {
             if (pacientes.isEmpty()) {
                 view.mostrarMensagemInfo("Nenhum paciente cadastrado");
             } else {
-                view.mostrarListaPacientes(pacientes);
+                for(PacienteModel paciente : pacientes){
+                    view.mostrarListaPacientes(paciente);
+                }
             }
         } catch (Exception e) {
             view.mostrarMensagemErro("Erro ao listar pacientes: " + e.getMessage());
@@ -195,13 +197,20 @@ public class MenuSecretarioPresenter {
 
         try {
             List<MedicoModel> medicos = secretarioService.listarTodosMedicos();
-            view.mostrarListaMedicos(medicos);
+
+            for(MedicoModel medico : medicos){
+                view.mostrarListaMedicos(medico);
+            }
+
 
             int idMedico = view.lerIdMedico();
             MedicoModel medico = secretarioService.buscarMedicoPorId(idMedico);
 
             List<HospitalModel> hospitais = secretarioService.listarHospitais();
-            view.mostrarListaHospitais(hospitais);
+
+            for(HospitalModel hospital: hospitais){
+                view.mostrarListaHospitais(hospital);
+            }
 
             int idHospital = view.lerIdHospital();
             HospitalModel hospital = hospitais.stream()
@@ -273,7 +282,9 @@ public class MenuSecretarioPresenter {
             if (consultas.isEmpty()) {
                 view.mostrarMensagemInfo("Nenhuma consulta agendada");
             } else {
-                view.mostrarListaConsultas(consultas);
+                for(ConsultaModel consulta : consultas){
+                    view.mostrarListaConsultas(consulta);
+                }
             }
         } catch (Exception e) {
             view.mostrarMensagemErro("Erro ao listar consultas");
@@ -290,7 +301,9 @@ public class MenuSecretarioPresenter {
             if (consultas.isEmpty()) {
                 view.mostrarMensagemInfo("Nenhuma consulta encontrada para este paciente");
             } else {
-                view.mostrarListaConsultas(consultas);
+                for(ConsultaModel consulta : consultas){
+                    view.mostrarListaConsultas(consulta);
+                }
             }
         } catch (Exception e) {
             view.mostrarMensagemErro("Erro ao listar consultas");
@@ -302,7 +315,9 @@ public class MenuSecretarioPresenter {
 
         try {
             List<MedicoModel> medicos = secretarioService.listarTodosMedicos();
-            view.mostrarListaMedicos(medicos);
+            for(MedicoModel medico : medicos){
+                view.mostrarListaMedicos(medico);
+            }
 
             int idMedico = view.lerIdMedico();
             List<ConsultaModel> consultas = secretarioService.listarConsultasPorMedico(idMedico);
@@ -310,7 +325,9 @@ public class MenuSecretarioPresenter {
             if (consultas.isEmpty()) {
                 view.mostrarMensagemInfo("Nenhuma consulta encontrada para este médico");
             } else {
-                view.mostrarListaConsultas(consultas);
+                for(ConsultaModel consulta : consultas){
+                    view.mostrarListaConsultas(consulta);
+                }
             }
         } catch (Exception e) {
             view.mostrarMensagemErro("Erro ao listar consultas");
@@ -325,7 +342,9 @@ public class MenuSecretarioPresenter {
             if (medicos.isEmpty()) {
                 view.mostrarMensagemInfo("Nenhum médico cadastrado");
             } else {
-                view.mostrarListaMedicos(medicos);
+                for(MedicoModel medico : medicos){
+                    view.mostrarListaMedicos(medico);
+                }
             }
         } catch (Exception e) {
             view.mostrarMensagemErro("Erro ao listar médico");

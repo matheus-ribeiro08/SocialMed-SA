@@ -110,7 +110,7 @@ public class MenuMedicoPresenter {
             if(consultasHoje.isEmpty()){
                 view.mostrarMensagemInfo("Nenhuma consulta agendada para hoje");
             }else{
-                for(ConsultaModel consulta : consultasHoje) {
+                for(ConsultaModel consulta: consultasHoje){
                     view.mostrarListaConsultasDetalhadas(consulta);
                 }
             }
@@ -128,7 +128,7 @@ public class MenuMedicoPresenter {
             if(consultas.isEmpty()){
                 view.mostrarMensagemInfo("Nenhuma consulta futura agendada");
             }else {
-                for(ConsultaModel consulta : consultas) {
+                for(ConsultaModel consulta: consultas){
                     view.mostrarListaConsultasDetalhadas(consulta);
                 }
             }
@@ -188,10 +188,11 @@ public class MenuMedicoPresenter {
 
                 List<ConsultaModel> historico = consultaService.buscarHistoricoPacienteComMedico(paciente.getIdPaciente(), medico.getIdMedico());
 
-                if(!historico.isEmpty()) {
-                    for (ConsultaModel h : historico) {
+                if(!historico.isEmpty()){
+                    for(ConsultaModel h: historico){
                         view.mostrarHistoricoAtendimentos(h);
                     }
+
                 }
             }else{
                 view.mostrarMensagemErro("Paciente nao encontrado");
@@ -280,8 +281,9 @@ public class MenuMedicoPresenter {
             if(consultas.isEmpty()){
                 view.mostrarMensagemInfo("Nenhum historico de consultas encontrado");
             }else {
-                for(ConsultaModel consulta : consultas)
-                view.mostrarHistoricoConsultas(consulta);
+                for(ConsultaModel consulta: consultas){
+                    view.mostrarHistoricoAtendimentos(consulta);
+                }
             }
         }catch (Exception e){
             view.mostrarMensagemErro("Erro ao mostrar historico de consultas");

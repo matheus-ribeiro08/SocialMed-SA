@@ -3,6 +3,8 @@ package org.example.service.paciente;
 import org.example.dao.PacienteDAO;
 import org.example.model.PacienteModel;
 
+import java.sql.SQLException;
+
 public class PacienteService {
 
     private final PacienteDAO pacienteDAO;
@@ -26,6 +28,19 @@ public class PacienteService {
             throw new RuntimeException("Erro ao buscar paciente por cpf");
         }
     }
+
+    public  PacienteModel buscarDetalhe(int idUsuario)
+    {
+        try {
+            PacienteDAO pacienteDAO = new PacienteDAO();
+            return pacienteDAO.buscarDetalhePorIdUsuario(idUsuario);
+        } catch (SQLException e)
+        {
+            System.out.println("Erro ao carregar perfil");
+            return null;
+        }
+    }
+
 
     public PacienteModel buscarPorId(int idPaciente){
         if(idPaciente <= 0){

@@ -83,6 +83,31 @@ public class PacienteDAO
         }
     }
 
+    public PacienteModel buscarDetalhePorIdUsuario(int idUsuario) throws SQLException
+    {
+        String sql = "SELECT * FROM Paciente WHERE id_Usuario = ?";
+        PacienteModel detalhes = new PacienteModel();
+
+        try(Connection conn = ConnectionFactory.getConnection();
+            PreparedStatement stmt = conn.prepareStatement(sql))
+        {
+            stmt.setInt(1, idUsuario);
+
+            try(ResultSet rs = stmt.executeQuery())
+            {
+                if(rs.next())
+                {
+                    detalhes.setEnderecoPaciente(rs.getString("endereco_Paciente"));
+                }
+            }
+        } catch (SQLException e)
+        {
+            System.err.println("Erro ao encontrar detalhes do paciente");
+        }
+        return detalhes;
+    }
+
+
     public List<PacienteModel> listarTodosPacientes()
     {
         List<PacienteModel> pacientes = new ArrayList<>();

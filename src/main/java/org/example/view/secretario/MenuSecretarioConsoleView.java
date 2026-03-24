@@ -65,64 +65,41 @@ public class MenuSecretarioConsoleView implements IMenuSecretarioView {
     }
 
     @Override
-    public void mostrarListaPacientes(List<PacienteModel> pacientes) {
-        if (pacientes == null || pacientes.isEmpty()) {
-            System.out.println("Nenhum paciente cadastrado.");
-            return;
-        }
+    public void mostrarListaPacientes(PacienteModel paciente) {
 
         System.out.println(DIVISOR);
-        for (PacienteModel p : pacientes) {
-            System.out.println("ID: " + p.getIdPaciente() + " | Nome: " + p.getNomeUsuario() +
-                    " | CPF: " + p.getCpfUsuario() + " | Telefone: " + p.getTelefoneUsuario());
-            System.out.println(DIVISOR);
-        }
+            System.out.println("ID: " + paciente.getIdPaciente() + " | Nome: " + paciente.getNomeUsuario() +
+                    " | CPF: " + paciente.getCpfUsuario() + " | Telefone: " + paciente.getTelefoneUsuario());
+        System.out.println(DIVISOR);
     }
 
     @Override
-    public void mostrarListaMedicos(List<MedicoModel> medicos) {
-        if (medicos == null || medicos.isEmpty()) {
-            System.out.println("Nenhum médico cadastrado.");
-            return;
-        }
+    public void mostrarListaMedicos(MedicoModel medico) {
 
         System.out.println(DIVISOR);
-        for (MedicoModel m : medicos) {
-            System.out.println("ID: " + m.getIdMedico() + " | Nome: " + m.getNomeUsuario() +
-                    " | Especialidade: " + m.getEspecialidadeMedico() + " | Telefone: " + m.getTelefoneUsuario());
-            System.out.println(DIVISOR);
-        }
+            System.out.println("ID: " + medico.getIdMedico() + " | Nome: " + medico.getNomeUsuario() +
+                    " | Especialidade: " + medico.getEspecialidadeMedico() + " | Telefone: " + medico.getTelefoneUsuario());
     }
 
     @Override
-    public void mostrarListaConsultas(List<ConsultaModel> consultas) {
-        if (consultas == null || consultas.isEmpty()) {
-            System.out.println("Nenhuma consulta encontrada.");
-            return;
-        }
+    public void mostrarListaConsultas(ConsultaModel consulta) {
+
 
         System.out.println(DIVISOR);
-        for (ConsultaModel c : consultas) {
-            System.out.println("ID: " + c.getIdConsulta() + " | Paciente: " + c.getIdPaciente() +
-                    " | Médico: " + c.getIdMedico() + " | Data/Hora: " + c.getHorarioConsulta() +
-                    " | Local: " + c.getLocalEndereco());
+            System.out.println("ID: " + consulta.getIdConsulta() + " | Paciente: " + consulta.getIdPaciente() +
+                    " | Médico: " + consulta.getIdMedico() + " | Data/Hora: " + consulta.getHorarioConsulta() +
+                    " | Local: " + consulta.getLocalEndereco());
             System.out.println(DIVISOR);
-        }
+
     }
 
     @Override
-    public void mostrarListaHospitais(List<HospitalModel> hospitais) {
-        if (hospitais == null || hospitais.isEmpty()) {
-            System.out.println("Nenhum hospital cadastrado.");
-            return;
-        }
+    public void mostrarListaHospitais(HospitalModel hospital) {
 
         System.out.println(DIVISOR);
-        for (HospitalModel h : hospitais) {
-            System.out.println("ID: " + h.getIdHospital() + " | Nome: " + h.getNomeHospital() +
-                    " | Endereço: " + h.getEnderecoHospital());
+            System.out.println("ID: " + hospital.getIdHospital() + " | Nome: " + hospital.getNomeHospital() +
+                    " | Endereço: " + hospital.getEnderecoHospital());
             System.out.println(DIVISOR);
-        }
     }
 
     @Override
@@ -266,26 +243,30 @@ public class MenuSecretarioConsoleView implements IMenuSecretarioView {
     }
 
     @Override
-    public int selecionarMedico(List<MedicoModel> medicos) {
+    public int selecionarMedico(MedicoModel medico) {
         System.out.println(DIVISOR);
-        mostrarListaMedicos(medicos);
+        mostrarListaMedicos(medico);
         System.out.print(" ➤ Escolha o ID do médico: ");
         return Ferramentas.lInteiro();
     }
 
     @Override
-    public String selecionarHorario(List<String> horarios) {
+    public String selecionarHorario(String horario) {
         System.out.println("Horários disponíveis:");
         for (int i = 0; i < horarios.size(); i++) {
             System.out.println(" (" + (i + 1) + ") " + horarios.get(i));
         }
+
         System.out.print(" ➤ Escolha o horário (número): ");
         int escolha = Ferramentas.lInteiro();
+
         if (escolha >= 1 && escolha <= horarios.size()) {
             return horarios.get(escolha - 1);
         }
+
         return null;
     }
+
     @Override
     public void lerDadosAtualizacaoPaciente(PacienteModel paciente) {
         System.out.println(DIVISOR);

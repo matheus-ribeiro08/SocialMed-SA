@@ -17,7 +17,8 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
-public class MenuPacientePresenter {
+public class
+MenuPacientePresenter {
 
     private final Roteador roteador;
     private final PacienteModel paciente;
@@ -40,7 +41,7 @@ public class MenuPacientePresenter {
     }
 
     public void iniciar() {
-        boolean execuntando = false;
+        boolean execuntando = true;
 
         while (execuntando) {
             int opcao = view.mostrarMenuPrincipal(paciente.getNomeUsuario());
@@ -253,11 +254,16 @@ public class MenuPacientePresenter {
 
     private void visualizarPerfil(){
         view.mostrarTitulo("Meu perfil");
+        PacienteModel detalhesBanco = pacienteService.buscarDetalhe(paciente.getIdUsuario());
+
+        if(detalhesBanco != null)
+        {
+            paciente.setEnderecoPaciente((detalhesBanco.getEnderecoPaciente()));
+        }
         view.mostrarDadosPaciente(paciente);
 
-        if(view.perguntarAcao("Deseja editar seus dados?")){
-            editarPerfil();
-        }
+        if(view.perguntarAcao("Desejar editar seus dados?"));
+        editarPerfil();
     }
 
     private void editarPerfil(){

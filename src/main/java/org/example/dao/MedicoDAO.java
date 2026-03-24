@@ -236,6 +236,28 @@ public class MedicoDAO
         }
     }
 
+    public MedicoModel buscarDetalhesPorIdUsuario(int idUsuario) throws SQLException {
+        String sql = "SELECT * FROM Medico WHERE id_Usuario = ?";
+        MedicoModel detalhes = new MedicoModel();
+
+        try (Connection conn = ConnectionFactory.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setInt(1, idUsuario);
+
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+
+                    detalhes.setEspecialidadeMedico(rs.getString("especialidade_Medico"));
+                }
+            }
+        } catch (SQLException e) {
+            throw new SQLException("Erro ao procurar detalhes do médico.");
+        }
+        return detalhes;
+    }
+
+
     public boolean removerMedico(int idMedico) throws SQLException{
         String sqlBuscarIdUsuario = "SELECT id_Usuario FROM Medico WHERE id_Medico = ?";
         String sqlRemoverMedico = "DELETE FROM Medico WHERE id_Medico = ?";

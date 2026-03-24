@@ -278,6 +278,10 @@ public class MenuAdminPresenter {
                 return;
             }
 
+            for (MedicoModel medico: medicos) {
+                view.mostrarListaMedicos(medico);
+            }
+
             view.mostrarListaMedicos(medicos);
 
             int id = view.selecionarMedico();
@@ -439,7 +443,9 @@ public class MenuAdminPresenter {
                 return;
             }
 
-            view.mostrarListaPacientes(pacientes);
+            for (PacienteModel pacienteModel: pacientes) {
+                view.mostrarListaPacientes(pacienteModel);
+            }
 
             String cpf = view.lerCpf();
             PacienteModel paciente = usuarioService.buscarPacientePorCpf(cpf);
@@ -521,8 +527,9 @@ public class MenuAdminPresenter {
                 view.mostrarMensagemInfo("Nenhum secretario cadastrado");
                 return;
             }
-
-            view.mostrarListaSecretarios(secretarios);
+            for (SecretarioModel secretario: secretarios) {
+                view.mostrarListaSecretarios(secretario);
+            }
 
             int id = view.selecionarMedico();
             MedicoModel medico = usuarioService.buscarMedicoPorId(id);
