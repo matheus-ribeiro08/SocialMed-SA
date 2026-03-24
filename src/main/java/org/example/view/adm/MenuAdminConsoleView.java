@@ -269,11 +269,7 @@ public class MenuAdminConsoleView implements IMenuAdminView {
     }
 
     @Override
-    public void mostrarListaPacientes(List<PacienteModel> pacientes) {
-        if(pacientes == null || pacientes.isEmpty()){
-            System.out.println("Nenhum paciente cadastrado");
-            return;
-        }
+    public void mostrarListaPacientes(PacienteModel paciente) {
 
         System.out.println(Ferramentas.GREENclaro+"───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────");
         System.out.println(Ferramentas.RESET+"                  ██╗     ██╗███████╗████████╗ █████╗     ██████╗  █████╗  ██████╗██╗███████╗███╗   ██╗████████╗███████╗███████╗                       ");
@@ -285,23 +281,15 @@ public class MenuAdminConsoleView implements IMenuAdminView {
         System.out.println(Ferramentas.GREENclaro+"───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────");
 
         System.out.println(Ferramentas.GREENclaro+"───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────"+ Ferramentas.RESET);
-
-        for(PacienteModel paciente : pacientes){
-            System.out.println("Id: " + paciente.getIdUsuario());
-            System.out.println("Nome: " + paciente.getNomeUsuario());
-            System.out.println("Tipo: " + paciente.getTipoUsuario());
-            System.out.println("Cpf: " + paciente.getCpfUsuario());
-            System.out.println(Ferramentas.GREENclaro+"───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────"+ Ferramentas.RESET);
-
-        }
+         System.out.println("Id: " + paciente.getIdUsuario());
+         System.out.println("Nome: " + paciente.getNomeUsuario());
+         System.out.println("Tipo: " + paciente.getTipoUsuario());
+         System.out.println("Cpf: " + paciente.getCpfUsuario());
+         System.out.println(Ferramentas.GREENclaro+"───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────"+ Ferramentas.RESET);
     }
 
     @Override
-    public void mostrarListaUsuarios(List<UsuarioModel> usuarios) {
-        if(usuarios == null || usuarios.isEmpty()){
-            System.out.println("Nenhum usuario cadastrado");
-            return;
-        }
+    public void mostrarListaUsuarios(UsuarioModel usuario) {
 
         System.out.println(Ferramentas.GREENclaro+"───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────");
         System.out.println(Ferramentas.RESET+"                    ██╗     ██╗███████╗████████╗ █████╗   ██╗   ██╗███████╗██╗   ██╗ █████╗ ██████╗ ██╗ ██████╗ ███████╗                               ");
@@ -313,23 +301,15 @@ public class MenuAdminConsoleView implements IMenuAdminView {
         System.out.println(Ferramentas.GREENclaro+"───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────"+ Ferramentas.RESET);
 
         System.out.println(Ferramentas.GREENclaro+"───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────"+ Ferramentas.RESET);
-
-        for(UsuarioModel usuario : usuarios){
-            System.out.println("Id: " + usuario.getIdUsuario());
-            System.out.println("Nome: " + usuario.getNomeUsuario());
-            System.out.println("Tipo: " + usuario.getTipoUsuario());
-            System.out.println("Cpf: " + usuario.getCpfUsuario());
-            System.out.println(Ferramentas.GREENclaro+"───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────"+ Ferramentas.RESET);
-
-        }
+        System.out.println("Id: " + usuario.getIdUsuario());
+        System.out.println("Nome: " + usuario.getNomeUsuario());
+        System.out.println("Tipo: " + usuario.getTipoUsuario());
+        System.out.println("Cpf: " + usuario.getCpfUsuario());
+        System.out.println(Ferramentas.GREENclaro+"───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────"+ Ferramentas.RESET);
     }
 
     @Override
-    public void mostrarListaMedicos(List<MedicoModel> medicos) {
-        if(medicos == null || medicos.isEmpty()){
-            System.out.println("Nenhum medico cadastrado");
-            return;
-        }
+    public void mostrarListaMedicos(MedicoModel medico) {
 
         System.out.println(Ferramentas.GREENclaro+"───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────");
         System.out.println(Ferramentas.RESET+"                        ██╗     ██╗███████╗████████╗ █████╗    ███╗   ███╗███████╗██████╗ ██╗ ██████╗ ██████╗ ███████╗                                 ");
@@ -341,22 +321,15 @@ public class MenuAdminConsoleView implements IMenuAdminView {
         System.out.println(Ferramentas.GREENclaro+"───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────"+ Ferramentas.RESET);
 
         System.out.println(Ferramentas.GREENclaro+"───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────"+ Ferramentas.RESET);
-        for(MedicoModel medico : medicos){
-            System.out.println("Id: " + medico.getIdUsuario());
-            System.out.println("Nome: " + medico.getNomeUsuario());
-            System.out.println("Cpf: " + medico.getCpfUsuario());
-            System.out.println("Especialidade: " + medico.getEspecialidadeMedico());
-            System.out.println(Ferramentas.GREENclaro+"───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────"+ Ferramentas.RESET);
-        }
-
+        System.out.println("Id: " + medico.getIdUsuario());
+        System.out.println("Nome: " + medico.getNomeUsuario());
+        System.out.println("Cpf: " + medico.getCpfUsuario());
+        System.out.println("Especialidade: " + medico.getEspecialidadeMedico());
+        System.out.println(Ferramentas.GREENclaro+"───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────"+ Ferramentas.RESET);
     }
 
     @Override
-    public void mostrarListaSecretarios(List<SecretarioModel> secretarios) {
-        if(secretarios == null || secretarios.isEmpty()){
-            System.out.println("Nenhum secretario cadastrado");
-            return;
-        }
+    public void mostrarListaSecretarios(SecretarioModel secretario) {
 
         System.out.println(Ferramentas.GREENclaro+"───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────");
         System.out.println(Ferramentas.RESET+"                      ██╗     ██╗███████╗████████╗ █████╗     ███████╗███████╗ ██████╗██████╗ ███████╗████████╗ █████╗ ██╗ ██████╗                     ");
@@ -368,14 +341,11 @@ public class MenuAdminConsoleView implements IMenuAdminView {
         System.out.println(Ferramentas.GREENclaro+"───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────"+ Ferramentas.RESET);
 
         System.out.println(Ferramentas.GREENclaro+"───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────"+ Ferramentas.RESET);
-        for(SecretarioModel secretario : secretarios){
-            System.out.println("Id: " + secretario.getIdUsuario());
-            System.out.println("Nome: " + secretario.getNomeUsuario());
-            System.out.println("Cpf: " + secretario.getCpfUsuario());
-            System.out.println("Turno: " + secretario.getTurnoTrabalhadoSecretario());
-            System.out.println(Ferramentas.GREENclaro+"───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────"+ Ferramentas.RESET);
-        }
-
+        System.out.println("Id: " + secretario.getIdUsuario());
+        System.out.println("Nome: " + secretario.getNomeUsuario());
+        System.out.println("Cpf: " + secretario.getCpfUsuario());
+        System.out.println("Turno: " + secretario.getTurnoTrabalhadoSecretario());
+        System.out.println(Ferramentas.GREENclaro+"───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────"+ Ferramentas.RESET);
     }
 
     @Override
@@ -388,7 +358,6 @@ public class MenuAdminConsoleView implements IMenuAdminView {
         System.out.println("                           ██████╔╝██║  ██║██████╔╝╚██████╔╝███████║ ╚██████╔╝███████║╚██████╔╝██║  ██║██║  ██║██║╚██████╔╝                            ");
         System.out.println("                           ╚═════╝ ╚═╝  ╚═╝╚═════╝  ╚═════╝ ╚══════╝  ╚═════╝ ╚══════╝ ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝╚═╝ ╚═════╝                             ");
         System.out.println(Ferramentas.GREENclaro+"───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────");
-
         System.out.println(Ferramentas.GREENclaro+"───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────"+ Ferramentas.RESET);
         System.out.println("Id: " + usuario.getIdUsuario());
         System.out.println("Nome: " + usuario.getNomeUsuario());
