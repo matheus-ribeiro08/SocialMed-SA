@@ -13,10 +13,10 @@ public interface IMenuSecretarioView
     void mostrarMensagemErro(String mensagem);
     void mostrarMensagemInfo(String mensagem);
 
-    void mostrarListaPacientes(List<PacienteModel> pacientes);
-    void mostrarListaMedicos(List<MedicoModel> medicos);
-    void mostrarListaConsultas(List<ConsultaModel> consultas);
-    void mostrarListaHospitais(List<HospitalModel> hospitais);
+    void mostrarListaPacientes(PacienteModel paciente);
+    void mostrarListaMedicos(MedicoModel medico);
+    void mostrarListaConsultas(ConsultaModel consulta);
+    void mostrarListaHospitais(HospitalModel hospital);
 
     void mostrarDadosPacienteCompleto(PacienteModel paciente);
     void mostrarDadosMedicoCompleto(MedicoModel medico);
@@ -38,8 +38,8 @@ public interface IMenuSecretarioView
     int lerIdMedico();
     int lerIdConsulta();
     int lerIdHospital();
-    int selecionarMedico(List<MedicoModel> medicos);
-    String selecionarHorario(List<String> horarios);
+    int selecionarMedico(MedicoModel medicos);
+    String selecionarHorario(String horarios);
     void lerDadosAtualizacaoPaciente(PacienteModel paciente);
     void lerDadosAtualizacaoSecretario(SecretarioModel secretario);
     boolean perguntarAcao(String mensagem);

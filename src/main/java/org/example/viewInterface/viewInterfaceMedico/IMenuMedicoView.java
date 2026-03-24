@@ -16,9 +16,9 @@ public interface IMenuMedicoView
     void mostrarMensagemSucesso(String mensagem);
     void mostrarMensagemInfo(String mensagem);
 
-    void mostrarListaConsultasDetalhadas(List<ConsultaModel> consultas);
-    void mostrarHistoricoConsultas(List<ConsultaModel> consultas);
-    void mostrarHistoricoAtendimentos(List<ConsultaModel> historico);
+    void mostrarListaConsultasDetalhadas(ConsultaModel consulta);
+    void mostrarHistoricoConsultas(ConsultaModel consulta);
+    void mostrarHistoricoAtendimentos(ConsultaModel historico);
 
     void mostrarDadosConsultaCompleta(ConsultaModel consulta);
     void mostrarDadosPacienteCompleto(PacienteModel paciente);

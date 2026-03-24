@@ -29,10 +29,10 @@ public interface IMenuAdminView {
     int mostrarMenuDetalheMedico(MedicoModel medico);
     void lerDadosAtualizacaoUsuario(UsuarioModel usuario);
     void lerDadosAtualizacaoMedico(MedicoModel medico);
-    void mostrarListaSecretarios(List<SecretarioModel> secretarios);
-    void mostrarListaUsuarios(List<UsuarioModel> usuarios);
-    void mostrarListaPacientes(List<PacienteModel> pacientes);
-    void mostrarListaMedicos(List<MedicoModel> medicos);
+    void mostrarListaSecretarios(SecretarioModel secretario);
+    void mostrarListaUsuarios(UsuarioModel usuario);
+    void mostrarListaPacientes(PacienteModel paciente);
+    void mostrarListaMedicos(MedicoModel medico);
     void mostrarDadosUsuarioCompleto(UsuarioModel usuario);
     int selecionarMedico();
     void mostrarTitulo(String titulo);
