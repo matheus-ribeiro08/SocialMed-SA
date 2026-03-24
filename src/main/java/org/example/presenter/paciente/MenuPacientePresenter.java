@@ -254,11 +254,16 @@ MenuPacientePresenter {
 
     private void visualizarPerfil(){
         view.mostrarTitulo("Meu perfil");
+        PacienteModel detalhesBanco = pacienteService.buscarDetalhe(paciente.getIdUsuario());
+
+        if(detalhesBanco != null)
+        {
+            paciente.setEnderecoPaciente((detalhesBanco.getEnderecoPaciente()));
+        }
         view.mostrarDadosPaciente(paciente);
 
-        if(view.perguntarAcao("Deseja editar seus dados?")){
-            editarPerfil();
-        }
+        if(view.perguntarAcao("Desejar editar seus dados?"));
+        editarPerfil();
     }
 
     private void editarPerfil(){
