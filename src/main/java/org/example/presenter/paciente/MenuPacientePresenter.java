@@ -17,7 +17,8 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
-public class MenuPacientePresenter {
+public class
+MenuPacientePresenter {
 
     private final Roteador roteador;
     private final PacienteModel paciente;
@@ -40,7 +41,7 @@ public class MenuPacientePresenter {
     }
 
     public void iniciar() {
-        boolean execuntando = false;
+        boolean execuntando = true;
 
         while (execuntando) {
             int opcao = view.mostrarMenuPrincipal(paciente.getNomeUsuario());
