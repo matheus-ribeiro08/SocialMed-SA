@@ -39,7 +39,6 @@ public interface IMenuSecretarioView
     int lerIdConsulta();
     int lerIdHospital();
     int selecionarMedico(MedicoModel medicos);
-    String selecionarHorario(String horarios);
     void lerDadosAtualizacaoPaciente(PacienteModel paciente);
     void lerDadosAtualizacaoSecretario(SecretarioModel secretario);
     boolean perguntarAcao(String mensagem);
