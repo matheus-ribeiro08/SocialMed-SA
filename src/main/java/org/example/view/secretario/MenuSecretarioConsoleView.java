@@ -256,11 +256,14 @@ public class MenuSecretarioConsoleView implements IMenuSecretarioView {
         for (int i = 0; i < horarios.size(); i++) {
             System.out.println(" (" + (i + 1) + ") " + horarios.get(i));
         }
+
         System.out.print(" ➤ Escolha o horário (número): ");
         int escolha = Ferramentas.lInteiro();
+
         if (escolha >= 1 && escolha <= horarios.size()) {
             return horarios.get(escolha - 1);
         }
+
         return null;
     }
 
