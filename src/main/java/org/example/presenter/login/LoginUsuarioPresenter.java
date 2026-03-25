@@ -7,6 +7,7 @@ import org.example.exception.SenhaInvalida;
 import org.example.model.UsuarioModel;
 import org.example.roteador.Roteador;
 import org.example.service.usuario.UsuarioService;
+import org.example.utils.Ferramentas;
 import org.example.viewInterface.viewLogin.ILoginView;
 
 public class LoginUsuarioPresenter {
@@ -22,6 +23,7 @@ public class LoginUsuarioPresenter {
     }
 
     public void iniciarLogin(){
+        Ferramentas.limpaTerminalOpcional(30);
         try {
             String cpf = view.pedirCpf();
             String senha = view.pedirSenha();
@@ -33,6 +35,8 @@ public class LoginUsuarioPresenter {
             TipoUsuario tipo = usuario.getTipoUsuario();
 
             System.out.println("Login realizado com sucesso!");
+            Ferramentas.Delay(1500);
+            Ferramentas.limpaTerminalOpcional(30);
 
             switch (tipo){
                 case SECRETARIO:{

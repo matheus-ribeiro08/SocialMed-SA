@@ -88,10 +88,14 @@ MenuPacientePresenter {
                     }
                     case 0: {
                         execuntando = false;
+                        Ferramentas.Delay(1500);
+                        Ferramentas.limpaTerminalOpcional(30);
                         roteador.irPara(Destinos.MENU_INICIAL, null);
                     }
                     default:{
                         view.mostrarMensagemErro("Opção invalida");
+                        Ferramentas.Delay(1500);
+                        Ferramentas.limpaTerminalOpcional(30);
                     }
                 }
                 Ferramentas.Delay(1500);

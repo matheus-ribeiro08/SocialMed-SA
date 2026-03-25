@@ -26,6 +26,7 @@ public class CadastrarUsuarioPresenter {
     }
 
     public void iniciarCadastro(){
+        Ferramentas.limpaTerminalOpcional(30);
         boolean cadastrando = true;
 
         while (cadastrando) {
@@ -46,10 +47,13 @@ public class CadastrarUsuarioPresenter {
 
                 System.out.println("Cadastro realizado com sucesso!");
                 roteadorCadastro.irPara(Destinos.LOGIN, null);
-
+                Ferramentas.Delay(1500);
+                Ferramentas.limpaTerminalOpcional(30);
                 cadastrando = false;
             } catch (Exception e) {
                 System.err.println("Erro no cadastro!");
+                Ferramentas.Delay(1500);
+                Ferramentas.limpaTerminalOpcional(30);
 
                 if (perguntarTentarNovamente()) {
                     iniciarCadastro();
@@ -62,8 +66,12 @@ public class CadastrarUsuarioPresenter {
     }
 
     private boolean perguntarTentarNovamente(){
+        Ferramentas.limpaTerminalOpcional(30);
+
         System.out.println("Deseja tentar novamente? (1 - Sim / 2 - Não): ");
         int opcao = Ferramentas.lInteiro();
+        Ferramentas.Delay(1500);
+        Ferramentas.limpaTerminalOpcional(30);
         return opcao == 1;
     }
 

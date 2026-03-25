@@ -8,6 +8,7 @@ import org.example.service.consulta.ConsultaService;
 import org.example.service.medico.MedicoService;
 import org.example.service.paciente.PacienteService;
 import org.example.service.secretario.SecretarioService;
+import org.example.utils.Ferramentas;
 import org.example.viewInterface.viewInterfaceSecretario.IMenuSecretarioView;
 
 import java.time.LocalDateTime;
@@ -33,6 +34,7 @@ public class MenuSecretarioPresenter {
     }
 
     public void iniciar() {
+        Ferramentas.limpaTerminalOpcional(30);
         boolean executando = true;
 
         while (executando) {
@@ -80,13 +82,21 @@ public class MenuSecretarioPresenter {
                         break;
                     case 0:
                         executando = false;
+                        Ferramentas.Delay(1500);
+                        Ferramentas.limpaTerminalOpcional(30);
                         roteador.irPara(Destinos.MENU_INICIAL, null);
                         break;
                     default:
                         view.mostrarMensagemErro("Opção inválida");
+                        Ferramentas.Delay(1500);
+                        Ferramentas.limpaTerminalOpcional(30);
                 }
+                Ferramentas.Delay(1500);
+                Ferramentas.limpaTerminalOpcional(30);
             } catch (Exception e) {
                 view.mostrarMensagemErro("Erro");
+                Ferramentas.Delay(1500);
+                Ferramentas.limpaTerminalOpcional(30);
             }
         }
     }

@@ -66,16 +66,22 @@ public class MenuAdminPresenter {
                     }
                     case 5: {
                         executando = false;
+                        Ferramentas.Delay(1500);
+                        Ferramentas.limpaTerminalOpcional(30);
                         roteador.irPara(Destinos.SAIR, null);
                         break;
                     }
                     case 6: {
                         executando = false;
+                        Ferramentas.Delay(1500);
+                        Ferramentas.limpaTerminalOpcional(30);
                         roteador.irPara(Destinos.MENU_INICIAL, null);
                         break;
                     }
                     default: {
                         view.mostrarMensagemErro("Opção invalida");
+                        Ferramentas.Delay(1500);
+                        Ferramentas.limpaTerminalOpcional(30);
                     }
                 }
             } catch (Exception e) {
@@ -330,13 +336,7 @@ public class MenuAdminPresenter {
                         break;
                     }
                     case 4: {
-                        if (view.perguntarAcao("Remover Medico?")) {
-                            adminService.removerMedico(admin, medico.getIdMedico());
-                            view.mostrarMensagemSucesso("Medico removido!");
-                            visualizando = false;
-                            Ferramentas.Delay(1500);
-                            Ferramentas.limpaTerminalOpcional(30);
-                        }
+                        removerMedico(medico);
                         break;
                     }
                     case 0: {
@@ -353,6 +353,20 @@ public class MenuAdminPresenter {
         } catch (Exception e) {
             System.err.println("Erro ao gerencar Medico");
         }
+    }
+
+    private void removerMedico(MedicoModel medico){
+       view.mostrarTitulo("Remover usuario");
+       Ferramentas.limpaTerminalOpcional(30);
+
+       try {
+           if (view.perguntarAcao("Remover Medico?")){
+               adminService.removerMedico(admin, medico.getIdMedico());
+               view.mostrarMensagemSucesso("Medico removido com sucesso");
+           }
+       } catch (SQLException e) {
+           throw new RuntimeException(e);
+       }
     }
 
 
@@ -511,12 +525,7 @@ public class MenuAdminPresenter {
                         break;
                     }
                     case 4: {
-                        if (view.perguntarAcao("Remover paciente?")) {
-                            adminService.removerPaciente(admin, paciente.getIdPaciente());
-                            view.mostrarMensagemSucesso("Paciente removido!");
-                            visualizando = false;
-                            Ferramentas.limpaTerminalOpcional(30);
-                        }
+                        removerPaciente(paciente);
                         break;
                     }
                     case 0: {
@@ -533,6 +542,22 @@ public class MenuAdminPresenter {
             view.mostrarMensagemErro("Erro ao gerenciar paciente");
             Ferramentas.Delay(1500);
             Ferramentas.limpaTerminalOpcional(30);
+        }
+    }
+
+    private void removerPaciente(PacienteModel paciente){
+        view.mostrarTitulo("Remover paciente");
+        Ferramentas.limpaTerminalOpcional(30);
+
+        try {
+            if (view.perguntarAcao("Remover Paciente?")){
+                adminService.removerPaciente(admin, paciente.getIdPaciente());
+                view.mostrarMensagemSucesso("Paciente removido com sucesso");
+                Ferramentas.Delay(1500);
+                Ferramentas.limpaTerminalOpcional(30);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
     }
 
