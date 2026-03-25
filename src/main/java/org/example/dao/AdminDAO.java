@@ -67,7 +67,7 @@ public class AdminDAO {
     }
 
     public boolean cadastrarSecretario(SecretarioModel secretario){
-        String sqlUsuario = "INSERT INTO Usuario (nome_usuario, data_Nascimento, email_Usuario, senha_Usuario, telefone_Usuario, cpf_Usuario, tipo_Usuario) VALUES (?, ?, ?, ?, ?, ?, ?)";
+        String sqlUsuario = "INSERT INTO Usuario (nome_usuario, data_Nascimento, email_Usuario, senha_Usuario, telefone_Usuario, cpf_Usuario, tipo_Usuario) VALUES (?, ?, ?, ?, ?, ?)";
         String sqlSecretario = "INSERT INTO Secretario (id_Usuario) VALUES (?)";
 
         Connection conn = null;
