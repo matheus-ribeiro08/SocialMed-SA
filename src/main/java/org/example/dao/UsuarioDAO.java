@@ -80,7 +80,7 @@ public class UsuarioDAO
 
     public String existeEmail (String email)
     {
-        String sql = "SELECT email_Usuario FROM Usuario WHERE email_Usuario";
+        String sql = "SELECT email_Usuario FROM Usuario WHERE email_Usuario = ?";
 
         try(Connection conn = ConnectionFactory.getConnection();
             PreparedStatement stmt = conn.prepareStatement(sql))
