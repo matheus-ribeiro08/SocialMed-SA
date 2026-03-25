@@ -81,11 +81,10 @@ public class MenuAdminConsoleView implements IMenuAdminView {
     @Override
     public TipoUsuario selecionarTipoUsuario() {
         System.out.println(Ferramentas.GREENclaro+"───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────");
-        System.out.println("\nTipos de usuario: ");
-        System.out.println("  (1) ➔ Médico");
-        System.out.println("  (2) ➔ Secretário");
+        System.out.println("Tipos de usuario: ");
+        System.out.println("(1) ➔ Médico");
+        System.out.println("(2) ➔ Secretário");
         System.out.printf(Ferramentas.YELLOW+" ➤"+ Ferramentas.RESET+" Digite a opção desejada: ");
-        System.out.println(Ferramentas.GREENclaro+"───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────");
 
         int opcao = Ferramentas.lInteiro();
 

@@ -69,7 +69,7 @@ public class MenuAdminPresenter {
                         roteador.irPara(Destinos.SAIR, null);
                         break;
                     }
-                    case 0: {
+                    case 6: {
                         executando = false;
                         roteador.irPara(Destinos.MENU_INICIAL, null);
                         break;
