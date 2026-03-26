@@ -1,7 +1,6 @@
 package org.example.presenter.paciente;
 
 import org.example.enums.Destinos;
-import org.example.enums.TipoUsuario;
 import org.example.model.*;
 import org.example.roteador.Roteador;
 import org.example.service.consulta.ConsultaService;
@@ -13,7 +12,6 @@ import org.example.utils.Ferramentas;
 import org.example.viewInterface.viewInterfacePaciente.IMenuPacienteView;
 
 import java.sql.SQLException;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -57,7 +55,7 @@ MenuPacientePresenter {
             try {
                 switch (opcao) {
                     case 1: {
-                        verMinhasConsultas();
+                        verMinhasConsultas(pacienteLogado);
                         break;
                     }
                     case 2: {
@@ -65,19 +63,19 @@ MenuPacientePresenter {
                         break;
                     }
                     case 3: {
-                        cancelarConsulta();
+                        cancelarConsulta(pacienteLogado);
                         break;
                     }
                     case 4: {
-                        verHistoricoConsultas();
+                        verHistoricoConsultas(pacienteLogado);
                         break;
                     }
                     case 5: {
-                        acessarProntuario();
+                        acessarProntuario(pacienteLogado);
                         break;
                     }
                     case 6: {
-                        visualizarPerfil();
+                        visualizarPerfil(pacienteLogado);
                         break;
                     }
                     case 7: {
@@ -107,19 +105,19 @@ MenuPacientePresenter {
                 Ferramentas.Delay(1500);
                 Ferramentas.limpaTerminalOpcional(30);
             }catch (Exception e){
-                view.mostrarMensagemErro("Erro!");
+                view.mostrarMensagemErro("Erro!" + e);
                 Ferramentas.Delay(1500);
                 Ferramentas.limpaTerminalOpcional(30);
             }
         }
     }
 
-    private void verMinhasConsultas(){
+    private void verMinhasConsultas(PacienteModel pacienteLogado){
         view.mostrarTitulo("Minhas consultas");
         Ferramentas.limpaTerminalOpcional(30);
 
         try {
-            List<ConsultaModel> consultas = consultaService.buscarConsultasPorPaciente(paciente.getIdPaciente());
+            List<ConsultaModel> consultas = consultaService.buscarConsultasPorPaciente(pacienteLogado.getIdPaciente());
 
             if(consultas.isEmpty()){
                 view.mostrarMensagemInfo("Nenhuma consulta agendada");
@@ -130,7 +128,9 @@ MenuPacientePresenter {
         }
             Ferramentas.Delay(1500);
             Ferramentas.limpaTerminalOpcional(30);
-        }catch (Exception e){
+        }catch (Exception e)
+        {
+            e.printStackTrace();
             view.mostrarMensagemErro("Erro ao ver as suas consultas");
             Ferramentas.Delay(1500);
             Ferramentas.limpaTerminalOpcional(30);
@@ -214,12 +214,12 @@ MenuPacientePresenter {
         }
     }
 
-    private void cancelarConsulta(){
+    private void cancelarConsulta(PacienteModel pacienteLogado){
         view.mostrarTitulo("Cancelar consulta");
         Ferramentas.limpaTerminalOpcional(30);
 
         try {
-            List<ConsultaModel> consultas = consultaService.buscarConsultasPorPaciente(paciente.getIdPaciente());
+            List<ConsultaModel> consultas = consultaService.buscarConsultasPorPaciente(pacienteLogado.getIdPaciente());
 
             if(consultas.isEmpty()){
                 view.mostrarMensagemInfo("Nenhumna consulta ativa para cancelar");
@@ -263,12 +263,12 @@ MenuPacientePresenter {
     }
 
 
-    private void acessarProntuario(){
+    private void acessarProntuario(PacienteModel pacienteLogado){
         view.mostrarTitulo("Meu prontuario");
         Ferramentas.limpaTerminalOpcional(30);
 
         try {
-            ProntuarioModel prontuario = prontuarioService.buscarPorPaciente(paciente.getIdPaciente());
+            ProntuarioModel prontuario = prontuarioService.buscarPorPaciente(pacienteLogado.getIdPaciente());
 
             if(prontuario == null){
                 view.mostrarMensagemInfo("Voce ainda nao possui prontuario");
@@ -287,12 +287,12 @@ MenuPacientePresenter {
         }
     }
 
-    private void verHistoricoConsultas(){
+    private void verHistoricoConsultas(PacienteModel pacienteLogado){
         view.mostrarTitulo("Historico consultas");
         Ferramentas.limpaTerminalOpcional(30);
 
         try {
-            List<ConsultaModel> historico = consultaService.listarHistoricoConsultaPaciente(paciente.getIdPaciente());
+            List<ConsultaModel> historico = consultaService.listarHistoricoConsultaPaciente(pacienteLogado.getIdPaciente());
 
             if(historico.isEmpty()){
                 view.mostrarMensagemInfo("Nenhum historico de consultas encontrado");
@@ -311,17 +311,17 @@ MenuPacientePresenter {
         }
     }
 
-    private void visualizarPerfil(){
+    private void visualizarPerfil(PacienteModel pacienteLogado){
         view.mostrarTitulo("Meu perfil");
         Ferramentas.limpaTerminalOpcional(30);
 
-        PacienteModel detalhesBanco = pacienteService.buscarDetalhe(paciente.getIdUsuario());
+        PacienteModel detalhesBanco = pacienteService.buscarDetalhe(pacienteLogado.getIdUsuario());
 
         if(detalhesBanco != null)
         {
-            paciente.setEnderecoPaciente((detalhesBanco.getEnderecoPaciente()));
+            pacienteLogado.setEnderecoPaciente((detalhesBanco.getEnderecoPaciente()));
         }
-        view.mostrarDadosPaciente(paciente);
+        view.mostrarDadosPaciente(pacienteLogado);
 
         if(view.perguntarAcao("Desejar editar seus dados?"));
         editarPerfil();

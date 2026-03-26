@@ -11,7 +11,7 @@ import java.util.List;
 public class ProntuarioDAO
 {
     public  boolean cadastrarProntuario(ProntuarioModel prontuario) {
-        String sql = "INSERT INTO Prontuario (id_Paciente, id_Medico, id_Consultas, diagnosticos, sintomas, prescricao_Medica, observacoes, data_Registro) " +
+        String sql = "INSERT INTO Prontuario (id_Paciente, id_Medico, id_Consultas, diagnostico, sintomas, prescricao_Medica, observacoes, data_Registro) " +
                 "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
         try (Connection conn = ConnectionFactory.getConnection();
@@ -43,7 +43,7 @@ public class ProntuarioDAO
             return linhasAfetadas > 0;
         }catch (SQLException e)
         {
-            System.out.println("Erro ao cadastrar o Prontuario");
+            System.out.println("Erro ao cadastrar o Prontuario" + e);
         }
         return false;
     }
@@ -67,7 +67,7 @@ public class ProntuarioDAO
                     prontuarioModel.setIdProntuario(rs.getInt("id_Prontuario"));
                     prontuarioModel.setIdPaciente(rs.getInt("id_Paciente"));
                     prontuarioModel.setIdMedico(rs.getInt("id_Medico"));
-                    prontuarioModel.setDiagnostico(rs.getString("diagnosticos"));
+                    prontuarioModel.setDiagnostico(rs.getString("diagnostico"));
                     prontuarioModel.setSintomas(rs.getString("sintomas"));
                     prontuarioModel.setPrescricaoMedica(rs.getString("prescricao_Medica"));
                     prontuarioModel.setObservacoes((rs.getString("observacao")));
@@ -82,7 +82,7 @@ public class ProntuarioDAO
             }
         } catch (SQLException e)
         {
-            System.err.println("Erro ao listar Prontuarios");
+            System.err.println("Erro ao listar Prontuarios" + e);
         }
         return prontuarios;
     }
@@ -106,7 +106,7 @@ public class ProntuarioDAO
                     prontuarioModel.setIdProntuario(rs.getInt("id_Prontuario"));
                     prontuarioModel.setIdPaciente(rs.getInt("id_Paciente"));
                     prontuarioModel.setIdMedico(rs.getInt("id_Medico"));
-                    prontuarioModel.setDiagnostico(rs.getString("diagnosticos"));
+                    prontuarioModel.setDiagnostico(rs.getString("diagnostico"));
                     prontuarioModel.setSintomas(rs.getString("sintomas"));
                     prontuarioModel.setPrescricaoMedica(rs.getString("prescricao_Medica"));
                     prontuarioModel.setObservacoes((rs.getString("observacao")));

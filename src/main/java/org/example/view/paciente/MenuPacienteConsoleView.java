@@ -252,7 +252,6 @@ public class MenuPacienteConsoleView implements IMenuPacienteView {
         System.out.println(Ferramentas.GREENclaro+"───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────"+ Ferramentas.RESET);
         System.out.println("Id: " + medico.getIdUsuario());
         System.out.println("Nome: " + medico.getNomeUsuario());
-        System.out.println("Tipo: " + medico.getTipoUsuario());
         System.out.println("Cpf: " + medico.getCpfUsuario());
         System.out.println("Especialidade: " + medico.getEspecialidadeMedico());
         System.out.println(Ferramentas.GREENclaro+"───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────"+ Ferramentas.RESET);

@@ -25,6 +25,18 @@ public class UsuarioDAO
                 if (rs.next())
                 {
                     usuarioModel = extrairUsuario(rs);
+
+                    if (usuarioModel instanceof MedicoModel) {
+                        String sqlMedico = "SELECT id_Medico FROM Medico WHERE id_Usuario = ?";
+                        try (PreparedStatement stmtMed = conn.prepareStatement(sqlMedico)) {
+                            stmtMed.setInt(1, usuarioModel.getIdUsuario());
+                            try (ResultSet rsMed = stmtMed.executeQuery()) {
+                                if (rsMed.next()) {
+                                    ((MedicoModel) usuarioModel).setIdMedico(rsMed.getInt("id_Medico"));
+                                }
+                            }
+                        }
+                    }
                 }
             }
         }

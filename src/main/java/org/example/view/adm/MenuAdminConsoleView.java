@@ -252,7 +252,6 @@ public class MenuAdminConsoleView implements IMenuAdminView {
         System.out.println("Telefone: " + usuario.getTelefoneUsuario());
         System.out.println("Cpf: " + usuario.getCpfUsuario());
         System.out.println("Email: " + usuario.getEmailUsuario());
-        System.out.println("Tipo: " + usuario.getTipoUsuario());
         System.out.println(Ferramentas.GREENclaro+"───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────"+ Ferramentas.RESET);
     }
 
@@ -268,7 +267,7 @@ public class MenuAdminConsoleView implements IMenuAdminView {
         System.out.println(Ferramentas.GREENclaro+"───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────");
         System.out.println(Ferramentas.RESET+" DADOS");
         System.out.println(Ferramentas.GREENclaro+"───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────");
-        System.out.println(Ferramentas.RESET+"Id: " + medico.getIdUsuario());
+        System.out.println(Ferramentas.RESET+"Id: " + medico.getIdMedico());
         System.out.println("Nome: " + medico.getNomeUsuario());
         System.out.println("Telefone: " + medico.getTelefoneUsuario());
         System.out.println("Cpf: " + medico.getCpfUsuario());
@@ -296,7 +295,6 @@ public class MenuAdminConsoleView implements IMenuAdminView {
         System.out.println(Ferramentas.GREENclaro+"───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────"+ Ferramentas.RESET);
         System.out.println("Id: " + paciente.getIdUsuario());
         System.out.println("Nome: " + paciente.getNomeUsuario());
-        System.out.println("Tipo: " + paciente.getTipoUsuario());
         System.out.println("Cpf: " + paciente.getCpfUsuario());
         System.out.println(Ferramentas.GREENclaro+"───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────"+ Ferramentas.RESET);
     }
@@ -320,7 +318,6 @@ public class MenuAdminConsoleView implements IMenuAdminView {
         System.out.println(Ferramentas.GREENclaro+"───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────"+ Ferramentas.RESET);
         System.out.println("Id: " + usuario.getIdUsuario());
         System.out.println("Nome: " + usuario.getNomeUsuario());
-        System.out.println("Tipo: " + usuario.getTipoUsuario());
         System.out.println("Cpf: " + usuario.getCpfUsuario());
         System.out.println(Ferramentas.GREENclaro+"───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────"+ Ferramentas.RESET);
     }
@@ -341,7 +338,7 @@ public class MenuAdminConsoleView implements IMenuAdminView {
     public void mostrarListaMedicos(MedicoModel medico) {
 
         System.out.println(Ferramentas.GREENclaro+"───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────"+ Ferramentas.RESET);
-        System.out.println("Id: " + medico.getIdUsuario());
+        System.out.println("Id: " + medico.getIdMedico());
         System.out.println("Nome: " + medico.getNomeUsuario());
         System.out.println("Cpf: " + medico.getCpfUsuario());
         System.out.println("Especialidade: " + medico.getEspecialidadeMedico());
@@ -383,7 +380,6 @@ public class MenuAdminConsoleView implements IMenuAdminView {
         System.out.println(Ferramentas.GREENclaro+"───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────"+ Ferramentas.RESET);
         System.out.println("Id: " + usuario.getIdUsuario());
         System.out.println("Nome: " + usuario.getNomeUsuario());
-        System.out.println("Tipo: " + usuario.getTipoUsuario());
         System.out.println("Telefone: " + usuario.getTelefoneUsuario());
         System.out.println("Senha: " + usuario.getSenhaUsuario());
         System.out.println("Cpf: " + usuario.getCpfUsuario());

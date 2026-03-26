@@ -309,7 +309,7 @@ public class MenuAdminPresenter {
         boolean visualizando = true;
 
         try {
-            List<MedicoModel> medicos = usuarioService.listarMedicos();
+            List<MedicoModel> medicos = medicoService.listarTodosMedicos();
 
             if (medicos.isEmpty()) {
                 view.mostrarMensagemInfo("Nenhum medico cadastrado");
@@ -321,7 +321,7 @@ public class MenuAdminPresenter {
             }
 
             int id = view.selecionarMedico();
-            MedicoModel medico = usuarioService.buscarMedicoPorId(id);
+            MedicoModel medico = medicoService.buscarPorId(id);
 
 
             while (visualizando) {

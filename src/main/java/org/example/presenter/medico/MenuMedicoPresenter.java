@@ -247,7 +247,7 @@ public class MenuMedicoPresenter {
                 view.mostrarMensagemInfo("Paciente nao possui prontuario");
 
                 if(view.perguntarAcao("Deseja criar um prontuario?")){
-                    criarProntuario(paciente);
+                    criarProntuario();
                 }
             }else{
                 view.mostrarProntuario(prontuario);
@@ -259,8 +259,11 @@ public class MenuMedicoPresenter {
         }
     }
 
-    private void criarProntuario(PacienteModel paciente){
+    private void criarProntuario(){
         Ferramentas.limpaTerminalOpcional(30);
+
+        String cpf = view.lerCpf();
+        PacienteModel paciente = pacienteService.buscarPorCpf(cpf);
 
         try {
             String sintomas = view.lerSintomas();
@@ -269,7 +272,7 @@ public class MenuMedicoPresenter {
             String observacoes = view.lerObservacoes();
             LocalDateTime dataRegistro = LocalDateTime.now();
 
-            ProntuarioModel prontuario = new ProntuarioModel(medico.getIdMedico(), paciente.getIdPaciente(), sintomas, diagnostico, prescricaoMedica,
+            ProntuarioModel prontuario = new ProntuarioModel(paciente.getIdPaciente(), medico.getIdMedico(), sintomas, diagnostico, prescricaoMedica,
                             observacoes, dataRegistro);
 
             prontuarioService.criar(prontuario);
@@ -277,7 +280,8 @@ public class MenuMedicoPresenter {
             Ferramentas.Delay(1500);
             Ferramentas.limpaTerminalOpcional(30);
         }catch (Exception e){
-            view.mostrarMensagemErro("Erro ao criar Prontuario");
+            e.printStackTrace();
+            view.mostrarMensagemErro("Erro ao criar Prontuario" + e);
         }
         Ferramentas.Delay(1500);
         Ferramentas.limpaTerminalOpcional(30);

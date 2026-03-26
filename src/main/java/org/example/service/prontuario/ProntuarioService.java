@@ -66,7 +66,7 @@ public class ProntuarioService
         try {
             return prontuarioDAO.cadastrarProntuario(prontuarioModel);
         } catch (Exception e) {
-            throw new RuntimeException("Erro ao criar prontuario");
+            throw new RuntimeException("Erro ao criar prontuario" + e);
         }
     }
 
