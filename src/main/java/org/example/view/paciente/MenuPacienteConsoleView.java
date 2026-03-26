@@ -197,8 +197,8 @@ public class MenuPacienteConsoleView implements IMenuPacienteView {
         System.out.println("                             ██║╚██╔╝██║██║██║╚██╗██║██╔══██║██╔══██║    ██╔══██║██║   ██║██╔══╝  ██║╚██╗██║██║  ██║██╔══██║                           ");
         System.out.println("                             ██║ ╚═╝ ██║██║██║ ╚████║██║  ██║██║  ██║    ██║  ██║╚██████╔╝███████╗██║ ╚████║██████╔╝██║  ██║                           ");
         System.out.println("                             ╚═╝     ╚═╝╚═╝╚═╝  ╚═══╝╚═╝  ╚═╝╚═╝  ╚═╝    ╚═╝  ╚═╝ ╚═════╝ ╚══════╝╚═╝  ╚═══╝╚═════╝ ╚═╝  ╚═╝                           ");
-        System.out.println(Ferramentas.GREENclaro+"───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────"+ Ferramentas.RESETFerramentas.GREENclaro+);
-+Ferramentas.RESET    }
+        System.out.println(Ferramentas.GREENclaro+"───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────"+ Ferramentas.RESET);
+    }
 
     @Override
     public void mostrarAgenda(ConsultaModel consulta) {
