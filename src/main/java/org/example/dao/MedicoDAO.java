@@ -135,7 +135,7 @@ public class MedicoDAO
                 if(rs.next())
                 {
                     medicoModel = new MedicoModel();
-                    medicoModel.setIdMedico(rs.getInt("id_Administracao"));
+                    medicoModel.setIdMedico(rs.getInt("id_Medico"));
                     medicoModel.setIdUsuario(rs.getInt("id_Usuario"));
                     medicoModel.setNomeUsuario(rs.getString("nome_usuario"));
                     medicoModel.setEmailUsuario(rs.getString("email_Usuario"));

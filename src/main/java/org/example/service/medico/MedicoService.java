@@ -281,6 +281,19 @@ public class MedicoService {
         return pacienteDAO.buscarPorCpf(cpf);
     }
 
+    public MedicoModel buscarPorCpf(String cpf){
+        if(cpf == null || cpf.trim().isEmpty()){
+            throw new IllegalArgumentException("Cpf nao pode ser vazio");
+        }
+
+        try {
+            return medicoDAO.buscarPorCpf(cpf);
+        }catch (Exception e){
+            throw new RuntimeException("Erro ao buscar medico por cpf");
+        }
+    }
+
+
     public void solicitarExame(MedicoModel medico, PacienteModel paciente, String tipoExame, String observacoes) throws MedicoException {
         if (medico == null) {
             throw new MedicoException("Medico nao autenticado");

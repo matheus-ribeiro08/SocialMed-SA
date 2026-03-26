@@ -38,8 +38,10 @@ public class MenuMedicoPresenter {
 
     public void inicar(UsuarioModel usuario) throws SQLException {
 
-        MedicoModel medico = medicoService.buscarPorId(usuario.getIdUsuario());
-        System.out.println("Id: " + medico.getIdMedico());
+        MedicoModel medicoLogado = medicoService.buscarPorCpf(usuario.getCpfUsuario());
+
+        System.out.println("Id: " + medicoLogado.getIdMedico());
+
         Ferramentas.Delay(1500);
         Ferramentas.limpaTerminalOpcional(30);
         boolean executando = true;
