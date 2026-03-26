@@ -36,8 +36,10 @@ public class MenuSecretarioPresenter {
 
     public void iniciar(UsuarioModel usuario) throws SQLException {
 
-        SecretarioModel secretario = secretarioService.buscarPorId(usuario.getIdUsuario());
-        System.out.println("Id: " + secretario.getIdSecretario());
+        SecretarioModel secretarioLogado = secretarioService.buscarPorCpf(usuario.getCpfUsuario());
+
+        System.out.println("Id: " + secretarioLogado.getIdSecretario());
+
         Ferramentas.limpaTerminalOpcional(30);
         boolean executando = true;
 

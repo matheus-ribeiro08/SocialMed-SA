@@ -51,6 +51,19 @@ public class SecretarioService {
         return secretario;
     }
 
+    public SecretarioModel buscarPorCpf(String cpf){
+        if(cpf == null || cpf.trim().isEmpty()){
+            throw new IllegalArgumentException("Cpf nao pode ser vazio");
+        }
+
+        try {
+            return secretarioDAO.buscarPorCpf(cpf);
+        }catch (Exception e){
+            throw new RuntimeException("Erro ao buscar secretario por cpf");
+        }
+    }
+
+
     public SecretarioModel buscarPorIdUsuario(int idUsuario) throws SQLException, SecretarioException {
         if (idUsuario <= 0) {
             throw new SecretarioException("ID do usuario invalido");

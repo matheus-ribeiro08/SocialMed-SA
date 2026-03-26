@@ -269,7 +269,7 @@ public class SecretarioDAO {
                 if(rs.next())
                 {
                     secretario = new SecretarioModel();
-                    secretario.setIdSecretario(rs.getInt("id_Administracao"));
+                    secretario.setIdSecretario(rs.getInt("id_Secretario"));
                     secretario.setIdUsuario(rs.getInt("id_Usuario"));
                     secretario.setNomeUsuario(rs.getString("nome_usuario"));
                     secretario.setEmailUsuario(rs.getString("email_Usuario"));
@@ -283,7 +283,7 @@ public class SecretarioDAO {
         }
         catch (SQLException e)
         {
-            System.err.println("Erro ao buscar paciente por Cpf");
+            System.err.println("Erro ao buscar secretario por Cpf");
         }
         return secretario;
     }
