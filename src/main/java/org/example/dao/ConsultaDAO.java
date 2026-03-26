@@ -75,11 +75,12 @@ public class ConsultaDAO {
     public List<ConsultaModel> listarConsultasPorPaciente(int idPaciente) {
         List<ConsultaModel> consultasAtivasPaciente = new ArrayList<>();
 
-        String sql = "SELECT * FROM Consultas WHERE id_Paciente = ? AND status_Consulta = 'CONFIRMADA' ORDER BY horario_Consulta ASC";
+        String sql = "SELECT * FROM Consultas WHERE id_Paciente = ? ORDER BY horario_Consulta ASC";
 
         try (Connection conn = ConnectionFactory.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
-            stmt.setDouble(1, idPaciente);
+
+            stmt.setInt(1, idPaciente);
 
             try (ResultSet rs = stmt.executeQuery()) {
                 while (rs.next()) {
@@ -93,30 +94,28 @@ public class ConsultaDAO {
                     );
                     consultasAtivasPaciente.add(consulta);
                 }
-
             }
         } catch (SQLException e) {
-            System.err.println("Erro ao listar Consultas Ativas");
+            System.err.println("Erro ao listar Consultas do Paciente: " + e.getMessage());
         }
         return consultasAtivasPaciente;
     }
-    public List<ConsultaModel> listarConsultasPorMedico(int idMedico)
-    {
+
+    public List<ConsultaModel> listarConsultasPorMedico(int idMedico) {
         List<ConsultaModel> consultaMedicos = new ArrayList<>();
 
-        String sql = "SELECT * FROM Consultas WHERE id_Medico = ? AND status_Consulta = 'CONFIRMADA' ORDER BY horario_Consulta ASC";
+
+        String sql = "SELECT * FROM Consultas WHERE id_Medico = ? ORDER BY horario_Consulta ASC";
 
         try(Connection conn = ConnectionFactory.getConnection();
-            PreparedStatement stmt = conn.prepareStatement(sql))
-        {
+            PreparedStatement stmt = conn.prepareStatement(sql)) {
+
             stmt.setInt(1, idMedico);
 
-            try(ResultSet rs = stmt.executeQuery())
-            {
-                while(rs.next())
-                {
+            try(ResultSet rs = stmt.executeQuery()) {
+                while(rs.next()) {
                     ConsultaModel consulta = new ConsultaModel(
-                            rs.getInt("id_Consulta"),
+                            rs.getInt("id_Consultas"),
                             rs.getInt("id_Hospital"),
                             rs.getString("local_Consulta"),
                             rs.getInt("id_Paciente"),
@@ -126,9 +125,8 @@ public class ConsultaDAO {
                     consultaMedicos.add(consulta);
                 }
             }
-        } catch (SQLException e)
-        {
-            System.err.println("Erro ao listar Consultas Ativas por Medicos.");
+        } catch (SQLException e) {
+            System.err.println("Erro ao listar Consultas por Medicos: " + e.getMessage());
         }
         return consultaMedicos;
     }
