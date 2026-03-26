@@ -38,7 +38,7 @@ public class MedicoService {
     }
 
     public MedicoModel buscarPorId(int idMedico) throws SQLException, MedicoException {
-        if (idMedico >= 0) {
+        if (idMedico <= 0) {
             throw new MedicoException("Id do medico invalido");
         }
 

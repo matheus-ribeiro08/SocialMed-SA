@@ -2,10 +2,7 @@ package org.example.dao;
 
 import org.example.database.ConnectionFactory;
 import org.example.enums.TipoUsuario;
-import org.example.model.ConsultaModel;
-import org.example.model.MedicoModel;
-import org.example.model.PacienteModel;
-import org.example.model.SecretarioModel;
+import org.example.model.*;
 
 import javax.xml.transform.Result;
 import java.sql.PreparedStatement;
@@ -86,7 +83,7 @@ public class MedicoDAO
     {
         MedicoModel medico = null;
 
-        String sql = "SELECT u.*, m.id_Medico, m.especialidade_medico " +
+        String sql = "SELECT u.*, m.id_Medico, m.especialidade_Medico " +
                 "FROM Medico m " +
                 "INNER JOIN Usuario u ON m.id_Usuario = u.id_Usuario " +
                 "WHERE m.id_Medico = ?";
@@ -118,6 +115,43 @@ public class MedicoDAO
             System.err.println("Erro ao buscar medico por ID");
         }
         return medico;
+    }
+    public MedicoModel buscarPorCpf (String cpf)
+    {
+        MedicoModel medicoModel = null;
+
+        String sql = "SELECT u.*, m.id_Medico, m.especialidade_Medico " +
+                "FROM Medico m " +
+                "INNER JOIN Usuario u ON m.id_Usuario = u.id_Usuario " +
+                "WHERE u.cpf_Usuario = ?";
+
+        try(Connection conn = ConnectionFactory.getConnection();
+            PreparedStatement stmt = conn.prepareStatement(sql))
+        {
+            stmt.setString(1, cpf);
+
+            try (ResultSet rs = stmt.executeQuery())
+            {
+                if(rs.next())
+                {
+                    medicoModel = new MedicoModel();
+                    medicoModel.setIdMedico(rs.getInt("id_Administracao"));
+                    medicoModel.setIdUsuario(rs.getInt("id_Usuario"));
+                    medicoModel.setNomeUsuario(rs.getString("nome_usuario"));
+                    medicoModel.setEmailUsuario(rs.getString("email_Usuario"));
+                    medicoModel.setSenhaUsuario(rs.getString("senha_Usuario"));
+                    medicoModel.setTelefoneUsuario(rs.getString("telefone_Usuario"));
+                    medicoModel.setCpfUsuario(rs.getString("cpf_Usuario"));
+                    medicoModel.setEspecialidadeMedico("especialidade_Medico");
+
+                }
+            }
+        }
+        catch (SQLException e)
+        {
+            System.err.println("Erro ao buscar paciente por Cpf");
+        }
+        return medicoModel;
     }
 
     public boolean atualizarMedico(MedicoModel medico) throws  SQLException {

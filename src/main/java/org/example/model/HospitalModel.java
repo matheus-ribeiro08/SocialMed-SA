@@ -25,6 +25,16 @@ public class HospitalModel {
 
     }
 
+    public HospitalModel(int idHospital, String cnpjHospital, String enderecoHospital, int quantPessoasHospital, String nomeHospital, int quantidadeSalasHopital)
+    {
+        this.idHospital = idHospital;
+        this.cnpjHospital = cnpjHospital;
+        this.enderecoHospital = enderecoHospital;
+        this.quantPessoasHospital = quantPessoasHospital;
+        this.nomeHospital = nomeHospital;
+        this.quantidadeSalasHopital = quantidadeSalasHopital;
+    }
+
     public int getIdHospital() {
         return idHospital;
     }

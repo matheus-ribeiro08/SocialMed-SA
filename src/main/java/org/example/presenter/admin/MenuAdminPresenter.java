@@ -1,5 +1,6 @@
 package org.example.presenter.admin;
 
+import org.example.dao.AdminDAO;
 import org.example.enums.Destinos;
 import org.example.enums.TipoUsuario;
 import org.example.model.*;
@@ -38,7 +39,11 @@ public class MenuAdminPresenter {
         this.consultaService = new ConsultaService();
     }
 
-    public void iniciar() {
+    public void iniciar(UsuarioModel usuario) {
+
+        AdminModel adminModel = adminService.buscarPorCpf(usuario.getCpfUsuario());
+
+        System.out.println("Id: " + adminModel.getIdAdmin());
         Ferramentas.Delay(1500);
         Ferramentas.limpaTerminalOpcional(30);
         boolean executando = true;

@@ -1,9 +1,6 @@
 package org.example.view.paciente;
 
-import org.example.model.ConsultaModel;
-import org.example.model.MedicoModel;
-import org.example.model.PacienteModel;
-import org.example.model.ProntuarioModel;
+import org.example.model.*;
 import org.example.utils.Ferramentas;
 import org.example.viewInterface.viewInterfacePaciente.IMenuPacienteView;
 
@@ -41,6 +38,36 @@ public class MenuPacienteConsoleView implements IMenuPacienteView {
         System.out.print(" ➤ Digite a opção desejada: ");
         return Ferramentas.lInteiro();
 
+    }
+
+    @Override
+    public void mostrarTituloListaHospital(){
+        System.out.println("─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────");
+        System.out.println("                       ██╗     ██╗███████╗████████╗ █████╗    ██╗  ██╗ ██████╗ ███████╗██████╗ ██╗████████╗ █████╗ ██╗███████╗                       ");
+        System.out.println("                       ██║     ██║██╔════╝╚══██╔══╝██╔══██╗   ██║  ██║██╔═══██╗██╔════╝██╔══██╗██║╚══██╔══╝██╔══██╗██║██╔════╝                       ");
+        System.out.println("                       ██║     ██║███████╗   ██║   ███████║   ███████║██║   ██║███████╗██████╔╝██║   ██║   ███████║██║███████╗                       ");
+        System.out.println("                       ██║     ██║╚════██║   ██║   ██╔══██║   ██║  ██║██║   ██║╚════██║██╔═══╝ ██║   ██║   ██╔══██║██║╚════██║                       ");
+        System.out.println("                       ███████╗██║███████║   ██║   ██║  ██║   ██║  ██║╚██████╔╝███████║██║     ██║   ██║   ██║  ██║██║███████║                       ");
+        System.out.println("                       ╚══════╝╚═╝╚══════╝   ╚═╝   ╚═╝  ╚═╝   ╚═╝  ╚═╝ ╚═════╝ ╚══════╝╚═╝     ╚═╝   ╚═╝   ╚═╝  ╚═╝╚═╝╚══════╝                       ");
+        System.out.println("─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────");
+    }
+
+    @Override
+    public void listarHospitais(HospitalModel hospital){
+        System.out.println("─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────");
+        System.out.println("Id: " + hospital.getIdHospital());
+        System.out.println("Nome: " + hospital.getNomeHospital());
+        System.out.println("Endereço: " + hospital.getEnderecoHospital());
+        System.out.println("Quantidade de pessoas: " + hospital.getQuantPessoasHospital());
+        System.out.println("─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────");
+    }
+
+    @Override
+    public int selecionarHospital(){
+        System.out.println("─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────");
+        System.out.print("Digite o id do hospital desejado: ");
+
+        return Ferramentas.lInteiro();
     }
 
     @Override

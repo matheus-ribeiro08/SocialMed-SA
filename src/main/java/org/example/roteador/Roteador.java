@@ -37,19 +37,19 @@ public class Roteador {
                     break;
                 }
                 case MENU_PACIENTE:{
-                    presenterFactory.criarMenuPacientePresenter((PacienteModel) usuario).iniciar();
+                    presenterFactory.criarMenuPacientePresenter((PacienteModel) usuario).iniciar(usuario);
                     break;
                 }
                 case MENU_SECRETARIO:{
-                    presenterFactory.criarMenuSecretarioPresenter((SecretarioModel) usuario).iniciar();
+                    presenterFactory.criarMenuSecretarioPresenter((SecretarioModel) usuario).iniciar(usuario);
                     break;
                 }
                 case MENU_MEDICO:{
-                    presenterFactory.criarMenuMedicoPresenter((MedicoModel) usuario).inicar();
+                    presenterFactory.criarMenuMedicoPresenter((MedicoModel) usuario).inicar(usuario);
                     break;
                 }
                 case MENU_ADMIN:{
-                    presenterFactory.criarMenuAdminPresenter((AdminModel) usuario).iniciar();
+                    presenterFactory.criarMenuAdminPresenter((AdminModel) usuario).iniciar(usuario);
                 }
                 case ERRO:{
                     presenterFactory.criarErroPresenter().iniciar();

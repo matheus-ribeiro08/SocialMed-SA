@@ -80,7 +80,7 @@ public class SecretarioService {
         return secretarioDAO.atualizarSecretario(secretario);
     }
 
-    public boolean cadastrarPaciente(PacienteModel paciente) throws SecretarioException, SQLException {
+    public int cadastrarPaciente(PacienteModel paciente) throws SecretarioException, SQLException {
         if (paciente == null) {
             throw new SecretarioException("Paciente não pode ser nulo");
         }
@@ -214,8 +214,8 @@ public class SecretarioService {
             throw new SecretarioException("Paciente já possui uma consulta agendada neste horário");
         }
 
-        boolean cadastrado = consultaDAO.cadastrarConsulta(consulta);
-        if (!cadastrado) {
+        int cadastrado = consultaDAO.cadastrarConsulta(consulta);
+        if (cadastrado <= 0) {
             throw new SecretarioException("Erro ao cadastrar consulta");
         }
     }

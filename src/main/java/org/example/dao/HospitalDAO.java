@@ -33,7 +33,9 @@ public class HospitalDAO
                 );
                 hospitais.add(hospital);
             }
-        } catch (SQLException e) {}
+        } catch (SQLException e) {
+            System.out.println("Erro ao listar Hospitais");
+        }
         return hospitais;
     }
 
@@ -42,8 +44,6 @@ public class HospitalDAO
         HospitalModel hospitalModel = null;
 
         String sql = "SELECT * FROM Hospital WHERE id_Hospital = ?";
-
-
         try(Connection conn = ConnectionFactory.getConnection();
             PreparedStatement stmt = conn.prepareStatement(sql))
         {
@@ -59,8 +59,7 @@ public class HospitalDAO
                             rs.getString("endereco_Hospital"),
                             rs.getInt("quantidade_Pessoas"),
                             rs.getString("nome_Hospital"),
-                            rs.getInt("quantidadeSalas_Hospital"),
-                            rs.getString("agenda_Hospital")
+                            rs.getInt("quantidadeSalas_Hospital")
                     );
                 }
             }

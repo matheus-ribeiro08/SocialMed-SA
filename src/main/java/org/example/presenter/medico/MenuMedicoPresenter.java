@@ -2,10 +2,7 @@ package org.example.presenter.medico;
 
 import org.example.enums.Destinos;
 import org.example.enums.TipoUsuario;
-import org.example.model.ConsultaModel;
-import org.example.model.MedicoModel;
-import org.example.model.PacienteModel;
-import org.example.model.ProntuarioModel;
+import org.example.model.*;
 import org.example.roteador.Roteador;
 import org.example.service.consulta.ConsultaService;
 import org.example.service.medico.MedicoService;
@@ -39,7 +36,10 @@ public class MenuMedicoPresenter {
         this.prontuarioService = new ProntuarioService();
     }
 
-    public void inicar(){
+    public void inicar(UsuarioModel usuario) throws SQLException {
+
+        MedicoModel medico = medicoService.buscarPorId(usuario.getIdUsuario());
+        System.out.println("Id: " + medico.getIdMedico());
         Ferramentas.Delay(1500);
         Ferramentas.limpaTerminalOpcional(30);
         boolean executando = true;

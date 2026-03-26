@@ -54,7 +54,7 @@ public class PacienteService {
         }
     }
 
-    public boolean cadastrar(PacienteModel paciente){
+    public int cadastrar(PacienteModel paciente){
         if (paciente == null) {
             throw new IllegalArgumentException("Paciente nao pode ser nulo");
         }

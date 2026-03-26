@@ -40,13 +40,19 @@ MenuPacientePresenter {
         this.hospitalService = new HospitalService();
     }
 
-    public void iniciar() {
+    public void iniciar(UsuarioModel usuario) {
+
+        PacienteModel pacienteLogado = pacienteService.buscarPorCpf(usuario.getCpfUsuario());
+
+        System.out.println("Id: " + pacienteLogado.getIdPaciente());
+        System.out.println("NOme: " + pacienteLogado.getNomeUsuario());
+
         Ferramentas.Delay(1500);
         Ferramentas.limpaTerminalOpcional(30);
         boolean execuntando = true;
 
         while (execuntando) {
-            int opcao = view.mostrarMenuPrincipal(paciente.getNomeUsuario());
+            int opcao = view.mostrarMenuPrincipal(pacienteLogado.getNomeUsuario());
 
             try {
                 switch (opcao) {
@@ -55,7 +61,7 @@ MenuPacientePresenter {
                         break;
                     }
                     case 2: {
-                        agendarConsulta();
+                        agendarConsulta(pacienteLogado);
                         break;
                     }
                     case 3: {
@@ -132,7 +138,7 @@ MenuPacientePresenter {
 
     }
 
-    private void agendarConsulta(){
+    private void agendarConsulta(PacienteModel pacienteLogado){
         view.mostrarTitulo("Agendar consulta");
         Ferramentas.limpaTerminalOpcional(30);
 
@@ -174,15 +180,24 @@ MenuPacientePresenter {
                 return;
             }
 
-            HospitalModel hospital = hospitalService.buscarHospitalDoMedico(medico.getIdMedico());
+            view.mostrarTituloListaHospital();
+
+            List<HospitalModel> hospitais = hospitalService.listarTodos();
+
+            for(HospitalModel hospital : hospitais){
+                view.listarHospitais(hospital);
+            }
+
+            int idHospital = view.selecionarHospital();
+            HospitalModel hospitalModel = hospitalService.buscarPorId(idHospital);
 
             String descricao = view.lerDescricaoAgendamento();
 
             ConsultaModel consulta = new ConsultaModel();
             consulta.setIdMedico(medico.getIdMedico());
-            consulta.setIdPaciente(paciente.getIdPaciente());
-            consulta.setIdHospital(hospital.getIdHospital());
-            consulta.setLocalEndereco(hospital.getEnderecoHospital());
+            consulta.setIdPaciente(pacienteLogado.getIdPaciente());
+            consulta.setIdHospital(hospitalModel.getIdHospital());
+            consulta.setLocalEndereco(hospitalModel.getEnderecoHospital());
             consulta.setHorarioConsulta(horarioConsulta);
             
             consultaService.agendarConsulta(consulta);
@@ -192,8 +207,8 @@ MenuPacientePresenter {
             Ferramentas.Delay(1500);
             Ferramentas.limpaTerminalOpcional(30);
 
-        }catch (Exception e){
-            view.mostrarMensagemErro("Erro ao agendar consulta");
+        } catch (Exception e){
+            view.mostrarMensagemErro("Erro ao agendar consulta" + e);
             Ferramentas.Delay(1500);
             Ferramentas.limpaTerminalOpcional(30);
         }

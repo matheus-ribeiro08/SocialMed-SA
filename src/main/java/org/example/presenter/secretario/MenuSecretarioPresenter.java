@@ -11,6 +11,7 @@ import org.example.service.secretario.SecretarioService;
 import org.example.utils.Ferramentas;
 import org.example.viewInterface.viewInterfaceSecretario.IMenuSecretarioView;
 
+import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -33,7 +34,10 @@ public class MenuSecretarioPresenter {
         this.medicoService = new MedicoService();
     }
 
-    public void iniciar() {
+    public void iniciar(UsuarioModel usuario) throws SQLException {
+
+        SecretarioModel secretario = secretarioService.buscarPorId(usuario.getIdUsuario());
+        System.out.println("Id: " + secretario.getIdSecretario());
         Ferramentas.limpaTerminalOpcional(30);
         boolean executando = true;
 

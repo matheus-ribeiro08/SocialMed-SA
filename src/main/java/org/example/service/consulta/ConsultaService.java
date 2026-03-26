@@ -157,14 +157,17 @@ public class ConsultaService {
             throw new ConsultaException("Paciente ja possui uma consulta agendada nesse horario");
         }
 
-        boolean cadastrado = consultaDAO.cadastrarConsulta(consulta);
-        if(!cadastrado){
-            throw new ConsultaException("Erro ao cadastrar consulta");
+        int idConsultaGerado = consultaDAO.cadastrarConsulta(consulta);
+
+        if (idConsultaGerado > 0) {
+            System.out.println("Consulta agendada com sucesso! O ID da consulta é: " + idConsultaGerado);
+        } else {
+            System.out.println("Erro ao agendar consulta. Verifique os dados.");
         }
 
     }
 
-    private void validarConsulta(ConsultaModel consulta) throws Exception{
+    private void validarConsulta(ConsultaModel consulta) throws Exception {
         if(consulta == null){
             throw new Exception("Consulta não pode ser nula");
         }

@@ -1,9 +1,6 @@
 package org.example.viewInterface.viewInterfacePaciente;
 
-import org.example.model.ConsultaModel;
-import org.example.model.MedicoModel;
-import org.example.model.PacienteModel;
-import org.example.model.ProntuarioModel;
+import org.example.model.*;
 
 import java.util.List;
 
@@ -24,6 +21,10 @@ public interface IMenuPacienteView {
     void mostrarTituloAgenda();
     void mostrarTituloLista();
 
+    void mostrarTituloListaHospital();
+
+    void listarHospitais(HospitalModel hospital);
+    int selecionarHospital();
     void abrirMapaLocalizacao();
     void mostrarHistoricoConsultas(ConsultaModel consulta);
     void mostrarAgenda(ConsultaModel consulta);

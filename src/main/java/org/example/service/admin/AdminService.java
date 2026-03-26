@@ -53,6 +53,7 @@ public class AdminService {
         return medicoDAO.removerMedico(idMedico);
    }
 
+
     // ==================== Métodos de Secretarios ====================
 
     public boolean criarSecretario(AdminModel admin, SecretarioModel secretario){
@@ -159,7 +160,17 @@ public class AdminService {
             throw new RuntimeException("Paciente não autentificado!");
         }
     }
+    public AdminModel buscarPorCpf(String cpf){
+        if(cpf == null || cpf.trim().isEmpty()){
+            throw new IllegalArgumentException("Cpf nao pode ser vazio");
+        }
 
+        try {
+            return adminDAO.buscarPorCpf(cpf);
+        }catch (Exception e){
+            throw new RuntimeException("Erro ao buscar adm por cpf");
+        }
+    }
 
 
 }

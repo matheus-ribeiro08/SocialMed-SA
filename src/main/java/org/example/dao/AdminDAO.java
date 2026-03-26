@@ -2,9 +2,7 @@ package org.example.dao;
 
 import org.example.database.ConnectionFactory;
 import org.example.enums.TipoUsuario;
-import org.example.model.HospitalModel;
-import org.example.model.MedicoModel;
-import org.example.model.SecretarioModel;
+import org.example.model.*;
 
 import java.sql.*;
 
@@ -64,6 +62,42 @@ public class AdminDAO {
                 } catch (SQLException ex) {}
             }
         }
+    }
+    public AdminModel buscarPorCpf (String cpf)
+    {
+        AdminModel adminModel= null;
+
+        String sql = "SELECT u.*, a.id_Administracao " +
+                "FROM Administracao a " +
+                "INNER JOIN Usuario u ON a.id_Usuario = u.id_Usuario " +
+                "WHERE u.cpf_Usuario = ?";
+
+        try(Connection conn = ConnectionFactory.getConnection();
+            PreparedStatement stmt = conn.prepareStatement(sql))
+        {
+            stmt.setString(1, cpf);
+
+            try (ResultSet rs = stmt.executeQuery())
+            {
+                if(rs.next())
+                {
+                    adminModel = new AdminModel();
+                    adminModel.setIdAdmin(rs.getInt("id_Administracao"));
+                    adminModel.setIdUsuario(rs.getInt("id_Usuario"));
+                    adminModel.setNomeUsuario(rs.getString("nome_usuario"));
+                    adminModel.setEmailUsuario(rs.getString("email_Usuario"));
+                    adminModel.setSenhaUsuario(rs.getString("senha_Usuario"));
+                    adminModel.setTelefoneUsuario(rs.getString("telefone_Usuario"));
+                    adminModel.setCpfUsuario(rs.getString("cpf_Usuario"));
+
+                }
+            }
+        }
+        catch (SQLException e)
+        {
+            System.err.println("Erro ao buscar paciente por Cpf");
+        }
+        return adminModel;
     }
 
     public boolean cadastrarSecretario(SecretarioModel secretario){

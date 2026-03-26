@@ -2,6 +2,7 @@ package org.example.dao;
 
 import org.example.database.ConnectionFactory;
 import org.example.enums.TipoUsuario;
+import org.example.model.AdminModel;
 import org.example.model.SecretarioModel;
 
 import java.sql.*;
@@ -248,6 +249,43 @@ public class SecretarioDAO {
             System.err.println("Erro ao procurar detalhes do secretario");
         }
         return detalhes;
+    }
+    public SecretarioModel buscarPorCpf (String cpf)
+    {
+        SecretarioModel secretario = null;
+
+        String sql = "SELECT u.*, s.id_Secretario, s.turno_Secretario " +
+                "FROM Secretario s " +
+                "INNER JOIN Usuario u ON ssecretario.id_Usuario = u.id_Usuario " +
+                "WHERE u.cpf_Usuario = ?";
+
+        try(Connection conn = ConnectionFactory.getConnection();
+            PreparedStatement stmt = conn.prepareStatement(sql))
+        {
+            stmt.setString(1, cpf);
+
+            try (ResultSet rs = stmt.executeQuery())
+            {
+                if(rs.next())
+                {
+                    secretario = new SecretarioModel();
+                    secretario.setIdSecretario(rs.getInt("id_Administracao"));
+                    secretario.setIdUsuario(rs.getInt("id_Usuario"));
+                    secretario.setNomeUsuario(rs.getString("nome_usuario"));
+                    secretario.setEmailUsuario(rs.getString("email_Usuario"));
+                    secretario.setSenhaUsuario(rs.getString("senha_Usuario"));
+                    secretario.setTelefoneUsuario(rs.getString("telefone_Usuario"));
+                    secretario.setCpfUsuario(rs.getString("cpf_Usuario"));
+                    secretario.setTurnoTrabalhadoSecretario("turno_Secretario");
+
+                }
+            }
+        }
+        catch (SQLException e)
+        {
+            System.err.println("Erro ao buscar paciente por Cpf");
+        }
+        return secretario;
     }
 
     public boolean removerSecretario(int idSecretario) throws SQLException{

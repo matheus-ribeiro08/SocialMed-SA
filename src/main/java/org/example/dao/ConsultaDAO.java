@@ -10,26 +10,38 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ConsultaDAO {
-    public boolean cadastrarConsulta(ConsultaModel consulta) {
+    public int cadastrarConsulta(ConsultaModel consulta) {
         String sql = " INSERT INTO Consultas (id_Hospital, local_Consulta, id_Paciente, id_Medico, horario_Consulta) VALUES (?, ?, ?, ?, ?)";
 
         try (Connection conn = ConnectionFactory.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
-
+             PreparedStatement stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS))
+        {
             stmt.setInt(1, consulta.getIdHospital());
             stmt.setString(2, consulta.getLocalEndereco());
             stmt.setInt(3, consulta.getIdPaciente());
             stmt.setInt(4, consulta.getIdMedico());
             stmt.setTimestamp(5, Timestamp.valueOf(consulta.getHorarioConsulta()));
 
-            stmt.executeUpdate();
+            int linhasAfetadas = stmt.executeUpdate();
 
-            return true;
+            if(linhasAfetadas > 0)
+            {
+                try(ResultSet rs = stmt.getGeneratedKeys())
+                {
+                    if(rs.next())
+                    {
+                        int idGerado = rs.getInt(1);
+                        consulta.setIdConsulta(idGerado);
+
+                        return idGerado;
+                    }
+                }
+            }
 
         } catch (SQLException e) {
             System.err.println("Erro ao cadastrar consultas: " + e.getMessage());
-            return false;
         }
+        return -1;
     }
 
     public List<ConsultaModel> listarConsultas() {

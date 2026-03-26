@@ -12,7 +12,7 @@ import java.util.List;
 
 public class PacienteDAO
 {
-    public boolean cadastrarPaciente(PacienteModel paciente) throws SQLException {
+    public int cadastrarPaciente(PacienteModel paciente) throws SQLException {
         String sqlUsuario = "INSERT INTO Usuario (nome_Usuario, email_Usuario, senha_Usuario, telefone_Usuario, cpf_Usuario, tipo_Usuario) VALUES (?, ?, ?, ?, ?, ?)";
         String sqlPaciente = "INSERT INTO Paciente (id_Usuario, endereco_Paciente) VALUES (?, ?)";
 
@@ -35,11 +35,20 @@ public class PacienteDAO
                 try (ResultSet rs = stmt.getGeneratedKeys()) {
                     if (rs.next()) {
                         int idUsuarioGerado = rs.getInt(1);
+                        paciente.setIdUsuario(idUsuarioGerado);
 
-                        try (PreparedStatement stmtP = conn.prepareStatement(sqlPaciente)) {
+                        try (PreparedStatement stmtP = conn.prepareStatement(sqlPaciente, Statement.RETURN_GENERATED_KEYS)) {
                             stmtP.setInt(1, idUsuarioGerado);
                             stmtP.setString(2, paciente.getEnderecoPaciente());
                             stmtP.executeUpdate();
+
+                            try(ResultSet rsPaciente = stmtP.getGeneratedKeys()) {
+                                if(rsPaciente.next()){
+                                    int idPacienteGerado = rsPaciente.getInt(1);
+                                    paciente.setIdPaciente(idPacienteGerado);
+                                }
+
+                            }
                         }
 
                     } else {
@@ -48,7 +57,7 @@ public class PacienteDAO
                 }
             }
             conn.commit();
-            return true;
+            return paciente.getIdPaciente();
 
         } catch (SQLException e)
         {
