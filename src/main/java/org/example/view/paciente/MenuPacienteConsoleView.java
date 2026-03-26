@@ -250,7 +250,7 @@ public class MenuPacienteConsoleView implements IMenuPacienteView {
     @Override
     public void mostrarListaMedicos(MedicoModel medico) {
         System.out.println(Ferramentas.GREENclaro+"───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────"+ Ferramentas.RESET);
-        System.out.println("Id: " + medico.getIdUsuario());
+        System.out.println("Id: " + medico.getIdMedico());
         System.out.println("Nome: " + medico.getNomeUsuario());
         System.out.println("Cpf: " + medico.getCpfUsuario());
         System.out.println("Especialidade: " + medico.getEspecialidadeMedico());

@@ -34,7 +34,9 @@ public class LoginUsuarioPresenter {
 
             TipoUsuario tipo = usuario.getTipoUsuario();
 
+            System.out.println(Ferramentas.GREENclaro+"─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────");
             System.out.println("Login realizado com sucesso!");
+            System.out.println(Ferramentas.GREENclaro+"─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────");
             Ferramentas.Delay(1500);
             Ferramentas.limpaTerminalOpcional(30);
 
