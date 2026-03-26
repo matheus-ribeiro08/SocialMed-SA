@@ -256,7 +256,7 @@ public class SecretarioDAO {
 
         String sql = "SELECT u.*, s.id_Secretario, s.turno_Secretario " +
                 "FROM Secretario s " +
-                "INNER JOIN Usuario u ON ssecretario.id_Usuario = u.id_Usuario " +
+                "INNER JOIN Usuario u ON s.id_Usuario = u.id_Usuario " +
                 "WHERE u.cpf_Usuario = ?";
 
         try(Connection conn = ConnectionFactory.getConnection();
