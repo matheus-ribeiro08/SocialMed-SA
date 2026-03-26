@@ -70,7 +70,7 @@ public class ProntuarioDAO
                     prontuarioModel.setDiagnostico(rs.getString("diagnostico"));
                     prontuarioModel.setSintomas(rs.getString("sintomas"));
                     prontuarioModel.setPrescricaoMedica(rs.getString("prescricao_Medica"));
-                    prontuarioModel.setObservacoes((rs.getString("observacao")));
+                    prontuarioModel.setObservacoes((rs.getString("observacoes")));
 
                     Timestamp dataBanco = rs.getTimestamp("data_Registro");
                     if(dataBanco != null)
