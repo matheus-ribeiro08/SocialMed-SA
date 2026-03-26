@@ -28,13 +28,12 @@ public class HospitalDAO
                         rs.getString("endereco_Hospital"),
                         rs.getInt("quantidade_Pessoas"),
                         rs.getString("nome_Hospital"),
-                        rs.getInt("quantidadeSalas_Hospital"),
-                        rs.getString("agenda_Hospital")
+                        rs.getInt("quantidadeSalas_Hospital")
                 );
                 hospitais.add(hospital);
             }
         } catch (SQLException e) {
-            System.out.println("Erro ao listar Hospitais");
+            System.out.println("Erro ao listar Hospitais" + e);
         }
         return hospitais;
     }
