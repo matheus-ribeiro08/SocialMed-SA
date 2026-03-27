@@ -84,14 +84,14 @@ public class MenuMedicoPresenter {
                         solicitarExame();
                         break;
                     }
-                    case 11:{
+                    case 10:{
                         executando = false;
                         roteador.irPara(Destinos.MENU_INICIAL, null);
                         Ferramentas.Delay(1500);
                         Ferramentas.limpaTerminalOpcional(30);
                         break;
                     }
-                    case 0:{
+                    case 11:{
                         executando = false;
                         Ferramentas.Delay(1500);
                         Ferramentas.limpaTerminalOpcional(30);
