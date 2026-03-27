@@ -200,7 +200,6 @@ public class MenuPacienteConsoleView implements IMenuPacienteView {
         System.out.println("Medico: " + prontuario.getIdMedico());
         System.out.println("Paciente: " + prontuario.getIdPaciente());
         System.out.println("Diagnostico: " + prontuario.getDiagnostico());
-        System.out.println("Consulta: " + prontuario.getIdConsulta());
         System.out.println("Observações: " + prontuario.getObservacoes());
         System.out.println("Prescrição medica: " + prontuario.getPrescricaoMedica());
         System.out.println("Data: " + prontuario.getDataRegistro());

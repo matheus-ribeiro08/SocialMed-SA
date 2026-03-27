@@ -101,8 +101,8 @@ public class AdminDAO {
     }
 
     public boolean cadastrarSecretario(SecretarioModel secretario){
-        String sqlUsuario = "INSERT INTO Usuario (nome_usuario, data_Nascimento, email_Usuario, senha_Usuario, telefone_Usuario, cpf_Usuario, tipo_Usuario) VALUES (?, ?, ?, ?, ?, ?)";
-        String sqlSecretario = "INSERT INTO Secretario (id_Usuario) VALUES (?)";
+        String sqlUsuario = "INSERT INTO Usuario (nome_usuario, email_Usuario, senha_Usuario, telefone_Usuario, cpf_Usuario, tipo_Usuario) VALUES (?, ?, ?, ?, ?, ?)";
+        String sqlSecretario = "INSERT INTO Secretario (id_Usuario, turno_Secretario) VALUES (?, ?)";
 
         Connection conn = null;
 
@@ -126,6 +126,7 @@ public class AdminDAO {
 
                         try(PreparedStatement stmtSecretario = conn.prepareStatement(sqlSecretario)){
                             stmtSecretario.setInt(1, idUsuario);
+                            stmtSecretario.setString(2, secretario.getTurnoTrabalhadoSecretario());
                             stmtSecretario.executeUpdate();
                         }
                     } else{
