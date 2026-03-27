@@ -27,48 +27,48 @@ public class CadastroViewConsole implements ICadastroView {
 
     @Override
     public String pedirEmail(){
-        System.out.println("───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────");
-        System.out.println(Ferramentas.YELLOW+" ➤ "+Ferramentas.RESET+" Digite o seu email: ");
+        System.out.println(Ferramentas.GREENclaro+"───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────");
+        System.out.print(Ferramentas.YELLOW+" ➤ "+Ferramentas.RESET+" Digite o seu email: ");
 
         return Ferramentas.lString();
     }
 
     @Override
     public String pedirEndereco(){
-        System.out.println("───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────");
-        System.out.println(Ferramentas.YELLOW+" ➤ "+Ferramentas.RESET+"Digite o seu endereço: ");
+        System.out.println(Ferramentas.GREENclaro+"───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────");
+        System.out.print(Ferramentas.YELLOW+" ➤ "+Ferramentas.RESET+"Digite o seu endereço: ");
 
         return Ferramentas.lString();
     }
 
     @Override
     public String pedirSenha() {
-        System.out.println("───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────");
-        System.out.println(Ferramentas.YELLOW+" ➤ "+Ferramentas.RESET+" Digite a sua senha");
+        System.out.println(Ferramentas.GREENclaro+"───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────");
+        System.out.print(Ferramentas.YELLOW+" ➤ "+Ferramentas.RESET+" Digite a sua senha: ");
 
         return Ferramentas.lString();
     }
 
     @Override
     public String pedirNome() {
-        System.out.println("───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────");
-        System.out.println(Ferramentas.YELLOW+" ➤ "+Ferramentas.RESET+" Digite o seu nome: ");
+        System.out.println(Ferramentas.GREENclaro+"───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────");
+        System.out.print(Ferramentas.YELLOW+" ➤ "+Ferramentas.RESET+" Digite o seu nome: ");
 
         return Ferramentas.lString();
     }
 
     @Override
     public String pedirCPF() {
-        System.out.println("───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────");
-        System.out.println(Ferramentas.YELLOW+" ➤ "+Ferramentas.RESET+" Digite o seu cpf: ");
+        System.out.println(Ferramentas.GREENclaro+"───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────");
+        System.out.print(Ferramentas.YELLOW+" ➤ "+Ferramentas.RESET+" Digite o seu cpf: ");
 
         return Ferramentas.lString();
     }
 
     @Override
     public String pedirTelefone() {
-        System.out.println("───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────");
-        System.out.println(Ferramentas.YELLOW+" ➤ "+Ferramentas.RESET+" Digite o seu telefone: ");
+        System.out.println(Ferramentas.GREENclaro+"───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────");
+        System.out.print(Ferramentas.YELLOW+" ➤ "+Ferramentas.RESET+" Digite o seu telefone: ");
 
         return Ferramentas.lString();
     }

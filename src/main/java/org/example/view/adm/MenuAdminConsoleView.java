@@ -67,7 +67,7 @@ public class MenuAdminConsoleView implements IMenuAdminView {
     @Override
     public String lerCpf() {
         System.out.println(Ferramentas.GREENclaro+"───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────");
-        System.out.println("Digite o CPF (11 numeros): ");
+        System.out.print(Ferramentas.YELLOW+" ➤"+ Ferramentas.RESET+"Digite o CPF (11 numeros): ");
         return Ferramentas.lString().trim();
     }
 
@@ -110,7 +110,7 @@ public class MenuAdminConsoleView implements IMenuAdminView {
     @Override
     public String lerEspecialidade(){
         System.out.println(Ferramentas.GREENclaro+"───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────");
-        System.out.println("Digite a especialidade: ");
+        System.out.print(Ferramentas.YELLOW+" ➤"+ Ferramentas.RESET+"Digite a especialidade: ");
 
         return Ferramentas.lString().trim();
     }
@@ -132,7 +132,7 @@ public class MenuAdminConsoleView implements IMenuAdminView {
     @Override
     public String lerTurno() {
         System.out.println(Ferramentas.GREENclaro+"───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────");
-        System.out.print("Digite o turno: ");
+        System.out.print(Ferramentas.YELLOW+" ➤"+ Ferramentas.RESET+"Digite o turno: ");
 
         return Ferramentas.lString().trim();
     }
@@ -140,7 +140,7 @@ public class MenuAdminConsoleView implements IMenuAdminView {
     @Override
     public String lerEndereco() {
         System.out.println(Ferramentas.GREENclaro+"───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────");
-        System.out.print("Digite o endereço: ");
+        System.out.print(Ferramentas.YELLOW+" ➤"+ Ferramentas.RESET+"Digite o endereço: ");
 
         return Ferramentas.lString().trim();
     }
@@ -148,7 +148,7 @@ public class MenuAdminConsoleView implements IMenuAdminView {
     @Override
     public String lerTelefone() {
         System.out.println(Ferramentas.GREENclaro+"───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────");
-        System.out.print("Digite o telefone: ");
+        System.out.print(Ferramentas.YELLOW+" ➤"+ Ferramentas.RESET+"Digite o telefone: ");
 
         return Ferramentas.lString().trim();
     }
@@ -156,7 +156,7 @@ public class MenuAdminConsoleView implements IMenuAdminView {
     @Override
     public String lerSenha(){
         System.out.println(Ferramentas.GREENclaro+"───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────");
-        System.out.print("Digite a senha: ");
+        System.out.print(Ferramentas.YELLOW+" ➤"+ Ferramentas.RESET+"Digite a senha: ");
 
         return Ferramentas.lString().trim();
     }
@@ -164,7 +164,7 @@ public class MenuAdminConsoleView implements IMenuAdminView {
     @Override
     public String lerEmail() {
         System.out.println(Ferramentas.GREENclaro+"───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────");
-        System.out.print("Digite o email: ");
+        System.out.print(Ferramentas.YELLOW+" ➤"+ Ferramentas.RESET+"Digite o email: ");
 
         return Ferramentas.lString().trim();
     }
@@ -172,7 +172,7 @@ public class MenuAdminConsoleView implements IMenuAdminView {
     @Override
     public String lerNomeCompleto() {
         System.out.println(Ferramentas.GREENclaro+"───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────");
-        System.out.print("Digite o nome: ");
+        System.out.print(Ferramentas.YELLOW+" ➤"+ Ferramentas.RESET+"Digite o nome: ");
 
         return Ferramentas.lString();
     }
@@ -180,7 +180,7 @@ public class MenuAdminConsoleView implements IMenuAdminView {
     @Override
     public int lerId(){
         System.out.println(Ferramentas.GREENclaro+"───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────");
-        System.out.print("Digite o Id: ");
+        System.out.print(Ferramentas.YELLOW+" ➤"+ Ferramentas.RESET+"Digite o Id: ");
 
         return Ferramentas.lInteiro();
     }

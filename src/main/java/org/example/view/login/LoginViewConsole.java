@@ -25,7 +25,7 @@ public class LoginViewConsole implements ILoginView {
         System.out.println(Ferramentas.GREENclaro+"─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────"+ Ferramentas.RESET);
         System.out.println(Ferramentas.RESET+" (1) "+ Ferramentas.GREEN+"➔"+ Ferramentas.RESET+" Fazer Login");
         System.out.println(Ferramentas.RESET+" (2) "+ Ferramentas.GREEN+"➔"+ Ferramentas.RESET+" Cadastrar-se");
-        System.out.println(Ferramentas.RESET+" (3) "+ Ferramentas.GREEN+"➔"+ Ferramentas.RESET+" Sair");
+        System.out.println(Ferramentas.RESET+" (0) "+ Ferramentas.GREEN+"➔"+ Ferramentas.RESET+" Sair");
         System.out.println(Ferramentas.GREENclaro+"──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────");
         System.out.print(Ferramentas.YELLOW+" ➤"+ Ferramentas.RESET+" Escolha: ");
 

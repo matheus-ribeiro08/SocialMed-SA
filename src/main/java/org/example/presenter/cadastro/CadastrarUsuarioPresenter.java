@@ -41,7 +41,7 @@ public class CadastrarUsuarioPresenter {
 
                 validarInformacoes(nome, senha, email, cpf, telefone);
 
-                PacienteModel paciente = new PacienteModel(nome, tipoUsuario, email, senha, telefone, cpf, endereco);
+                PacienteModel paciente = new PacienteModel(nome, email, senha, telefone, cpf, tipoUsuario, endereco);
 
                 pacienteService.cadastrar(paciente);
 
@@ -51,6 +51,7 @@ public class CadastrarUsuarioPresenter {
                 Ferramentas.limpaTerminalOpcional(30);
                 cadastrando = false;
             } catch (Exception e) {
+                e.printStackTrace();
                 System.err.println("Erro no cadastro!");
                 Ferramentas.Delay(1500);
                 Ferramentas.limpaTerminalOpcional(30);
@@ -58,7 +59,7 @@ public class CadastrarUsuarioPresenter {
                 if (perguntarTentarNovamente()) {
                     iniciarCadastro();
                 } else {
-                    roteadorCadastro.irPara(Destinos.LOGIN, null);
+                    roteadorCadastro.irPara(Destinos.MENU_INICIAL, null);
                     cadastrando = false;
                 }
             }

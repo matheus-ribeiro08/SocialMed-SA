@@ -50,17 +50,17 @@ public class MenuSecretarioConsoleView implements IMenuSecretarioView {
 
     @Override
     public void mostrarMensagemSucesso(String mensagem) {
-        System.out.println("\n✅ " + mensagem);
+        System.out.println("\n " + mensagem);
     }
 
     @Override
     public void mostrarMensagemErro(String mensagem) {
-        System.err.println("\n❌ " + mensagem);
+        System.err.println("\n " + mensagem);
     }
 
     @Override
     public void mostrarMensagemInfo(String mensagem) {
-        System.out.println("\nℹ️ " + mensagem);
+        System.out.println("\nℹ " + mensagem);
     }
 
     @Override
@@ -156,90 +156,105 @@ public class MenuSecretarioConsoleView implements IMenuSecretarioView {
 
     @Override
     public String lerNomeCompleto() {
+        System.out.println(Ferramentas.GREENclaro+"───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────"+ Ferramentas.RESET);
         System.out.print(Ferramentas.YELLOW+" ➤"+ Ferramentas.RESET+" Digite o nome completo: ");
         return Ferramentas.lString().trim();
     }
 
     @Override
     public String lerCpf() {
+        System.out.println(Ferramentas.GREENclaro+"───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────"+ Ferramentas.RESET);
         System.out.print(Ferramentas.YELLOW+" ➤"+ Ferramentas.RESET+" Digite o CPF (apenas números): ");
         return Ferramentas.lString().trim();
     }
 
     @Override
     public String lerEmail() {
+        System.out.println(Ferramentas.GREENclaro+"───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────"+ Ferramentas.RESET);
         System.out.print(Ferramentas.YELLOW+" ➤"+ Ferramentas.RESET+" Digite o email: ");
         return Ferramentas.lString().trim();
     }
 
     @Override
     public String lerSenha() {
+        System.out.println(Ferramentas.GREENclaro+"───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────"+ Ferramentas.RESET);
         System.out.print(Ferramentas.YELLOW+" ➤"+ Ferramentas.RESET+" Digite a senha: ");
         return Ferramentas.lString().trim();
     }
 
     @Override
     public String lerTelefone() {
+        System.out.println(Ferramentas.GREENclaro+"───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────"+ Ferramentas.RESET);
         System.out.print(Ferramentas.YELLOW+" ➤"+ Ferramentas.RESET+" Digite o telefone: ");
         return Ferramentas.lString().trim();
     }
 
     @Override
     public String lerEndereco() {
+        System.out.println(Ferramentas.GREENclaro+"───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────"+ Ferramentas.RESET);
         System.out.print(Ferramentas.YELLOW+" ➤"+ Ferramentas.RESET+" Digite o endereço: ");
         return Ferramentas.lString().trim();
     }
 
     @Override
     public String lerDataNascimento() {
+        System.out.println(Ferramentas.GREENclaro+"───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────"+ Ferramentas.RESET);
         System.out.print(Ferramentas.YELLOW+" ➤"+ Ferramentas.RESET+" Digite a data de nascimento (dd/MM/yyyy): ");
         return Ferramentas.lString().trim();
     }
 
     @Override
     public String lerData() {
+        System.out.println(Ferramentas.GREENclaro+"───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────"+ Ferramentas.RESET);
         System.out.print(Ferramentas.YELLOW+" ➤"+ Ferramentas.RESET+" Digite a data (dd/MM/yyyy): ");
         return Ferramentas.lString().trim();
     }
 
     @Override
     public String lerHora() {
+        System.out.println(Ferramentas.GREENclaro+"───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────"+ Ferramentas.RESET);
         System.out.print(Ferramentas.YELLOW+" ➤"+ Ferramentas.RESET+" Digite a hora (HH:mm): ");
         return Ferramentas.lString().trim();
     }
 
     @Override
     public String lerTurno() {
+        System.out.println(Ferramentas.GREENclaro+"───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────"+ Ferramentas.RESET);
         System.out.print(Ferramentas.YELLOW+" ➤"+ Ferramentas.RESET+" Digite o turno (Manhã/Tarde/Noite): ");
         return Ferramentas.lString().trim();
     }
 
     @Override
     public String lerEspecialidade() {
+        System.out.println(Ferramentas.GREENclaro+"───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────"+ Ferramentas.RESET);
         System.out.print(Ferramentas.YELLOW+" ➤"+ Ferramentas.RESET+" Digite a especialidade (opcional para filtro): ");
         return Ferramentas.lString().trim();
     }
 
     @Override
     public int lerIdPaciente() {
+        System.out.println(Ferramentas.GREENclaro+"───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────"+ Ferramentas.RESET);
         System.out.print(Ferramentas.YELLOW+" ➤"+ Ferramentas.RESET+" Digite o ID do paciente: ");
         return Ferramentas.lInteiro();
     }
 
     @Override
     public int lerIdMedico() {
+        System.out.println(Ferramentas.GREENclaro+"───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────"+ Ferramentas.RESET);
         System.out.print(Ferramentas.YELLOW+" ➤"+ Ferramentas.RESET+" Digite o ID do médico: ");
         return Ferramentas.lInteiro();
     }
 
     @Override
     public int lerIdConsulta() {
+        System.out.println(Ferramentas.GREENclaro+"───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────"+ Ferramentas.RESET);
         System.out.print(Ferramentas.YELLOW+" ➤"+ Ferramentas.RESET+" Digite o ID da consulta: ");
         return Ferramentas.lInteiro();
     }
 
     @Override
     public int lerIdHospital() {
+        System.out.println(Ferramentas.GREENclaro+"───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────"+ Ferramentas.RESET);
         System.out.print(Ferramentas.YELLOW+" ➤"+ Ferramentas.RESET+" Digite o ID do hospital: ");
         return Ferramentas.lInteiro();
     }
@@ -316,7 +331,8 @@ public class MenuSecretarioConsoleView implements IMenuSecretarioView {
 
     @Override
     public boolean perguntarAcao(String mensagem) {
-        System.out.print("\n❓ " + mensagem + " (S/N): ");
+        System.out.println(Ferramentas.GREENclaro+"───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────"+ Ferramentas.RESET);
+        System.out.print("\n " + mensagem + " (S/N): ");
         String resposta = Ferramentas.lString().trim().toUpperCase();
         return resposta.equals("S") || resposta.equals("SIM");
     }

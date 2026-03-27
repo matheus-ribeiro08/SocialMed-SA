@@ -38,8 +38,6 @@ public class MenuSecretarioPresenter {
 
         SecretarioModel secretarioLogado = secretarioService.buscarPorCpf(usuario.getCpfUsuario());
 
-        System.out.println("Id: " + secretarioLogado.getIdSecretario());
-
         Ferramentas.limpaTerminalOpcional(30);
         boolean executando = true;
 

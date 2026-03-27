@@ -12,6 +12,7 @@ public class SairPresenter {
     }
 
     public void iniciar(){
+        System.out.println(Ferramentas.GREENclaro+"───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────"+ Ferramentas.RESET);
         System.out.println("Saindo do sistema...");
         Ferramentas.Delay(1500);
     }

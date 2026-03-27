@@ -3,7 +3,8 @@ package org.example.main;
 import org.example.enums.Destinos;
 import org.example.roteador.Roteador;
 
-public class Main {
+public class
+Main {
     public static void main(String[] args) {
 
         try {

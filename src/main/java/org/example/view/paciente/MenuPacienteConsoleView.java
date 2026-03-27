@@ -369,7 +369,8 @@ public class MenuPacienteConsoleView implements IMenuPacienteView {
 
     @Override
     public boolean perguntarAcao(String mensagem) {
-        System.out.println(mensagem + "(S/N): ");
+        System.out.println(Ferramentas.GREENclaro+"───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────"+ Ferramentas.RESET);
+        System.out.print(Ferramentas.RESET+ mensagem + "(S/N): ");
         String resposta = Ferramentas.lString().trim().toUpperCase();
         return resposta.equalsIgnoreCase(("S")) || resposta.equalsIgnoreCase("Sim");
     }

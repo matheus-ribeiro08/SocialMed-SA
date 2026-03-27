@@ -43,7 +43,6 @@ public class MenuAdminPresenter {
 
         AdminModel adminModel = adminService.buscarPorCpf(usuario.getCpfUsuario());
 
-        System.out.println("Id: " + adminModel.getIdAdmin());
         Ferramentas.Delay(1500);
         Ferramentas.limpaTerminalOpcional(30);
         boolean executando = true;
@@ -232,7 +231,7 @@ public class MenuAdminPresenter {
         String especialidade = view.lerEspecialidade();
         TipoUsuario tipoUsuario = TipoUsuario.MEDICO;
 
-        MedicoModel medicoModel = new MedicoModel(nomeCompleto, senha, cpf, email, telefone, tipoUsuario, especialidade);
+        MedicoModel medicoModel = new MedicoModel(nomeCompleto, email, senha, telefone, cpf, tipoUsuario, especialidade);
 
         adminService.criarMedico(admin, medicoModel);
 
@@ -255,7 +254,7 @@ public class MenuAdminPresenter {
         String turno = view.lerTurno();
         TipoUsuario tipoUsuario = TipoUsuario.SECRETARIO;
 
-        SecretarioModel secretarioModel = new SecretarioModel(nomeCompleto, senha, cpf, email, telefone, tipoUsuario, turno);
+        SecretarioModel secretarioModel = new SecretarioModel(nomeCompleto, email, senha, telefone, cpf, tipoUsuario, turno);
 
         adminService.criarSecretario(admin, secretarioModel);
 

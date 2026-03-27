@@ -42,9 +42,6 @@ MenuPacientePresenter {
 
         PacienteModel pacienteLogado = pacienteService.buscarPorCpf(usuario.getCpfUsuario());
 
-        System.out.println("Id: " + pacienteLogado.getIdPaciente());
-        System.out.println("NOme: " + pacienteLogado.getNomeUsuario());
-
         Ferramentas.Delay(1500);
         Ferramentas.limpaTerminalOpcional(30);
         boolean execuntando = true;
@@ -238,7 +235,7 @@ MenuPacientePresenter {
                 return;
             }
 
-            if(consulta.getIdPaciente() != paciente.getIdPaciente()){
+            if(consulta.getIdPaciente() != pacienteLogado.getIdPaciente()){
                 view.mostrarMensagemErro("Esta consulta nao pertence a voce");
                 return;
             }
