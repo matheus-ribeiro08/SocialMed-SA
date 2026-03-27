@@ -12,17 +12,17 @@ public class MenuSecretarioConsoleView implements IMenuSecretarioView {
 
     @Override
     public int mostrarMenuPrincipal(String nomeSecretario) {
-        System.out.println(DIVISOR);
-        System.out.println(Ferramentas.RESET+"  ███╗   ███╗███████╗███╗   ██╗██╗   ██╗      ███████╗███████╗ ██████╗██████╗ ███████╗████████╗ █████╗ ██████╗ ██╗ ██████╗  ");
-        System.out.println("  ████╗ ████║██╔════╝████╗  ██║██║   ██║      ██╔════╝██╔════╝██╔════╝██╔══██╗██╔════╝╚══██╔══╝██╔══██╗██╔══██╗██║██╔═══██╗  ");
-        System.out.println("  ██╔████╔██║█████╗  ██╔██╗ ██║██║   ██║      ███████╗█████╗  ██║     ██████╔╝█████╗     ██║   ███████║██████╔╝██║██║   ██║  ");
-        System.out.println("  ██║╚██╔╝██║██╔══╝  ██║╚██╗██║██║   ██║      ╚════██║██╔══╝  ██║     ██╔══██╗██╔══╝     ██║   ██╔══██║██╔══██╗██║██║   ██║ ");
-        System.out.println("  ██║ ╚═╝ ██║███████╗██║ ╚████║╚██████╔╝      ███████║███████╗╚██████╗██║  ██║███████╗   ██║   ██║  ██║██║  ██║██║╚██████╔╝  ");
-        System.out.println("  ╚═╝     ╚═╝╚══════╝╚═╝  ╚═══╝ ╚═════╝       ╚══════╝╚══════╝ ╚═════╝╚═╝  ╚═╝╚══════╝   ╚═╝   ╚═╝  ╚═╝╚═╝  ╚═╝╚═╝ ╚═════╝   ");
-        System.out.println(DIVISOR + "\n");
+        System.out.println(Ferramentas.GREENclaro+DIVISOR);
+        System.out.println(Ferramentas.RESET + "        ███╗   ███╗███████╗███╗   ██╗██╗   ██╗      ███████╗███████╗ ██████╗██████╗ ███████╗████████╗ █████╗ ██████╗ ██╗ ██████╗  ");
+        System.out.println("        ████╗ ████║██╔════╝████╗  ██║██║   ██║      ██╔════╝██╔════╝██╔════╝██╔══██╗██╔════╝╚══██╔══╝██╔══██╗██╔══██╗██║██╔═══██╗  ");
+        System.out.println("        ██╔████╔██║█████╗  ██╔██╗ ██║██║   ██║      ███████╗█████╗  ██║     ██████╔╝█████╗     ██║   ███████║██████╔╝██║██║   ██║  ");
+        System.out.println("        ██║╚██╔╝██║██╔══╝  ██║╚██╗██║██║   ██║      ╚════██║██╔══╝  ██║     ██╔══██╗██╔══╝     ██║   ██╔══██║██╔══██╗██║██║   ██║ ");
+        System.out.println("        ██║ ╚═╝ ██║███████╗██║ ╚████║╚██████╔╝      ███████║███████╗╚██████╗██║  ██║███████╗   ██║   ██║  ██║██║  ██║██║╚██████╔╝  ");
+        System.out.println("        ╚═╝     ╚═╝╚══════╝╚═╝  ╚═══╝ ╚═════╝       ╚══════╝╚══════╝ ╚═════╝╚═╝  ╚═╝╚══════╝   ╚═╝   ╚═╝  ╚═╝╚═╝  ╚═╝╚═╝ ╚═════╝   ");
+        System.out.println(Ferramentas.GREENclaro + DIVISOR + "\n");
         System.out.println(DIVISOR);
         System.out.println(" OPÇÕES                                                                                                                                                 ");
-        System.out.println(DIVISOR);
+        System.out.println(Ferramentas.GREENclaro + DIVISOR);
         System.out.println(Ferramentas.RESET+" (1) "+ Ferramentas.GREEN+"➔"+ Ferramentas.RESET+" Cadastrar Paciente");
         System.out.println(Ferramentas.RESET+" (2) "+ Ferramentas.GREEN+"➔"+ Ferramentas.RESET+" Buscar Paciente");
         System.out.println(Ferramentas.RESET+" (3) "+ Ferramentas.GREEN+"➔"+ Ferramentas.RESET+" Listar Pacientes");
@@ -37,7 +37,7 @@ public class MenuSecretarioConsoleView implements IMenuSecretarioView {
         System.out.println(Ferramentas.RESET+" (12) "+ Ferramentas.GREEN+"➔"+ Ferramentas.RESET+" Listar Médicos");
         System.out.println(Ferramentas.RESET+" (13) "+ Ferramentas.GREEN+"➔"+ Ferramentas.RESET+" Editar Perfil");
         System.out.println(Ferramentas.RESET+" (0) "+ Ferramentas.GREEN+"➔"+ Ferramentas.RESET+" Voltar para menu inicial");
-        System.out.println(DIVISOR);
+        System.out.println(Ferramentas.GREENclaro + DIVISOR);
         System.out.print(Ferramentas.YELLOW+" ➤"+ Ferramentas.RESET+" Digite a opção desejada: ");
         return Ferramentas.lInteiro();
     }
